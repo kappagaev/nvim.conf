@@ -40,6 +40,5 @@ return require('packer').startup(function(use)
 	use 'kdheepak/lazygit.nvim'
 	use 'tribela/vim-transparent'
 	use 'voldikss/vim-floaterm'
-	vim.cmd('colorscheme one-nvim')
 end)
 
