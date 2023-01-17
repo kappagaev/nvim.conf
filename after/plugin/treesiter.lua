@@ -1,6 +1,6 @@
 
 require 'nvim-treesitter.configs'.setup {
-  ensure_installed = {"go", "tsx", "lua", "rust", "json", "graphql", "regex", "vim" },
+  ensure_installed = {"yaml", "go", "tsx", "lua", "rust", "json", "graphql", "regex", "vim" },
 
   sync_install = false,
   auto_install = true,

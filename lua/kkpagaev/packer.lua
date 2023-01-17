@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
 	use 'Th3Whit3Wolf/one-nvim'
 	use 'hashivim/vim-terraform'
 	use {'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'}}
-	use 'tribela/vim-transparent'
+use 'tribela/vim-transparent'
 	use 'voldikss/vim-floaterm'
 	use {"akinsho/toggleterm.nvim", tag = '*'}
 	use "rebelot/kanagawa.nvim"

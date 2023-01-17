@@ -9,3 +9,13 @@ o.noswapfile=true
 
 vim.api.nvim_set_option("clipboard","unnamed")
 
+vim.opt.scrolloff = 3
+vim.opt.signcolumn = "yes"
+vim.opt.isfname:append("@-@")
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+vim.opt.smartindent = true
+
+vim.opt.wrap = false
