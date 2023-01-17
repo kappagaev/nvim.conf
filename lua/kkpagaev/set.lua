@@ -7,3 +7,5 @@ o.wrap=true
 o.number = true
 o.noswapfile=true
 
+vim.api.nvim_set_option("clipboard","unnamed")
+

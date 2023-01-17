@@ -1,8 +1,8 @@
 
-function ColorMyPencils(color) 
-	color = color or "one-nvim"
-	vim.cmd.colorscheme(color)
+function ColorMyPencils(color)
+color = color or "one-nvim"
+vim.cmd.colorscheme(color)
 end
 
 ColorMyPencils()
-vim.cmd('colorscheme one-nvim')
+vim.cmd('colorscheme kanagawa')
