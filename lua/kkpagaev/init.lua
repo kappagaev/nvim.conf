@@ -34,7 +34,7 @@ vim.opt.termguicolors = true
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
-    adaptive_size = false,
+    adaptive_size = true,
     mappings = {
       list = {
         { key = "h", action = "close_node" },
