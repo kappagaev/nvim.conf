@@ -1,5 +1,5 @@
 local function map(m, k, v)
-    vim.keymap.set(m, k, v, { silent = true })
+	vim.keymap.set(m, k, v, { silent = true })
 end
 
 map('n', '<leader>lg', '<Cmd>FloatermNew --height=0.75 --width=0.75 lg<CR>')

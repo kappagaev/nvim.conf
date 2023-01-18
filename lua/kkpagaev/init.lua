@@ -68,6 +68,14 @@ require("nvim-tree").setup({
   }
 })
 
+-- Enable `lukas-reineke/indent-blankline.nvim`
+-- See `:help indent_blankline.txt`
+require('indent_blankline').setup {
+  char = '┊',
+  show_trailing_blankline_indent = false,
+}
+
+
 require('gitsigns').setup()
 vim.api.nvim_create_autocmd('BufWinLeave', {
   pattern = '*',
