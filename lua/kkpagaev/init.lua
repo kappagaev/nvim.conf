@@ -3,7 +3,7 @@ require('kkpagaev.remap')
 require('kkpagaev.packer')
 
 local function map(m, k, v)
-    vim.keymap.set(m, k, v, { silent = true })
+	vim.keymap.set(m, k, v, { silent = true })
 end
 
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
@@ -13,12 +13,12 @@ map('n', '<leader><Shift><Tab>', '<Cmd>BufferPrevious<CR>')
 map('n', '<leader>g', '<Cmd>LazyGit<CR>')
 
 vim.api.nvim_create_autocmd('BufWinEnter', {
-  pattern = '*',
-  callback = function()
-    if vim.bo.filetype == 'NvimTree' then
-      require'bufferline.api'.set_offset(31, 'FileTree')
-    end
-  end
+	pattern = '*',
+	callback = function()
+		if vim.bo.filetype == 'NvimTree' then
+			require 'bufferline.api'.set_offset(31, 'FileTree')
+		end
+	end
 })
 -- examples for your init.lua
 
@@ -32,68 +32,67 @@ vim.opt.termguicolors = true
 
 -- OR setup with some options
 require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    adaptive_size = true,
-    mappings = {
-      list = {
-        { key = "h", action = "close_node" },
-        { key = "l", action = "preview" },
-      },
-    },
-  },
--- actions = {
--- open_file = { quit_on_open = true },
--- },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
+	sort_by = "case_sensitive",
+	view = {
+		adaptive_size = true,
+		mappings = {
+			list = {
+				{ key = "h", action = "close_node" },
+				{ key = "l", action = "preview" },
+			},
+		},
+	},
+	-- actions = {
+	-- open_file = { quit_on_open = true },
+	-- },
+	renderer = {
+		group_empty = true,
+	},
+	filters = {
+		dotfiles = true,
+	},
 	update_focused_file = {
-    enable = true,
-    update_cwd = true
-  },
-  diagnostics = {
-    enable = true,
-    show_on_dirs = false,
-    debounce_delay = 50,
-    icons = {
-      hint = 'H',
-      info = 'I',
-      warning = 'W',
-      error = 'E'
-    }
-  }
+		enable = true,
+		update_cwd = true
+	},
+	diagnostics = {
+		enable = true,
+		show_on_dirs = false,
+		debounce_delay = 50,
+		icons = {
+			hint = 'H',
+			info = 'I',
+			warning = 'W',
+			error = 'E'
+		}
+	}
 })
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
+	char = '┊',
+	show_trailing_blankline_indent = false,
 }
 
 
 require('gitsigns').setup()
 vim.api.nvim_create_autocmd('BufWinLeave', {
-  pattern = '*',
-  callback = function()
-    if vim.fn.expand('<afile>'):match('NvimTree') then
-      require'bufferline.api'.set_offset(0)
-    end
-  end
+	pattern = '*',
+	callback = function()
+		if vim.fn.expand('<afile>'):match('NvimTree') then
+			require 'bufferline.api'.set_offset(0)
+		end
+	end
 })
 
 -- Autocomplete
 function _G.check_back_space()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+	local col = vim.fn.col('.') - 1
+	return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
 end
 
 local keyset = vim.keymap.set
-local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
 --keyset("i", "<c-space>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<c-space>" : coc#refresh()', opts)
-keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
-
+keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
