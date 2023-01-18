@@ -38,6 +38,7 @@ require("nvim-tree").setup({
     mappings = {
       list = {
         { key = "h", action = "close_node" },
+        { key = "l", action = "preview" },
       },
     },
   },
