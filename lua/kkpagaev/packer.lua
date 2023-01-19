@@ -76,4 +76,7 @@ use 'tribela/vim-transparent'
 		opt = true,
 		run = "npm install --legacy-peer-deps && npm run compile"
 	}
+
+	use 'leoluz/nvim-dap-go'
+	use {'Weissle/persistent-breakpoints.nvim'}
 end)
