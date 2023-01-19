@@ -60,7 +60,10 @@ local servers = {
 	-- gopls = {},
 	-- pyright = {},
 	-- rust_analyzer = {},
-	-- tsserver = {},
+	--
+tsserver = {
+			importModuleSpecifierPreference = "relative",
+},
 
 	sumneko_lua = {
 		Lua = {
@@ -140,3 +143,5 @@ cmp.setup {
 		{ name = 'luasnip' },
 	},
 }
+
+

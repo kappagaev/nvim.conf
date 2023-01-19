@@ -1,0 +1,60 @@
+local dap = require('dap')
+dap.adapters.node2 = {
+	type = 'executable',
+	command = 'node',
+	args = {
+		os.getenv('HOME') .. -- '/.local/share/nvim/site/pack/packer/opt/vscode-node-debug2/out/src/nodeDebug.js'
+				'/.local/share/nvim/mason/packages/node-debug2-adapter/out/src/nodeDebug.js'
+	}
+}
+
+-- require('dap').set_log_level('INFO')
+dap.defaults.fallback.terminal_win_cmd = '20split new'
+vim.fn.sign_define('DapBreakpoint',
+	{ text = '🟥', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapBreakpointRejected',
+	{ text = '🟦', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped',
+	{ text = '⭐️', texthl = '', linehl = '', numhl = '' })
+
+vim.keymap.set('n', '<leader>b',
+	function() require "dap".toggle_breakpoint() end)
+vim.keymap.set('n', '<leader>dH',
+	":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+vim.keymap.set({ 'n', 't' }, '<A-k>', function() require "dap".step_out() end)
+vim.keymap.set({ 'n', 't' }, "<A-l>", function() require "dap".step_into() end)
+vim.keymap.set({ 'n', 't' }, '<A-j>', function() require "dap".step_over() end)
+vim.keymap.set({ 'n', 't' }, '<A-h>', function() require "dap".continue() end)
+vim.keymap.set('n', '<leader>dn', function() require "dap".run_to_cursor() end)
+vim.keymap.set('n', '<leader>dc', function() require "dap".terminate() end)
+vim.keymap.set('n', '<leader>dR',
+	function() require "dap".clear_breakpoints() end)
+vim.keymap.set('n', '<leader>de',
+	function() require "dap".set_exception_breakpoints({ "all" }) end)
+vim.keymap.set('n', '<leader>da', function() require "debugHelper".attach() end)
+vim.keymap.set('n', '<leader>dA',
+	function() require "debugHelper".attachToRemote() end)
+vim.keymap
+		.set('n', '<leader>di', function() require "dap.ui.widgets".hover() end)
+vim.keymap.set('n', '<leader>d?', function()
+	local widgets = require "dap.ui.widgets";
+	widgets.centered_float(widgets.scopes)
+end)
+vim.keymap.set('n', '<leader>dk', ':lua require"dap".up()<CR>zz')
+vim.keymap.set('n', '<leader>dj', ':lua require"dap".down()<CR>zz')
+vim.keymap.set('n', '<leader>dr',
+	':lua require"dap".repl.toggle({}, "vsplit")<CR><C-w>l')
+
+-- jester maps
+vim.keymap.set('n', '<leader>djr', function () 
+	require("jester").run()	
+end, { desc = "[D]ebuger[J]est[R]un current test"})
+
+vim.keymap.set('n', '<leader>djd', function () 
+	require("jester").debug()	
+end,{ desc = "[D]ebuger[J]est[D]ebug current test" })
+
+vim.keymap.set('n', '<leader>du', function()
+	vim.cmd("NvimTreeClose")
+	require("dapui").toggle({});
+end)

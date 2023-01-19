@@ -58,8 +58,22 @@ return require('packer').startup(function(use)
 	use 'Th3Whit3Wolf/one-nvim'
 	use 'hashivim/vim-terraform'
 	use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
-	-- use 'tribela/vim-transparent'
+use 'tribela/vim-transparent'
 	use 'voldikss/vim-floaterm'
 	use { "akinsho/toggleterm.nvim", tag = '*' }
 	use "rebelot/kanagawa.nvim"
+	use "farmergreg/vim-lastplace"
+
+	use 'mfussenegger/nvim-dap'
+	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+
+	use 'David-Kunz/jester'
+
+	use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
+
+	use {
+		"microsoft/vscode-js-debug",
+		opt = true,
+		run = "npm install --legacy-peer-deps && npm run compile"
+	}
 end)

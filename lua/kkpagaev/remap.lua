@@ -18,3 +18,5 @@ map('n', '<c-g>', 'gcc')
 map('n', '<leader>w', ':update<CR>')
 map('i', 'jj', '<Esc>')
 map('i', 'JJ', '<Esc>')
+
+map('n', '<leader>l', ':Format<CR>')

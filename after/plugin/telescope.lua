@@ -24,12 +24,13 @@ require('telescope').setup {
 	}
 }
 vim.keymap.set('n', '<leader><space>', builtin.find_files, {})
-vim.keymap.set('n', '<leader>ff', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>/', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<leader>fs', builtin.keymaps, {})
 
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>/', function()
+vim.keymap.set('n', '<leader>ff', function()
 	-- You can pass additional configuration to telescope to change theme, layout, etc.
 	--
 	require("telescope.builtin").current_buffer_fuzzy_find({ sorter = require('telescope.sorters').get_substr_matcher({}) })
