@@ -46,20 +46,23 @@ vim.keymap.set('n', '<leader>dr',
 	':lua require"dap".repl.toggle({}, "vsplit")<CR><C-w>l')
 
 -- jester maps
-vim.keymap.set('n', '<leader>djr', function () 
-	require("jester").run()	
-end, { desc = "[D]ebuger[J]est[R]un current test"})
+vim.keymap.set('n', '<leader>rd', function()
+	require("dap-go").debug_test()
+end, { desc = "Run Debug, current pointer test" })
 
-vim.keymap.set('n', '<leader>djd', function () 
-	require("jester").debug()	
-end,{ desc = "[D]ebuger[J]est[D]ebug current test" })
+vim.keymap.set('n', '<leader>rr', function()
+	require("dap-go").debug_last_test()
+end, { desc = "ReRun last debug test" })
+vim.keymap.set('n', '<leader>djd', function()
+	require("jester").debug()
+end, { desc = "[D]ebuger[J]est[D]ebug current test" })
 
 vim.keymap.set('n', '<leader>du', function()
 	vim.cmd("NvimTreeClose")
 	require("dapui").toggle({});
 end)
 
-require('persistent-breakpoints').setup{
+require('persistent-breakpoints').setup {
 	save_dir = vim.fn.stdpath('data') .. '/nvim_checkpoints',
 	-- when to load the breakpoints? "BufReadPost" is recommanded.
 	load_breakpoints_event = nil,
