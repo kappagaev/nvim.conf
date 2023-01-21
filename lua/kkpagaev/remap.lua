@@ -20,3 +20,6 @@ map('i', 'jj', '<Esc>')
 map('i', 'JJ', '<Esc>')
 
 map('n', '<leader>l', ':Format<CR>')
+
+map('n', '<c-d>', '<c-d>zz')
+map('n', '<c-u>', '<c-u>zz')

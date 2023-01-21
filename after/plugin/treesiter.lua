@@ -5,11 +5,11 @@ require 'nvim-treesitter.configs'.setup {
 	auto_install = true,
 	ignore_install = { "javascript" },
 
-	-- highlight = {
-	-- enable = true,
-	-- disable = {},
-	-- additional_vim_regex_highlighting = false,
-	-- },
+	highlight = {
+		enable = true,
+		disable = {},
+		additional_vim_regex_highlighting = false,
+	},
 	indent = {
 		enable = true,
 		disable = {}

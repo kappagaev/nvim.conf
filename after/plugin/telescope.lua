@@ -6,8 +6,14 @@ require('nvim-web-devicons').setup({
 	default = true
 })
 require('telescope').setup {
+-- pickers = {
+-- find_files = {
+-- hidden = true
+-- }
+-- },
 	defaults = {
 		path_display = { 'smart' },
+-- file_ignore_patterns = { '.git' },
 		mappings = {
 			i = {
 				["<C-u>"] = actions.preview_scrolling_up,
@@ -30,9 +36,4 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fs', builtin.keymaps, {})
 
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>ff', function()
-	-- You can pass additional configuration to telescope to change theme, layout, etc.
-	--
-	require("telescope.builtin").current_buffer_fuzzy_find({ sorter = require('telescope.sorters').get_substr_matcher({}) })
-	-- require("telescope.builtin").current_buffer_fuzzy_find()
-end, { desc = '[/] Fuzzily search in current buffer]' })
+vim.keymap.set('n', '<leader>ff', builtin.treesitter, { desc = "Test"} )

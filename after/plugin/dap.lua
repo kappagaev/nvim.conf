@@ -1,14 +1,5 @@
 local dap = require('dap')
-dap.adapters.node2 = {
-	type = 'executable',
-	command = 'node',
-	args = {
-		os.getenv('HOME') .. -- '/.local/share/nvim/site/pack/packer/opt/vscode-node-debug2/out/src/nodeDebug.js'
-				'/.local/share/nvim/mason/packages/node-debug2-adapter/out/src/nodeDebug.js'
-	}
-}
 
--- require('dap').set_log_level('INFO')
 dap.defaults.fallback.terminal_win_cmd = '20split new'
 vim.fn.sign_define('DapBreakpoint',
 	{ text = '🟥', texthl = '', linehl = '', numhl = '' })

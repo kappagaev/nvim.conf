@@ -7,34 +7,54 @@ local function map(m, k, v)
 end
 
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
-map('n', '<leader>q', '<Cmd>BufferClose<CR>')
-map('n', '<leader><Tab>', '<Cmd>BufferNext<CR>')
-map('n', '<leader><Shift><Tab>', '<Cmd>BufferPrevious<CR>')
-map('n', '<leader>g', '<Cmd>LazyGit<CR>')
+map('n', '<leader>q', '<Cmd>bd<CR>')
+map('n', '<leader><Tab>', '<Cmd>BufferLineCycleNext<CR>')
+map('n', '<leader><Shift><Tab>', '<Cmd>BufferLineCyclePrev<CR>')
+require 'nvim-web-devicons'.setup {
+	-- your personnal icons can go here (to override)
+	-- you can specify color or cterm_color instead of specifying both of them
+	-- DevIcon will be appended to `name`
+	override = {
+		zsh = {
+			icon = "",
+			color = "#428850",
+			cterm_color = "65",
+			name = "Zsh"
+		}
+	};
+	-- globally enable different highlight colors per icon (default to true)
+	-- if set to false all icons will have the default icon's color
+	color_icons = true;
+	-- globally enable default icons (default to false)
+	-- will get overriden by `get_icons` option
+	default = true;
+}
 
-vim.api.nvim_create_autocmd('BufWinEnter', {
-	pattern = '*',
-	callback = function()
-		if vim.bo.filetype == 'NvimTree' then
-			require 'bufferline.api'.set_offset(31, 'FileTree')
-		end
-	end
-})
--- examples for your init.lua
+vim.opt.termguicolors = true
+require("bufferline").setup {}
+-- vim.api.nvim_create_autocmd('BufWinEnter', {
+-- pattern = '*',
+-- callback = function()
+-- if vim.bo.filetype == 'NvimTree' then
+-- require 'bufferline.api'.set_offset(31, 'FileTree')
+-- end
+-- end
+-- })
 
-require("toggleterm").setup()
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
+
+
+require("scrollbar").setup()
 
 -- OR setup with some options
 require("nvim-tree").setup({
 	sort_by = "case_sensitive",
 	view = {
-		adaptive_size = true,
+		adaptive_size = false,
 		mappings = {
 			list = {
 				{ key = "h", action = "close_node" },
@@ -71,28 +91,30 @@ require("nvim-tree").setup({
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
 require('indent_blankline').setup {
+	-- char = '*',
 	char = '┊',
 	show_trailing_blankline_indent = false,
 }
 
+-- require("galaxyline.themes.eviline")
 
 require('gitsigns').setup()
-vim.api.nvim_create_autocmd('BufWinLeave', {
-	pattern = '*',
-	callback = function()
-		if vim.fn.expand('<afile>'):match('NvimTree') then
-			require 'bufferline.api'.set_offset(0)
-		end
-	end
-})
+-- vim.api.nvim_create_autocmd('BufWinLeave', {
+-- pattern = '*',
+-- callback = function()
+-- if vim.fn.expand('<afile>'):match('NvimTree') then
+-- require 'bufferline.api'.set_offset(0)
+-- end
+-- end
+-- })
 
 -- Autocomplete
-function _G.check_back_space()
-	local col = vim.fn.col('.') - 1
-	return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
+-- function _G.check_back_space()
+-- local col = vim.fn.col('.') - 1
+-- return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+-- end
 
-local keyset = vim.keymap.set
-local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
+-- local keyset = vim.keymap.set
+-- local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
 --keyset("i", "<c-space>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<c-space>" : coc#refresh()', opts)
-keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
+-- keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
