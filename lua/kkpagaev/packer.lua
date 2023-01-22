@@ -81,5 +81,6 @@ return require('packer').startup(function(use)
 	use("folke/trouble.nvim")
 
 	use("folke/todo-comments.nvim")
-	-- using packer.nvim
+
+	use("ThePrimeagen/vim-be-good")
 end)
