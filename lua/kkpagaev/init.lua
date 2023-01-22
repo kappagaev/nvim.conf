@@ -54,7 +54,7 @@ require("scrollbar").setup()
 require("nvim-tree").setup({
 	sort_by = "case_sensitive",
 	view = {
-		adaptive_size = false,
+		adaptive_size = true,
 		mappings = {
 			list = {
 				{ key = "h", action = "close_node" },
@@ -99,6 +99,10 @@ require('indent_blankline').setup {
 -- require("galaxyline.themes.eviline")
 
 require('gitsigns').setup()
+
+require("lsp_signature").setup()
+
+require("trouble").setup()
 -- vim.api.nvim_create_autocmd('BufWinLeave', {
 -- pattern = '*',
 -- callback = function()
