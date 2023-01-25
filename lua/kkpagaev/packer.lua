@@ -83,4 +83,8 @@ return require('packer').startup(function(use)
 	use("folke/todo-comments.nvim")
 
 	use("ThePrimeagen/vim-be-good")
+
+
+	use("ThePrimeagen/harpoon")
+
 end)
