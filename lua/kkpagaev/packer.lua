@@ -63,7 +63,10 @@ return require('packer').startup(function(use)
 	use "rebelot/kanagawa.nvim"
 	use "farmergreg/vim-lastplace"
 
+	use 'mfussenegger/nvim-dap'
+	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
+	use 'leoluz/nvim-dap-go'
 	use { 'Weissle/persistent-breakpoints.nvim' }
 
 	use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
