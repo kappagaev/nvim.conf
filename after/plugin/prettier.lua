@@ -7,7 +7,9 @@ local async = event == "BufWritePost"
 null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.prettierd,
-		null_ls.builtins.diagnostics.eslint_d,
+		null_ls.builtins.formatting.rufo,
+		null_ls.builtins.diagnostics.erb_lint,
+		-- null_ls.builtins.diagnostics.eslint_d,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
@@ -34,23 +36,3 @@ null_ls.setup({
 		end
 	end,
 })
-
--- local prettier = require("prettier")
-
--- prettier.setup({
--- bin = 'prettier', -- or `'prettierd'` (v0.22+)
--- filetypes = {
--- "css",
--- "graphql",
--- "html",
--- "javascript",
--- "javascriptreact",
--- "json",
--- "less",
--- "markdown",
--- "scss",
--- "typescript",
--- "typescriptreact",
--- "yaml",
--- },
--- })

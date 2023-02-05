@@ -71,7 +71,6 @@ return require('packer').startup(function(use)
 
 	use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
-	use('neovim/nvim-lspconfig')
 	use('jose-elias-alvarez/null-ls.nvim')
 
 	use("petertriho/nvim-scrollbar")
@@ -84,7 +83,25 @@ return require('packer').startup(function(use)
 
 	use("ThePrimeagen/vim-be-good")
 
-
 	use("ThePrimeagen/harpoon")
 
+	use("jiangmiao/auto-pairs")
+
+	use("tpope/vim-endwise")
+
+	use("rafamadriz/friendly-snippets")
+
+	use("onsails/lspkind.nvim")
+
+	use("mattn/emmet-vim")
+
+	use({
+		'weilbith/nvim-code-action-menu',
+		cmd = 'CodeActionMenu',
+	})
+
+	use {
+		'kosayoda/nvim-lightbulb',
+		requires = 'antoinemadec/FixCursorHold.nvim',
+	}
 end)

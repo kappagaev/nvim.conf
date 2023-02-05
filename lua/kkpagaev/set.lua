@@ -1,6 +1,5 @@
 local o = vim.o
 
-
 o.relativenumber = true
 o.tabstop = 2
 o.softtabstop = 2

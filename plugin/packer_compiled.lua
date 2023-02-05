@@ -105,25 +105,25 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  harpoon = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
-  },
-  jester = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/jester",
-    url = "https://github.com/David-Kunz/jester"
   },
   ["kanagawa.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
   },
-  ["lightline.vim"] = {
+  ["lsp_signature.nvim"] = {
     loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/lightline.vim",
-    url = "https://github.com/itchyny/lightline.vim"
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
+    url = "https://github.com/ray-x/lsp_signature.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -152,7 +152,7 @@ _G.packer_plugins = {
   },
   ["nvim-colorizer.lua"] = {
     commands = { "ColorizerToggle" },
-    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
+    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14colorizer\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -173,11 +173,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
     url = "https://github.com/rcarriga/nvim-dap-ui"
-  },
-  ["nvim-dap-vscode-js"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-dap-vscode-js",
-    url = "https://github.com/mxsdev/nvim-dap-vscode-js"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -204,11 +199,6 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
-  ["one-nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/one-nvim",
-    url = "https://github.com/Th3Whit3Wolf/one-nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -224,20 +214,35 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["prettier.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/prettier.nvim",
-    url = "https://github.com/MunifTanjim/prettier.nvim"
-  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["toggleterm.nvim"] = {
+  ["todo-comments.nvim"] = {
     loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
-    url = "https://github.com/akinsho/toggleterm.nvim"
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
+    url = "https://github.com/folke/todo-comments.nvim"
+  },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
+  ["vim-airline"] = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/vim-airline",
+    url = "https://github.com/vim-airline/vim-airline"
+  },
+  ["vim-airline-themes"] = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/vim-airline-themes",
+    url = "https://github.com/vim-airline/vim-airline-themes"
+  },
+  ["vim-be-good"] = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/vim-be-good",
+    url = "https://github.com/ThePrimeagen/vim-be-good"
   },
   ["vim-commentary"] = {
     loaded = true,
@@ -264,11 +269,10 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/vim-terraform",
     url = "https://github.com/hashivim/vim-terraform"
   },
-  ["vscode-js-debug"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/opt/vscode-js-debug",
-    url = "https://github.com/microsoft/vscode-js-debug"
+  ["vim-transparent"] = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/vim-transparent",
+    url = "https://github.com/tribela/vim-transparent"
   }
 }
 

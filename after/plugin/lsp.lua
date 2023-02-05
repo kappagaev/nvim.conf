@@ -13,12 +13,12 @@ local on_attach = function(_, bufnr)
 	nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
 	nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 	nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-	-- nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-	-- nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-	-- nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
 	nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-	-- nmap('K', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+	nmap('<leader>rm', vim.lsp.buf.rename, "rename")
+
+	nmap('<leader>ca', vim.lsp.buf.code_action, 'Code [A]ction')
 
 	nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 	nmap('gb', '<c-o>', '[G]o [B]ack')
@@ -33,6 +33,13 @@ local servers = {
 	-- gopls = {},
 	-- pyright = {},
 	-- rust_analyzer = {},
+	phpactor = {},
+	solargraph = {
+
+		flags = {
+			debounce_text_changes = 150,
+		}
+	},
 	tsserver = {
 		importModuleSpecifierPreference = "relative",
 	},
@@ -46,15 +53,11 @@ local servers = {
 }
 
 require('neodev').setup()
---
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Setup mason so it can manage external tooling
 require('mason').setup()
 
--- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 
 mason_lspconfig.setup {
@@ -75,9 +78,24 @@ local cmp = require 'cmp'
 
 local luasnip = require 'luasnip'
 
+local lspkind = require('lspkind')
+
 require('fidget').setup()
 
 cmp.setup {
+	formatting = {
+		format = lspkind.cmp_format({
+			mode = 'symbol', -- show only symbol annotations
+			maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+			ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+
+			before = function(entry, vim_item)
+				return vim_item
+			end
+		})
+	},
+
+	preselect = cmp.PreselectMode.None,
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
@@ -91,15 +109,6 @@ cmp.setup {
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		},
--- ['<Tab>'] = cmp.mapping(function(fallback)
--- if cmp.visible() then
--- cmp.select_next_item()
--- elseif luasnip.expand_or_jumpable() then
--- luasnip.expand_or_jump()
--- else
--- fallback()
--- end
--- end, { 'i', 's' }),
 		['<S-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -111,7 +120,16 @@ cmp.setup {
 		end, { 'i', 's' }),
 	},
 	sources = {
-		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
+		{ name = 'nvim_lsp' },
+		{ name = 'path' },
+		{ name = 'buffer' },
+		{ name = 'calc' },
+		{ name = 'spell' },
+		{ name = 'tags' },
+		{ name = 'treesitter' },
+		{ name = 'vsnip' },
+		{ name = 'nvim_lua' },
+
 	},
 }
