@@ -16,9 +16,6 @@ map('n', '<leader>Q', '<Cmd>bd!<CR>')
 require("barbecue").setup()
 require 'luasnip'.filetype_extend("ruby", { "rails" })
 require 'luasnip'.filetype_extend("go", { "go" })
-vim.keymap.set('n', ',', function()
-	vim.cmd("BufferLineCycleNext")
-end)
 map('n', '<leader><Shift><Tab>', '<Cmd>BufferLineCyclePrev<CR>')
 require 'nvim-web-devicons'.setup {
 		override = {
