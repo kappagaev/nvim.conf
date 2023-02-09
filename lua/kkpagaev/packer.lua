@@ -104,4 +104,19 @@ return require('packer').startup(function(use)
 		'kosayoda/nvim-lightbulb',
 		requires = 'antoinemadec/FixCursorHold.nvim',
 	}
+	use({
+		"utilyre/barbecue.nvim",
+		requires = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons", -- optional dependency
+		},
+	})
+-- use {
+-- 'glepnir/dashboard-nvim',
+-- event = 'VimEnter',
+-- config = function()
+-- require('dashboard').setup()
+-- end,
+-- requires = {'nvim-tree/nvim-web-devicons'}
+-- }
 end)

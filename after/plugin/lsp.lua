@@ -120,7 +120,7 @@ cmp.setup {
 		end, { 'i', 's' }),
 	},
 	sources = {
-		{ name = 'luasnip' },
+		{ name = 'luasnip', option = { use_show_condition = false } },
 		{ name = 'nvim_lsp' },
 		{ name = 'path' },
 		{ name = 'buffer' },

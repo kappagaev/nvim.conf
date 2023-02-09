@@ -8,7 +8,12 @@ end
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
 map('n', 'Q', '<Cmd>bd<CR>')
 map('n', '<leader>Q', '<Cmd>bd!<CR>')
-require("luasnip.loaders.from_vscode").lazy_load()
+-- require("barbecue").setup(
+-- {
+
+-- }
+-- )
+require("barbecue").setup()
 require 'luasnip'.filetype_extend("ruby", { "rails" })
 require 'luasnip'.filetype_extend("go", { "go" })
 vim.keymap.set('n', ',', function()
@@ -16,18 +21,17 @@ vim.keymap.set('n', ',', function()
 end)
 map('n', '<leader><Shift><Tab>', '<Cmd>BufferLineCyclePrev<CR>')
 require 'nvim-web-devicons'.setup {
-	override = {
-		zsh = {
-			icon = "",
-			color = "#428850",
-			cterm_color = "65",
-			name = "Zsh"
-		}
-	};
-	color_icons = true;
-	default = true;
+		override = {
+				zsh = {
+						icon = "",
+						color = "#428850",
+						cterm_color = "65",
+						name = "Zsh"
+				}
+		},
+		color_icons = true,
+		default = true,
 }
-
 vim.opt.termguicolors = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -35,46 +39,46 @@ vim.g.loaded_netrwPlugin = 1
 require("scrollbar").setup()
 
 require("nvim-tree").setup({
-	sort_by = "case_sensitive",
-	view = {
-		adaptive_size = true,
-		mappings = {
-			list = {
-				{ key = "h", action = "close_node" },
-				{ key = "l", action = "preview" },
-			},
+		sort_by = "case_sensitive",
+		view = {
+				adaptive_size = true,
+				mappings = {
+						list = {
+								{ key = "h", action = "close_node" },
+								{ key = "l", action = "preview" },
+						},
+				},
 		},
-	},
-	renderer = {
-		group_empty = true,
-	},
-	filters = {
-		dotfiles = true,
-	},
-	update_focused_file = {
-		enable = true,
-		update_cwd = true
-	},
-	diagnostics = {
-		enable = true,
-		show_on_dirs = false,
-		debounce_delay = 50,
-		icons = {
-			hint = 'H',
-			info = 'I',
-			warning = 'W',
-			error = 'E'
+		renderer = {
+				group_empty = true,
+		},
+		filters = {
+				dotfiles = true,
+		},
+		update_focused_file = {
+				enable = true,
+				update_cwd = true
+		},
+		diagnostics = {
+				enable = true,
+				show_on_dirs = false,
+				debounce_delay = 50,
+				icons = {
+						hint = 'H',
+						info = 'I',
+						warning = 'W',
+						error = 'E'
+				}
 		}
-	}
 })
 
 require('indent_blankline').setup {
-	char = '┊',
-	show_trailing_blankline_indent = false,
+		char = '┊',
+		show_trailing_blankline_indent = false,
 }
 require('packer').use({
-	'weilbith/nvim-code-action-menu',
-	cmd = 'CodeActionMenu',
+		'weilbith/nvim-code-action-menu',
+		cmd = 'CodeActionMenu',
 })
 require('gitsigns').setup()
 
@@ -83,36 +87,37 @@ require("lsp_signature").setup()
 require("trouble").setup()
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "dap-repl",
-	callback = function(args)
-		vim.api.nvim_buf_set_option(args.buf, "buflisted", false)
-	end,
+		pattern = "dap-repl",
+		callback = function(args)
+			vim.api.nvim_buf_set_option(args.buf, "buflisted", false)
+		end,
 })
+
 require('nvim-lightbulb').setup({
-	ignore = {},
-	sign = {
-		enabled = true,
-		priority = 10,
-	},
-	float = {
-		enabled = false,
-		text = "💡",
-		win_opts = {},
-	},
-	virtual_text = {
-		enabled = false,
-		text = "💡",
-		hl_mode = "replace",
-	},
-	status_text = {
-		enabled = false,
-		text = "💡",
-		text_unavailable = ""
-	},
-	autocmd = {
-		enabled = false,
-		pattern = { "*" },
-		events = { "CursorHold", "CursorHoldI" }
-	}
+		ignore = {},
+		sign = {
+				enabled = true,
+				priority = 10,
+		},
+		float = {
+				enabled = false,
+				text = "💡",
+				win_opts = {},
+		},
+		virtual_text = {
+				enabled = false,
+				text = "💡",
+				hl_mode = "replace",
+		},
+		status_text = {
+				enabled = false,
+				text = "💡",
+				text_unavailable = ""
+		},
+		autocmd = {
+				enabled = false,
+				pattern = { "*" },
+				events = { "CursorHold", "CursorHoldI" }
+		}
 })
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
