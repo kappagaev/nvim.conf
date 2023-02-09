@@ -7,11 +7,11 @@ require("harpoon").setup({
 		mark_branch = true,
 	},
 })
-vim.keymap.set('n', '<leader>h', function()
+vim.keymap.set('n', 'J', function()
 	require("harpoon.ui").toggle_quick_menu()
 end)
 
-vim.keymap.set('n', '<leader>m', function()
+vim.keymap.set('n', 'M', function()
 	require("harpoon.mark").add_file()
 end)
 

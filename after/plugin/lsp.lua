@@ -16,7 +16,7 @@ local on_attach = function(_, bufnr)
 
 	nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
 
-	nmap('<leader>rm', vim.lsp.buf.rename, "rename")
+	nmap('<leader>rm', '<cmd>lua require("renamer").rename()<cr>', "rename")
 
 	nmap('<leader>ca', vim.lsp.buf.code_action, 'Code [A]ction')
 

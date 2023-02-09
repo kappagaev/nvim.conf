@@ -13,7 +13,9 @@ map('n', '<leader>Q', '<Cmd>bd!<CR>')
 
 -- }
 -- )
-require("barbecue").setup()
+require("barbecue").setup({
+ show_modified = true,
+})
 require 'luasnip'.filetype_extend("ruby", { "rails" })
 require 'luasnip'.filetype_extend("go", { "go" })
 map('n', '<leader><Shift><Tab>', '<Cmd>BufferLineCyclePrev<CR>')
@@ -69,6 +71,8 @@ require("nvim-tree").setup({
 		}
 })
 
+require("renamer").setup()
+
 require('indent_blankline').setup {
 		char = '┊',
 		show_trailing_blankline_indent = false,
@@ -89,6 +93,11 @@ vim.api.nvim_create_autocmd("FileType", {
 			vim.api.nvim_buf_set_option(args.buf, "buflisted", false)
 		end,
 })
+
+require('numb').setup()
+require'nvim-lastplace'.setup{}
+
+require('mini.starter').setup()
 
 require('nvim-lightbulb').setup({
 		ignore = {},

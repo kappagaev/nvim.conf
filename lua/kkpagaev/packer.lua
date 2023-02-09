@@ -61,7 +61,7 @@ return require('packer').startup(function(use)
 	use 'tribela/vim-transparent'
 	use 'voldikss/vim-floaterm'
 	use "rebelot/kanagawa.nvim"
-	use "farmergreg/vim-lastplace"
+	use "ethanholz/nvim-lastplace"
 
 	use 'mfussenegger/nvim-dap'
 	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
@@ -111,6 +111,40 @@ return require('packer').startup(function(use)
 			"nvim-tree/nvim-web-devicons", -- optional dependency
 		},
 	})
+use {
+  "folke/zen-mode.nvim",
+  config = function()
+  end
+}
+	-- Lua
+use {
+  "folke/twilight.nvim",
+  config = function()
+    require("twilight").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+}
+	use {
+  'filipdutescu/renamer.nvim',
+  branch = 'master',
+  requires = { {'nvim-lua/plenary.nvim'} }
+}
+	use 'nacro90/numb.nvim'
+use 'booperlv/nvim-gomove'
+	use {
+  "AckslD/nvim-neoclip.lua",
+  requires = {
+    -- you'll need at least one of these
+{'nvim-telescope/telescope.nvim'},
+    -- {'ibhagwan/fzf-lua'},
+  },
+  config = function()
+  end,
+}
+use 'echasnovski/mini.starter'
 -- use {
 -- 'glepnir/dashboard-nvim',
 -- event = 'VimEnter',

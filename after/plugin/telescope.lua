@@ -1,33 +1,32 @@
 local builtin = require('telescope.builtin')
-
 local actions = require('telescope.actions')
 require('nvim-web-devicons').setup({
-	override = {},
-	default = true
+		override = {},
+		default = true
 })
 require('telescope').setup {
--- pickers = {
--- find_files = {
--- hidden = true
--- }
--- },
-	defaults = {
-		path_display = { 'smart' },
--- file_ignore_patterns = { '.git' },
-		mappings = {
-			i = {
-				["<C-u>"] = actions.preview_scrolling_up,
-				["<C-d>"] = actions.preview_scrolling_down,
-				["<esc>"] = actions.close
-			}
+		-- pickers = {
+		-- find_files = {
+		-- hidden = true
+		-- }
+		-- },
+		defaults = {
+				path_display = { 'smart' },
+				-- file_ignore_patterns = { '.git' },
+				mappings = {
+						i = {
+								["<C-u>"] = actions.preview_scrolling_up,
+								["<C-d>"] = actions.preview_scrolling_down,
+								["<esc>"] = actions.close
+						}
+				}
+		},
+		layout_config = {
+				horizontal = {
+						preview_cutoff = 100,
+						preview_width = 0.6
+				}
 		}
-	},
-	layout_config = {
-		horizontal = {
-			preview_cutoff = 100,
-			preview_width = 0.6
-		}
-	}
 }
 vim.keymap.set('n', '<leader><space>', builtin.find_files, {})
 vim.keymap.set('n', '<leader>/', builtin.live_grep, {})
@@ -38,4 +37,5 @@ vim.keymap.set('n', '<leader>fg', builtin.git_status, {})
 vim.keymap.set('n', '<leader>fe', builtin.diagnostics, {})
 
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>ff', builtin.treesitter, { desc = "Test"} )
+vim.keymap.set('n', '<leader>ff', builtin.treesitter, { desc = "Test" })
+
