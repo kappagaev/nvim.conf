@@ -35,6 +35,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fs', builtin.keymaps, {})
 vim.keymap.set('n', '<leader>fg', builtin.git_status, {})
 vim.keymap.set('n', '<leader>fe', builtin.diagnostics, {})
+vim.keymap.set('n', '<leader>fc', builtin.colorscheme, {})
 
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>ff', builtin.treesitter, { desc = "Test" })

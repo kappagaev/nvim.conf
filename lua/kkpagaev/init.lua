@@ -71,7 +71,7 @@ require("nvim-tree").setup({
 		}
 })
 
-require("renamer").setup()
+require("renamer").setup({})
 
 require('indent_blankline').setup {
 		char = '┊',

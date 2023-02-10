@@ -1,9 +1,9 @@
 require('kanagawa').setup({
     undercurl = true,           -- enable undercurls
     commentStyle = { italic = true },
-    functionStyle = {},
     keywordStyle = { italic = true},
     statementStyle = { bold = true },
+  	functionStyle = {},
     typeStyle = {},
     variablebuiltinStyle = { italic = true},
     specialReturn = true,       -- special highlight for the return keyword
@@ -18,4 +18,5 @@ require('kanagawa').setup({
 })
 
 -- setup must be called before loading
-vim.cmd("colorscheme kanagawa")
+-- vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme middlenight_blue")

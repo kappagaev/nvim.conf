@@ -35,20 +35,18 @@ local servers = {
 	-- rust_analyzer = {},
 	phpactor = {},
 	solargraph = {
-
 		flags = {
-			debounce_text_changes = 150,
+				debounce_text_changes = 150,
 		}
 	},
 	tsserver = {
-		importModuleSpecifierPreference = "relative",
+			importModuleSpecifierPreference = "relative",
 	},
-
 	sumneko_lua = {
-		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
-		},
+			Lua = {
+					workspace = { checkThirdParty = false },
+					telemetry = { enable = false },
+			},
 	},
 }
 
@@ -63,15 +61,15 @@ local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup {
 	ensure_installed = vim.tbl_keys(servers),
 }
-
+servers.prolog_ls = {}
 mason_lspconfig.setup_handlers {
-	function(server_name)
-		require('lspconfig')[server_name].setup {
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = servers[server_name],
-		}
-	end,
+		function(server_name)
+			require('lspconfig')[server_name].setup {
+					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = servers[server_name],
+			}
+		end,
 }
 
 local cmp = require 'cmp'
@@ -106,21 +104,21 @@ cmp.setup {
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<CR>'] = cmp.mapping.confirm {
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+				behavior = cmp.ConfirmBehavior.Replace,
+				select = true,
 		},
 		['<S-Tab>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
+			elseif luasnip.jumpable( -1) then
+				luasnip.jump( -1)
 			else
 				fallback()
 			end
 		end, { 'i', 's' }),
 	},
 	sources = {
-		{ name = 'luasnip', option = { use_show_condition = false } },
+		{ name = 'luasnip',   option = { use_show_condition = false } },
 		{ name = 'nvim_lsp' },
 		{ name = 'path' },
 		{ name = 'buffer' },
@@ -132,4 +130,8 @@ cmp.setup {
 		{ name = 'nvim_lua' },
 
 	},
+}
+require('lspconfig')['prolog_ls'].setup {
+		capabilities = capabilities,
+		on_attach = on_attach,
 }

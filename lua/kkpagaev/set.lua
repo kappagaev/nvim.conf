@@ -2,6 +2,7 @@ local o = vim.o
 
 o.relativenumber = true
 o.tabstop = 2
+o.expandtab = true
 o.softtabstop = 2
 o.shiftwidth = 2
 o.wrap=true
