@@ -8,12 +8,7 @@ end
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
 map('n', 'Q', '<Cmd>bd<CR>')
 map('n', '<leader>Q', '<Cmd>bd!<CR>')
-map('n', 'T', '<Cmd>AirlineTheme random<CR>')
--- require("barbecue").setup(
--- {
 
--- }
--- )
 require("barbecue").setup({
  show_modified = true,
 })
@@ -37,40 +32,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require("scrollbar").setup()
-
-require("nvim-tree").setup({
-		sort_by = "case_sensitive",
-		view = {
-				adaptive_size = true,
-				mappings = {
-						list = {
-								{ key = "h", action = "close_node" },
-								{ key = "l", action = "preview" },
-						},
-				},
-		},
-		renderer = {
-				group_empty = true,
-		},
-		filters = {
-				dotfiles = true,
-		},
-		update_focused_file = {
-				enable = true,
-				update_cwd = true
-		},
-		diagnostics = {
-				enable = true,
-				show_on_dirs = false,
-				debounce_delay = 50,
-				icons = {
-						hint = 'H',
-						info = 'I',
-						warning = 'W',
-						error = 'E'
-				}
-		}
-})
 
 require("renamer").setup({})
 
