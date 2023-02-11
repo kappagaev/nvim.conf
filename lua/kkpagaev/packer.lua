@@ -161,4 +161,7 @@ use {
   requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 }
   use "dstein64/vim-startuptime"
+
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+end}
     end)

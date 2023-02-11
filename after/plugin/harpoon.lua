@@ -12,7 +12,7 @@ vim.keymap.set('n', 'J', function()
 	require("harpoon.ui").toggle_quick_menu()
 end)
 
-vim.keymap.set('n', 'M', function()
+vim.keymap.set('n', 'm', function()
 	require("harpoon.mark").add_file()
 end)
 
