@@ -1,13 +1,18 @@
 local function current_time()
--- local date = os.date('*t')
+  -- local date = os.date('*t')
   local time = os.date("*t")
-  return  ("%02d:%02d:%02d"):format(time.hour, time.min, time.sec)
+  return ("%02d:%02d:%02d"):format(time.hour, time.min, time.sec)
 end
+local custom_codedark = require 'lualine.themes.codedark'
+
+-- Change the background of lualine_c section for normal mode
+custom_codedark.normal.c.bg = '#14141414141'
 
 require('lualine').setup({
     options = {
-        icons_enabled = false,
-        component_separators = { left = '|', right = '|' },
+        theme = custom_codedark,
+        icons_enabled = true,
+        component_separators = { left = '', right = '|' },
         -- section_separators = { left = '', right = ''},
         -- section_separators = { left = '', right = ''},
 
@@ -16,9 +21,9 @@ require('lualine').setup({
     },
     sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch' },
-        lualine_c = { 'filename' },
-        lualine_x = { 'filetype', current_time},
+        lualine_b = {  'branch', 'diff' },
+        lualine_c = { 'diagnostics' },
+        lualine_x = { 'filetype', current_time },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
     },
