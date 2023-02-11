@@ -84,10 +84,6 @@ require('packer').use({
 })
 require('gitsigns').setup()
 
-require("lsp_signature").setup()
-
-require("trouble").setup()
-
 vim.api.nvim_create_autocmd("FileType", {
 		pattern = "dap-repl",
 		callback = function(args)
@@ -100,31 +96,3 @@ require'nvim-lastplace'.setup{}
 
 -- require('mini.starter').setup()
 
-require('nvim-lightbulb').setup({
-		ignore = {},
-		sign = {
-				enabled = true,
-				priority = 10,
-		},
-		float = {
-				enabled = false,
-				text = "💡",
-				win_opts = {},
-		},
-		virtual_text = {
-				enabled = false,
-				text = "💡",
-				hl_mode = "replace",
-		},
-		status_text = {
-				enabled = false,
-				text = "💡",
-				text_unavailable = ""
-		},
-		autocmd = {
-				enabled = false,
-				pattern = { "*" },
-				events = { "CursorHold", "CursorHoldI" }
-		}
-})
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
