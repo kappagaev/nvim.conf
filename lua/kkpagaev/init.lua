@@ -8,6 +8,7 @@ end
 map('n', '<leader>e', ':NvimTreeToggle<CR>')
 map('n', 'Q', '<Cmd>bd<CR>')
 map('n', '<leader>Q', '<Cmd>bd!<CR>')
+map('n', 'T', '<Cmd>AirlineTheme random<CR>')
 -- require("barbecue").setup(
 -- {
 
@@ -97,7 +98,7 @@ vim.api.nvim_create_autocmd("FileType", {
 require('numb').setup()
 require'nvim-lastplace'.setup{}
 
-require('mini.starter').setup()
+-- require('mini.starter').setup()
 
 require('nvim-lightbulb').setup({
 		ignore = {},

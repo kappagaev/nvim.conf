@@ -1,4 +1,5 @@
 vim.keymap.set('n', ',', function()
+  vim.cmd("NvimTreeClose")
 	require("harpoon.ui").nav_next()
 end)
 

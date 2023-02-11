@@ -1,8 +1,8 @@
 vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
-      use 'vim-airline/vim-airline'
-      use 'vim-airline/vim-airline-themes'
+      -- use 'vim-airline/vim-airline'
+      -- use 'vim-airline/vim-airline-themes'
       use 'wbthomason/packer.nvim'
       use 'chrisbra/vim-commentary'
       use {
@@ -58,7 +58,7 @@ return require('packer').startup(function(use)
       -- use { 'romgrk/barbar.nvim', wants = 'nvim-web-devicons' }
       use 'hashivim/vim-terraform'
       use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
-      use 'tribela/vim-transparent'
+-- use 'tribela/vim-transparent'
       use 'voldikss/vim-floaterm'
       use "rebelot/kanagawa.nvim"
       use "ethanholz/nvim-lastplace"
@@ -144,7 +144,7 @@ return require('packer').startup(function(use)
           config = function()
           end,
       }
-      use 'echasnovski/mini.starter'
+      -- use 'echasnovski/mini.starter'
       -- use {
       -- 'glepnir/dashboard-nvim',
       -- event = 'VimEnter',
@@ -154,7 +154,11 @@ return require('packer').startup(function(use)
       -- requires = {'nvim-tree/nvim-web-devicons'}
       -- }
       use { 'ray-x/starry.nvim', setup = function()
-        -- see example setup below
         vim.g.starry_italic_comments = true
       end }
+use {
+  'nvim-lualine/lualine.nvim',
+  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+}
+  use "dstein64/vim-startuptime"
     end)

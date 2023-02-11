@@ -5,11 +5,12 @@ o.tabstop = 2
 o.expandtab = true
 o.softtabstop = 2
 o.shiftwidth = 2
-o.wrap=true
+o.wrap = true
 o.number = true
-o.noswapfile=true
+o.noswapfile = true
+o.cursorline = true
+vim.api.nvim_set_option("clipboard", "unnamed")
 
-vim.api.nvim_set_option("clipboard","unnamed")
 
 vim.opt.scrolloff = 3
 vim.opt.signcolumn = "yes"
