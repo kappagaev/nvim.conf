@@ -45,12 +45,12 @@ require('packer').use({
 })
 require('gitsigns').setup()
 
-vim.api.nvim_create_autocmd("FileType", {
-		pattern = "dap-repl",
-		callback = function(args)
-			vim.api.nvim_buf_set_option(args.buf, "buflisted", false)
-		end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+-- pattern = "dap-repl",
+-- callback = function(args)
+-- vim.api.nvim_buf_set_option(args.buf, "buflisted", false)
+-- end,
+-- })
 
 require('numb').setup()
 require'nvim-lastplace'.setup{}

@@ -10,7 +10,8 @@ null_ls.setup({
 		null_ls.builtins.formatting.rufo,
 		null_ls.builtins.diagnostics.erb_lint,
 		null_ls.builtins.diagnostics.flake8,
-		null_ls.builtins.formatting.autopep8
+		null_ls.builtins.formatting.autopep8,
+require("typescript.extensions.null-ls.code-actions"),
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

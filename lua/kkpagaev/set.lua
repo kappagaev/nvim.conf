@@ -1,5 +1,9 @@
 local o = vim.o
 
+local filetypes = {}
+filetypes["dap-repl"] = false
+vim.g.copilot_filetypes = filetypes
+
 o.relativenumber = true
 o.tabstop = 2
 o.expandtab = true
@@ -19,6 +23,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.smartindent = true
+-- vim.opt.smartindent = true
 
 vim.opt.wrap = false

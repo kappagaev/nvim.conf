@@ -18,7 +18,7 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rm', '<cmd>lua require("renamer").rename()<cr>', "rename")
 
-  nmap('<leader>ca', vim.lsp.buf.code_action, 'Code [A]ction')
+  nmap('<leader>a', "<cmd>CodeActionMenu<cr>", 'Code [A]ction')
 
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('gb', '<c-o>', '[G]o [B]ack')
@@ -40,17 +40,22 @@ local servers = {
         }
     },
     tsserver = {
-        importModuleSpecifierPreference = "relative",
+      preferences = {
+        ImportModuleSpecifier = "relative",
+      },
     },
-    sumneko_lua = {
-        Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-        },
-    },
+    -- sumneko_lua = {
+    -- Lua = {
+    -- workspace = { checkThirdParty = false },
+    -- telemetry = { enable = false },
+    -- },
+    -- },
 }
 
-require('neodev').setup()
+require('neodev').setup({
+    library = { plugins = { "nvim-dap-ui" }, types = true },
+}
+)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -62,13 +67,40 @@ mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
 }
 servers.prolog_ls = {}
+
+-- require("typescript").setup({
+-- disable_commands = false, -- prevent the plugin from creating Vim commands
+-- debug = false, -- enable debug logging for commands
+-- preferences = {
+-- ImportModuleSpecifier = "relative",
+-- },
+
+-- server = { -- pass options to lspconfig's setup method
+-- on_attach = on_attach,
+-- },
+-- })
+
 mason_lspconfig.setup_handlers {
     function(server_name)
-      require('lspconfig')[server_name].setup {
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers[server_name],
-      }
+      if server_name == 'tsserver' then
+        require('lspconfig')[server_name].setup {
+            copabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers[server_name],
+            init_options = {
+              preferences = {
+                importModuleSpecifierPreference = "relative"
+              }
+            }
+        }
+        return
+      else
+        require('lspconfig')[server_name].setup {
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers[server_name],
+        }
+      end
     end,
 }
 

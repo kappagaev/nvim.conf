@@ -164,4 +164,8 @@ use {
 
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
 end}
+    use 'tpope/vim-rails'
+    use 'suketa/nvim-dap-ruby'
+    use "vim-test/vim-test"
+    use "jose-elias-alvarez/typescript.nvim"
     end)

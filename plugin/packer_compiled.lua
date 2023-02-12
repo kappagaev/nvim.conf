@@ -217,6 +217,11 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-dap-go",
     url = "https://github.com/leoluz/nvim-dap-go"
   },
+  ["nvim-dap-ruby"] = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-dap-ruby",
+    url = "https://github.com/suketa/nvim-dap-ruby"
+  },
   ["nvim-dap-ui"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
@@ -351,6 +356,11 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/vim-go",
     url = "https://github.com/fatih/vim-go"
   },
+  ["vim-rails"] = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/vim-rails",
+    url = "https://github.com/tpope/vim-rails"
+  },
   ["vim-startuptime"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/vim-startuptime",
@@ -377,18 +387,14 @@ time([[Setup for starry.nvim]], false)
 time([[packadd for starry.nvim]], true)
 vim.cmd [[packadd starry.nvim]]
 time([[packadd for starry.nvim]], false)
--- Config for: nvim-neoclip.lua
-time([[Config for nvim-neoclip.lua]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "nvim-neoclip.lua")
-time([[Config for nvim-neoclip.lua]], false)
 -- Config for: toggleterm.nvim
 time([[Config for toggleterm.nvim]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "toggleterm.nvim")
 time([[Config for toggleterm.nvim]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
-time([[Config for gitsigns.nvim]], false)
+-- Config for: nvim-neoclip.lua
+time([[Config for nvim-neoclip.lua]], true)
+try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "nvim-neoclip.lua")
+time([[Config for nvim-neoclip.lua]], false)
 -- Config for: zen-mode.nvim
 time([[Config for zen-mode.nvim]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "zen-mode.nvim")
@@ -397,6 +403,10 @@ time([[Config for zen-mode.nvim]], false)
 time([[Config for twilight.nvim]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
 time([[Config for twilight.nvim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)

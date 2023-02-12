@@ -1,6 +1,10 @@
 local dap = require('dap')
-
-dap.defaults.fallback.terminal_win_cmd = '20split new'
+-- dap.defaults.fallback.force_external_terminal = true
+-- dap.defaults.fallback.terminal_win_cmd = 'belowright new'
+--
+-- dap.defaults.fallback.external_terminal = {
+-- command = '/usr/bin/kitty';
+-- }dap.defaults.fallback.force_external_terminal = true
 vim.fn.sign_define('DapBreakpoint',
 	{ text = '💀', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointRejected',
@@ -23,9 +27,9 @@ vim.keymap.set('n', '<leader>dR',
 	function() require "dap".clear_breakpoints() end)
 vim.keymap.set('n', '<leader>de',
 	function() require "dap".set_exception_breakpoints({ "all" }) end)
-vim.keymap.set('n', '<leader>da', function() require "debugHelper".attach() end)
-vim.keymap.set('n', '<leader>dA',
-	function() require "debugHelper".attachToRemote() end)
+-- vim.keymap.set('n', '<leader>da', function() require "debugHelper".attach() end)
+-- vim.keymap.set('n', '<leader>dA',
+-- function() require "debugHelper".attachToRemote() end)
 vim.keymap
 		.set('n', '<leader>di', function() require "dap.ui.widgets".hover() end)
 vim.keymap.set('n', '<leader>d?', function()
