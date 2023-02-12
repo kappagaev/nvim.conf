@@ -144,10 +144,13 @@ require('lspconfig')['yamlls'].setup {
     on_attach = on_attach,
     settings = {
         yaml = {
-            schemas = {
-                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+            trace = {
+                server = "verbose"
             },
-            completion = true
+            schemas = {
+                -- kubernetes = "/*.yaml"
+                kubernetes = "*.k8s.yaml",
+            }
         }
     }
 }
@@ -181,4 +184,5 @@ require('nvim-lightbulb').setup({
 })
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
 
+require("lsp_signature").setup()
 require("lsp_signature").setup()
