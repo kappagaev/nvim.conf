@@ -16,6 +16,9 @@ vim.keymap.set('n', '<A-b>',
 	function() require "dap".toggle_breakpoint() end)
 vim.keymap.set('n', '<leader>dH',
 	":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+
+vim.api.nvim_set_keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], {})
+
 vim.keymap.set({ 'n', 't' }, '<A-k>', function() require "dap".step_out() end)
 vim.keymap.set({ 'n', 't' }, "<A-l>", function() require "dap".step_into() end)
 vim.keymap.set({ 'n', 't' }, '<A-j>', function() require "dap".step_over() end)

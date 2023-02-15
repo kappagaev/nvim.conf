@@ -1,6 +1,8 @@
 require('kkpagaev.set')
 require('kkpagaev.remap')
 require('kkpagaev.packer')
+require('kkpagaev.autocmd')
+
 local function map(m, k, v)
 	vim.keymap.set(m, k, v, { silent = true })
 end

@@ -1,16 +1,25 @@
 local function current_time()
   -- local date = os.date('*t')
   local time = os.date("*t")
--- return ("%02d:%02d"):format(time.hour, time.min)
-return ("%02d:%02d:%02d"):format(time.hour, time.min, time.sec)
+  -- return ("%02d:%02d"):format(time.hour, time.min)
+  return ("%02d:%02d:%02d"):format(time.hour, time.min, time.sec)
 end
 local nvimbattery = {
-  function()
-    return require("battery").get_status_line()
-  end,
--- color = { fg = colors.violet, bg = colors.bg },
+    function()
+      return require("battery").get_status_line()
+    end,
+    -- color = { fg = colors.violet, bg = colors.bg },
 }
 local custom_codedark = require 'lualine.themes.codedark'
+
+local function harp()
+  local marks = require('harpoon.mark').get_mark_list()
+  local result = {}
+  for _, mark in ipairs(marks) do
+    table.insert(result, mark.name)
+  end
+  return table.concat(result, ' ')
+end
 
 -- Change the background of lualine_c section for normal mode
 custom_codedark.normal.c.bg = '#14141414141'
@@ -19,7 +28,7 @@ require('lualine').setup({
     options = {
 
         refesh = {
-          statusline = 100000000000000,
+            statusline = 100000000000000,
         },
         theme = custom_codedark,
         icons_enabled = true,
@@ -42,7 +51,7 @@ require('lualine').setup({
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff' },
-        lualine_c = { 'diagnostics' },
+        lualine_c = { 'diagnostics', harp },
         lualine_x = { 'filetype', current_time },
         lualine_y = { nvimbattery },
         lualine_z = { 'location' }
