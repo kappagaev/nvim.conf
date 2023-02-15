@@ -14,19 +14,18 @@ require('kanagawa').setup({
     terminalColors = true, -- define vim.g.terminal_color_{0,17}
     colors = {},
     overrides = {},
-    theme = "default" -- Load "default" theme or the experimental "light" theme
+    theme = "default", -- Load "default" theme or the experimental "light" theme
 })
 require("catppuccin").setup(
-
   {
 
+-- transparent_background = true,
 integrations = {
       treesitter = true,
     }
-
   }
 )
-local colorschemes = { "kanagawa",  "catppuccin-mocha" }
+local colorschemes = { "kanagawa",  }
 
 local function set_colorscheme()
   local colorscheme = colorschemes[math.random(1, #colorschemes)]

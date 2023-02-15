@@ -1,8 +1,15 @@
 local function current_time()
   -- local date = os.date('*t')
   local time = os.date("*t")
-  return ("%02d:%02d:%02d"):format(time.hour, time.min, time.sec)
+-- return ("%02d:%02d"):format(time.hour, time.min)
+return ("%02d:%02d:%02d"):format(time.hour, time.min, time.sec)
 end
+local nvimbattery = {
+  function()
+    return require("battery").get_status_line()
+  end,
+-- color = { fg = colors.violet, bg = colors.bg },
+}
 local custom_codedark = require 'lualine.themes.codedark'
 
 -- Change the background of lualine_c section for normal mode
@@ -10,7 +17,11 @@ custom_codedark.normal.c.bg = '#14141414141'
 
 require('lualine').setup({
     options = {
-theme = custom_codedark,
+
+        refesh = {
+          statusline = 100000000000000,
+        },
+        theme = custom_codedark,
         icons_enabled = true,
         component_separators = { left = '', right = '|' },
         -- section_separators = { left = '', right = ''},
@@ -18,21 +29,22 @@ theme = custom_codedark,
 
         -- theme = 'gruvbox_material',
         disabled_filetypes = {
-        'NvimTree',
-        'Trouble',
-        'dap-repl',
--- 'dapui_scopes',
--- 'dapui_stacks',
--- 'dapui_watches',
--- 'dapui_breakpoints',
-    }
+            'NvimTree',
+            'Trouble',
+            'dap-repl',
+            -- 'dapui_scopes',
+            -- 'dapui_stacks',
+            -- 'dapui_watches',
+            -- 'dapui_breakpoints',
+
+        },
     },
     sections = {
         lualine_a = { 'mode' },
-        lualine_b = {  'branch', 'diff' },
+        lualine_b = { 'branch', 'diff' },
         lualine_c = { 'diagnostics' },
         lualine_x = { 'filetype', current_time },
-        lualine_y = { 'progress' },
+        lualine_y = { nvimbattery },
         lualine_z = { 'location' }
     },
     inactive_sections = {

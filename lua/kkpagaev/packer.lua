@@ -210,4 +210,7 @@ return require('packer').startup(function(use)
           {'MunifTanjim/nui.nvim'}
         }
       }
+
+use { 'justinhj/battery.nvim', requires = {{'kyazdani42/nvim-web-devicons'}, {'nvim-lua/plenary.nvim'}}}
+
     end)
