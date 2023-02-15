@@ -17,7 +17,11 @@ require('lualine').setup({
         -- section_separators = { left = '', right = ''},
 
         -- theme = 'gruvbox_material',
-        disabled_filetypes = {}
+        disabled_filetypes = {
+        'NvimTree',
+        'dbui',
+
+    }
     },
     sections = {
         lualine_a = { 'mode' },

@@ -14,7 +14,8 @@ local on_attach = function(_, bufnr)
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
+  vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
   nmap('<leader>rm', '<cmd>lua require("renamer").rename()<cr>', "rename")
 
@@ -23,6 +24,12 @@ local on_attach = function(_, bufnr)
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('gb', '<c-o>', '[G]o [B]ack')
 
+  nmap('H', "<c-o>", '[G]o [B]ack')
+  nmap('L', "<c-i>", '[G]o [F]orward')
+
+  -- vim.keymap.set('n', 'gb',  '<c-o>', {
+
+  -- })
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
@@ -40,9 +47,9 @@ local servers = {
         }
     },
     tsserver = {
-      preferences = {
-        ImportModuleSpecifier = "relative",
-      },
+        preferences = {
+            ImportModuleSpecifier = "relative",
+        },
     },
     -- sumneko_lua = {
     -- Lua = {
@@ -88,9 +95,21 @@ mason_lspconfig.setup_handlers {
             on_attach = on_attach,
             settings = servers[server_name],
             init_options = {
-              preferences = {
-                importModuleSpecifierPreference = "relative"
-              }
+                preferences = {
+                    importModuleSpecifierPreference = "relative"
+                }
+            }
+        }
+        return
+      elseif server_name == 'solargraph' then
+        require('lspconfig')[server_name].setup {
+            capabilities = capabilities,
+            on_attach = on_attach,
+            init_options = {
+                formatting = true,
+            },
+            flags = {
+                debounce_text_changes = 150,
             }
         }
         return
@@ -108,9 +127,13 @@ local cmp = require 'cmp'
 
 local luasnip = require 'luasnip'
 
+luasnip.config.set_config {
+    history = true,
+    updateevents = 'TextChanged,TextChangedI',
+}
 local lspkind = require('lspkind')
 
-require('fidget').setup()
+-- require('fidget').setup()
 
 cmp.setup {
     formatting = {
@@ -124,7 +147,10 @@ cmp.setup {
             end
         })
     },
-
+    window = {
+-- completion = cmp.config.window.bordered(),
+documentation = cmp.config.window.bordered(),
+    },
     preselect = cmp.PreselectMode.None,
     snippet = {
         expand = function(args)
@@ -153,8 +179,8 @@ cmp.setup {
         end, { 'i', 's' }),
     },
     sources = {
-        { name = 'luasnip',   option = { use_show_condition = false } },
         { name = 'nvim_lsp' },
+        { name = 'luasnip' },
         { name = 'path' },
         { name = 'buffer' },
         { name = 'calc' },
@@ -187,34 +213,4 @@ require('lspconfig')['yamlls'].setup {
     }
 }
 
-require('nvim-lightbulb').setup({
-    ignore = {},
-    sign = {
-        enabled = true,
-        priority = 10,
-    },
-    float = {
-        enabled = false,
-        text = "💡",
-        win_opts = {},
-    },
-    virtual_text = {
-        enabled = false,
-        text = "💡",
-        hl_mode = "replace",
-    },
-    status_text = {
-        enabled = false,
-        text = "💡",
-        text_unavailable = ""
-    },
-    autocmd = {
-        enabled = false,
-        pattern = { "*" },
-        events = { "CursorHold", "CursorHoldI" }
-    }
-})
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
-
-require("lsp_signature").setup()
 require("lsp_signature").setup()

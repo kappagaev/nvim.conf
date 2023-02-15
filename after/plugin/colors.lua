@@ -16,10 +16,17 @@ require('kanagawa').setup({
     overrides = {},
     theme = "default" -- Load "default" theme or the experimental "light" theme
 })
--- vim.cmd("colorscheme middlenight_blue")
--- vim.cmd("colorscheme dracula_blood")
-vim.cmd("colorscheme kanagawa")
--- vim.cmd("colorscheme slate")
--- vim.cmd("colorscheme f")
--- vim.cmd("colorscheme ukraine")
--- setup must be called before loading
+
+local colorschemes = { "kanagawa",  "catppuccin-mocha" }
+
+local function set_colorscheme()
+  local colorscheme = colorschemes[math.random(1, #colorschemes)]
+  vim.cmd("colorscheme " .. colorscheme)
+end
+
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+      set_colorscheme()
+    end,
+})
+

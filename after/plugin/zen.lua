@@ -9,7 +9,7 @@ require("zen-mode").setup {
 						showcmd = false, -- disables the command in the last line of the screen
 				},
 				barbecue = { enabled = false },
-				twilight = { enabled = false },
+				twilight = { enabled = true },
 		},
 
 				on_open = function(win)

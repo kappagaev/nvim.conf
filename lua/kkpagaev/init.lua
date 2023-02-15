@@ -9,11 +9,34 @@ map('n', '<leader>e', ':NvimTreeToggle<CR>')
 map('n', 'Q', '<Cmd>bd<CR>')
 map('n', '<leader>Q', '<Cmd>bd!<CR>')
 
+require("luasnip.loaders.from_vscode").lazy_load()
+
+require("hover").setup {
+    init = function()
+      -- Require providers
+      require("hover.providers.lsp")
+      -- require('hover.providers.gh')
+      -- require('hover.providers.gh_user')
+      -- require('hover.providers.jira')
+      -- require('hover.providers.man')
+      -- require('hover.providers.dictionary')
+    end,
+    preview_opts = {
+        border = nil
+    },
+    -- Whether the contents of a currently open hover window should be moved
+    -- to a :h preview-window when pressing the hover keymap.
+    preview_window = false,
+    title = true
+}
+
+  -- Setup keymaps
 require("barbecue").setup({
  show_modified = true,
 })
 require 'luasnip'.filetype_extend("ruby", { "rails" })
 require 'luasnip'.filetype_extend("go", { "go" })
+
 map('n', '<leader><Shift><Tab>', '<Cmd>BufferLineCyclePrev<CR>')
 require 'nvim-web-devicons'.setup {
 		override = {
@@ -35,9 +58,13 @@ require("scrollbar").setup()
 
 require("renamer").setup({})
 
+local codewindow = require('codewindow')
+    codewindow.setup()
+    codewindow.apply_default_keybinds()
+
 require('indent_blankline').setup {
-		char = '┊',
-		show_trailing_blankline_indent = false,
+  char = '┊',
+  show_trailing_blankline_indent = false,
 }
 require('packer').use({
 		'weilbith/nvim-code-action-menu',
@@ -51,6 +78,9 @@ require('gitsigns').setup()
 -- vim.api.nvim_buf_set_option(args.buf, "buflisted", false)
 -- end,
 -- })
+
+require('nvim-autopairs').setup()
+
 
 require('numb').setup()
 require'nvim-lastplace'.setup{}

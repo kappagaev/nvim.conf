@@ -1,5 +1,28 @@
 vim.cmd.packadd('packer.nvim')
 
+local fn = vim.fn
+-- Automatically install packer
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+	PACKER_BOOTSTRAP = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
+	print("Installing packer close and reopen Neovim...")
+	vim.cmd([[packadd packer.nvim]])
+end
+
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
 return require('packer').startup(function(use)
       -- use 'vim-airline/vim-airline'
       -- use 'vim-airline/vim-airline-themes'
@@ -53,12 +76,12 @@ return require('packer').startup(function(use)
       use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
       -- use { 'neoclide/coc.nvim',  branch = 'release' }
       -- use 'itchyny/lightline.vim'
-      use 'fatih/vim-go'
+      -- use 'fatih/vim-go'
       use 'nvim-tree/nvim-web-devicons'
       -- use { 'romgrk/barbar.nvim', wants = 'nvim-web-devicons' }
       use 'hashivim/vim-terraform'
       use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
--- use 'tribela/vim-transparent'
+      -- use 'tribela/vim-transparent'
       use 'voldikss/vim-floaterm'
       use "rebelot/kanagawa.nvim"
       use "ethanholz/nvim-lastplace"
@@ -85,7 +108,7 @@ return require('packer').startup(function(use)
 
       use("ThePrimeagen/harpoon")
 
-      use("jiangmiao/auto-pairs")
+      -- use("jiangmiao/auto-pairs")
 
       use("tpope/vim-endwise")
 
@@ -100,10 +123,6 @@ return require('packer').startup(function(use)
           cmd = 'CodeActionMenu',
       })
 
-      use {
-          'kosayoda/nvim-lightbulb',
-          requires = 'antoinemadec/FixCursorHold.nvim',
-      }
       use({
           "utilyre/barbecue.nvim",
           requires = {
@@ -153,19 +172,36 @@ return require('packer').startup(function(use)
       -- end,
       -- requires = {'nvim-tree/nvim-web-devicons'}
       -- }
-      use { 'ray-x/starry.nvim', setup = function()
-        vim.g.starry_italic_comments = true
-      end }
-use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-}
-  use "dstein64/vim-startuptime"
+-- use { 'ray-x/starry.nvim', setup = function()
+-- vim.g.starry_italic_comments = true
+-- end }
+      use {
+          'nvim-lualine/lualine.nvim',
+          requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+      }
+      use "dstein64/vim-startuptime"
 
-  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-end}
-    use 'tpope/vim-rails'
-    use 'suketa/nvim-dap-ruby'
-    use "vim-test/vim-test"
-    use "jose-elias-alvarez/typescript.nvim"
+      use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+      end }
+      use 'tpope/vim-rails'
+      use 'suketa/nvim-dap-ruby'
+      use "vim-test/vim-test"
+      use "jose-elias-alvarez/typescript.nvim"
+      use 'David-Kunz/markid'
+      use 'gorbit99/codewindow.nvim'
+
+      use 'hrsh7th/cmp-buffer'
+
+      use 'hrsh7th/vim-vsnip'
+      use 'hrsh7th/vim-vsnip-integ'
+
+      use "lewis6991/hover.nvim"
+      use 'ray-x/go.nvim'
+      use 'ray-x/guihua.lua' -- reco
+      use 'windwp/nvim-autopairs'
+
+      -- colors
+      use "pineapplegiant/spaceduck"
+      use "folke/tokyonight.nvim"
+      use { "catppuccin/nvim", as = "catppuccin" }
     end)
