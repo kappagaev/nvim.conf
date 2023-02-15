@@ -13,6 +13,7 @@ o.wrap = true
 o.number = true
 o.noswapfile = true
 o.cursorline = true
+o.cmdheight = 0
 vim.api.nvim_set_option("clipboard", "unnamed")
 
 

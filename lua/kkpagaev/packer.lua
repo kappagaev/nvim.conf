@@ -204,4 +204,10 @@ return require('packer').startup(function(use)
       use "pineapplegiant/spaceduck"
       use "folke/tokyonight.nvim"
       use { "catppuccin/nvim", as = "catppuccin" }
+      use {
+        'VonHeikemen/fine-cmdline.nvim',
+        requires = {
+          {'MunifTanjim/nui.nvim'}
+        }
+      }
     end)

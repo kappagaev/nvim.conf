@@ -10,7 +10,7 @@ custom_codedark.normal.c.bg = '#14141414141'
 
 require('lualine').setup({
     options = {
-        theme = custom_codedark,
+theme = custom_codedark,
         icons_enabled = true,
         component_separators = { left = '', right = '|' },
         -- section_separators = { left = '', right = ''},
@@ -19,8 +19,12 @@ require('lualine').setup({
         -- theme = 'gruvbox_material',
         disabled_filetypes = {
         'NvimTree',
-        'dbui',
-
+        'Trouble',
+        'dap-repl',
+-- 'dapui_scopes',
+-- 'dapui_stacks',
+-- 'dapui_watches',
+-- 'dapui_breakpoints',
     }
     },
     sections = {
