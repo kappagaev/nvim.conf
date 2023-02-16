@@ -99,3 +99,4 @@ battery.setup({
 })
 -- require('mini.starter').setup()
 
+-- vim.cmd("<cmd>Copilot disable<CR>")

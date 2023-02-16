@@ -133,7 +133,7 @@ luasnip.config.set_config {
 }
 local lspkind = require('lspkind')
 
--- require('fidget').setup()
+require('fidget').setup()
 
 cmp.setup {
     formatting = {

@@ -20,7 +20,9 @@ map('i', 'JJ', '<Esc>')
 
 map('n', '<leader>l', ':Format<CR>')
 
-map('n', '<c-d>', '<c-d>zz')
-map('n', '<c-u>', '<c-u>zz')
+map('n', '<c-d>', '10j')
+map('n', '<c-u>', '10k')
 
 map('v', '<leader>p', '"_dP')
+
+map('n', '<leader>w', ":w<CR>")

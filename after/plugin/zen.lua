@@ -10,6 +10,7 @@ require("zen-mode").setup {
 				},
 				barbecue = { enabled = false },
 				twilight = { enabled = true },
+        tmux = { enabled = true}
 		},
 
 				on_open = function(win)

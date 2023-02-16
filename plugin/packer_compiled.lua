@@ -129,11 +129,6 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/fidget.nvim",
     url = "https://github.com/j-hui/fidget.nvim"
   },
-  ["fine-cmdline.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/fine-cmdline.nvim",
-    url = "https://github.com/VonHeikemen/fine-cmdline.nvim"
-  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/friendly-snippets",
@@ -209,11 +204,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/neodev.nvim",
     url = "https://github.com/folke/neodev.nvim"
-  },
-  ["nui.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nui.nvim",
-    url = "https://github.com/MunifTanjim/nui.nvim"
   },
   ["null-ls.nvim"] = {
     loaded = true,
@@ -348,6 +338,11 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tmux.nvim"] = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/tmux.nvim",
+    url = "https://github.com/aserowy/tmux.nvim"
+  },
   ["todo-comments.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/todo-comments.nvim",
@@ -447,18 +442,18 @@ time([[Config for nvim-neoclip.lua]], false)
 time([[Config for zen-mode.nvim]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "zen-mode.nvim")
 time([[Config for zen-mode.nvim]], false)
--- Config for: toggleterm.nvim
-time([[Config for toggleterm.nvim]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "toggleterm.nvim")
-time([[Config for toggleterm.nvim]], false)
--- Config for: twilight.nvim
-time([[Config for twilight.nvim]], true)
-try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
-time([[Config for twilight.nvim]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
+-- Config for: twilight.nvim
+time([[Config for twilight.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
+time([[Config for twilight.nvim]], false)
+-- Config for: toggleterm.nvim
+time([[Config for toggleterm.nvim]], true)
+try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "toggleterm.nvim")
+time([[Config for toggleterm.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
