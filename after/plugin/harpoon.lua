@@ -8,7 +8,7 @@ require("harpoon").setup({
 		mark_branch = true,
 	},
 })
-vim.keymap.set('n', 'J', function()
+vim.keymap.set('n', 'H', function()
 	require("harpoon.ui").toggle_quick_menu()
 end)
 

@@ -72,8 +72,8 @@ require('packer').use({
 		'weilbith/nvim-code-action-menu',
 		cmd = 'CodeActionMenu',
 })
-require('gitsigns').setup()
-
+require('gitsigns').setup({
+})
 -- vim.api.nvim_create_autocmd("FileType", {
 -- pattern = "dap-repl",
 -- callback = function(args)
@@ -100,3 +100,7 @@ battery.setup({
 -- require('mini.starter').setup()
 
 -- vim.cmd("<cmd>Copilot disable<CR>")
+
+require("nvim-surround").setup({
+    -- Configuration here, or leave empty to use defaults
+})

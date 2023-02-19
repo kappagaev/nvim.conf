@@ -18,3 +18,28 @@ au('BufWritePost', {
     end,
 })
 
+au('BufWritePost', {
+    pattern = '*.cs',
+    callback = function()
+      require("harpoon.tmux").sendCommand("{right}", "clear\n")
+      require("harpoon.tmux").sendCommand("{right}", "dotnet run \n")
+    end,
+})
+
+au('BufWritePost', {
+    group = ag('format_on_save', {}),
+    pattern = '*.pl',
+    callback = function()
+      require("harpoon.tmux").sendCommand("{right}", "clear\n")
+      require("harpoon.tmux").sendCommand("{right}", "swipl \n")
+      require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+    end,
+})
+-- au('BufWritePost', {
+-- group = ag('format_on_save', {}),
+-- pattern = '*.hs',
+-- callback = function()
+-- require("harpoon.tmux").sendCommand("{right}", ":r\n")
+-- end,
+-- })
+

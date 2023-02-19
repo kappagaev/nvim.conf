@@ -24,8 +24,8 @@ local on_attach = function(_, bufnr)
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('gb', '<c-o>', '[G]o [B]ack')
 
-  nmap('H', "<c-o>", '[G]o [B]ack')
-  nmap('L', "<c-i>", '[G]o [F]orward')
+-- nmap('H', "<c-o>", '[G]o [B]ack')
+-- nmap('L', "<c-i>", '[G]o [F]orward')
 
   -- vim.keymap.set('n', 'gb',  '<c-o>', {
 
@@ -133,7 +133,13 @@ luasnip.config.set_config {
 }
 local lspkind = require('lspkind')
 
-require('fidget').setup()
+local sources = {}
+sources['null-ls'] = {
+  ignore = true
+}
+require('fidget').setup({
+  sources = sources,
+})
 
 cmp.setup {
     formatting = {
@@ -214,3 +220,5 @@ require('lspconfig')['yamlls'].setup {
 }
 
 require("lsp_signature").setup()
+
+require("typescript").setup({})
