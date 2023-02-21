@@ -10,7 +10,6 @@ au('TextYankPost', {
 })
 
 au('BufWritePost', {
-    group = ag('format_on_save', {}),
     pattern = '*.rb',
     callback = function()
       require("harpoon.tmux").sendCommand("{right}", "clear\n")
@@ -27,7 +26,6 @@ au('BufWritePost', {
 })
 
 au('BufWritePost', {
-    group = ag('format_on_save', {}),
     pattern = '*.pl',
     callback = function()
       require("harpoon.tmux").sendCommand("{right}", "clear\n")

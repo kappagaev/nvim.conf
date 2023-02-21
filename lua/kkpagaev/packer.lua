@@ -226,4 +226,5 @@ return require('packer').startup(function(use)
   })
   use "jose-elias-alvarez/typescript.nvim"
   use 'simrat39/symbols-outline.nvim'
+  use "ziontee113/color-picker.nvim"
 end)

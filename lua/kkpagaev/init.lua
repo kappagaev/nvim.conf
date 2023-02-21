@@ -101,6 +101,13 @@ battery.setup({
 
 -- vim.cmd("<cmd>Copilot disable<CR>")
 
+require("color-picker").setup()
+
+vim.keymap.set("n", "<C-p>", "<cmd>PickColor<cr>", opts)
+vim.keymap.set("i", "<C-p>", "<cmd>PickColorInsert<cr>", opts)
 require("nvim-surround").setup({
+
+
     -- Configuration here, or leave empty to use defaults
 })
+
