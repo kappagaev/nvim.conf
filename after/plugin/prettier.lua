@@ -7,7 +7,7 @@ local async = event == "BufWritePost"
 null_ls.setup({
     sources = {
         null_ls.builtins.formatting.prettierd,
-        null_ls.builtins.formatting.rubocop,
+-- null_ls.builtins.formatting.rubocop,
         null_ls.builtins.diagnostics.erb_lint,
         null_ls.builtins.diagnostics.flake8,
         null_ls.builtins.formatting.autopep8,

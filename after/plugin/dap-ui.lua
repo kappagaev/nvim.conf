@@ -1,25 +1,25 @@
 local dapui_setup = function()
   require("dapui").setup({
-      layouts = {
-          {
-              elements = {
-                  { id = "scopes", size = 0.25 },
-                  "breakpoints",
-                  "stacks",
-                  "watches",
-              },
-              size = 40, -- 40 columns
-              position = "right",
-          },
-          {
-              elements = {
-                  "repl",
--- "console",
-              },
-              size = 0.20, -- 20% of total lines
-              position = "bottom",
-          },
+    layouts = {
+      {
+        elements = {
+          "scopes"
+-- "breakpoints",
+-- "stacks",
+-- "watches",
+        },
+        size = 40, -- 40 columns
+        position = "right",
       },
+      {
+        elements = {
+          -- "repl",
+          "console",
+        },
+        size = 0.30, -- 20% of total lines
+        position = "bottom",
+      },
+    },
   })
   local dap, ui = require("dap"), require("dapui")
   dap.listeners.after.event_initialized["dapui_config"] = function()

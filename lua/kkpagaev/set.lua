@@ -2,6 +2,7 @@ local o = vim.o
 
 local filetypes = {}
 filetypes["dap-repl"] = false
+filetypes["dapui_watches"] = false
 vim.g.copilot_filetypes = filetypes
 
 o.relativenumber = true

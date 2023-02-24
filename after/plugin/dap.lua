@@ -63,49 +63,68 @@ require('persistent-breakpoints').setup {
   perf_record = false,
 }
 
-dap.adapters.node2 = {
-  type = "executable",
-  command = "node",
-  args = { '/home/kkpagaev/.local/share/nvim/mason/bin' .. "node-debug2-adapter" },
-}
+require("dap-vscode-js").setup({
+  node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
+  debugger_path = "/home/kkpagaev/vscode-js-debug", -- Path to vscode-js-debug installation.
+  adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
+-- adapters = { 'pwa-node'}, -- which adapters to register in nvim-dap
+})
 
-dap.configurations.javascript = {
+for _, language in ipairs({ "typescript", "javascript" }) do
+  require("dap").configurations[language] = {
   {
-    name = "Launch",
-    type = "node2",
+    type = "pwa-node",
     request = "launch",
-    program = "${file}",
-    cwd = vim.fn.getcwd(),
-    sourceMaps = true,
-    protocol = "inspector",
+    name = "Debug Jest Tests",
+    -- trace = true, -- include debugger info
+    runtimeExecutable = "node",
+    runtimeArgs = {
+      "./node_modules/jest/bin/jest.js",
+      "--runInBand",
+    },
+    rootPath = "${workspaceFolder}",
+    cwd = "${workspaceFolder}",
     console = "integratedTerminal",
+    internalConsoleOptions = "neverOpen",
   },
-  {
-    -- For this to work you need to make sure the node process is started with the `--inspect` flag.
-    name = "Attach to process",
-    type = "node2",
-    request = "attach",
-    processId = require("dap.utils").pick_process,
-  },
-}
+    {
+      name = "Debug Jest E2E Tests --watch",
+      type = "pwa-node",
+      request = "launch",
+      runtimeExecutable = "node",
+      runtimeArgs = {
+        "--inspect-brk",
+        "/usr/local/bin/jest",
+        "--runInBand",
+        "--config",
+        "${workspaceFolder}/test/jest-e2e.json",
+        "--watch"
+      },
+      console = "integratedTerminal",
+      rootPath = "${workspaceFolder}",
+      cwd = "${workspaceFolder}",
+      internalConsoleOptions = "neverOpen",
+      port = 9229,
+    },
+    {
+			type = "pwa-node",
+			request = "launch",
+			name = "Launch project",
+			cwd = "${workspaceFolder}",
+			runtimeExecutable = "pnpm",
+			runtimeArgs = {
+				"debug",
+			},
+		},
+    {
+      type = "pwa-node",
+      request = "attach",
+      name = "Attach",
+      processId = require 'dap.utils'.pick_process,
+      cwd = "${workspaceFolder}",
+    }
+  }
+end
 
-dap.configurations.typescript = {
-  {
-    name = "Attach to process",
-    type = "node2",
-    request = "attach",
-    processId = require("dap.utils").pick_process,
-    sourceMaps = true,
-    restart = true,
-  },
-  {
-    name = "Launch",
-    type = "node2",
-    request = "launch",
-    program = "${workspaceFolder}/build/index.js",
-    sourceMaps = true,
-    cwd = vim.fn.getcwd(),
-    protocol = "inspector",
-    outFiles = { "${workspaceFolder}/build/*.js" },
-  },
-}
+
+
