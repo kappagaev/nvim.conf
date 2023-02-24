@@ -23,7 +23,7 @@ end
 
 -- Change the background of lualine_c section for normal mode
 custom_codedark.normal.c.bg = '#14141414141'
-custom_codedark.normal.a = {  bg = '#FFA066', gui = 'bold', fg = '#000000' }
+custom_codedark.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
 
 
 require('lualine').setup({
@@ -36,9 +36,9 @@ require('lualine').setup({
     component_separators = { left = '', right = '|' },
     -- section_separators = { left = '', right = ''},
     -- section_separators = { left = ' ', right = ' '},
--- section_separators = { left = '', right = ''},
+    -- section_separators = { left = '', right = ''},
 
-section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
     -- theme = 'gruvbox_material',
     disabled_filetypes = {
       'NvimTree',
