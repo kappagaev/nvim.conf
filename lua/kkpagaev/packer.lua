@@ -228,4 +228,5 @@ return require('packer').startup(function(use)
   use 'simrat39/symbols-outline.nvim'
   use "ziontee113/color-picker.nvim"
   use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
+  use "tribela/vim-transparent"
 end)
