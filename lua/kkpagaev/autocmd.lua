@@ -10,11 +10,21 @@ au('TextYankPost', {
 })
 
 au('BufWritePost', {
-pattern = '*.rb',
-callback = function()
-require("harpoon.tmux").sendCommand("{right}", "clear\n")
-require("harpoon.tmux").sendCommand("{right}", "rake \n")
-end,
+  pattern = '*.rb',
+  callback = function()
+    require("harpoon.tmux").sendCommand("{right}", "clear\n")
+    require("harpoon.tmux").sendCommand("{right}", "rake \n")
+  end,
+})
+
+
+au('InsertLeave', {
+  pattern = '*.rb',
+  callback = function()
+      vim.cmd('w')
+      require("harpoon.tmux").sendCommand("{right}", "clear\n")
+      require("harpoon.tmux").sendCommand("{right}", "rake \n")
+  end,
 })
 
 au('BufWritePost', {

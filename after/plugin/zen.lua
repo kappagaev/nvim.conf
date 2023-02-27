@@ -6,13 +6,13 @@ require("zen-mode").setup {
         width = 1,
         height = 1,
         options = {
-            signcolumn = "yes", -- disable signcolumn
-            number = false, -- disable number column
-            relativenumber = false, -- disable relative numbers
-            cursorline = false, -- disable cursorline
-            cursorcolumn = false, -- disable cursor column
-            foldcolumn = "0", -- disable fold column
-            list = false, -- disable whitespace characters
+signcolumn = "yes", -- disable signcolumn
+number = false, -- disable number column
+relativenumber = false, -- disable relative numbers
+cursorline = false, -- disable cursorline
+cursorcolumn = false, -- disable cursor column
+foldcolumn = "0", -- disable fold column
+list = false, -- disable whitespace characters
         },
     },
     plugins = {

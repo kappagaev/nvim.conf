@@ -229,4 +229,5 @@ return require('packer').startup(function(use)
   use "ziontee113/color-picker.nvim"
   use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
   use "tribela/vim-transparent"
+  use "vim-crystal/vim-crystal"
 end)

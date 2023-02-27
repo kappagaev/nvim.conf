@@ -8,12 +8,12 @@ g.mapleader = " "
 g.maplocalleader = " "
 
 map('n', "<leader>", "")
-map('n', '<C-j>', '5j')
+-- map('n', '<C-j>', '5j')
 
-map('n', '<c-k>', '5k')
-map('n', '<c-l>', '5l')
-map('n', '<c-h>', '5h')
-map('n', '<c-g>', 'gcc')
+-- map('n', '<c-k>', '5k')
+-- map('n', '<c-l>', '5l')
+-- map('n', '<c-h>', '5h')
+-- map('n', '<c-g>', 'gcc')
 map('n', '<leader>w', ':update<CR>')
 map('i', 'jj', '<Esc>')
 map('i', 'JJ', '<Esc>')

@@ -238,4 +238,15 @@ require('lspconfig')['yamlls'].setup {
 
 require("lsp_signature").setup()
 
--- require("typescript").setup({})
+-- require("typescript").setup({
+
+require("renamer").setup({})
+
+local codewindow = require('codewindow')
+    codewindow.setup()
+    codewindow.apply_default_keybinds()
+
+require('packer').use({
+		'weilbith/nvim-code-action-menu',
+		cmd = 'CodeActionMenu',
+})
