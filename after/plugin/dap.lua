@@ -67,26 +67,26 @@ require("dap-vscode-js").setup({
   node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
   debugger_path = "/home/kkpagaev/vscode-js-debug", -- Path to vscode-js-debug installation.
   adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
--- adapters = { 'pwa-node'}, -- which adapters to register in nvim-dap
+  -- adapters = { 'pwa-node'}, -- which adapters to register in nvim-dap
 })
 
 for _, language in ipairs({ "typescript", "javascript" }) do
   require("dap").configurations[language] = {
-  {
-    type = "pwa-node",
-    request = "launch",
-    name = "Debug Jest Tests",
-    -- trace = true, -- include debugger info
-    runtimeExecutable = "node",
-    runtimeArgs = {
-      "./node_modules/jest/bin/jest.js",
-      "--runInBand",
+    {
+      type = "pwa-node",
+      request = "launch",
+      name = "Debug Jest Tests",
+      -- trace = true, -- include debugger info
+      runtimeExecutable = "node",
+      runtimeArgs = {
+        "./node_modules/jest/bin/jest.js",
+        "--runInBand",
+      },
+      rootPath = "${workspaceFolder}",
+      cwd = "${workspaceFolder}",
+      console = "integratedTerminal",
+      internalConsoleOptions = "neverOpen",
     },
-    rootPath = "${workspaceFolder}",
-    cwd = "${workspaceFolder}",
-    console = "integratedTerminal",
-    internalConsoleOptions = "neverOpen",
-  },
     {
       name = "Debug Jest E2E Tests --watch",
       type = "pwa-node",
@@ -107,15 +107,15 @@ for _, language in ipairs({ "typescript", "javascript" }) do
       port = 9229,
     },
     {
-			type = "pwa-node",
-			request = "launch",
-			name = "Launch project",
-			cwd = "${workspaceFolder}",
-			runtimeExecutable = "pnpm",
-			runtimeArgs = {
-				"debug",
-			},
-		},
+      type = "pwa-node",
+      request = "launch",
+      name = "Launch project",
+      cwd = "${workspaceFolder}",
+      runtimeExecutable = "pnpm",
+      runtimeArgs = {
+        "debug",
+      },
+    },
     {
       type = "pwa-node",
       request = "attach",
@@ -125,6 +125,42 @@ for _, language in ipairs({ "typescript", "javascript" }) do
     }
   }
 end
+dap.adapters.chrome = {
+  type = "executable",
+  command = "node",
+  args = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js" },
+}
 
+require("dap").configurations.vue = { -- change this to javascript if needed
+  -- {
+  -- name = "Debug Chrome",
+  -- type = "chrome",
+  -- request = "launch",
+  -- url = "http://localhost:3001",
+  -- webRoot = "${workspaceFolder}",
+  -- runtimeExecutable = "/usr/bin/google-chrome-stable",
+  -- runtimeArgs = { "--remote-debugging-port=9222" },
+  -- },
+  {
+    name = "Debug (Attach) - Remote",
+    type = "chrome",
+    request = "attach",
+    -- sourceMaps = true,
+    -- breakOnLoad = true,
+    -- trace = true,
+    port = 9222,
+    webRoot = "${workspaceFolder}",
+  }
+}
 
-
+require("dap").configurations.typescriptreact = { -- change this to javascript if needed
+  {
+    name = "Debug (Attach) - Remote",
+    type = "chrome",
+    request = "attach",
+    sourceMaps = true,
+    trace = true,
+    port = 9222,
+    webRoot = "${workspaceFolder}"
+  }
+}

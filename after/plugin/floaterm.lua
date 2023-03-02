@@ -1,5 +1,5 @@
 local function map(m, k, v)
-	vim.keymap.set(m, k, v, { silent = true })
+  vim.keymap.set(m, k, v, { silent = true })
 end
 
 vim.g.floaterm_width = 0.75
@@ -7,10 +7,10 @@ vim.g.floaterm_height = 0.75
 vim.g.floaterm_title = ''
 
 
-map('n', '<leader>lg', '<Cmd>FloatermNew --height=0.75 --width=0.75 lg<CR>')
-map('n', '<leader>ld', '<Cmd>FloatermNew --height=0.75 --width=0.75 ld<CR>')
-map('n', '<leader>lf', '<Cmd>FloatermNew --height=0.75 --width=0.75 lf<CR>')
-map('n', '<leader>ls', '<Cmd>FloatermNew --height=0.75 --width=0.75 spt<CR>')
+map('n', '<leader>lg', '<Cmd>FloatermNew --height=0.9 --width=0.9 lg<CR>')
+map('n', '<leader>ld', '<Cmd>FloatermNew --height=0.9 --width=0.9 ld<CR>')
+map('n', '<leader>lf', '<Cmd>FloatermNew --height=0.9 --width=0.9 lf<CR>')
+map('n', '<leader>ls', '<Cmd>FloatermNew --height=0.9 --width=0.9 spt<CR>')
 
 map('n', '\\', '<Cmd>FloatermToggle<CR>')
 

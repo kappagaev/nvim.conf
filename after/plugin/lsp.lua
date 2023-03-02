@@ -58,11 +58,6 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   phpactor = {},
-  solargraph = {
-    flags = {
-      debounce_text_changes = 150,
-    }
-  },
   tsserver = {
   },
   -- sumneko_lua = {
@@ -115,18 +110,18 @@ mason_lspconfig.setup_handlers {
         }
       }
       return
-    elseif server_name == 'solargraph' then
-      require('lspconfig')[server_name].setup {
-        capabilities = capabilities,
-        on_attach = on_attach,
-        init_options = {
-          formatting = true,
-        },
-        flags = {
-          debounce_text_changes = 150,
-        }
-      }
-      return
+-- elseif server_name == 'solargraph' then
+-- require('lspconfig')[server_name].setup {
+-- capabilities = capabilities,
+-- on_attach = on_attach,
+-- init_options = {
+-- formatting = true,
+-- },
+-- flags = {
+-- debounce_text_changes = 150,
+-- }
+-- }
+-- return
     else
       require('lspconfig')[server_name].setup {
         capabilities = capabilities,
@@ -219,7 +214,10 @@ require('lspconfig')['prolog_ls'].setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
-
+require'lspconfig'.solargraph.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
 require('lspconfig')['yamlls'].setup {
   capabilities = capabilities,
   on_attach = on_attach,

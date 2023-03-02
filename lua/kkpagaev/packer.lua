@@ -106,7 +106,7 @@ return require('packer').startup(function(use)
 
   use("ThePrimeagen/vim-be-good")
 
-  use("ThePrimeagen/harpoon")
+  use("kappagaev/harpoon")
 
   -- use("jiangmiao/auto-pairs")
 
