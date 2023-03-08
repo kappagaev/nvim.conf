@@ -132,22 +132,10 @@ dap.adapters.chrome = {
 }
 
 require("dap").configurations.vue = { -- change this to javascript if needed
-  -- {
-  -- name = "Debug Chrome",
-  -- type = "chrome",
-  -- request = "launch",
-  -- url = "http://localhost:3001",
-  -- webRoot = "${workspaceFolder}",
-  -- runtimeExecutable = "/usr/bin/google-chrome-stable",
-  -- runtimeArgs = { "--remote-debugging-port=9222" },
-  -- },
   {
     name = "Debug (Attach) - Remote",
     type = "chrome",
     request = "attach",
-    -- sourceMaps = true,
-    -- breakOnLoad = true,
-    -- trace = true,
     port = 9222,
     webRoot = "${workspaceFolder}",
   }

@@ -1,5 +1,9 @@
 require('kanagawa').setup({
-    transparent = true, -- do not set background color
+  colors = {
+    theme = { all = { ui = { bg_gutter = 'none' }  }}
+  },
+  dimInactive = false,
+  transparent = true, -- do not set background color
 })
 require("catppuccin").setup(
     {
@@ -9,17 +13,15 @@ require("catppuccin").setup(
         }
     }
 )
-local colorschemes = { "kanagawa" }
-
+-- local colorschemes = { "kanagawa", "spaceduck", "PaperColor", "catppuccin-mocha"}
+local colorschemes = { "catppuccin-macchiato" }
 local function set_colorscheme()
   local colorscheme = colorschemes[math.random(1, #colorschemes)]
-  vim.o.background = "dark"
   vim.cmd("colorscheme " .. colorscheme)
 end
 
-vim.api.nvim_create_autocmd("VimEnter", {
-    callback = function()
-      set_colorscheme()
-    end,
-})
+
+set_colorscheme()
+-- vim.cmd("colorscheme spaceduck")
+-- vim.cmd("colorscheme PaperColor")
 

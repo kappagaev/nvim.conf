@@ -3,9 +3,9 @@ local dapui_setup = function()
     layouts = {
       {
         elements = {
-          "scopes"
+          "scopes",
 -- "breakpoints",
--- "stacks",
+          "stacks",
 -- "watches",
         },
         size = 40, -- 40 columns

@@ -17,15 +17,20 @@ au('TextYankPost', {
 -- end,
 -- })
 
-
--- au('InsertLeave', {
--- pattern = '*.rb',
+-- au('BufEnter', {
+-- pattern = '*.md',
 -- callback = function()
--- vim.cmd('w')
--- require("harpoon.tmux").sendCommand("{right}", "clear\n")
--- require("harpoon.tmux").sendCommand("{right}", "rake \n")
+-- require("barbecue.ui").toggle(false)
+-- vim.cmd("ZenMode")
 -- end,
 -- })
+
+au('TextChanged', {
+pattern = '*.md',
+callback = function()
+vim.cmd('w')
+end,
+})
 
 au('BufWritePost', {
   pattern = '*.cs',
@@ -34,6 +39,15 @@ au('BufWritePost', {
     require("harpoon.tmux").sendCommand("{right}", "dotnet run \n")
   end,
 })
+
+-- au('BufWritePost', {
+-- pattern = 'a',
+-- callback = function()
+-- require("harpoon.tmux").sendCommand("{right}", "clear\n")
+-- require("harpoon.tmux").sendCommand("{right}", "a kkpaev react - react js json foo bar\n")
+-- require("harpoon.tmux").sendCommand("{right}", "a - react js json foo bar\n")
+-- end,
+-- })
 
 au('BufWritePost', {
   pattern = '*.pl',

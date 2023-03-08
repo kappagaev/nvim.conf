@@ -10,7 +10,6 @@ local nvimbattery = {
   end,
   -- color = { fg = colors.violet, bg = colors.bg },
 }
-local custom_codedark = require 'lualine.themes.kanagawa'
 
 local battery = require("battery")
 battery.setup({
@@ -33,16 +32,18 @@ local function harp()
 end
 
 -- Change the background of lualine_c section for normal mode
+
+local custom_codedark = require 'lualine.themes.kanagawa'
 custom_codedark.normal.c.bg = '#14141414141'
 custom_codedark.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
-
 
 require('lualine').setup({
   options = {
     refesh = {
       statusline = 100000000000000,
     },
-    theme = custom_codedark,
+theme = custom_codedark,
+-- theme = 'spaceduck',
     icons_enabled = true,
     component_separators = { left = '', right = '|' },
     -- section_separators = { left = '', right = ''},

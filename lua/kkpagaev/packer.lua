@@ -83,7 +83,10 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
   -- use 'tribela/vim-transparent'
   use 'voldikss/vim-floaterm'
-  use "rebelot/kanagawa.nvim"
+  use {
+    "rebelot/kanagawa.nvim",
+commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
+  }
   use "ethanholz/nvim-lastplace"
 
   use 'mfussenegger/nvim-dap'
@@ -204,15 +207,9 @@ return require('packer').startup(function(use)
   use "pineapplegiant/spaceduck"
   use "folke/tokyonight.nvim"
   use { "catppuccin/nvim", as = "catppuccin" }
-  -- use {
-  -- 'VonHeikemen/fine-cmdline.nvim',
-  -- requires = {
-  -- { 'MunifTanjim/nui.nvim' }
-  -- }
-  -- }
 
   use { 'justinhj/battery.nvim', requires = { { 'kyazdani42/nvim-web-devicons' }, { 'nvim-lua/plenary.nvim' } } }
-  -- use { "zbirenbaum/copilot.lua" }
+
   use({
     "aserowy/tmux.nvim",
   })
@@ -224,10 +221,18 @@ return require('packer').startup(function(use)
     config = function()
     end
   })
-  use "jose-elias-alvarez/typescript.nvim"
-  use 'simrat39/symbols-outline.nvim'
-  use "ziontee113/color-picker.nvim"
-  use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
-  use "tribela/vim-transparent"
+  use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
   use "vim-crystal/vim-crystal"
+  use "NLKNguyen/papercolor-theme"
+  use "vimwiki/vimwiki"
+  use "folke/which-key.nvim"
+  use "vim-crystal/vim-crystal"
+
+use {
+  "zbirenbaum/copilot-cmp",
+  after = { "copilot.lua" },
+  config = function ()
+  end
+}
+use { "zbirenbaum/copilot.lua" }
 end)

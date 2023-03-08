@@ -1,2 +1,2 @@
--- require("copilot").setup({
--- })
+require("copilot").setup({
+})

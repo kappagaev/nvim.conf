@@ -39,7 +39,6 @@ local on_attach = function(_, bufnr)
   xmap("<C-a>", "<cmd>CodeActionMenu<cr>", 'Code [A]ction')
 
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('gb', '<c-o>', '[G]o [B]ack')
 
   -- nmap('H', "<c-o>", '[G]o [B]ack')
   -- nmap('L', "<c-i>", '[G]o [F]orward')
@@ -57,7 +56,6 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  phpactor = {},
   tsserver = {
   },
   -- sumneko_lua = {
@@ -110,18 +108,6 @@ mason_lspconfig.setup_handlers {
         }
       }
       return
--- elseif server_name == 'solargraph' then
--- require('lspconfig')[server_name].setup {
--- capabilities = capabilities,
--- on_attach = on_attach,
--- init_options = {
--- formatting = true,
--- },
--- flags = {
--- debounce_text_changes = 150,
--- }
--- }
--- return
     else
       require('lspconfig')[server_name].setup {
         capabilities = capabilities,
@@ -214,9 +200,20 @@ require('lspconfig')['prolog_ls'].setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
+require'lspconfig'.crystalline.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
 require'lspconfig'.solargraph.setup{
   capabilities = capabilities,
   on_attach = on_attach,
+
+init_options = {
+formatting = true,
+},
+flags = {
+debounce_text_changes = 150,
+}
 }
 require('lspconfig')['yamlls'].setup {
   capabilities = capabilities,
