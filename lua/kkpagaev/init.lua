@@ -34,3 +34,4 @@ require("which-key").setup {
   -- refer to the configuration section below
 }
 
+require'nvim-rooter'.setup()

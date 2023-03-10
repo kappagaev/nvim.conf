@@ -121,10 +121,10 @@ return require('packer').startup(function(use)
 
   use("mattn/emmet-vim")
 
-  use({
-    'weilbith/nvim-code-action-menu',
-    cmd = 'CodeActionMenu',
-  })
+-- use({
+-- 'weilbith/nvim-code-action-menu',
+-- cmd = 'CodeActionMenu',
+-- })
 
   use({
     "utilyre/barbecue.nvim",
@@ -149,11 +149,11 @@ return require('packer').startup(function(use)
       }
     end
   }
-  use {
-    'filipdutescu/renamer.nvim',
-    branch = 'master',
-    requires = { { 'nvim-lua/plenary.nvim' } }
-  }
+-- use {
+-- 'filipdutescu/renamer.nvim',
+-- branch = 'master',
+-- requires = { { 'nvim-lua/plenary.nvim' } }
+-- }
   use 'nacro90/numb.nvim'
   use 'booperlv/nvim-gomove'
   use {
@@ -235,6 +235,30 @@ use {
   end
 }
   use { "zbirenbaum/copilot.lua" }
-  use 'simrat39/symbols-outline.nvim'
+-- use 'simrat39/symbols-outline.nvim'
   use("desdic/telescope-rooter.nvim")
+  use {
+      'uloco/bluloco.nvim',
+      requires = { 'rktjmp/lush.nvim' }
+  }
+-- If you are using Packer
+use 'rmehri01/onenord.nvim'
+
+  use "tribela/vim-transparent"
+
+use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+    end,
+    requires = {
+        {"nvim-tree/nvim-web-devicons"},
+        --Please make sure you install markdown and markdown_inline parser
+        {"nvim-treesitter/nvim-treesitter"}
+    }
+})
+use {
+    'notjedi/nvim-rooter.lua',
+    config = function() end
+}
 end)

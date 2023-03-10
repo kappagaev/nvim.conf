@@ -1,6 +1,30 @@
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
+require("lspsaga").setup({
+  beacon = {
+    enable = false,
+  },
+  outline = {
+    win_position = "right",
+    win_with = "",
+    win_width = 50,
+    show_detail = true,
+    auto_preview = true,
+    auto_refresh = true,
+    auto_close = true,
+    custom_sort = nil,
+    keys = {
+      jump = "o",
+      expand_collapse = "u",
+      quit = "q",
+    },
+  },
+symbol_in_winbar = {
+    enable = false,
+  }
+})
+
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -25,27 +49,59 @@ local on_attach = function(_, bufnr)
 
     vim.keymap.set('x', keys, func, { buffer = bufnr, desc = desc })
   end
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+-- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+-- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+-- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
   vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
   vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
-  nmap('<leader>rm', '<cmd>lua require("renamer").rename()<cr>', "rename")
+-- nmap('<leader>rm', '<cmd>lua require("renamer").rename()<cr>', "rename")
 
-  nmap('<leader>a', "<cmd>CodeActionMenu<cr>", 'Code [A]ction')
-  imap("<C-a>", "<cmd>CodeActionMenu<cr>", 'Code [A]ction')
-  xmap("<C-a>", "<cmd>CodeActionMenu<cr>", 'Code [A]ction')
+  local keymap = vim.keymap.set
 
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  -- LSP finder - Find the symbol's definition
+  -- If there is no definition, it will instead be hidden
+  -- When you use an action in finder like "open vsplit",
+  -- you can use <C-t> to jump back
+  keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>")
+
+  -- Code action
+  keymap({ "n", "v" }, "<leader>a", "<cmd>Lspsaga code_action<CR>")
+
+  -- Rename all occurrences of the hovered word for the entire file
+  keymap("n", "<leader>rm", "<cmd>Lspsaga rename<CR>")
+
+  keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
+  keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
+  -- Rename all occurrences of the hovered word for the selected files
+-- keymap("n", "<leader>rm", "<cmd>Lspsaga rename ++project<CR>")
+
+  -- Peek definition
+  -- You can edit the file containing the definition in the floating window
+  -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
+  -- It also supports tagstack
+  -- Use <C-t> to jump back
+  keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>")
+
+  -- Go to definition
+  keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+
+  -- Peek type definition
+  -- You can edit the file containing the type definition in the floating window
+  -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
+  -- It also supports tagstack
+  -- Use <C-t> to jump back
+  keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
+
+  -- Go to type definition
+  keymap("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>")
 
   -- nmap('H', "<c-o>", '[G]o [B]ack')
   -- nmap('L', "<c-i>", '[G]o [F]orward')
 
-  -- vim.keymap.set('n', 'gb',  '<c-o>', {
+  keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
 
-  -- })
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
@@ -201,21 +257,21 @@ require('lspconfig')['prolog_ls'].setup {
   on_attach = on_attach,
 }
 
-require'lspconfig'.crystalline.setup{
+require 'lspconfig'.crystalline.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
 
-require'lspconfig'.solargraph.setup{
+require 'lspconfig'.solargraph.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 
-init_options = {
-formatting = true,
-},
-flags = {
-debounce_text_changes = 150,
-}
+  init_options = {
+    formatting = true,
+  },
+  flags = {
+    debounce_text_changes = 150,
+  }
 }
 require('lspconfig')['yamlls'].setup {
   capabilities = capabilities,
@@ -237,13 +293,13 @@ require("lsp_signature").setup()
 
 -- require("typescript").setup({
 
-require("renamer").setup({})
+-- require("renamer").setup({})
 
 local codewindow = require('codewindow')
-    codewindow.setup()
-    codewindow.apply_default_keybinds()
+codewindow.setup()
+codewindow.apply_default_keybinds()
 
 require('packer').use({
-		'weilbith/nvim-code-action-menu',
-		cmd = 'CodeActionMenu',
+  'weilbith/nvim-code-action-menu',
+  cmd = 'CodeActionMenu',
 })

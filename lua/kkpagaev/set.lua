@@ -39,6 +39,8 @@ o.cmdheight = 0
 
 vim.api.nvim_set_option("clipboard", "unnamed")
 
+-- o.clipboard:append("unnamedplus")
+
 vim.opt.scrolloff = 2
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
@@ -46,7 +48,10 @@ vim.opt.isfname:append("@-@")
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
+o.ignorecase = true
+o.smartcase = true
 
+vim.opt.iskeyword:append("-")
 
 -- vim.opt.smartindent = true
 
