@@ -10,7 +10,7 @@ require("lspsaga").setup({
     win_with = "",
     win_width = 50,
     show_detail = true,
-    auto_preview = true,
+    auto_preview = false,
     auto_refresh = true,
     auto_close = true,
     custom_sort = nil,

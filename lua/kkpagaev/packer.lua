@@ -24,8 +24,6 @@ vim.cmd([[
   augroup end
 ]])
 return require('packer').startup(function(use)
-  -- use 'vim-airline/vim-airline'
-  -- use 'vim-airline/vim-airline-themes'
   use 'wbthomason/packer.nvim'
   use 'chrisbra/vim-commentary'
   use {
@@ -55,14 +53,11 @@ return require('packer').startup(function(use)
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
-      -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
 
-      -- Useful status updates for LSP
       'j-hui/fidget.nvim',
 
-      -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
     },
   }
@@ -74,14 +69,10 @@ return require('packer').startup(function(use)
 
 
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
-  -- use { 'neoclide/coc.nvim',  branch = 'release' }
-  -- use 'itchyny/lightline.vim'
-  -- use 'fatih/vim-go'
   use 'nvim-tree/nvim-web-devicons'
-  -- use { 'romgrk/barbar.nvim', wants = 'nvim-web-devicons' }
   use 'hashivim/vim-terraform'
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
-  -- use 'tribela/vim-transparent'
+
   use 'voldikss/vim-floaterm'
   use {
     "rebelot/kanagawa.nvim",
@@ -90,9 +81,11 @@ return require('packer').startup(function(use)
   use "ethanholz/nvim-lastplace"
 
   use 'mfussenegger/nvim-dap'
+
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
   use 'leoluz/nvim-dap-go'
+
   use { 'Weissle/persistent-breakpoints.nvim' }
 
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
@@ -111,20 +104,9 @@ return require('packer').startup(function(use)
 
   use("kappagaev/harpoon")
 
-  -- use("jiangmiao/auto-pairs")
-
   use("tpope/vim-endwise")
 
-  use("rafamadriz/friendly-snippets")
-
   use("onsails/lspkind.nvim")
-
-  use("mattn/emmet-vim")
-
--- use({
--- 'weilbith/nvim-code-action-menu',
--- cmd = 'CodeActionMenu',
--- })
 
   use({
     "utilyre/barbecue.nvim",
@@ -138,22 +120,6 @@ return require('packer').startup(function(use)
     config = function()
     end
   }
-  -- Lua
-  use {
-    "folke/twilight.nvim",
-    config = function()
-      require("twilight").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
--- use {
--- 'filipdutescu/renamer.nvim',
--- branch = 'master',
--- requires = { { 'nvim-lua/plenary.nvim' } }
--- }
   use 'nacro90/numb.nvim'
   use 'booperlv/nvim-gomove'
   use {
@@ -166,18 +132,6 @@ return require('packer').startup(function(use)
     config = function()
     end,
   }
-  -- use 'echasnovski/mini.starter'
-  -- use {
-  -- 'glepnir/dashboard-nvim',
-  -- event = 'VimEnter',
-  -- config = function()
-  -- require('dashboard').setup()
-  -- end,
-  -- requires = {'nvim-tree/nvim-web-devicons'}
-  -- }
-  -- use { 'ray-x/starry.nvim', setup = function()
-  -- vim.g.starry_italic_comments = true
-  -- end }
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
@@ -205,7 +159,6 @@ return require('packer').startup(function(use)
 
   -- colors
   use "pineapplegiant/spaceduck"
-  use "folke/tokyonight.nvim"
   use { "catppuccin/nvim", as = "catppuccin" }
 
   use { 'justinhj/battery.nvim', requires = { { 'kyazdani42/nvim-web-devicons' }, { 'nvim-lua/plenary.nvim' } } }
@@ -222,27 +175,9 @@ return require('packer').startup(function(use)
     end
   })
   use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
--- use "vim-crystal/vim-crystal"
-  use "NLKNguyen/papercolor-theme"
   use "vimwiki/vimwiki"
   use "folke/which-key.nvim"
   use "vim-crystal/vim-crystal"
-
-use {
-  "zbirenbaum/copilot-cmp",
-  after = { "copilot.lua" },
-  config = function ()
-  end
-}
-  use { "zbirenbaum/copilot.lua" }
--- use 'simrat39/symbols-outline.nvim'
-  use("desdic/telescope-rooter.nvim")
-  use {
-      'uloco/bluloco.nvim',
-      requires = { 'rktjmp/lush.nvim' }
-  }
--- If you are using Packer
-use 'rmehri01/onenord.nvim'
 
   use "tribela/vim-transparent"
 

@@ -89,11 +89,6 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/battery.nvim",
     url = "https://github.com/justinhj/battery.nvim"
   },
-  ["bluloco.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/bluloco.nvim",
-    url = "https://github.com/uloco/bluloco.nvim"
-  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -124,33 +119,10 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/codewindow.nvim",
     url = "https://github.com/gorbit99/codewindow.nvim"
   },
-  ["copilot-cmp"] = {
-    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
-    load_after = {},
-    loaded = true,
-    needs_bufread = false,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/opt/copilot-cmp",
-    url = "https://github.com/zbirenbaum/copilot-cmp"
-  },
-  ["copilot.lua"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/copilot.lua",
-    url = "https://github.com/zbirenbaum/copilot.lua"
-  },
-  ["emmet-vim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/emmet-vim",
-    url = "https://github.com/mattn/emmet-vim"
-  },
   ["fidget.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/fidget.nvim",
     url = "https://github.com/j-hui/fidget.nvim"
-  },
-  ["friendly-snippets"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-    url = "https://github.com/rafamadriz/friendly-snippets"
   },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
@@ -208,11 +180,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["lush.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/lush.nvim",
-    url = "https://github.com/rktjmp/lush.nvim"
   },
   markid = {
     loaded = true,
@@ -354,20 +321,10 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
-  ["onenord.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/onenord.nvim",
-    url = "https://github.com/rmehri01/onenord.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
-  },
-  ["papercolor-theme"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/papercolor-theme",
-    url = "https://github.com/NLKNguyen/papercolor-theme"
   },
   ["persistent-breakpoints.nvim"] = {
     loaded = true,
@@ -383,11 +340,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/spaceduck",
     url = "https://github.com/pineapplegiant/spaceduck"
-  },
-  ["telescope-rooter.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/telescope-rooter.nvim",
-    url = "https://github.com/desdic/telescope-rooter.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -410,21 +362,10 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
-  ["tokyonight.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
-    url = "https://github.com/folke/tokyonight.nvim"
-  },
   ["trouble.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
-  },
-  ["twilight.nvim"] = {
-    config = { "\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0" },
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/twilight.nvim",
-    url = "https://github.com/folke/twilight.nvim"
   },
   ["typescript.nvim"] = {
     loaded = true,
@@ -510,6 +451,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
 -- Config for: nvim-neoclip.lua
 time([[Config for nvim-neoclip.lua]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "nvim-neoclip.lua")
@@ -522,10 +467,6 @@ time([[Config for toggleterm.nvim]], false)
 time([[Config for zen-mode.nvim]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "zen-mode.nvim")
 time([[Config for zen-mode.nvim]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
-time([[Config for gitsigns.nvim]], false)
 -- Config for: nvim-rooter.lua
 time([[Config for nvim-rooter.lua]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "nvim-rooter.lua")
@@ -534,39 +475,26 @@ time([[Config for nvim-rooter.lua]], false)
 time([[Config for nvim-surround]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "nvim-surround")
 time([[Config for nvim-surround]], false)
--- Config for: twilight.nvim
-time([[Config for twilight.nvim]], true)
-try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\rtwilight\frequire\0", "config", "twilight.nvim")
-time([[Config for twilight.nvim]], false)
 -- Config for: lspsaga.nvim
 time([[Config for lspsaga.nvim]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "lspsaga.nvim")
 time([[Config for lspsaga.nvim]], false)
--- Load plugins in order defined by `after`
-time([[Sequenced loading]], true)
-vim.cmd [[ packadd copilot.lua ]]
-vim.cmd [[ packadd copilot-cmp ]]
-
--- Config for: copilot-cmp
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "copilot-cmp")
-
-time([[Sequenced loading]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.api.nvim_create_user_command, 'CodeActionMenu', function(cmdargs)
-          require('packer.load')({'nvim-code-action-menu'}, { cmd = 'CodeActionMenu', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'nvim-code-action-menu'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('CodeActionMenu ', 'cmdline')
-      end})
 pcall(vim.api.nvim_create_user_command, 'ColorizerToggle', function(cmdargs)
           require('packer.load')({'nvim-colorizer.lua'}, { cmd = 'ColorizerToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'nvim-colorizer.lua'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('ColorizerToggle ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'CodeActionMenu', function(cmdargs)
+          require('packer.load')({'nvim-code-action-menu'}, { cmd = 'CodeActionMenu', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'nvim-code-action-menu'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('CodeActionMenu ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 
