@@ -23,8 +23,8 @@ map('i', 'ОО', '<Esc>')
 -- vim.keymap.nnoremap { 'gx', [[:execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]] }
 map('n', '<leader>l', ':Format<CR>')
 
-map('n', '<c-d>', '20j')
-map('n', '<c-u>', '20k')
+map('n', '<c-d>', '18j')
+map('n', '<c-u>', '18k')
 
 map('v', '<leader>p', '"_dP')
 
@@ -33,6 +33,8 @@ map('v', '<leader>p', '"_dP')
 map('n', 'gb', '<c-o>')
 
 map('n', "yf", 'ggyG<c-o>')
+
+map('n', 'U', '<c-r>')
 
 -- _G.main_func = function()
 -- vim.cmd("VimwikiToggleListItem")

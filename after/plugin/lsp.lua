@@ -200,10 +200,12 @@ require('lspconfig')['prolog_ls'].setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
+
 require'lspconfig'.crystalline.setup{
   capabilities = capabilities,
   on_attach = on_attach,
 }
+
 require'lspconfig'.solargraph.setup{
   capabilities = capabilities,
   on_attach = on_attach,

@@ -46,3 +46,5 @@ vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc =
 vim.keymap.set('n', '<leader>ff', builtin.treesitter, { desc = "Test" })
 
 require("telescope").load_extension('harpoon')
+
+-- require "telescope".load_extension("rooter")

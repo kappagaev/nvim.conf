@@ -85,7 +85,7 @@ return require('packer').startup(function(use)
   use 'voldikss/vim-floaterm'
   use {
     "rebelot/kanagawa.nvim",
-commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
+-- commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   }
   use "ethanholz/nvim-lastplace"
 
@@ -222,7 +222,7 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
     end
   })
   use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
-  use "vim-crystal/vim-crystal"
+-- use "vim-crystal/vim-crystal"
   use "NLKNguyen/papercolor-theme"
   use "vimwiki/vimwiki"
   use "folke/which-key.nvim"
@@ -234,5 +234,7 @@ use {
   config = function ()
   end
 }
-use { "zbirenbaum/copilot.lua" }
+  use { "zbirenbaum/copilot.lua" }
+  use 'simrat39/symbols-outline.nvim'
+  use("desdic/telescope-rooter.nvim")
 end)

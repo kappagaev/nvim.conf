@@ -35,6 +35,8 @@ o.noswapfile = true
 o.nocompatible = true
 o.cursorline = true
 o.cmdheight = 0
+
+
 vim.api.nvim_set_option("clipboard", "unnamed")
 
 vim.opt.scrolloff = 2
@@ -43,6 +45,8 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+
+
 
 -- vim.opt.smartindent = true
 

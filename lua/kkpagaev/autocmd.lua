@@ -17,6 +17,15 @@ au('TextYankPost', {
 -- end,
 -- })
 
+
+-- au('BufWritePost', {
+-- pattern = '*.cr',
+-- callback = function()
+-- require("harpoon.tmux").sendCommand("{right}", "clear\n")
+-- require("harpoon.tmux").sendCommand("{right}", "crystal hello.cr\n")
+-- end,
+-- })
+
 -- au('BufEnter', {
 -- pattern = '*.md',
 -- callback = function()
