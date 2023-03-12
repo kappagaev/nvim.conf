@@ -42,7 +42,9 @@ map('n', 'U', '<c-r>')
 -- return "g@l"
 -- end
 
+vim.keymap.set ("i", '<C-F>', 'copilot#Accept()', { expr = true, silent = true, script = true })
 
+-- imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 -- vim.keymap.set("n", "glt", main_func, { expr = true, silent = true})
 vim.keymap.set("n", "glt", ":VimwikiToggleListItem<CR>", {  silent = true})
 -- vim.keymap.set('i','<C-]>', '<esc>f\\|ni', { silent = true })

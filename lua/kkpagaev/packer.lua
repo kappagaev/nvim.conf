@@ -76,7 +76,7 @@ return require('packer').startup(function(use)
   use 'voldikss/vim-floaterm'
   use {
     "rebelot/kanagawa.nvim",
--- commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
+commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   }
   use "ethanholz/nvim-lastplace"
 
@@ -196,4 +196,7 @@ use {
     'notjedi/nvim-rooter.lua',
     config = function() end
 }
+  use "justinmk/vim-sneak"
+
+  use 'mfussenegger/nvim-dap-python'
 end)

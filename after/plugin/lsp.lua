@@ -5,12 +5,17 @@ require("lspsaga").setup({
   beacon = {
     enable = false,
   },
+  finder = {
+    --percentage
+    max_height = 0.7,
+    force_max_height = true
+  },
   outline = {
     win_position = "right",
     win_with = "",
     win_width = 50,
     show_detail = true,
-    auto_preview = false,
+    auto_preview = true,
     auto_refresh = true,
     auto_close = true,
     custom_sort = nil,
@@ -20,7 +25,7 @@ require("lspsaga").setup({
       quit = "q",
     },
   },
-symbol_in_winbar = {
+  symbol_in_winbar = {
     enable = false,
   }
 })
@@ -49,14 +54,14 @@ local on_attach = function(_, bufnr)
 
     vim.keymap.set('x', keys, func, { buffer = bufnr, desc = desc })
   end
--- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
--- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
--- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  -- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  -- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
   vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
   vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
--- nmap('<leader>rm', '<cmd>lua require("renamer").rename()<cr>', "rename")
+  -- nmap('<leader>rm', '<cmd>lua require("renamer").rename()<cr>', "rename")
 
   local keymap = vim.keymap.set
 
@@ -75,7 +80,7 @@ local on_attach = function(_, bufnr)
   keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
   keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
   -- Rename all occurrences of the hovered word for the selected files
--- keymap("n", "<leader>rm", "<cmd>Lspsaga rename ++project<CR>")
+  -- keymap("n", "<leader>rm", "<cmd>Lspsaga rename ++project<CR>")
 
   -- Peek definition
   -- You can edit the file containing the definition in the floating window
@@ -268,6 +273,17 @@ require 'lspconfig'.solargraph.setup {
 
   init_options = {
     formatting = true,
+  },
+  settings = {
+    solargraph = {
+      autoformat = true,
+      completion = true,
+      diagnostic = true,
+      folding = true,
+      references = true,
+      rename = true,
+      symbols = true
+    }
   },
   flags = {
     debounce_text_changes = 150,
