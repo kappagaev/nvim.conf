@@ -13,10 +13,10 @@ map('n', '<leader>Q', '<Cmd>bd!<CR>')
 
 require("scrollbar").setup()
 
-require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = true,
-}
+-- require('indent_blankline').setup {
+-- char = '┊',
+-- show_trailing_blankline_indent = true,
+-- }
 
 require('nvim-autopairs').setup()
 

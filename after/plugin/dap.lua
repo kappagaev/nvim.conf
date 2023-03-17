@@ -81,6 +81,7 @@ for _, language in ipairs({ "typescript", "javascript" }) do
       runtimeArgs = {
         "./node_modules/jest/bin/jest.js",
         "--runInBand",
+        "--watch",
       },
       rootPath = "${workspaceFolder}",
       cwd = "${workspaceFolder}",

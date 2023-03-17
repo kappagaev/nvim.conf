@@ -3,8 +3,8 @@ require("gomove").setup {
 }
 local map = vim.api.nvim_set_keymap
 
-map( "x", "<A-h>", "<Plug>GoVSMLeft", {} )
-map( "x", "<A-j>", "<Plug>GoVSMDown", {} )
-map( "x", "<A-k>", "<Plug>GoVSMUp", {} )
-map( "x", "<A-l>", "<Plug>GoVSMRight", {} )
+map( "v", "H", "<Plug>GoVSMLeft", {} )
+map( "v", "J", "<Plug>GoVSMDown", {} )
+map( "v", "K", "<Plug>GoVSMUp", {} )
+map( "v", "L", "<Plug>GoVSMRight", {} )
 

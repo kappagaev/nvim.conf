@@ -45,6 +45,3 @@ vim.keymap.set('n', '<leader>fc', builtin.colorscheme, {})
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>ff', builtin.treesitter, { desc = "Test" })
 
-require("telescope").load_extension('harpoon')
-
--- require "telescope".load_extension("rooter")

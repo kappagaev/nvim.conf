@@ -66,9 +66,9 @@ return require('packer').startup(function(use)
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
+  use "lewis6991/hover.nvim"
 
-
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+-- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'nvim-tree/nvim-web-devicons'
   use 'hashivim/vim-terraform'
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
@@ -76,7 +76,7 @@ return require('packer').startup(function(use)
   use 'voldikss/vim-floaterm'
   use {
     "rebelot/kanagawa.nvim",
-commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
+-- commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   }
   use "ethanholz/nvim-lastplace"
 
@@ -101,8 +101,6 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   use("folke/todo-comments.nvim")
 
   use("ThePrimeagen/vim-be-good")
-
-  use("kappagaev/harpoon")
 
   use("tpope/vim-endwise")
 
@@ -138,8 +136,6 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   }
   use "dstein64/vim-startuptime"
 
-  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
-  end }
   use 'tpope/vim-rails'
   use 'suketa/nvim-dap-ruby'
   use "vim-test/vim-test"
@@ -152,7 +148,6 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   use 'hrsh7th/vim-vsnip'
   use 'hrsh7th/vim-vsnip-integ'
 
-  use "lewis6991/hover.nvim"
   use 'ray-x/go.nvim'
   use 'ray-x/guihua.lua' -- reco
   use 'windwp/nvim-autopairs'
@@ -161,7 +156,7 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   use "pineapplegiant/spaceduck"
   use { "catppuccin/nvim", as = "catppuccin" }
 
-  use { 'justinhj/battery.nvim', requires = { { 'kyazdani42/nvim-web-devicons' }, { 'nvim-lua/plenary.nvim' } } }
+-- use { 'justinhj/battery.nvim', requires = { { 'kyazdani42/nvim-web-devicons' }, { 'nvim-lua/plenary.nvim' } } }
 
   use({
     "aserowy/tmux.nvim",
@@ -179,8 +174,6 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   use "folke/which-key.nvim"
   use "vim-crystal/vim-crystal"
 
-  use "tribela/vim-transparent"
-
 use({
     "glepnir/lspsaga.nvim",
     branch = "main",
@@ -188,7 +181,6 @@ use({
     end,
     requires = {
         {"nvim-tree/nvim-web-devicons"},
-        --Please make sure you install markdown and markdown_inline parser
         {"nvim-treesitter/nvim-treesitter"}
     }
 })
@@ -199,4 +191,6 @@ use {
   use "justinmk/vim-sneak"
 
   use 'mfussenegger/nvim-dap-python'
+
+  use "ThePrimeagen/harpoon"
 end)

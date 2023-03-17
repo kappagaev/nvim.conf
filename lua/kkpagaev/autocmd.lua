@@ -34,20 +34,20 @@ au('TextYankPost', {
 -- end,
 -- })
 
-au('TextChanged', {
-pattern = '*.md',
-callback = function()
-vim.cmd('w')
-end,
-})
+-- au('TextChanged', {
+-- pattern = '*.md',
+-- callback = function()
+-- vim.cmd('w')
+-- end,
+-- })
 
-au('BufWritePost', {
-  pattern = '*.cs',
-  callback = function()
-    require("harpoon.tmux").sendCommand("{right}", "clear\n")
-    require("harpoon.tmux").sendCommand("{right}", "dotnet run \n")
-  end,
-})
+-- au('BufWritePost', {
+-- pattern = '*.cs',
+-- callback = function()
+-- require("harpoon.tmux").sendCommand("{right}", "clear\n")
+-- require("harpoon.tmux").sendCommand("{right}", "dotnet run \n")
+-- end,
+-- })
 
 -- au('BufWritePost', {
 -- pattern = 'a',
@@ -58,14 +58,27 @@ au('BufWritePost', {
 -- end,
 -- })
 
-au('BufWritePost', {
-  pattern = '*.pl',
-  callback = function()
-    require("harpoon.tmux").sendCommand("{right}", "clear\n")
-    require("harpoon.tmux").sendCommand("{right}", "swipl \n")
-    require("harpoon.tmux").sendCommand("{right}", "halt. \n")
-  end,
-})
+-- au('BufWritePost', {
+-- pattern = '*.pl',
+-- callback = function()
+-- require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+-- require("harpoon.tmux").sendCommand("{right}", "clear\n")
+-- require("harpoon.tmux").sendCommand("{right}", "swipl \n")
+-- require("harpoon.tmux").sendCommand("{right}", "[json]. \n")
+-- end,
+-- })
+
+-- au('InsertLeave', {
+-- pattern = '*.pl',
+-- callback = function()
+-- vim.cmd('w')
+-- require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+-- require("harpoon.tmux").sendCommand("{right}", "clear\n")
+-- require("harpoon.tmux").sendCommand("{right}", "swipl \n")
+-- require("harpoon.tmux").sendCommand("{right}", "[json]. \n")
+-- end,
+-- })
+
 
 -- au('BufWritePost', {
 -- group = ag('format_on_save', {}),

@@ -17,8 +17,12 @@ map('n', "<leader>", "")
 -- map('n', '<leader>w', ':update<CR>')
 map('i', 'jj', '<Esc>')
 map('i', 'JJ', '<Esc>')
-map('i', 'оо', '<Esc>')
-map('i', 'ОО', '<Esc>')
+
+map('i', '<A-h>', '<c-o>h')
+map('i', '<A-j>', '<c-o>j')
+map('i', '<A-k>', '<c-o>k')
+map('i', '<A-l>', '<c-o>l')
+map('i', '<A-o>', '<c-o>o')
 -- map('n', 'gx', ":!open <c-r><c-a>")
 -- vim.keymap.nnoremap { 'gx', [[:execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]] }
 map('n', '<leader>l', ':Format<CR>')
@@ -50,6 +54,7 @@ vim.keymap.set("n", "glt", ":VimwikiToggleListItem<CR>", {  silent = true})
 -- vim.keymap.set('i','<C-]>', '<esc>f\\|ni', { silent = true })
 --
 
+vim.keymap.set("n", "<leader>s", ":SearchVisual<CR>", {  silent = true})
 
 
 map("n", "й", "q")
