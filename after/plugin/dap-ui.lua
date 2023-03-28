@@ -8,12 +8,12 @@ local dapui_setup = function()
 -- "stacks",
     "watches",
         },
-        size = 20, -- 40 columns
+        size = 40, -- 40 columns
         position = "right",
       },
       {
         elements = {
-          -- "repl",
+          "repl",
 -- "console",
         },
         size = 0.30, -- 20% of total lines

@@ -9,6 +9,20 @@ au('TextYankPost', {
   end,
 })
 
+au('TextYankPost', {
+  group = ag('yank_highlight', {}),
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 50 }
+  end,
+})
+
+au('BufRead,BufNewFile', {
+  pattern = '*.slang',
+  callback = function()
+    vim.o.filetype = 'slang'
+  end,
+})
 -- au('BufWritePost', {
 -- pattern = '*.rb',
 -- callback = function()
@@ -17,12 +31,13 @@ au('TextYankPost', {
 -- end,
 -- })
 
+-- crystal spec
 
 -- au('BufWritePost', {
 -- pattern = '*.cr',
 -- callback = function()
 -- require("harpoon.tmux").sendCommand("{right}", "clear\n")
--- require("harpoon.tmux").sendCommand("{right}", "crystal hello.cr\n")
+-- require("harpoon.tmux").sendCommand("{right}", "crystal spec\n")
 -- end,
 -- })
 
@@ -58,15 +73,15 @@ au('TextYankPost', {
 -- end,
 -- })
 
--- au('BufWritePost', {
--- pattern = '*.pl',
--- callback = function()
--- require("harpoon.tmux").sendCommand("{right}", "halt. \n")
--- require("harpoon.tmux").sendCommand("{right}", "clear\n")
--- require("harpoon.tmux").sendCommand("{right}", "swipl \n")
--- require("harpoon.tmux").sendCommand("{right}", "[json]. \n")
--- end,
--- })
+au('BufWritePost', {
+  pattern = '*.pl',
+  callback = function()
+    require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+    require("harpoon.tmux").sendCommand("{right}", "clear\n")
+    require("harpoon.tmux").sendCommand("{right}", "swipl \n")
+    require("harpoon.tmux").sendCommand("{right}", "[list]. \n")
+  end,
+})
 
 -- au('InsertLeave', {
 -- pattern = '*.pl',

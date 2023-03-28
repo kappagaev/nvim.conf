@@ -68,7 +68,7 @@ return require('packer').startup(function(use)
   }
   use "lewis6991/hover.nvim"
 
--- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
+  -- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'nvim-tree/nvim-web-devicons'
   use 'hashivim/vim-terraform'
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
@@ -76,7 +76,7 @@ return require('packer').startup(function(use)
   use 'voldikss/vim-floaterm'
   use {
     "rebelot/kanagawa.nvim",
--- commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
+    commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   }
   use "ethanholz/nvim-lastplace"
 
@@ -156,7 +156,7 @@ return require('packer').startup(function(use)
   use "pineapplegiant/spaceduck"
   use { "catppuccin/nvim", as = "catppuccin" }
 
--- use { 'justinhj/battery.nvim', requires = { { 'kyazdani42/nvim-web-devicons' }, { 'nvim-lua/plenary.nvim' } } }
+  -- use { 'justinhj/battery.nvim', requires = { { 'kyazdani42/nvim-web-devicons' }, { 'nvim-lua/plenary.nvim' } } }
 
   use({
     "aserowy/tmux.nvim",
@@ -172,25 +172,35 @@ return require('packer').startup(function(use)
   use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
   use "vimwiki/vimwiki"
   use "folke/which-key.nvim"
-  use "vim-crystal/vim-crystal"
+  -- use "vim-crystal/vim-crystal"
 
-use({
+  use "jlcrochet/vim-crystal"
+  use({
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
     end,
     requires = {
-        {"nvim-tree/nvim-web-devicons"},
-        {"nvim-treesitter/nvim-treesitter"}
+      { "nvim-tree/nvim-web-devicons" },
+      { "nvim-treesitter/nvim-treesitter" }
     }
-})
-use {
+  })
+  use {
     'notjedi/nvim-rooter.lua',
-    config = function() end
-}
+    config = function()
+    end
+  }
   use "justinmk/vim-sneak"
 
   use 'mfussenegger/nvim-dap-python'
 
   use "ThePrimeagen/harpoon"
+
+  use "mrjones2014/nvim-ts-rainbow"
+
+  use "stephendolan/neovim-lucky"
+
+  use "ntpeters/vim-better-whitespace"
+
+  use "rcarriga/cmp-dap"
 end)

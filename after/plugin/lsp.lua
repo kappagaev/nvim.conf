@@ -54,9 +54,9 @@ local on_attach = function(_, bufnr)
 
     vim.keymap.set('x', keys, func, { buffer = bufnr, desc = desc })
   end
-  -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  -- nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  -- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
   vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
   vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
@@ -87,20 +87,14 @@ local on_attach = function(_, bufnr)
   -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
   -- It also supports tagstack
   -- Use <C-t> to jump back
-  keymap("n", "gD", "<cmd>Lspsaga peek_definition<CR>")
-
   -- Go to definition
-  keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
-
   -- Peek type definition
   -- You can edit the file containing the type definition in the floating window
   -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
   -- It also supports tagstack
   -- Use <C-t> to jump back
-  keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
 
   -- Go to type definition
-  keymap("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>")
 
   -- nmap('H', "<c-o>", '[G]o [B]ack')
   -- nmap('L', "<c-i>", '[G]o [F]orward')
@@ -198,6 +192,7 @@ require('fidget').setup({
 })
 
 cmp.setup {
+  preselect = cmp.PreselectMode.None,
   formatting = {
     format = lspkind.cmp_format({
       mode = 'symbol', -- show only symbol annotations
@@ -213,7 +208,6 @@ cmp.setup {
     -- completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
-  preselect = cmp.PreselectMode.None,
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
@@ -231,7 +225,6 @@ cmp.setup {
     }),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
     },
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -256,7 +249,18 @@ cmp.setup {
     { name = 'nvim_lua' },
 
   },
+  enabled = function()
+    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+        or require("cmp_dap").is_dap_buffer()
+  end
 }
+
+require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+  sources = {
+    { name = "dap" },
+  },
+})
+
 require('lspconfig')['prolog_ls'].setup {
   capabilities = capabilities,
   on_attach = on_attach,

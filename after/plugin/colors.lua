@@ -1,8 +1,8 @@
 -- colors = {
 require('kanagawa').setup({
-    theme = { all = { ui = { bg_gutter = 'none' }  }}, 
+    theme = { all = { ui = { bg_gutter = 'none' }  }},
     dimInactive = false,
-    transparent = false, -- do not set background color
+    transparent = true, -- do not set background color
 -- theme = "wave",              -- Load "wave" theme when 'background' option is not set
 -- background = {               -- map the value of 'background' option to a theme
 -- dark = "dragon",           -- try "dragon" !
