@@ -17,10 +17,5 @@ map('n', '<leader>lr', '<Cmd>FloatermNew --height=0.9 --width=0.9 runme --exit<C
 map('n', '\\', '<Cmd>FloatermToggle<CR>')
 
 map('t', '\\\\', '<Cmd>FloatermToggle<CR>')
-map('t', '\\t', '<Cmd>FloatermNew --height=0.75 --width=0.75<CR>')
-map('t', '\\w', '<Cmd>FloatermKill<CR>')
-map('t', '\\<Tab>', '<Cmd>FloatermNext<CR>')
-
-
 
 vim.keymap.set('t', '<esc>', [[<C-\><C-n>]])
