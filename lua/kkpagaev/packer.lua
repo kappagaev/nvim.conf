@@ -76,7 +76,7 @@ return require('packer').startup(function(use)
   use 'voldikss/vim-floaterm'
   use {
     "rebelot/kanagawa.nvim",
-    commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
+commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   }
   use "ethanholz/nvim-lastplace"
 
@@ -175,16 +175,16 @@ return require('packer').startup(function(use)
   -- use "vim-crystal/vim-crystal"
 
   use "jlcrochet/vim-crystal"
-  use({
-    "glepnir/lspsaga.nvim",
-    branch = "main",
-    config = function()
-    end,
-    requires = {
-      { "nvim-tree/nvim-web-devicons" },
-      { "nvim-treesitter/nvim-treesitter" }
-    }
-  })
+-- use({
+-- "glepnir/lspsaga.nvim",
+-- branch = "main",
+-- config = function()
+-- end,
+-- requires = {
+-- { "nvim-tree/nvim-web-devicons" },
+-- { "nvim-treesitter/nvim-treesitter" }
+-- }
+-- })
   use {
     'notjedi/nvim-rooter.lua',
     config = function()

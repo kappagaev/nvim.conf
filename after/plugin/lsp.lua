@@ -1,35 +1,6 @@
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
-require("lspsaga").setup({
-  beacon = {
-    enable = false,
-  },
-  finder = {
-    --percentage
-    max_height = 0.7,
-    force_max_height = true
-  },
-  outline = {
-    win_position = "right",
-    win_with = "",
-    win_width = 50,
-    show_detail = true,
-    auto_preview = true,
-    auto_refresh = true,
-    auto_close = true,
-    custom_sort = nil,
-    keys = {
-      jump = "o",
-      expand_collapse = "u",
-      quit = "q",
-    },
-  },
-  symbol_in_winbar = {
-    enable = false,
-  }
-})
-
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
     if desc then
@@ -69,18 +40,13 @@ local on_attach = function(_, bufnr)
   -- If there is no definition, it will instead be hidden
   -- When you use an action in finder like "open vsplit",
   -- you can use <C-t> to jump back
-  keymap("n", "gr", "<cmd>Lspsaga lsp_finder<CR>")
-
   -- Code action
-  keymap({ "n", "v" }, "<leader>a", "<cmd>Lspsaga code_action<CR>")
+  keymap({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action)
 
   -- Rename all occurrences of the hovered word for the entire file
-  keymap("n", "<leader>rm", "<cmd>Lspsaga rename<CR>")
+  keymap("n", "<leader>rm", vim.lsp.buf.rename)
 
-  keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-  keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
   -- Rename all occurrences of the hovered word for the selected files
-  -- keymap("n", "<leader>rm", "<cmd>Lspsaga rename ++project<CR>")
 
   -- Peek definition
   -- You can edit the file containing the definition in the floating window
@@ -98,8 +64,6 @@ local on_attach = function(_, bufnr)
 
   -- nmap('H', "<c-o>", '[G]o [B]ack')
   -- nmap('L', "<c-i>", '[G]o [F]orward')
-
-  keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
 
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
