@@ -279,9 +279,9 @@ require("lsp_signature").setup()
 
 -- require("renamer").setup({})
 
-local codewindow = require('codewindow')
-codewindow.setup()
-codewindow.apply_default_keybinds()
+-- local codewindow = require('codewindow')
+-- codewindow.setup()
+-- codewindow.apply_default_keybinds()
 
 require('packer').use({
   'weilbith/nvim-code-action-menu',

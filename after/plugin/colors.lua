@@ -3,20 +3,28 @@ require('kanagawa').setup({
     theme = { all = { ui = { bg_gutter = 'none' }  }},
     dimInactive = false,
     transparent = true, -- do not set background color
+  })
 -- theme = "wave",              -- Load "wave" theme when 'background' option is not set
 -- background = {               -- map the value of 'background' option to a theme
 -- dark = "dragon",           -- try "dragon" !
 -- },
-})
 
-require("catppuccin").setup(
-{
-integrations = {
-treesitter = true,
-}
-}
-)
+
+-- require("catppuccin").setup(
+-- {
+-- integrations = {
+-- treesitter = true,
+-- },
+
+-- color_overrides = {
+-- all = {
+-- base = '#1F1F28',
+-- }
+-- },
+-- }
+-- )
 vim.cmd("colorscheme kanagawa")
+-- vim.cmd("colorscheme catppuccin-macchiato")
 -- vim.o.background = "light"
 -- vim.cmd("colorscheme onenord")
 -- local colorschemes = { "kanagawa", "spaceduck", "PaperColor", "catppuccin-mocha"}

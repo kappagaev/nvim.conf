@@ -6,8 +6,8 @@ local async = event == "BufWritePost"
 
 null_ls.setup({
     sources = {
-        null_ls.builtins.diagnostics.yamllint,
-        null_ls.builtins.diagnostics.ansiblelint,
+null_ls.builtins.diagnostics.yamllint,
+-- null_ls.builtins.diagnostics.ansiblelint,
 -- null_ls.builtins.formatting.yamlfmt,
         null_ls.builtins.formatting.prettierd,
         null_ls.builtins.diagnostics.eslint,

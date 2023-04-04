@@ -30,7 +30,6 @@ return require('packer').startup(function(use)
     "norcalli/nvim-colorizer.lua",
     cmd = "ColorizerToggle",
     config = function()
-      require("colorizer").setup()
     end,
   }
   use {
@@ -70,7 +69,7 @@ return require('packer').startup(function(use)
 
   -- use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'nvim-tree/nvim-web-devicons'
-  use 'hashivim/vim-terraform'
+-- use 'hashivim/vim-terraform'
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
 
   use 'voldikss/vim-floaterm'
@@ -78,15 +77,15 @@ return require('packer').startup(function(use)
     "rebelot/kanagawa.nvim",
 commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   }
-  use "ethanholz/nvim-lastplace"
+-- use "ethanholz/nvim-lastplace"
 
   use 'mfussenegger/nvim-dap'
 
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
-  use 'leoluz/nvim-dap-go'
+-- use 'leoluz/nvim-dap-go'
 
-  use { 'Weissle/persistent-breakpoints.nvim' }
+-- use { 'Weissle/persistent-breakpoints.nvim' }
 
   use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
@@ -100,7 +99,7 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
 
   use("folke/todo-comments.nvim")
 
-  use("ThePrimeagen/vim-be-good")
+-- use("ThePrimeagen/vim-be-good")
 
   use("tpope/vim-endwise")
 
@@ -113,43 +112,44 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
       "nvim-tree/nvim-web-devicons", -- optional dependency
     },
   })
+
   use {
     "folke/zen-mode.nvim",
     config = function()
     end
   }
+
   use 'nacro90/numb.nvim'
   use 'booperlv/nvim-gomove'
-  use {
-    "AckslD/nvim-neoclip.lua",
-    requires = {
-      -- you'll need at least one of these
-      { 'nvim-telescope/telescope.nvim' },
-      -- {'ibhagwan/fzf-lua'},
-    },
-    config = function()
-    end,
-  }
+
+-- use {
+-- "AckslD/nvim-neoclip.lua",
+-- requires = {
+-- { 'nvim-telescope/telescope.nvim' },
+-- },
+-- config = function()
+-- end,
+-- }
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use "dstein64/vim-startuptime"
 
-  use 'tpope/vim-rails'
-  use 'suketa/nvim-dap-ruby'
-  use "vim-test/vim-test"
-  use "jose-elias-alvarez/typescript.nvim"
-  use 'David-Kunz/markid'
-  use 'gorbit99/codewindow.nvim'
+-- use 'tpope/vim-rails'
+-- use 'suketa/nvim-dap-ruby'
+-- use "vim-test/vim-test"
+    use "jose-elias-alvarez/typescript.nvim"
+-- use 'David-Kunz/markid'
+-- use 'gorbit99/codewindow.nvim'
 
   use 'hrsh7th/cmp-buffer'
 
-  use 'hrsh7th/vim-vsnip'
-  use 'hrsh7th/vim-vsnip-integ'
+-- use 'hrsh7th/vim-vsnip'
+-- use 'hrsh7th/vim-vsnip-integ'
 
-  use 'ray-x/go.nvim'
-  use 'ray-x/guihua.lua' -- reco
+-- use 'ray-x/go.nvim'
+-- use 'ray-x/guihua.lua' -- reco
   use 'windwp/nvim-autopairs'
 
   -- colors
@@ -158,10 +158,9 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
 
   -- use { 'justinhj/battery.nvim', requires = { { 'kyazdani42/nvim-web-devicons' }, { 'nvim-lua/plenary.nvim' } } }
 
-  use({
-    "aserowy/tmux.nvim",
-  })
-
+-- use({
+-- "aserowy/tmux.nvim",
+-- })
 
   use({
     "kylechui/nvim-surround",
@@ -171,7 +170,7 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   })
   use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
   use "vimwiki/vimwiki"
-  use "folke/which-key.nvim"
+-- use "folke/which-key.nvim"
   -- use "vim-crystal/vim-crystal"
 
   use "jlcrochet/vim-crystal"
@@ -190,15 +189,15 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
     config = function()
     end
   }
-  use "justinmk/vim-sneak"
+-- use "justinmk/vim-sneak"
 
-  use 'mfussenegger/nvim-dap-python'
+-- use 'mfussenegger/nvim-dap-python'
 
   use "ThePrimeagen/harpoon"
 
-  use "mrjones2014/nvim-ts-rainbow"
+-- use "mrjones2014/nvim-ts-rainbow"
 
-  use "stephendolan/neovim-lucky"
+-- use "stephendolan/neovim-lucky"
 
   use "ntpeters/vim-better-whitespace"
 

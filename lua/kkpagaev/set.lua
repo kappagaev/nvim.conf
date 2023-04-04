@@ -41,7 +41,7 @@ vim.api.nvim_set_option("clipboard", "unnamed")
 
 -- o.clipboard:append("unnamedplus")
 
-vim.opt.scrolloff = 2
+vim.opt.scrolloff = 4
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 

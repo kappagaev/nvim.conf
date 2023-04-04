@@ -23,6 +23,13 @@ au('BufRead,BufNewFile', {
     vim.o.filetype = 'slang'
   end,
 })
+
+au('BufRead,BufNewFile', {
+  pattern = '*.pl',
+  callback = function()
+    vim.o.filetype = 'prolog'
+  end,
+})
 -- au('BufWritePost', {
 -- pattern = '*.rb',
 -- callback = function()
@@ -50,7 +57,7 @@ au('BufRead,BufNewFile', {
 -- })
 
 -- au('TextChanged', {
--- pattern = '*.md',
+-- pattern = '*.pl',
 -- callback = function()
 -- vim.cmd('w')
 -- end,
@@ -74,25 +81,27 @@ au('BufRead,BufNewFile', {
 -- })
 
 au('BufWritePost', {
-  pattern = '*.pl',
-  callback = function()
-    require("harpoon.tmux").sendCommand("{right}", "halt. \n")
-    require("harpoon.tmux").sendCommand("{right}", "clear\n")
-    require("harpoon.tmux").sendCommand("{right}", "swipl \n")
-    require("harpoon.tmux").sendCommand("{right}", "[list]. \n")
-  end,
+pattern = '*.pl',
+callback = function()
+require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+require("harpoon.tmux").sendCommand("{right}", "clear\n")
+require("harpoon.tmux").sendCommand("{right}", "swipl -s game.pl test.pl\n")
+require("harpoon.tmux").sendCommand("{right}", "test. \n\n")
+end,
 })
 
--- au('InsertLeave', {
--- pattern = '*.pl',
--- callback = function()
--- vim.cmd('w')
--- require("harpoon.tmux").sendCommand("{right}", "halt. \n")
--- require("harpoon.tmux").sendCommand("{right}", "clear\n")
--- require("harpoon.tmux").sendCommand("{right}", "swipl \n")
--- require("harpoon.tmux").sendCommand("{right}", "[json]. \n")
--- end,
--- })
+au('InsertLeave', {
+pattern = '*.pl',
+callback = function()
+vim.cmd('w')
+require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+require("harpoon.tmux").sendCommand("{right}", "clear\n")
+require("harpoon.tmux").sendCommand("{right}", "swipl -s game.pl test.pl\n")
+require("harpoon.tmux").sendCommand("{right}", "test. \n\n")
+end,
+})
 
 
 -- au('BufWritePost', {

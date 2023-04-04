@@ -55,14 +55,6 @@ vim.keymap.set('n', '<leader>du', function()
   require("dapui").toggle({});
 end)
 
-require('persistent-breakpoints').setup {
-  save_dir = vim.fn.stdpath('data') .. '/nvim_checkpoints',
-  -- when to load the breakpoints? "BufReadPost" is recommanded.
-  load_breakpoints_event = nil,
-  -- record the performance of different function. run :lua require('persistent-breakpoints.api').print_perf_data() to see the result.
-  perf_record = false,
-}
-
 require("dap-vscode-js").setup({
   node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
   debugger_path = "/home/kkpagaev/vscode-js-debug", -- Path to vscode-js-debug installation.
@@ -73,49 +65,13 @@ require("dap-vscode-js").setup({
 for _, language in ipairs({ "typescript", "javascript" }) do
   require("dap").configurations[language] = {
     {
-      type = "pwa-node",
-      request = "launch",
-      name = "Debug Jest Tests",
-      -- trace = true, -- include debugger info
-      runtimeExecutable = "node",
-      runtimeArgs = {
-        "./node_modules/jest/bin/jest.js",
-        "--runInBand",
-        "--watch",
-      },
-      rootPath = "${workspaceFolder}",
-      cwd = "${workspaceFolder}",
-      console = "integratedTerminal",
-      internalConsoleOptions = "neverOpen",
-    },
-    {
-      name = "Debug Jest E2E Tests --watch",
-      type = "pwa-node",
-      request = "launch",
-      runtimeExecutable = "node",
-      runtimeArgs = {
-        "--inspect-brk",
-        "/usr/local/bin/jest",
-        "--runInBand",
-        "--config",
-        "${workspaceFolder}/test/jest-e2e.json",
-        "--watch"
-      },
-      console = "integratedTerminal",
-      rootPath = "${workspaceFolder}",
-      cwd = "${workspaceFolder}",
-      internalConsoleOptions = "neverOpen",
-      port = 9229,
-    },
-    {
-      type = "pwa-node",
-      request = "launch",
-      name = "Launch project",
-      cwd = "${workspaceFolder}",
-      runtimeExecutable = "pnpm",
-      runtimeArgs = {
-        "debug",
-      },
+      name = "Debug (Attach) - Remote Chrome",
+      type = "chrome",
+      request = "attach",
+sourceMaps = true,
+trace = true,
+      port = 9222,
+      webRoot = "${workspaceFolder}"
     },
     {
       type = "pwa-node",

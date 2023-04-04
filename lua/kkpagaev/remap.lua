@@ -27,8 +27,8 @@ map('i', '<A-o>', '<c-o>o')
 -- vim.keymap.nnoremap { 'gx', [[:execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]] }
 map('n', '<leader>l', ':Format<CR>')
 
-map('n', '<c-d>', '18j')
-map('n', '<c-u>', '18k')
+-- map('n', '<c-d>', '18j')
+-- map('n', '<c-u>', '18k')
 
 map('v', '<leader>p', '"_dP')
 
@@ -36,7 +36,7 @@ map('v', '<leader>p', '"_dP')
 
 map('n', 'gb', '<c-o>')
 
-map('n', "yf", 'ggyG<c-o>')
+map('n', "yf", 'jggyG<c-o>k')
 
 map('n', 'U', '<c-r>')
 
