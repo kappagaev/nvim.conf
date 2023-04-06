@@ -34,7 +34,7 @@ o.number = true
 o.noswapfile = true
 o.nocompatible = true
 o.cursorline = true
-o.cmdheight = 0
+-- o.cmdheight = 0
 
 
 vim.api.nvim_set_option("clipboard", "unnamed")

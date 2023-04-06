@@ -87,7 +87,7 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
 
 -- use { 'Weissle/persistent-breakpoints.nvim' }
 
-  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
+-- use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
 
   use('jose-elias-alvarez/null-ls.nvim')
 

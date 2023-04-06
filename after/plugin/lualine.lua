@@ -19,16 +19,6 @@
 -- multiple_battery_selection = 1,     -- Which battery to choose when multiple found. "max" or "maximum", "min" or "minimum" or a number to pick the nth battery found (currently linux acpi only)
 -- })
 
-local function harp()
-  local marks = require('harpoon.mark').get_mark_list()
-  local result = {}
-  for _, mark in ipairs(marks) do
-    table.insert(result, mark.name)
-  end
-  return table.concat(result, ' ')
-end
-
--- Change the background of lualine_c section for normal mode
 
 local custom_kanagawa = require 'lualine.themes.kanagawa'
 custom_kanagawa.normal.c.bg = '#14141414141'
@@ -40,7 +30,7 @@ require('lualine').setup({
       statusline = 100000000000000,
     },
     theme = custom_kanagawa,
--- theme = 'spaceduck',
+    -- theme = 'spaceduck',
     icons_enabled = true,
     component_separators = { left = '', right = '|' },
     -- section_separators = { left = '', right = ''},
@@ -63,9 +53,10 @@ require('lualine').setup({
   sections = {
     lualine_a = { 'mode' },
     lualine_b = { 'branch', 'diff' },
-    lualine_c = { 'diagnostics', harp },
-    lualine_x = { 'filetype'},
--- lualine_y = { nvimbattery },
+    lualine_c = { 'diagnostics', },
+    lualine_x = { 'filetype' },
+    -- lualine_y = { nvimbattery },
+-- lualine_y = {harp  },
     lualine_z = { 'location' }
   },
   inactive_sections = {
