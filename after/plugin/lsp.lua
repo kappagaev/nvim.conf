@@ -266,8 +266,8 @@ require('lspconfig')['yamlls'].setup {
         server = "verbose"
       },
       schemas = {
-        -- kubernetes = "/*.yaml"
-        kubernetes = "*.k8s.yaml",
+        kubernetes = "/*.yaml"
+-- kubernetes = "*.k8s.yaml",
       }
     }
   }

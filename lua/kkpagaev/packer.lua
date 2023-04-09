@@ -105,13 +105,13 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
 
   use("onsails/lspkind.nvim")
 
-  use({
-    "utilyre/barbecue.nvim",
-    requires = {
-      "SmiteshP/nvim-navic",
-      "nvim-tree/nvim-web-devicons", -- optional dependency
-    },
-  })
+-- use({
+-- "utilyre/barbecue.nvim",
+-- requires = {
+-- "SmiteshP/nvim-navic",
+-- "nvim-tree/nvim-web-devicons", -- optional dependency
+-- },
+-- })
 
   use {
     "folke/zen-mode.nvim",
@@ -191,7 +191,7 @@ commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   }
 -- use "justinmk/vim-sneak"
 
--- use 'mfussenegger/nvim-dap-python'
+use 'mfussenegger/nvim-dap-python'
 
   use "ThePrimeagen/harpoon"
 

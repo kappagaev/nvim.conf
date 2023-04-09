@@ -6,25 +6,19 @@ local function harp()
   return foo
 end
 
-local active = "#D27E99"
+local active = "#A8A093"
 local inactive = "#DCD7BA"
 
 local function toggle_bar()
-    if harp() == '' then
-      vim.api.nvim_set_hl(0, 'barbecue_basename', { fg = inactive})
-    else
-      vim.api.nvim_set_hl(0, 'barbecue_basename', { fg = active })
-    end
+  if harp() == '' then
+    vim.api.nvim_set_hl(0, 'barbecue_basename', { fg = inactive })
+  else
+    vim.api.nvim_set_hl(0, 'barbecue_basename', { fg = active })
+  end
 end
 
+local ag = vim.api.nvim_create_augroup
 local au = vim.api.nvim_create_autocmd
-
-au('BufEnter', {
-  pattern = '*',
-  callback = function()
-    toggle_bar()
-  end
-})
 
 vim.keymap.set('n', '<CR>', function()
   vim.cmd("NvimTreeClose")
@@ -33,14 +27,14 @@ end)
 
 
 vim.keymap.set('n', 'm', function()
-  local i = require("harpoon.mark").get_current_index()
+  local mark = require('harpoon.mark')
+  local i = mark.get_current_index()
   if i == nil then
-    vim.api.nvim_set_hl(0, 'barbecue_basename', { fg = active })
-    require("harpoon.mark").add_file()
+    vim.api.nvim_set_hl(0, 'lualine_c_normal', { fg = active })
   else
-    vim.api.nvim_set_hl(0, 'barbecue_basename', { fg = inactive })
-    require("harpoon.mark").rm_file(i)
+    vim.api.nvim_set_hl(0, 'lualine_c_normal', { fg = inactive })
   end
+  mark.toggle_file(i)
 end)
 
 
@@ -52,3 +46,15 @@ vim.keymap.set('n', '<BS>', function()
   require("harpoon.ui").toggle_quick_menu()
 end)
 
+au('BufEnter', {
+  pattern = '*',
+  callback = function()
+    local mark = require('harpoon.mark')
+    local i = mark.get_current_index()
+    if i == nil then
+      vim.api.nvim_set_hl(0, 'lualine_c_normal', { fg = inactive })
+    else
+      vim.api.nvim_set_hl(0, 'lualine_c_normal', { fg = active })
+    end
+  end
+})

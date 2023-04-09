@@ -1,9 +1,9 @@
 -- colors = {
 require('kanagawa').setup({
-    theme = { all = { ui = { bg_gutter = 'none' }  }},
-    dimInactive = false,
-    transparent = true, -- do not set background color
-  })
+  theme = { all = { ui = { bg_gutter = 'none' } } },
+  dimInactive = false,
+  transparent = false,            -- do not set background color
+})
 -- theme = "wave",              -- Load "wave" theme when 'background' option is not set
 -- background = {               -- map the value of 'background' option to a theme
 -- dark = "dragon",           -- try "dragon" !
@@ -23,7 +23,9 @@ require('kanagawa').setup({
 -- },
 -- }
 -- )
+
 vim.cmd("colorscheme kanagawa")
+-- vim.cmd('colorscheme rose-pine')
 -- vim.cmd("colorscheme catppuccin-macchiato")
 -- vim.o.background = "light"
 -- vim.cmd("colorscheme onenord")
@@ -38,4 +40,3 @@ vim.cmd("colorscheme kanagawa")
 -- set_colorscheme()
 -- vim.cmd("colorscheme spaceduck")
 -- vim.cmd("colorscheme PaperColor")
-

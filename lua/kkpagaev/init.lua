@@ -31,4 +31,4 @@ vim.o.timeoutlen = 1000
 -- require("which-key").setup {
 -- }
 
-require'nvim-rooter'.setup()
+-- require'nvim-rooter'.setup()

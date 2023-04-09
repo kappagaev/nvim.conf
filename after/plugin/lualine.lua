@@ -22,6 +22,7 @@
 
 local custom_kanagawa = require 'lualine.themes.kanagawa'
 custom_kanagawa.normal.c.bg = '#14141414141'
+custom_kanagawa.normal.c.fg = '#14141414141'
 custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
 
 require('lualine').setup({
@@ -36,13 +37,20 @@ require('lualine').setup({
     -- section_separators = { left = '', right = ''},
     -- section_separators = { left = ' ', right = ' '},
     -- section_separators = { left = '', right = ''},
-
     section_separators = { left = '', right = '' },
     -- theme = 'gruvbox_material',
     disabled_filetypes = {
+      winbar = {
       'NvimTree',
       'Trouble',
       'dap-repl',
+        'TelescopePrompt'
+      },
+      statusline = {
+      'NvimTree',
+      'Trouble',
+      'dap-repl',
+      }
       -- 'dapui_scopes',
       -- 'dapui_stacks',
       -- 'dapui_watches',
@@ -51,12 +59,17 @@ require('lualine').setup({
     },
   },
   sections = {
-    lualine_a = { 'mode' },
+    lualine_a = { {
+      'mode',
+-- padding = { left = 10, right = 10 },
+    }
+    },
     lualine_b = { 'branch', 'diff' },
     lualine_c = { 'diagnostics', },
     lualine_x = { 'filetype' },
     -- lualine_y = { nvimbattery },
--- lualine_y = {harp  },
+    -- lualine_y = {harp  },
+    lualine_y = { 'searchcount' },
     lualine_z = { 'location' }
   },
   inactive_sections = {
@@ -67,6 +80,27 @@ require('lualine').setup({
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
-  extensions = { 'fugitive' }
+  tabline = {
+    lualine_c = {
+      {
+        'filetype',
+        file_status = false,
+        icon_only = true,
+      },
+      {
+        'filename',
+        use_mode_colors = false,
+        symbols = {
+          readonly = '',
+          modified = '●',    -- Text to show when the buffer is modified
+          unnamed = '', -- Text to show for unnamed buffers.
+          newfile = '[New]',   -- Text to show for newly created file before first write
+        },
+      }
+    },
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  extensions = { 'fugitive' },
 })

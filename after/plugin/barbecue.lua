@@ -1,3 +1,3 @@
-require("barbecue").setup({
- show_modified = true,
-})
+-- require("barbecue").setup({
+-- show_modified = true,
+-- })

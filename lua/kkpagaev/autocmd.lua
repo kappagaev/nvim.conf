@@ -87,21 +87,21 @@ require("harpoon.tmux").sendCommand("{right}", "halt. \n")
 require("harpoon.tmux").sendCommand("{right}", "halt. \n")
 require("harpoon.tmux").sendCommand("{right}", "clear\n")
 require("harpoon.tmux").sendCommand("{right}", "swipl -s game.pl test.pl\n")
-require("harpoon.tmux").sendCommand("{right}", "test. \n\n")
+require("harpoon.tmux").sendCommand("{right}", "init. \n\n")
 end,
 })
 
-au('InsertLeave', {
-pattern = '*.pl',
-callback = function()
-vim.cmd('w')
-require("harpoon.tmux").sendCommand("{right}", "halt. \n")
-require("harpoon.tmux").sendCommand("{right}", "halt. \n")
-require("harpoon.tmux").sendCommand("{right}", "clear\n")
-require("harpoon.tmux").sendCommand("{right}", "swipl -s game.pl test.pl\n")
-require("harpoon.tmux").sendCommand("{right}", "test. \n\n")
-end,
-})
+-- au('InsertLeave', {
+-- pattern = '*.pl',
+-- callback = function()
+-- vim.cmd('w')
+-- require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+-- require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+-- require("harpoon.tmux").sendCommand("{right}", "clear\n")
+-- require("harpoon.tmux").sendCommand("{right}", "swipl -s game.pl test.pl\n")
+-- require("harpoon.tmux").sendCommand("{right}", "init. \n\n")
+-- end,
+-- })
 
 
 -- au('BufWritePost', {

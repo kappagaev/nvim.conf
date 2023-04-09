@@ -22,13 +22,13 @@ require("zen-mode").setup {
       showcmd = false, -- disables the command in the last line of the screen
       laststatus = 0
     },
-    tmux = { enabled = true },
+    tmux = { enabled = false },
     gitsigns = { enabled = false },
   },
 
   on_open = function(win)
     vim.cmd("ScrollbarHide")
-    vim.cmd("Barbecue hide")
+-- vim.cmd("Barbecue hide")
     lualine.hide()
     vim.o.statusline = " "
     vim.o.cmdheight = 1
@@ -36,7 +36,7 @@ require("zen-mode").setup {
   on_close = function(win)
     vim.cmd("ScrollbarShow")
     -- vim.cmd("IndentBlanklineEnable")
-    vim.cmd("Barbecue show")
+-- vim.cmd("Barbecue show")
     lualine.hide({ unhide = true })
     vim.o.cmdheight = 0
   end,
