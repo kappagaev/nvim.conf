@@ -32,38 +32,11 @@ local on_attach = function(_, bufnr)
   vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
   vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
-  -- nmap('<leader>rm', '<cmd>lua require("renamer").rename()<cr>', "rename")
-
   local keymap = vim.keymap.set
 
-  -- LSP finder - Find the symbol's definition
-  -- If there is no definition, it will instead be hidden
-  -- When you use an action in finder like "open vsplit",
-  -- you can use <C-t> to jump back
-  -- Code action
   keymap({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action)
 
-  -- Rename all occurrences of the hovered word for the entire file
   keymap("n", "<leader>rm", vim.lsp.buf.rename)
-
-  -- Rename all occurrences of the hovered word for the selected files
-
-  -- Peek definition
-  -- You can edit the file containing the definition in the floating window
-  -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
-  -- It also supports tagstack
-  -- Use <C-t> to jump back
-  -- Go to definition
-  -- Peek type definition
-  -- You can edit the file containing the type definition in the floating window
-  -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
-  -- It also supports tagstack
-  -- Use <C-t> to jump back
-
-  -- Go to type definition
-
-  -- nmap('H', "<c-o>", '[G]o [B]ack')
-  -- nmap('L', "<c-i>", '[G]o [F]orward')
 
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
@@ -71,18 +44,8 @@ local on_attach = function(_, bufnr)
 end
 
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
   tsserver = {
   },
-  -- sumneko_lua = {
-  -- Lua = {
-  -- workspace = { checkThirdParty = false },
-  -- telemetry = { enable = false },
-  -- },
-  -- },
 }
 
 require('neodev').setup({
@@ -100,18 +63,6 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 servers.prolog_ls = {}
-
--- require("typescript").setup({
--- disable_commands = false, -- prevent the plugin from creating Vim commands
--- debug = false, -- enable debug logging for commands
--- preferences = {
--- ImportModuleSpecifier = "relative",
--- },
-
--- server = { -- pass options to lspconfig's setup method
--- on_attach = on_attach,
--- },
--- })
 
 mason_lspconfig.setup_handlers {
   function(server_name)
@@ -202,14 +153,11 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    -- { name = 'luasnip' },
     { name = 'path' },
     { name = 'buffer' },
     { name = 'calc' },
     { name = 'spell' },
-    { name = 'tags' },
     { name = 'treesitter' },
-    -- { name = 'vsnip' },
     { name = 'nvim_lua' },
 
   },
@@ -274,16 +222,3 @@ require('lspconfig')['yamlls'].setup {
 }
 
 require("lsp_signature").setup()
-
--- require("typescript").setup({
-
--- require("renamer").setup({})
-
--- local codewindow = require('codewindow')
--- codewindow.setup()
--- codewindow.apply_default_keybinds()
-
-require('packer').use({
-  'weilbith/nvim-code-action-menu',
-  cmd = 'CodeActionMenu',
-})

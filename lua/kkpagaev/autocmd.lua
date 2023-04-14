@@ -44,7 +44,7 @@ au('BufRead,BufNewFile', {
 -- pattern = '*.cr',
 -- callback = function()
 -- require("harpoon.tmux").sendCommand("{right}", "clear\n")
--- require("harpoon.tmux").sendCommand("{right}", "crystal spec\n")
+-- require("harpoon.tmux").sendCommand("{right}", "!!\n")
 -- end,
 -- })
 
@@ -80,16 +80,20 @@ au('BufRead,BufNewFile', {
 -- end,
 -- })
 
-au('BufWritePost', {
-pattern = '*.pl',
-callback = function()
-require("harpoon.tmux").sendCommand("{right}", "halt. \n")
-require("harpoon.tmux").sendCommand("{right}", "halt. \n")
-require("harpoon.tmux").sendCommand("{right}", "clear\n")
-require("harpoon.tmux").sendCommand("{right}", "swipl -s game.pl test.pl\n")
-require("harpoon.tmux").sendCommand("{right}", "init. \n\n")
-end,
-})
+-- au('BufWritePost', {
+-- pattern = '*.pl',
+-- callback = function()
+-- require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+-- require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+-- require("harpoon.tmux").sendCommand("{right}", "halt. \n")
+-- require("harpoon.tmux").sendCommand("{right}", "clear\n")
+-- require("harpoon.tmux").sendCommand("{right}", "swipl -s server.pl\n")
+-- require("harpoon.tmux").sendCommand("{right}", "start. \n")
+-- require("harpoon.tmux").sendCommand("{right}", "9.\n")
+-- require("harpoon.tmux").sendCommand("{right}", "9.\n")
+-- require("harpoon.tmux").sendCommand("{right}", "3.\n")
+-- end,
+-- })
 
 -- au('InsertLeave', {
 -- pattern = '*.pl',

@@ -202,4 +202,8 @@ use 'mfussenegger/nvim-dap-python'
   use "ntpeters/vim-better-whitespace"
 
   use "rcarriga/cmp-dap"
+
+  use 'Yazeed1s/oh-lucy.nvim'
+
+  use { "ellisonleao/gruvbox.nvim" }
 end)
