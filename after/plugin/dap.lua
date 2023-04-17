@@ -65,19 +65,12 @@ require("dap-vscode-js").setup({
 for _, language in ipairs({ "typescript", "javascript" }) do
   require("dap").configurations[language] = {
     {
-      name = "Debug (Attach) - Remote Chrome",
-      type = "chrome",
-      request = "attach",
-sourceMaps = true,
-trace = true,
-      port = 9222,
-      webRoot = "${workspaceFolder}"
-    },
-    {
       type = "pwa-node",
       request = "attach",
       name = "Attach",
-      processId = require 'dap.utils'.pick_process,
+      processId = function()
+        require 'dap.utils'.pick_process({filter = "pnpm run start:debug"})
+      end,
       cwd = "${workspaceFolder}",
     }
   }
@@ -126,3 +119,42 @@ dap.configurations.php = {
     --  localSourceRoot = '~/Sites/',
   },
 }
+dap.configurations.ruby = {
+  {
+    type = 'ruby',
+    name = 'debug current file',
+    request = 'attach',
+    port = 38698,
+    server = '127.0.0.1',
+    options = {
+      source_filetype = 'ruby',
+    },
+    localfs = true,
+    waiting = 1000,
+  }
+}
+
+-- require('dap-go').setup({
+-- dap_configurations = {
+-- {
+-- type = "go",
+-- name = "Attach remote",
+-- mode = "remote",
+-- request = "attach",
+-- },
+-- {
+-- type = "go",
+-- request = "launch",
+-- name = "Launch",
+-- mode = "debug",
+-- program = "main.go",
+-- console = "integratedTerminal",
+-- rootPath = "${workspaceFolder}",
+-- cwd = "${workspaceFolder}",
+-- internalConsoleOptions = "neverOpen",
+-- }
+-- },
+-- })
+--
+-- require('dap-ruby').setup()
+-- require('dap-python').setup('/usr/bin/python3')

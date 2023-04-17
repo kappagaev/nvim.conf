@@ -1,7 +1,10 @@
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
-local on_attach = function(_, bufnr)
+
+local on_attach = function(client, bufnr)
+
+  client.server_capabilities.semanticTokensProvider = nil
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -10,21 +13,6 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  local imap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
-    vim.keymap.set('i', keys, func, { buffer = bufnr, desc = desc })
-  end
-
-  local xmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
-    vim.keymap.set('x', keys, func, { buffer = bufnr, desc = desc })
-  end
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
@@ -41,6 +29,12 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
+
+  require "lsp_signature".on_attach({
+    always_trigger = false,
+    transparency = 0.5,
+  }, bufnr)
+
 end
 
 local servers = {
@@ -48,10 +42,6 @@ local servers = {
   },
 }
 
-require('neodev').setup({
-  library = { plugins = { "nvim-dap-ui" }, types = true },
-}
-)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
@@ -67,7 +57,13 @@ servers.prolog_ls = {}
 mason_lspconfig.setup_handlers {
   function(server_name)
     if server_name == 'tsserver' then
-      require('lspconfig')[server_name].setup {
+require("typescript").setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false, -- enable debug logging for commands
+    go_to_source_definition = {
+        fallback = true, -- fall back to standard LSP definition on failure
+    },
+    server = { -- pass options to lspconfig's setup method
         copabilities = capabilities,
         on_attach = on_attach,
         settings = servers[server_name],
@@ -76,7 +72,18 @@ mason_lspconfig.setup_handlers {
             importModuleSpecifierPreference = "relative"
           }
         }
-      }
+    },
+})
+-- require('lspconfig')[server_name].setup {
+-- copabilities = capabilities,
+-- on_attach = on_attach,
+-- settings = servers[server_name],
+-- init_options = {
+-- preferences = {
+-- importModuleSpecifierPreference = "relative"
+-- }
+-- }
+-- }
       return
     else
       require('lspconfig')[server_name].setup {
@@ -87,15 +94,18 @@ mason_lspconfig.setup_handlers {
     end
   end,
 }
-
+require("typescript").setup({
+    disable_commands = false,
+    debug = false, -- enable debug logging for commands
+    go_to_source_definition = {
+        fallback = true, -- fall back to standard LSP definition on failure
+    },
+    server = { -- pass options to lspconfig's setup method
+        on_attach = on_attach,
+    },
+})
 local cmp = require 'cmp'
 
-local luasnip = require 'luasnip'
-
-luasnip.config.set_config {
-  history = true,
-  updateevents = 'TextChanged,TextChangedI',
-}
 local lspkind = require('lspkind')
 
 local sources = {}
@@ -123,11 +133,6 @@ cmp.setup {
     -- completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
   sorting = {
     priority_weight = 2,
   },
@@ -144,8 +149,6 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable( -1) then
-        luasnip.jump( -1)
       else
         fallback()
       end
@@ -221,4 +224,3 @@ require('lspconfig')['yamlls'].setup {
   }
 }
 
-require("lsp_signature").setup()

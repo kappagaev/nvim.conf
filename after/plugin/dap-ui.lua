@@ -3,10 +3,8 @@ local dapui_setup = function()
     layouts = {
       {
         elements = {
-"scopes",
--- "breakpoints",
--- "stacks",
-    "watches",
+-- "scopes",
+-- "watches",
         },
         size = 40, -- 40 columns
         position = "right",
@@ -14,7 +12,6 @@ local dapui_setup = function()
       {
         elements = {
           "repl",
--- "console",
         },
         size = 0.30, -- 20% of total lines
         position = "bottom",
@@ -23,13 +20,13 @@ local dapui_setup = function()
   })
   local dap, ui = require("dap"), require("dapui")
   dap.listeners.after.event_initialized["dapui_config"] = function()
-    ui.open()
+-- ui.open()
   end
   dap.listeners.before.event_terminated["dapui_config"] = function()
-    ui.close()
+-- ui.close()
   end
   dap.listeners.before.event_exited["dapui_config"] = function()
-    ui.close()
+-- ui.close()
   end
 end
 

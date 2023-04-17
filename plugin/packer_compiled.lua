@@ -74,16 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
-  catppuccin = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/catppuccin",
-    url = "https://github.com/catppuccin/nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -99,11 +89,6 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  cmp_luasnip = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
-    url = "https://github.com/saadparwaiz1/cmp_luasnip"
-  },
   ["fidget.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/fidget.nvim",
@@ -114,11 +99,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
-  },
-  ["gruvbox.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
-    url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
   harpoon = {
     loaded = true,
@@ -160,11 +140,6 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
-  ["neodev.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/neodev.nvim",
-    url = "https://github.com/folke/neodev.nvim"
-  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -186,12 +161,8 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
-    commands = { "ColorizerToggle" },
-    config = { "\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0" },
-    loaded = false,
-    needs_bufread = false,
-    only_cond = false,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/opt/nvim-colorizer.lua",
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
   ["nvim-dap"] = {
@@ -203,6 +174,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-dap-python",
     url = "https://github.com/mfussenegger/nvim-dap-python"
+  },
+  ["nvim-dap-ruby"] = {
+    loaded = true,
+    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-dap-ruby",
+    url = "https://github.com/suketa/nvim-dap-ruby"
   },
   ["nvim-dap-ui"] = {
     loaded = true,
@@ -256,11 +232,6 @@ _G.packer_plugins = {
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
-  ["oh-lucy.nvim"] = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/oh-lucy.nvim",
-    url = "https://github.com/Yazeed1s/oh-lucy.nvim"
-  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/packer.nvim",
@@ -270,11 +241,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  spaceduck = {
-    loaded = true,
-    path = "/home/kkpagaev/.local/share/nvim/site/pack/packer/start/spaceduck",
-    url = "https://github.com/pineapplegiant/spaceduck"
   },
   ["telescope.nvim"] = {
     loaded = true,
@@ -340,34 +306,22 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-rooter.lua
-time([[Config for nvim-rooter.lua]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "nvim-rooter.lua")
-time([[Config for nvim-rooter.lua]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
-time([[Config for gitsigns.nvim]], false)
--- Config for: zen-mode.nvim
-time([[Config for zen-mode.nvim]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "zen-mode.nvim")
-time([[Config for zen-mode.nvim]], false)
 -- Config for: nvim-surround
 time([[Config for nvim-surround]], true)
 try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "nvim-surround")
 time([[Config for nvim-surround]], false)
-
--- Command lazy-loads
-time([[Defining lazy-load commands]], true)
-pcall(vim.api.nvim_create_user_command, 'ColorizerToggle', function(cmdargs)
-          require('packer.load')({'nvim-colorizer.lua'}, { cmd = 'ColorizerToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'nvim-colorizer.lua'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('ColorizerToggle ', 'cmdline')
-      end})
-time([[Defining lazy-load commands]], false)
-
+-- Config for: nvim-rooter.lua
+time([[Config for nvim-rooter.lua]], true)
+try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "nvim-rooter.lua")
+time([[Config for nvim-rooter.lua]], false)
+-- Config for: zen-mode.nvim
+time([[Config for zen-mode.nvim]], true)
+try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "zen-mode.nvim")
+time([[Config for zen-mode.nvim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

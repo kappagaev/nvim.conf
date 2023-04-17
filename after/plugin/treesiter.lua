@@ -3,8 +3,6 @@ require 'nvim-treesitter.configs'.setup {
 
 	sync_install = false,
 	auto_install = true,
--- ignore_install = { "javascript" },
-
 
 	incremental_selection = {
 		enable = true,
@@ -12,7 +10,7 @@ require 'nvim-treesitter.configs'.setup {
 			init_selection = "<c-space>",
 			node_incremental = "<c-space>",
 			scope_incremental = "<c-s>",
-			node_decremental = "<c-backspace>",
+			node_decremental = "<c-BS>",
 		},
 	},
 	highlight = {

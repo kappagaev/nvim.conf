@@ -35,9 +35,10 @@ o.noswapfile = true
 o.nocompatible = true
 o.cursorline = true
 o.cmdheight = 0
+o.shortmess = o.shortmess .. "at"
 
 
-vim.api.nvim_set_option("clipboard", "unnamed")
+-- vim.api.nvim_set_option("clipboard", "unnamed")
 
 -- o.clipboard:append("unnamedplus")
 
