@@ -8,6 +8,17 @@ g.mapleader = " "
 g.maplocalleader = " "
 
 map('n', "<leader>", "")
+map('v', "j", "h")
+map('v', "h", "j")
+
+map('v', "t", "k")
+map('v', "k", "t")
+
+map('n', "j", "h")
+map('n', "h", "j")
+
+map('n', "t", "k")
+map('n', "k", "t")
 -- map('n', '<C-j>', '5j')
 
 -- map('n', '<c-k>', '5k')
@@ -40,6 +51,12 @@ map('n', 'gf', '<c-i>')
 map('n', "yf", 'jgg"+yG<c-o>k')
 
 map('n', 'U', '<c-r>')
+
+map('v', "<leader>y", '"+y')
+map('n', "<leader>y", '"+y')
+
+map('n', "<leader>o", ':w<CR>')
+
 
 -- _G.main_func = function()
 -- vim.cmd("VimwikiToggleListItem")

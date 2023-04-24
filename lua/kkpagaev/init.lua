@@ -25,3 +25,13 @@ vim.o.timeoutlen = 1000
 require'nvim-rooter'.setup()
 
 require'colorizer'.setup()
+
+require('Comment').setup({
+toggler = {
+        ---Line-comment toggle keymap
+        line = 'gcc',
+        ---Block-comment toggle keymap
+        block = 'gcbc'
+    },
+
+})

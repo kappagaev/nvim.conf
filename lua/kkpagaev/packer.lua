@@ -26,7 +26,9 @@ vim.cmd([[
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'chrisbra/vim-commentary'
+
+  use 'numToStr/Comment.nvim'
+
   use "norcalli/nvim-colorizer.lua"
   use {
     'nvim-tree/nvim-tree.lua',
@@ -138,4 +140,6 @@ return require('packer').startup(function(use)
   use "rcarriga/cmp-dap"
 
   use "jose-elias-alvarez/typescript.nvim"
+
+  use "ThePrimeagen/vim-be-good"
 end)

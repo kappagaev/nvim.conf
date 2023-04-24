@@ -3,8 +3,8 @@ local dapui_setup = function()
     layouts = {
       {
         elements = {
--- "scopes",
--- "watches",
+        "scopes",
+        "watches",
         },
         size = 40, -- 40 columns
         position = "right",

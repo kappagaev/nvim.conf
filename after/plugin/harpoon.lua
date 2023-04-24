@@ -23,12 +23,12 @@ vim.keymap.set('n', 'm', function()
   mark.toggle_file(i)
 end)
 
-
 vim.keymap.set('n', '<BS>', function()
-  require("harpoon.ui").toggle_quick_menu()
+  vim.cmd("NvimTreeClose")
+  require("harpoon.ui").nav_prev()
 end)
 
-vim.keymap.set('n', '<BS>', function()
+vim.keymap.set('n', '<leader>h', function()
   require("harpoon.ui").toggle_quick_menu()
 end)
 

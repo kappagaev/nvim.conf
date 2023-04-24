@@ -3,8 +3,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
 
 local on_attach = function(client, bufnr)
-
-  client.server_capabilities.semanticTokensProvider = nil
+  -- client.server_capabilities.semanticTokensProvider = nil
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -17,7 +16,7 @@ local on_attach = function(client, bufnr)
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
-  vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
+  vim.keymap.set("n", "S", require("hover").hover, { desc = "hover.nvim" })
   vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
   local keymap = vim.keymap.set

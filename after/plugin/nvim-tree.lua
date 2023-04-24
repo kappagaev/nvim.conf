@@ -17,8 +17,8 @@ require("nvim-tree").setup({
 				adaptive_size = true,
 				mappings = {
 						list = {
-								{ key = "h", action = "close_node" },
-								{ key = "l", action = "preview" },
+								{ key = "c", action = "close_node" },
+								{ key = "n", action = "preview" },
 						},
 				},
 		},

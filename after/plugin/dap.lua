@@ -119,6 +119,8 @@ dap.configurations.php = {
     --  localSourceRoot = '~/Sites/',
   },
 }
+
+-- require('dap-ruby').setup()
 dap.configurations.ruby = {
   {
     type = 'ruby',
@@ -156,5 +158,4 @@ dap.configurations.ruby = {
 -- },
 -- })
 --
--- require('dap-ruby').setup()
 -- require('dap-python').setup('/usr/bin/python3')
