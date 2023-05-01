@@ -19,10 +19,11 @@ vim.keymap.set('n', '<leader>dH',
 
 vim.api.nvim_set_keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], {})
 
-vim.keymap.set({ 'n', 't' }, '<A-k>', function() require "dap".step_out() end)
-vim.keymap.set({ 'n', 't' }, "<A-l>", function() require "dap".step_into() end)
-vim.keymap.set({ 'n', 't' }, '<A-j>', function() require "dap".step_over() end)
-vim.keymap.set({ 'n', 't' }, '<A-h>', function() require "dap".continue() end)
+-- vim.keymap.set({ 'n', 't' }, '<A-k>', function() require "dap".step_out() end)
+-- vim.keymap.set({ 'n', 't' }, "<A-l>", function() require "dap".step_into() end)
+-- vim.keymap.set({ 'n', 't' }, '<A-j>', function() require "dap".step_over() end)
+-- vim.keymap.set({ 'n', 't' }, '<A-d>', function() require "dap".continue() end)
+
 vim.keymap.set('n', '<leader>dr', function() require "dap".run_to_cursor() end)
 vim.keymap.set('n', '<leader>dc', function() require "dap".terminate() end)
 vim.keymap.set('n', '<leader>rr', function() require "dap".run_last() end)

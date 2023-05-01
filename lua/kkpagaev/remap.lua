@@ -26,8 +26,11 @@ map('n', "k", "t")
 -- map('n', '<c-h>', '5h')
 -- map('n', '<c-g>', 'gcc')
 -- map('n', '<leader>w', ':update<CR>')
-map('i', 'jj', '<Esc>')
-map('i', 'JJ', '<Esc>')
+map('i', 'hh', '<Esc>')
+map('i', 'HH', '<Esc>')
+
+vim.api.nvim_set_keymap('n', ',', '<C-w>', { noremap = true })
+vim.api.nvim_set_keymap('n', ',,', '<C-w>w', { noremap = true })
 
 map('i', '<A-h>', '<c-o>h')
 map('i', '<A-j>', '<c-o>j')
@@ -45,8 +48,11 @@ map('v', '<leader>p', '"_dP')
 
 -- map('n', '<leader>w', ":w<CR>")
 
-map('n', 'gb', '<c-o>')
-map('n', 'gf', '<c-i>')
+map('n', 'go', '<c-o>')
+map('n', 'gi', '<c-i>')
+
+-- map('n', '<c-e>', '<c-d>')
+-- map('n', '<c-g>', '<c-u>')
 
 map('n', "yf", 'jgg"+yG<c-o>k')
 

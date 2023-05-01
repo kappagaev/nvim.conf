@@ -12,7 +12,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('ge', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
@@ -55,7 +55,7 @@ servers.prolog_ls = {}
 
 mason_lspconfig.setup_handlers {
   function(server_name)
-    if server_name == 'tsserver' then
+    if server_name == 'tsservers' then
 require("typescript").setup({
     disable_commands = false, -- prevent the plugin from creating Vim commands
     debug = false, -- enable debug logging for commands

@@ -142,4 +142,8 @@ return require('packer').startup(function(use)
   use "jose-elias-alvarez/typescript.nvim"
 
   use "ThePrimeagen/vim-be-good"
+
+  use 'nvim-treesitter/nvim-treesitter-context'
+
+  use "justinmk/vim-sneak"
 end)
