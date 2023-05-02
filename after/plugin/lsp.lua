@@ -3,7 +3,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
 
 local on_attach = function(client, bufnr)
-  -- client.server_capabilities.semanticTokensProvider = nil
+  client.server_capabilities.semanticTokensProvider = nil
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
 
   keymap({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action)
 
-  keymap("n", "<leader>rm", vim.lsp.buf.rename)
+  keymap("n", "<leader>r", vim.lsp.buf.rename)
 
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
@@ -33,7 +33,6 @@ local on_attach = function(client, bufnr)
     always_trigger = false,
     transparency = 0.5,
   }, bufnr)
-
 end
 
 local servers = {
@@ -53,36 +52,54 @@ mason_lspconfig.setup {
 }
 servers.prolog_ls = {}
 
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = ""
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
+vim.keymap.set('n', '<leader>i', organize_imports, { buffer = 0, desc = 'Organize Imports' })
+
 mason_lspconfig.setup_handlers {
   function(server_name)
-    if server_name == 'tsservers' then
-require("typescript").setup({
-    disable_commands = false, -- prevent the plugin from creating Vim commands
-    debug = false, -- enable debug logging for commands
-    go_to_source_definition = {
-        fallback = true, -- fall back to standard LSP definition on failure
-    },
-    server = { -- pass options to lspconfig's setup method
-        copabilities = capabilities,
-        on_attach = on_attach,
-        settings = servers[server_name],
-        init_options = {
-          preferences = {
-            importModuleSpecifierPreference = "relative"
+    if server_name == 'tsserver' then
+      require("typescript").setup({
+        disable_commands = false, -- prevent the plugin from creating Vim commands
+        debug = false,        -- enable debug logging for commands
+        go_to_source_definition = {
+          fallback = true,    -- fall back to standard LSP definition on failure
+        },
+        commands = {
+          OrganizeImports = {
+            organize_imports,
+            description = "Organize Imports"
           }
-        }
-    },
-})
--- require('lspconfig')[server_name].setup {
--- copabilities = capabilities,
--- on_attach = on_attach,
--- settings = servers[server_name],
--- init_options = {
--- preferences = {
--- importModuleSpecifierPreference = "relative"
--- }
--- }
--- }
+        },
+        server = {
+               -- pass options to lspconfig's setup method
+          copabilities = capabilities,
+          on_attach = on_attach,
+          settings = servers[server_name],
+          init_options = {
+            preferences = {
+              importModuleSpecifierPreference = "relative"
+            }
+          }
+        },
+      })
+      -- require('lspconfig')[server_name].setup {
+      -- copabilities = capabilities,
+      -- on_attach = on_attach,
+      -- settings = servers[server_name],
+      -- init_options = {
+      -- preferences = {
+      -- importModuleSpecifierPreference = "relative"
+      -- }
+      -- }
+      -- }
       return
     else
       require('lspconfig')[server_name].setup {
@@ -94,14 +111,14 @@ require("typescript").setup({
   end,
 }
 require("typescript").setup({
-    disable_commands = false,
-    debug = false, -- enable debug logging for commands
-    go_to_source_definition = {
-        fallback = true, -- fall back to standard LSP definition on failure
-    },
-    server = { -- pass options to lspconfig's setup method
-        on_attach = on_attach,
-    },
+  disable_commands = false,
+  debug = false,         -- enable debug logging for commands
+  go_to_source_definition = {
+    fallback = true,     -- fall back to standard LSP definition on failure
+  },
+  server = {             -- pass options to lspconfig's setup method
+    on_attach = on_attach,
+  },
 })
 local cmp = require 'cmp'
 
@@ -119,8 +136,8 @@ cmp.setup {
   preselect = cmp.PreselectMode.None,
   formatting = {
     format = lspkind.cmp_format({
-      mode = 'symbol', -- show only symbol annotations
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      mode = 'symbol',       -- show only symbol annotations
+      maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
       ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
       before = function(entry, vim_item)
@@ -136,12 +153,12 @@ cmp.setup {
     priority_weight = 2,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs( -4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] =
-    cmp.mapping.complete({
-      -- reason = cmp.ContextReason.Auto,
-    }),
+        cmp.mapping.complete({
+          -- reason = cmp.ContextReason.Auto,
+        }),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
     },
@@ -217,9 +234,8 @@ require('lspconfig')['yamlls'].setup {
       },
       schemas = {
         kubernetes = "/*.yaml"
--- kubernetes = "*.k8s.yaml",
+        -- kubernetes = "*.k8s.yaml",
       }
     }
   }
 }
-

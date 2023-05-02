@@ -12,6 +12,7 @@ require 'nvim-web-devicons'.setup {
 }
 
 require("nvim-tree").setup({
+    update_cwd = false,
 		sort_by = "case_sensitive",
 		view = {
 				adaptive_size = true,
@@ -29,8 +30,8 @@ require("nvim-tree").setup({
 				dotfiles = true,
 		},
 		update_focused_file = {
-				enable = true,
-				update_cwd = true
+				enable = false,
+				update_cwd = false
 		},
 		diagnostics = {
 				enable = true,

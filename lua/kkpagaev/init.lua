@@ -24,7 +24,6 @@ vim.o.timeoutlen = 1000
 -- require'nvim-rooter'.setup()
 
 require'colorizer'.setup()
-
 require('Comment').setup({
 toggler = {
         line = 'gcc',

@@ -8,5 +8,8 @@ function create_tmux_window(command)
   end
 end
 
-map("n", "<leader>,g", create_tmux_window("lg"))
-map("n", "<leader>,d", create_tmux_window("ld"))
+function fullscrean()
+  vim.fn.system("tmux resize-pane -Z")
+end
+
+map("n", "<leader>u", fullscrean)

@@ -67,7 +67,6 @@ return require('packer').startup(function(use)
 
   use { 'nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' } }
 
-  use 'voldikss/vim-floaterm'
   use {
     "rebelot/kanagawa.nvim",
     commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
@@ -98,7 +97,6 @@ return require('packer').startup(function(use)
   }
 
   use 'nacro90/numb.nvim'
-  use 'booperlv/nvim-gomove'
 
   use {
     'nvim-lualine/lualine.nvim',

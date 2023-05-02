@@ -9,6 +9,11 @@ au('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd({"TextYankPost"}, {
+  pattern = {"*"},
+  command = "wshada /tmp/yank"
+})
+
 au('TextYankPost', {
   group = ag('yank_highlight', {}),
   pattern = '*',

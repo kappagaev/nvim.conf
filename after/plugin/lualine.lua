@@ -27,59 +27,50 @@ custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
 
 require('lualine').setup({
   options = {
-    refesh = {
-      statusline = 100000000000000,
-    },
+    -- refesh = {
+    --   statusline = 100000000000000,
+    -- },
     theme = custom_kanagawa,
-    -- theme = 'spaceduck',
     icons_enabled = true,
     component_separators = { left = '', right = '|' },
-    -- section_separators = { left = '', right = ''},
-    -- section_separators = { left = ' ', right = ' '},
-    -- section_separators = { left = '', right = ''},
-    section_separators = { left = '', right = '' },
-    -- theme = 'gruvbox_material',
-    disabled_filetypes = {
-      winbar = {
-      'NvimTree',
-      'Trouble',
-      'dap-repl',
-        'TelescopePrompt'
-      },
-      statusline = {
-      'NvimTree',
-      'Trouble',
-      'dap-repl',
-      }
-      -- 'dapui_scopes',
-      -- 'dapui_stacks',
-      -- 'dapui_watches',
-      -- 'dapui_breakpoints',
-
-    },
+    -- section_separators = { left = '', right = '' },
+    -- disabled_filetypes = {
+    --   winbar = {
+    --   'NvimTree',
+    --   'Trouble',
+    --   'dap-repl',
+    --     'TelescopePrompt'
+    --   },
+      -- statusline = {
+      -- 'NvimTree',
+      -- 'Trouble',
+      -- 'dap-repl',
+      -- }
+    -- },
   },
-  sections = {
-    lualine_a = { {
-      'mode',
--- padding = { left = 10, right = 10 },
-    }
-    },
-    lualine_b = { 'branch', 'diff' },
-    lualine_c = { 'diagnostics', },
-    lualine_x = { 'filetype' },
-    -- lualine_y = { nvimbattery },
-    -- lualine_y = {harp  },
-    lualine_y = { 'searchcount' },
-    lualine_z = { 'location' }
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = { 'filename' },
-    lualine_x = { 'location' },
-    lualine_y = {},
-    lualine_z = {}
-  },
+  sections = {},
+  inactive_sections = {},
+  -- sections = {
+  --   lualine_a = { {
+  --     'mode',
+  --   }
+  --   },
+  --   lualine_b = { 'branch', 'diff' },
+  --   lualine_c = { 'diagnostics', },
+  --   lualine_x = { 'filetype' },
+  --   -- lualine_y = { nvimbattery },
+  --   -- lualine_y = {harp  },
+  --   lualine_y = { 'searchcount' },
+  --   lualine_z = { 'location' }
+  -- },
+  -- inactive_sections = {
+  --   lualine_a = {},
+  --   lualine_b = {},
+  --   lualine_c = { 'filename' },
+  --   lualine_x = { 'location' },
+  --   lualine_y = {},
+  --   lualine_z = {}
+  -- },
   tabline = {
     lualine_c = {
       {
@@ -102,5 +93,5 @@ require('lualine').setup({
     lualine_y = {},
     lualine_z = {}
   },
-  extensions = { 'fugitive' },
+  -- extensions = { 'fugitive' },
 })

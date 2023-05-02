@@ -1,5 +1,3 @@
-local lualine = require("lualine")
-
 require("zen-mode").setup {
   window = {
     row = 1,
@@ -25,25 +23,16 @@ require("zen-mode").setup {
     tmux = { enabled = false },
     gitsigns = { enabled = false },
   },
-
   on_open = function(win)
     vim.cmd("ScrollbarHide")
--- vim.cmd("Barbecue hide")
-    lualine.hide()
-    vim.o.statusline = " "
-    vim.o.cmdheight = 1
   end,
   on_close = function(win)
     vim.cmd("ScrollbarShow")
-    -- vim.cmd("IndentBlanklineEnable")
--- vim.cmd("Barbecue show")
-    lualine.hide({ unhide = true })
-    vim.o.cmdheight = 0
   end,
 }
 
 
-vim.keymap.set('n', '<leader>u', function()
+vim.keymap.set('n', '<leader>z', function()
   local filetype = vim.bo.filetype
   if filetype == "NvimTree" then
     vim.cmd("NvimTreeClose")

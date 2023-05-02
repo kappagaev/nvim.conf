@@ -31,6 +31,8 @@ map('i', 'HH', '<Esc>')
 
 vim.api.nvim_set_keymap('n', ',', '<C-w>', { noremap = true })
 vim.api.nvim_set_keymap('n', ',,', '<C-w>w', { noremap = true })
+vim.api.nvim_set_keymap('n', ',h', '<C-w>w', { noremap = true })
+vim.api.nvim_set_keymap('n', ',d', '<C-w>q', { noremap = true })
 
 map('i', '<A-h>', '<c-o>h')
 map('i', '<A-j>', '<c-o>j')
@@ -61,7 +63,11 @@ map('n', 'U', '<c-r>')
 map('v', "<leader>y", '"+y')
 map('n', "<leader>y", '"+y')
 
+map('n', "<leader>p", '"+p')
+map('v', "<leader>p", '"+p')
+
 map('n', "<leader>o", ':w<CR>')
+map('n', ",.", ':w<CR>')
 
 
 -- _G.main_func = function()
