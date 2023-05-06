@@ -3,7 +3,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
 
 local on_attach = function(client, bufnr)
-  client.server_capabilities.semanticTokensProvider = nil
+  -- client.server_capabilities.semanticTokensProvider = nil
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -114,7 +114,7 @@ require("typescript").setup({
   disable_commands = false,
   debug = false,         -- enable debug logging for commands
   go_to_source_definition = {
-    fallback = true,     -- fall back to standard LSP definition on failure
+    fallback = false,     -- fall back to standard LSP definition on failure
   },
   server = {             -- pass options to lspconfig's setup method
     on_attach = on_attach,

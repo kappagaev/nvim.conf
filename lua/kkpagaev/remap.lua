@@ -34,6 +34,9 @@ vim.api.nvim_set_keymap('n', ',,', '<C-w>w', { noremap = true })
 vim.api.nvim_set_keymap('n', ',h', '<C-w>w', { noremap = true })
 vim.api.nvim_set_keymap('n', ',d', '<C-w>q', { noremap = true })
 
+vim.api.nvim_set_keymap('n', '>', '>>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<', '<<', { noremap = true })
+
 map('i', '<A-h>', '<c-o>h')
 map('i', '<A-j>', '<c-o>j')
 map('i', '<A-k>', '<c-o>k')
@@ -42,6 +45,7 @@ map('i', '<A-o>', '<c-o>o')
 -- map('n', 'gx', ":!open <c-r><c-a>")
 -- vim.keymap.nnoremap { 'gx', [[:execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]] }
 map('n', '<leader>l', ':Format<CR>')
+map('n', '<leader>i', ':TypescriptAddMissingImports<CR>')
 
 -- map('n', '<c-d>', '18j')
 -- map('n', '<c-u>', '18k')
