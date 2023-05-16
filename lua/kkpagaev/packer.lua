@@ -144,4 +144,12 @@ return require('packer').startup(function(use)
   use 'nvim-treesitter/nvim-treesitter-context'
 
   use "justinmk/vim-sneak"
+
+  use "nvim-treesitter/playground"
+
+  use "tpope/vim-fugitive"
+
+  use "Eandrju/cellular-automaton.nvim"
+
+  use "ThePrimeagen/git-worktree.nvim"
 end)

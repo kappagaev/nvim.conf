@@ -37,6 +37,8 @@ vim.api.nvim_set_keymap('n', ',d', '<C-w>q', { noremap = true })
 vim.api.nvim_set_keymap('n', '>', '>>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<', '<<', { noremap = true })
 
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 map('i', '<A-h>', '<c-o>h')
 map('i', '<A-j>', '<c-o>j')
 map('i', '<A-k>', '<c-o>k')
@@ -80,15 +82,17 @@ map('n', ",.", ':w<CR>')
 -- return "g@l"
 -- end
 
-vim.keymap.set ("i", '<C-F>', 'copilot#Accept()', { expr = true, silent = true, script = true })
+vim.keymap.set("i", '<C-F>', 'copilot#Accept()', { expr = true, silent = true, script = true })
 
 -- imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 -- vim.keymap.set("n", "glt", main_func, { expr = true, silent = true})
-vim.keymap.set("n", "glt", ":VimwikiToggleListItem<CR>", {  silent = true})
+vim.keymap.set("n", "glt", ":VimwikiToggleListItem<CR>", { silent = true })
 -- vim.keymap.set('i','<C-]>', '<esc>f\\|ni', { silent = true })
 --
 
-vim.keymap.set("n", "<leader>s", ":SearchVisual<CR>", {  silent = true})
+vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+
+vim.keymap.set("n", "<C-f>", "<cmd>silent !t<CR>")
 
 
 -- map("n", "й", "q")

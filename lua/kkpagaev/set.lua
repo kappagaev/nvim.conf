@@ -37,6 +37,9 @@ o.cursorline = true
 o.cmdheight = 0
 o.shortmess = o.shortmess .. "at"
 
+vim.opt.diffopt = vim.opt.diffopt + "vertical"
+vim.opt.display = vim.opt.display + 'lastline'
+
 
 -- vim.api.nvim_set_option("clipboard", "unnamed")
 

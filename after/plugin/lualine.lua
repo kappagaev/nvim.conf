@@ -32,6 +32,7 @@ require('lualine').setup({
     -- },
     theme = custom_kanagawa,
     icons_enabled = true,
+    global_status = false,
     component_separators = { left = '', right = '|' },
     -- section_separators = { left = '', right = '' },
     -- disabled_filetypes = {

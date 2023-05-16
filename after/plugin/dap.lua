@@ -19,9 +19,9 @@ vim.keymap.set('n', '<A-b>',
 
 vim.api.nvim_set_keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], {})
 
-vim.keymap.set({ 'n', 't' }, '<M-c>', function() require "dap".step_out() end)
-vim.keymap.set({ 'n', 't' }, "<M-n>", function() require "dap".step_into() end)
-vim.keymap.set({ 'n', 't' }, '<M-h>', function() require "dap".step_over() end)
+vim.keymap.set({ 'n', 't' }, ',g', function() require "dap".step_out() end)
+vim.keymap.set({ 'n', 't' }, ",g", function() require "dap".step_into() end)
+vim.keymap.set({ 'n', 't' }, ',r', function() require "dap".step_over() end)
 vim.keymap.set({ 'n', 't' }, '<M-d>', function() require "dap".continue() end)
 
 -- vim.keymap.set('n', '<leader>dR',
@@ -50,7 +50,7 @@ vim.keymap.set({ 'n', 't' }, '<M-d>', function() require "dap".continue() end)
 --
 vim.keymap.set('n', '<leader>d', function()
   vim.cmd("NvimTreeClose")
-  require("dapui").toggle({});
+  require'dap'.repl.open()
 end)
 
 require("dap-vscode-js").setup({

@@ -35,13 +35,13 @@ au('BufRead,BufNewFile', {
     vim.o.filetype = 'prolog'
   end,
 })
--- au('BufWritePost', {
--- pattern = '*.rb',
--- callback = function()
--- require("harpoon.tmux").sendCommand("{right}", "clear\n")
--- require("harpoon.tmux").sendCommand("{right}", "rake \n")
--- end,
--- })
+au('BufWritePost', {
+  pattern = '*.rb',
+  callback = function()
+    require("harpoon.tmux").sendCommand("{right}", "clear\n")
+    require("harpoon.tmux").sendCommand("{right}", "ruby meiser.rb | jq \n")
+  end,
+})
 
 -- crystal spec
 

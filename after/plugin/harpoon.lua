@@ -32,6 +32,10 @@ vim.keymap.set('n', '<leader>h', function()
   require("harpoon.ui").toggle_quick_menu()
 end)
 
+vim.keymap.set('n', '<C-c>', function()
+  require("harpoon.ui").toggle_quick_menu()
+end)
+
 au('BufEnter', {
   pattern = '*',
   callback = function()
@@ -44,3 +48,14 @@ au('BufEnter', {
     end
   end
 })
+
+-- local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+
+vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)
+vim.keymap.set("n", "<C-t>", function() ui.nav_file(2) end)
+vim.keymap.set("n", "<C-n>", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
+
+
