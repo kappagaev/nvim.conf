@@ -42,7 +42,7 @@ vim.keymap.set('n', '<leader>fg', builtin.git_status, {})
 vim.keymap.set('n', '<leader>fe', builtin.diagnostics, {})
 vim.keymap.set('n', '<leader>fc', builtin.colorscheme, {})
 
-vim.keymap.set('n', '<M-p>', builtin.commands, { desc = '[M-p] Find commands' })
+-- vim.keymap.set('n', '<M-p>', builtin.commands, { desc = '[M-p] Find commands' })
 
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>ff', builtin.treesitter, { desc = "Test" })
