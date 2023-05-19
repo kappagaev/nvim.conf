@@ -20,7 +20,12 @@
 -- })
 
 
-function tabline()
+local hl_winbar_path = 'WinBarPath'
+local hl_winbar_file = 'WinBarFile'
+local hl_winbar_symbols = 'WinBarSymbols'
+local hl_winbar_file_icon = 'WinBarFileIcon'
+
+function buf_harpoon()
   local original_tabs = require('harpoon').get_mark_config().marks
 
   for i, tab in ipairs(original_tabs) do
@@ -32,60 +37,80 @@ function tabline()
 
   return ""
 end
+vim.api.nvim_set_hl(0, 'CurrentMarkNumber', { fg = 'green' })
 
-local custom_kanagawa = require 'lualine.themes.kanagawa'
-custom_kanagawa.normal.c.bg = '#14141414141'
-custom_kanagawa.normal.c.fg = '#14141414141'
-custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
+function tabline()
+  local current_mark = buf_harpoon()
+  local is_modified = vim.bo.modified and "●" or ""
+  local bufname = vim.fn.expand("%:t")
+  local extension = vim.fn.expand("%:e")
+  local icon, color = require('nvim-web-devicons').get_icon(bufname, extension)
+  local icon_str = icon and icon .. " " or ""
 
-require('lualine').setup({
-  options = {
-    theme = custom_kanagawa,
-    icons_enabled = true,
-    global_status = false,
-    component_separators = { left = '', right = '|' },
-    -- section_separators = { left = '', right = '' },
-    -- disabled_filetypes = {
-    --   winbar = {
-    --   'NvimTree',
-    --   'Trouble',
-    --   'dap-repl',
-    --     'TelescopePrompt'
-    --   },
-    -- statusline = {
-    -- 'NvimTree',
-    -- 'Trouble',
-    -- 'dap-repl',
-    -- }
-    -- },
-  },
-  sections = {},
-  inactive_sections = {},
-  tabline = {
-    lualine_a = {
-      tabline
-    },
-    lualine_c = {
-      {
-        'filetype',
-        file_status = false,
-        icon_only = true,
-      },
-      {
-        'filename',
-        use_mode_colors = false,
-        symbols = {
-          readonly = '',
-          modified = '●',  -- Text to show when the buffer is modified
-          unnamed = '',      -- Text to show for unnamed buffers.
-          newfile = '[New]', -- Text to show for newly created file before first write
-        },
-      }
-    },
-    lualine_x = {
-    },
-    lualine_y = {},
-    lualine_z = {
-    }
-  },
-})
+  return "%#CurrentMarkNumber# " .. current_mark .. "%*" ..
+    "%#" .. color .. "# ".. icon_str .. "%*" ..
+    bufname .. " " .. is_modified .. " %*"
+end
+
+
+-- vim.opt.showtabline = 2
+
+vim.o.winbar = '%!v:lua.tabline()'
+
+-- local custom_kanagawa = require 'lualine.themes.kanagawa'
+-- custom_kanagawa.normal.c.bg = '#14141414141'
+-- custom_kanagawa.normal.c.fg = '#14141414141'
+-- custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
+--
+-- require('lualine').setup({
+--   options = {
+--     theme = custom_kanagawa,
+--     icons_enabled = true,
+--     global_status = false,
+--     component_separators = { left = '', right = '|' },
+--     -- section_separators = { left = '', right = '' },
+--     -- disabled_filetypes = {
+--     --   winbar = {
+--     --   'NvimTree',
+--     --   'Trouble',
+--     --   'dap-repl',
+--     --     'TelescopePrompt'
+--     --   },
+--     -- statusline = {
+--     -- 'NvimTree',
+--     -- 'Trouble',
+--     -- 'dap-repl',
+--     -- }
+--     -- },
+--   },
+--   sections = {},
+--   inactive_sections = {},
+--   tabline = {}
+--   -- tabline = {
+--   --   lualine_a = {
+--   --     tabline
+--   --   },
+--   --   lualine_c = {
+--   --     {
+--   --       'filetype',
+--   --       file_status = false,
+--   --       icon_only = true,
+--   --     },
+--   --     {
+--   --       'filename',
+--   --       use_mode_colors = false,
+--   --       symbols = {
+--   --         readonly = '',
+--   --         modified = '●',  -- Text to show when the buffer is modified
+--   --         unnamed = '',      -- Text to show for unnamed buffers.
+--   --         newfile = '[New]', -- Text to show for newly created file before first write
+--   --       },
+--   --     }
+--   --   },
+--   --   lualine_x = {
+--   --   },
+--   --   lualine_y = {},
+--   --   lualine_z = {
+--   --   }
+--   -- },
+-- })
