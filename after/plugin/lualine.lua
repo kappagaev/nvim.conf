@@ -20,6 +20,19 @@
 -- })
 
 
+function tabline()
+  local original_tabs = require('harpoon').get_mark_config().marks
+
+  for i, tab in ipairs(original_tabs) do
+    local is_current = string.match(vim.fn.bufname(), tab.filename) or vim.fn.bufname() == tab.filename
+    if is_current then
+      return i
+    end
+  end
+
+  return ""
+end
+
 local custom_kanagawa = require 'lualine.themes.kanagawa'
 custom_kanagawa.normal.c.bg = '#14141414141'
 custom_kanagawa.normal.c.fg = '#14141414141'
@@ -27,9 +40,6 @@ custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
 
 require('lualine').setup({
   options = {
-    -- refesh = {
-    --   statusline = 100000000000000,
-    -- },
     theme = custom_kanagawa,
     icons_enabled = true,
     global_status = false,
@@ -42,37 +52,19 @@ require('lualine').setup({
     --   'dap-repl',
     --     'TelescopePrompt'
     --   },
-      -- statusline = {
-      -- 'NvimTree',
-      -- 'Trouble',
-      -- 'dap-repl',
-      -- }
+    -- statusline = {
+    -- 'NvimTree',
+    -- 'Trouble',
+    -- 'dap-repl',
+    -- }
     -- },
   },
   sections = {},
   inactive_sections = {},
-  -- sections = {
-  --   lualine_a = { {
-  --     'mode',
-  --   }
-  --   },
-  --   lualine_b = { 'branch', 'diff' },
-  --   lualine_c = { 'diagnostics', },
-  --   lualine_x = { 'filetype' },
-  --   -- lualine_y = { nvimbattery },
-  --   -- lualine_y = {harp  },
-  --   lualine_y = { 'searchcount' },
-  --   lualine_z = { 'location' }
-  -- },
-  -- inactive_sections = {
-  --   lualine_a = {},
-  --   lualine_b = {},
-  --   lualine_c = { 'filename' },
-  --   lualine_x = { 'location' },
-  --   lualine_y = {},
-  --   lualine_z = {}
-  -- },
   tabline = {
+    lualine_a = {
+      tabline
+    },
     lualine_c = {
       {
         'filetype',
@@ -84,15 +76,16 @@ require('lualine').setup({
         use_mode_colors = false,
         symbols = {
           readonly = '',
-          modified = '●',    -- Text to show when the buffer is modified
-          unnamed = '', -- Text to show for unnamed buffers.
-          newfile = '[New]',   -- Text to show for newly created file before first write
+          modified = '●',  -- Text to show when the buffer is modified
+          unnamed = '',      -- Text to show for unnamed buffers.
+          newfile = '[New]', -- Text to show for newly created file before first write
         },
       }
     },
-    lualine_x = {},
+    lualine_x = {
+    },
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {
+    }
   },
-  -- extensions = { 'fugitive' },
 })

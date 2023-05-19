@@ -1,7 +1,11 @@
 require("harpoon").setup({
-  -- tabline = true,
+  tabline = false
 })
-
+vim.cmd('highlight! HarpoonInactive guibg=NONE guifg=#63698c')
+vim.cmd('highlight! HarpoonActive guibg=NONE guifg=white')
+vim.cmd('highlight! HarpoonNumberActive guibg=NONE guifg=#7aa2f7')
+vim.cmd('highlight! HarpoonNumberInactive guibg=NONE guifg=#7aa2f7')
+vim.cmd('highlight! TabLineFill guibg=NONE guifg=white')
 local active = "#A8A093"
 local inactive = "#DCD7BA"
 
@@ -22,6 +26,9 @@ vim.keymap.set('n', 'm', function()
     vim.api.nvim_set_hl(0, 'lualine_c_normal', { fg = inactive })
   end
   mark.toggle_file(i)
+  require("lualine").refresh({
+    scope = 'tabpage',
+  })
 end)
 
 vim.keymap.set('n', '<BS>', function()
@@ -33,9 +40,6 @@ vim.keymap.set('n', '<leader>h', function()
   require("harpoon.ui").toggle_quick_menu()
 end)
 
-vim.keymap.set('n', '<C-c>', function()
-  require("harpoon.ui").toggle_quick_menu()
-end)
 
 au('BufEnter', {
   pattern = '*',

@@ -32,7 +32,7 @@ require("zen-mode").setup {
 }
 
 
-vim.keymap.set('n', '<leader>z', function()
+vim.keymap.set('n', ',z', function()
   local filetype = vim.bo.filetype
   if filetype == "NvimTree" then
     vim.cmd("NvimTreeClose")
