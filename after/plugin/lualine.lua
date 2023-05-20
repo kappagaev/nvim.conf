@@ -25,7 +25,7 @@ local hl_winbar_file = 'WinBarFile'
 local hl_winbar_symbols = 'WinBarSymbols'
 local hl_winbar_file_icon = 'WinBarFileIcon'
 
-function buf_harpoon()
+function buf_harpoon(name)
   local original_tabs = require('harpoon').get_mark_config().marks
 
   for i, tab in ipairs(original_tabs) do
@@ -35,82 +35,45 @@ function buf_harpoon()
     end
   end
 
-  return ""
+  return nil
 end
-vim.api.nvim_set_hl(0, 'CurrentMarkNumber', { fg = 'green' })
+
+-- local mark_color = "#FFA066"
+local mark_color = "#FFA066"
+vim.api.nvim_set_hl(0, 'Mark1', { bg = mark_color, fg = '#000000' })
+vim.api.nvim_set_hl(0, 'MarkEnd1', { fg = mark_color })
+
+vim.api.nvim_set_hl(0, 'Mark2', { bg = "#76946A", fg = '#000000' })
+vim.api.nvim_set_hl(0, 'MarkEnd2', { fg = "#76946A" })
+
+vim.api.nvim_set_hl(0, 'Mark3', { bg = "#E46876", fg = '#000000' })
+vim.api.nvim_set_hl(0, 'MarkEnd3', { fg = "#E46876" })
+
+vim.api.nvim_set_hl(0, 'Mark4', { bg = "#E82424", fg = '#C8C093' })
+vim.api.nvim_set_hl(0, 'MarkEnd4', { fg = "#E82424" })
 
 function tabline()
-  local current_mark = buf_harpoon()
   local is_modified = vim.bo.modified and "●" or ""
-  local bufname = vim.fn.expand("%:t")
+  local bufname = vim.api.nvim_eval_statusline('%t', {}).str
   local extension = vim.fn.expand("%:e")
   local icon, color = require('nvim-web-devicons').get_icon(bufname, extension)
   local icon_str = icon and icon .. " " or ""
+-- section_separators = { left = '', right = '' },
+  local current_mark = buf_harpoon(bufname)
 
-  return "%#CurrentMarkNumber# " .. current_mark .. "%*" ..
+  if current_mark == nil then
+    return " %#" .. color .. "# ".. icon_str .. "%*" ..
+      bufname .. " " .. is_modified .. " %*"
+  else
+    return "%#Mark".. current_mark .."# " .. current_mark .. " %*" ..
+      "%#MarkEnd".. current_mark .. "#" .. "" .. "%*" ..
     "%#" .. color .. "# ".. icon_str .. "%*" ..
-    bufname .. " " .. is_modified .. " %*"
+      bufname ..
+ " " .. is_modified
+  end
 end
-
 
 -- vim.opt.showtabline = 2
 
-vim.o.winbar = '%!v:lua.tabline()'
-
--- local custom_kanagawa = require 'lualine.themes.kanagawa'
--- custom_kanagawa.normal.c.bg = '#14141414141'
--- custom_kanagawa.normal.c.fg = '#14141414141'
--- custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
---
--- require('lualine').setup({
---   options = {
---     theme = custom_kanagawa,
---     icons_enabled = true,
---     global_status = false,
---     component_separators = { left = '', right = '|' },
---     -- section_separators = { left = '', right = '' },
---     -- disabled_filetypes = {
---     --   winbar = {
---     --   'NvimTree',
---     --   'Trouble',
---     --   'dap-repl',
---     --     'TelescopePrompt'
---     --   },
---     -- statusline = {
---     -- 'NvimTree',
---     -- 'Trouble',
---     -- 'dap-repl',
---     -- }
---     -- },
---   },
---   sections = {},
---   inactive_sections = {},
---   tabline = {}
---   -- tabline = {
---   --   lualine_a = {
---   --     tabline
---   --   },
---   --   lualine_c = {
---   --     {
---   --       'filetype',
---   --       file_status = false,
---   --       icon_only = true,
---   --     },
---   --     {
---   --       'filename',
---   --       use_mode_colors = false,
---   --       symbols = {
---   --         readonly = '',
---   --         modified = '●',  -- Text to show when the buffer is modified
---   --         unnamed = '',      -- Text to show for unnamed buffers.
---   --         newfile = '[New]', -- Text to show for newly created file before first write
---   --       },
---   --     }
---   --   },
---   --   lualine_x = {
---   --   },
---   --   lualine_y = {},
---   --   lualine_z = {
---   --   }
---   -- },
--- })
+vim.o.winbar = "%{%v:lua.tabline()%}"
+-- vim.o.winbar = '%!v:lua.tabline()'

@@ -17,3 +17,8 @@ end
 
 
 map("n", ",t", toggle_spec)
+map("n", ",T", function() 
+  vim.cmd("vsplit")
+  vim.cmd("wincmd p")
+  toggle_spec()
+end)
