@@ -74,7 +74,7 @@ return require('packer').startup(function(use)
 
   use 'mfussenegger/nvim-dap'
 
-  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+  -- use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
   use('jose-elias-alvarez/null-ls.nvim')
 
@@ -97,11 +97,6 @@ return require('packer').startup(function(use)
   }
 
   use 'nacro90/numb.nvim'
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
 
   use "dstein64/vim-startuptime"
 
@@ -139,11 +134,11 @@ return require('packer').startup(function(use)
 
   use "jose-elias-alvarez/typescript.nvim"
 
-  use "ThePrimeagen/vim-be-good"
+  -- use "ThePrimeagen/vim-be-good"
 
   use 'nvim-treesitter/nvim-treesitter-context'
 
-  use "justinmk/vim-sneak"
+  -- use "justinmk/vim-sneak"
 
   use "nvim-treesitter/playground"
 
@@ -151,5 +146,4 @@ return require('packer').startup(function(use)
 
   use "Eandrju/cellular-automaton.nvim"
 
-  use "ThePrimeagen/git-worktree.nvim"
 end)

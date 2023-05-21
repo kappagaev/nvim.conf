@@ -20,11 +20,6 @@
 -- })
 
 
-local hl_winbar_path = 'WinBarPath'
-local hl_winbar_file = 'WinBarFile'
-local hl_winbar_symbols = 'WinBarSymbols'
-local hl_winbar_file_icon = 'WinBarFileIcon'
-
 function buf_harpoon(name)
   local original_tabs = require('harpoon').get_mark_config().marks
 
@@ -40,7 +35,9 @@ end
 
 -- local mark_color = "#FFA066"
 local mark_color = "#FFA066"
-vim.api.nvim_set_hl(0, 'Mark1', { bg = mark_color, fg = '#000000' })
+vim.api.nvim_set_hl(0, 'Mark1', { bg = mark_color, fg = '#000000',
+
+})
 vim.api.nvim_set_hl(0, 'MarkEnd1', { fg = mark_color })
 
 vim.api.nvim_set_hl(0, 'Mark2', { bg = "#76946A", fg = '#000000' })
