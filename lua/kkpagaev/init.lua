@@ -29,5 +29,4 @@ toggler = {
         line = 'gcc',
         block = 'gcbc'
     },
-
 })
