@@ -113,7 +113,7 @@ return require('packer').startup(function(use)
     end
   })
   use { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } }
-  use "vimwiki/vimwiki"
+  -- use "vimwiki/vimwiki"
   use "jlcrochet/vim-crystal"
 
   use {

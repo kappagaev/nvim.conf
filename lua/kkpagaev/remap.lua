@@ -31,8 +31,9 @@ map('i', 'HH', '<Esc>')
 
 vim.api.nvim_set_keymap('n', ',', '<C-w>', { noremap = true })
 vim.api.nvim_set_keymap('n', ',,', '<C-w>w', { noremap = true })
-vim.api.nvim_set_keymap('n', ',h', '<C-w>w', { noremap = true })
-vim.api.nvim_set_keymap('n', ',d', '<C-w>q', { noremap = true })
+vim.api.nvim_set_keymap('n', "'", '<C-w>w', { noremap = true })
+vim.api.nvim_set_keymap('n', ",h", '<C-w>w', { noremap = true })
+vim.api.nvim_set_keymap('n', ",d", '<C-w>q', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '>', '>>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<', '<<', { noremap = true })
@@ -90,7 +91,10 @@ vim.keymap.set("n", "glt", ":VimwikiToggleListItem<CR>", { silent = true })
 -- vim.keymap.set('i','<C-]>', '<esc>f\\|ni', { silent = true })
 --
 
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+vim.keymap.set("n", "<leader>mr", function()
+  require("zen-mode").toggle()
+  vim.cmd "CellularAutomaton make_it_rain"
+end)
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !t<CR>")
 

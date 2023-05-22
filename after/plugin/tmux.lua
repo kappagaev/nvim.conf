@@ -13,3 +13,5 @@ function fullscrean()
 end
 
 map("n", "<leader>u", fullscrean)
+map("n", ",u", fullscrean)
+-- map("n", "'", fullscrean)
