@@ -146,4 +146,12 @@ return require('packer').startup(function(use)
 
   use "Eandrju/cellular-automaton.nvim"
 
+  use({
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    -- install jsregexp (optional!:).
+    -- run = "make install_jsregexp"
+  })
+  use "rafamadriz/friendly-snippets"
+
 end)

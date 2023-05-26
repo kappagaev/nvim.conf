@@ -132,6 +132,12 @@ require('fidget').setup({
   sources = sources,
 })
 
+local luasnip = require("luasnip")
+
+require'luasnip'.filetype_extend("ruby", {"rails"})
+require("luasnip.loaders.from_vscode").lazy_load()
+
+
 cmp.setup {
   preselect = cmp.PreselectMode.None,
   formatting = {
@@ -172,6 +178,7 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'luasnip' },
     { name = 'path' },
     { name = 'buffer' },
     { name = 'calc' },

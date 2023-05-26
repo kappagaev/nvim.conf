@@ -1,26 +1,4 @@
--- local function current_time()
--- local time = os.date("*t")
--- return ("%02d:%02d:%02d"):format(time.hour, time.min, time.sec)
--- end
--- local nvimbattery = {
--- function()
--- return require("battery").get_status_line()
--- end,
--- }
-
--- local battery = require("battery")
--- battery.setup({
--- update_rate_seconds = 30,           -- Number of seconds between checking battery status
--- show_status_when_no_battery = true, -- Don't show any icon or text when no battery found (desktop for example)
--- show_plugged_icon = false,           -- If true show a cable icon alongside the battery icon when plugged in
--- show_unplugged_icon = false,         -- When true show a diconnected cable icon when not plugged in
--- show_percent = true,                -- Whether or not to show the percent charge remaining in digits
--- vertical_icons = true,              -- When true icons are vertical, otherwise shows horizontal battery icon
--- multiple_battery_selection = 1,     -- Which battery to choose when multiple found. "max" or "maximum", "min" or "minimum" or a number to pick the nth battery found (currently linux acpi only)
--- })
-
-
-function buf_harpoon(name)
+function buf_harpoon()
   local original_tabs = require('harpoon').get_mark_config().marks
 
   for i, tab in ipairs(original_tabs) do
@@ -34,23 +12,27 @@ function buf_harpoon(name)
 end
 
 -- local mark_color = "#FFA066"
-local mark_color = "#FFA066"
-vim.api.nvim_set_hl(0, 'Mark1', { bg = mark_color, fg = '#000000',
+local function set_mark_color(number, color, fg)
+  if not fg then
+    fg = "#000000"
+  end
+  vim.api.nvim_set_hl(0, 'Mark' .. number, { bg = color, fg = fg })
+  vim.api.nvim_set_hl(0, 'MarkEnd' .. number, { fg = color })
+end
 
-})
-vim.api.nvim_set_hl(0, 'MarkEnd1', { fg = mark_color })
+-- set_mark_color(1, "#FFA066")
+set_mark_color(1, "#54546D", "#C8C093")
+set_mark_color(2, "#76946A")
+set_mark_color(3, "#E82424", "#C8C093")
+set_mark_color(4, "#7E9CD8")
+-- set_mark_color(4, "#A3D4D5")
+set_mark_color(5, "#49443C", "#C8C093")
 
-vim.api.nvim_set_hl(0, 'Mark2', { bg = "#76946A", fg = '#000000' })
-vim.api.nvim_set_hl(0, 'MarkEnd2', { fg = "#76946A" })
-
-vim.api.nvim_set_hl(0, 'Mark3', { bg = "#E46876", fg = '#000000' })
-vim.api.nvim_set_hl(0, 'MarkEnd3', { fg = "#E46876" })
-
-vim.api.nvim_set_hl(0, 'Mark4', { bg = "#E82424", fg = '#C8C093' })
-vim.api.nvim_set_hl(0, 'MarkEnd4', { fg = "#E82424" })
+-- vim.api.nvim_set_hl(0, "WinBar", { bg = "#FFA066", fg = "#000000" })
 
 function tabline()
   local is_modified = vim.bo.modified and "●" or ""
+  -- local bufname = vim.api.nvim_eval_statusline('%t', {}).str
   local bufname = vim.api.nvim_eval_statusline('%t', {}).str
   local extension = vim.fn.expand("%:e")
   local icon, color = require('nvim-web-devicons').get_icon(bufname, extension)
@@ -62,11 +44,12 @@ function tabline()
     return " %#" .. color .. "# ".. icon_str .. "%*" ..
       bufname .. " " .. is_modified .. " %*"
   else
-    return "%#Mark".. current_mark .."# " .. current_mark .. " %*" ..
+    return "%#WinBar#" ..
+      "%#Mark".. current_mark .."# " .. current_mark .. " %*" ..
       "%#MarkEnd".. current_mark .. "#" .. "" .. "%*" ..
     "%#" .. color .. "# ".. icon_str .. "%*" ..
       bufname ..
- " " .. is_modified
+ " " .. is_modified .. " %*"
   end
 end
 

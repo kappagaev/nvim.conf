@@ -119,7 +119,7 @@ dap.configurations.php = {
   },
 }
 
--- require('dap-ruby').setup()
+require('dap-ruby').setup()
 dap.configurations.ruby = {
   {
     type = 'ruby',

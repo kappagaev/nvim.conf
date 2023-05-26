@@ -70,7 +70,13 @@ vim.g.crystal_define_mappings = 0
 
 
 local opt = vim.opt
-opt.laststatus = 0
+opt.laststatus = 5
+
+vim.opt.laststatus = 0
+
+-- vim.opt.statusline = " "
+
+
 
 -- opt.autowrite = true -- Enable auto write
 -- opt.completeopt = "menu,menuone,noselect"
