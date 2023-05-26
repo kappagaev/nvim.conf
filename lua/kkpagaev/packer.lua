@@ -154,4 +154,8 @@ return require('packer').startup(function(use)
   })
   use "rafamadriz/friendly-snippets"
 
+  use {
+  "rest-nvim/rest.nvim",
+  requires = { "nvim-lua/plenary.nvim" },
+  }
 end)
