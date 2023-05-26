@@ -54,7 +54,6 @@ map('n', '<leader>i', ':TypescriptAddMissingImports<CR>')
 -- map('n', '<c-u>', '18k')
 
 map('v', '<leader>p', '"_dP')
-vim.keymap.set('n', '<leader>c', "V:'<,'>!bc -l<CR>", { silent = true })
 
 -- map('n', '<leader>w', ":w<CR>")
 
