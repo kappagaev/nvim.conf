@@ -38,6 +38,26 @@ end
 local servers = {
   tsserver = {
   },
+  lua_ls = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  }
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -68,9 +88,9 @@ mason_lspconfig.setup_handlers {
     if server_name == 'tsserver' then
       require("typescript").setup({
         disable_commands = false, -- prevent the plugin from creating Vim commands
-        debug = false,        -- enable debug logging for commands
+        debug = false,            -- enable debug logging for commands
         go_to_source_definition = {
-          fallback = true,    -- fall back to standard LSP definition on failure
+          fallback = true,        -- fall back to standard LSP definition on failure
         },
         commands = {
           OrganizeImports = {
@@ -79,7 +99,7 @@ mason_lspconfig.setup_handlers {
           }
         },
         server = {
-               -- pass options to lspconfig's setup method
+          -- pass options to lspconfig's setup method
           copabilities = capabilities,
           on_attach = on_attach,
           settings = servers[server_name],
@@ -112,11 +132,11 @@ mason_lspconfig.setup_handlers {
 }
 require("typescript").setup({
   disable_commands = false,
-  debug = false,         -- enable debug logging for commands
+  debug = false,      -- enable debug logging for commands
   go_to_source_definition = {
-    fallback = false,     -- fall back to standard LSP definition on failure
+    fallback = false, -- fall back to standard LSP definition on failure
   },
-  server = {             -- pass options to lspconfig's setup method
+  server = {          -- pass options to lspconfig's setup method
     on_attach = on_attach,
   },
 })
@@ -134,7 +154,7 @@ require('fidget').setup({
 
 local luasnip = require("luasnip")
 
-require'luasnip'.filetype_extend("ruby", {"rails"})
+require 'luasnip'.filetype_extend("ruby", { "rails" })
 require("luasnip.loaders.from_vscode").lazy_load()
 
 
