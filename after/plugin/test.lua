@@ -92,8 +92,23 @@ end
 
 
 local function run_all()
+  local dap = require('dap')
+  dap.terminate()
   reset_window()
-  send_command_to_split("npx jest --watchAll -i")
+  send_command_to_split("node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i")
+
+  local config = ({
+    type = "pwa-node",
+    request = "attach",
+    name = "Attach",
+    processId = function()
+      -- require 'dap.utils'.pick_process({filter = "pnpm run start:debug"})
+      require 'dap.utils'.pick_process()
+    end,
+    cwd = "${workspaceFolder}",
+    log = false
+  })
+  dap.run(config)
 end
 
 vim.keymap.set('n', '<leader>`', run_all, { noremap = true, silent = true })
