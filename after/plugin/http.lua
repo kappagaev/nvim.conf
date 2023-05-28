@@ -33,4 +33,3 @@ require("rest-nvim").setup({
   yank_dry_run = true,
 })
 
-vim.keymap.set("n", "`", "<Plug>RestNvim", { silent = true })

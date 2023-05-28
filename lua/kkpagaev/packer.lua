@@ -74,7 +74,7 @@ return require('packer').startup(function(use)
 
   use 'mfussenegger/nvim-dap'
 
-  -- use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+  use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
   use('jose-elias-alvarez/null-ls.nvim')
 
@@ -157,5 +157,9 @@ return require('packer').startup(function(use)
   use {
   "rest-nvim/rest.nvim",
   requires = { "nvim-lua/plenary.nvim" },
+  }
+
+  use {
+    "theHamsta/nvim-dap-virtual-text"
   }
 end)

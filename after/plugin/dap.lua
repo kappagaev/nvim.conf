@@ -1,10 +1,5 @@
 local dap = require('dap')
--- dap.defaults.fallback.force_external_terminal = true
--- dap.defaults.fallback.terminal_win_cmd = 'belowright new'
---
--- dap.defaults.fallback.external_terminal = {
--- command = '/usr/bin/kitty';
--- }dap.defaults.fallback.force_external_terminal = true
+
 vim.fn.sign_define('DapBreakpoint',
   { text = '💀', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointRejected',
@@ -12,50 +7,38 @@ vim.fn.sign_define('DapBreakpointRejected',
 vim.fn.sign_define('DapStopped',
   { text = '👀', texthl = '', linehl = '', numhl = '' })
 
-vim.keymap.set('n', '<A-b>',
+vim.keymap.set('n', '<M-b>',
   function() require "dap".toggle_breakpoint() end)
--- vim.keymap.set('n', '<leader>dH',
---   ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
+
+vim.keymap.set('n', '<leader>c',
+  function() require "dap".clear_breakpoints() end)
 
 vim.api.nvim_set_keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], {})
 
-vim.keymap.set({ 'n', 't' }, "<C-'>", function() require "dap".step_out() end)
-vim.keymap.set({ 'n', 't' }, "<C-,>", function() require "dap".step_into() end)
-vim.keymap.set({ 'n', 't' }, '<C-.>', function() require "dap".step_over() end)
-vim.keymap.set({ 'n', 't' }, '<M-d>', function() require "dap".continue() end)
+vim.keymap.set({ 'n', 't' }, '<C-g>', function() require "dap".continue() end)
+vim.keymap.set({ 'n', 't' }, '<C-c>', function() require "dap".step_over() end)
+vim.keymap.set({ 'n', 't' }, "<C-r>", function() require "dap".step_into() end)
+vim.keymap.set({ 'n', 't' }, "<C-l>", function() require "dap".step_out() end)
 
--- vim.keymap.set('n', '<leader>dR',
---   function() require "dap".clear_breakpoints() end)
--- vim.keymap.set('n', '<leader>de',
---   function() require "dap".set_exception_breakpoints({ "all" }) end)
--- vim.keymap.set('n', '<leader>da', function() require "debugHelper".attach() end)
--- vim.keymap.set('n', '<leader>dA',
--- function() require "debugHelper".attachToRemote() end)
--- vim.keymap
---     .set('n', '<leader>di', function() require "dap.ui.widgets".hover() end)
--- vim.keymap.set('n', '<leader>d?', function()
---   local widgets = require "dap.ui.widgets";
---   widgets.centered_float(widgets.scopes)
--- end)
--- vim.keymap.set('n', '<leader>dk', ':lua require"dap".up()<CR>zz')
--- vim.keymap.set('n', '<leader>dj', ':lua require"dap".down()<CR>zz')
---
--- vim.keymap.set('n', '<leader>rd', function()
---   require("dap-go").debug_test()
--- end, { desc = "Run Debug, current pointer test" })
---
--- vim.keymap.set('n', '<leader>rr', function()
---   require("dap-go").debug_last_test()
--- end, { desc = "ReRun last debug test" })
---
-vim.keymap.set('n', '<leader>d', function()
+vim.keymap.set({ "n", "i", "t" }, '<M-d>', function()
+  local bufname = vim.fn.expand("%:r")
+  print(bufname)
   vim.cmd("NvimTreeClose")
-  require'dap'.repl.open()
+  if bufname ~= "[dap-repl]" then
+    require("dapui").toggle()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
+  else
+    require("dapui").toggle()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
+    -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
+  end
+  -- focus_buffer("[dap-repl]")
 end)
 
 require("dap-vscode-js").setup({
-  node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
-  debugger_path = "/home/kkpagaev/vscode-js-debug", -- Path to vscode-js-debug installation.
+  node_path = "node",                                                                          -- Path of node executable. Defaults to $NODE_PATH, and then "node"
+  debugger_path = "/home/kkpagaev/vscode-js-debug",                                            -- Path to vscode-js-debug installation.
   adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' }, -- which adapters to register in nvim-dap
   -- adapters = { 'pwa-node'}, -- which adapters to register in nvim-dap
 })
@@ -113,7 +96,7 @@ dap.configurations.php = {
     request = 'launch',
     name = 'Listen for xdebug',
     port = '9003',
--- log = true,
+    -- log = true,
     --  serverSourceRoot = 'localhost:8888',
     --  localSourceRoot = '~/Sites/',
   },
