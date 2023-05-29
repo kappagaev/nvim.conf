@@ -92,6 +92,7 @@ local languages = {
         return nil
       end
     end,
+    reset_command = "q",
     get_under_cursor_command = function(run)
       local cmd =
       "node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i "
@@ -104,6 +105,30 @@ local languages = {
       end
 
       return cmd
+    end
+  },
+  ruby = {
+    dap_config = {
+      type = 'ruby',
+      name = 'debug current file',
+      request = 'attach',
+      port = 38698,
+      server = '127.0.0.1',
+      options = {
+        source_filetype = 'ruby',
+      },
+      localfs = true,
+      waiting = 1000,
+    },
+    get_test_name = function()
+      return nil
+    end,
+    get_file_name = function()
+      local str = vim.fn.expand("%")
+      return str
+    end,
+    get_under_cursor_command = function(run)
+      return "rdbg -c --open --port 38698 -- ruby " .. run.file
     end
   }
 }
@@ -120,11 +145,12 @@ local function kill_pane()
   vim.fn.system('tmux kill-pane -t right')
 end
 -- if no split, then creates
-local function reset_window()
-  if get_pane_count() >= 2 then
-    vim.fn.system('tmux send-keys -t right "q"')
-  else
+local function reset_window(config)
+  if get_pane_count() < 2 then
     vim.fn.system('tmux split-window -d -h -c "#{pane_current_path}" -l 60')
+  end
+  if config.reset_command ~= nil then
+    vim.fn.system('tmux send-keys -t right "' .. config.reset_command .. '"')
   end
 end
 
@@ -135,7 +161,7 @@ end
 local function run_all()
   local file_type = vim.bo.filetype
   local config = languages[file_type]
-  reset_window()
+  reset_window(config)
   if config.dap_config ~= nil then
     dap.terminate()
   end
@@ -169,7 +195,7 @@ local function run_at_curson()
 
   run.file = file_name
 
-  reset_window()
+  reset_window(config)
   send_command_to_split(config.get_under_cursor_command(run))
 
   if config.dap_config ~= nil then

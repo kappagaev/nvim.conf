@@ -1,3 +1,4 @@
+local nvim_lsp = require('lspconfig')
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
@@ -226,14 +227,15 @@ require 'lspconfig'.solargraph.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 
+  root_dir = nvim_lsp.util.root_pattern(".rubocop.yml", ".git"),
   init_options = {
-    formatting = true,
+    formatting = false,
   },
   settings = {
     solargraph = {
       autoformat = true,
       completion = true,
-      diagnostic = true,
+      diagnostic = false,
       folding = true,
       references = true,
       rename = true,
