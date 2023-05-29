@@ -154,7 +154,7 @@ end
 local au = vim.api.nvim_create_autocmd
 
 au("BufEnter", {
-  pattern = '*.spec.ts',
+  pattern = '*.ts',
   callback = function()
     vim.keymap.set('n', '`', run_at_curson, { noremap = true, silent = true })
   end,
