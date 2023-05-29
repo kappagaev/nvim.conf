@@ -1,5 +1,6 @@
 local q = require("vim.treesitter")
 local utils = require("harpoon.utils")
+local dap = require('dap')
 
 local function i(...)
   print(vim.inspect(...))
@@ -39,7 +40,6 @@ local function get_jest_tests(function_name)
   return tests
 end
 
-
 local function get_test_at_line_number(function_name)
   -- curson line number
   local line_number = vim.api.nvim_win_get_cursor(0)[1]
@@ -52,6 +52,63 @@ local function get_test_at_line_number(function_name)
     end
   end
 end
+
+local languages = {
+  typescript = {
+    run_all_command =
+    "node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i",
+    dap_config = {
+      type = "pwa-node",
+      request = "attach",
+      name = "Attach",
+      processId = function()
+        -- require 'dap.utils'.pick_process({filter = "pnpm run start:debug"})
+        require 'dap.utils'.pick_process()
+      end,
+      cwd = "${workspaceFolder}",
+      log = false
+    },
+    get_test_name = function()
+      local test = get_test_at_line_number("it")
+      if test == nil then
+        test = get_test_at_line_number("describe")
+        if test ~= nil then
+          return test
+        end
+      else
+        return test
+      end
+    end,
+    get_file_name = function()
+      local str = vim.fn.expand("%")
+      local suffix = ".spec.ts"
+
+      if string.sub(str, -string.len(suffix)) == suffix then
+        return vim.fn.expand("%:p")
+      elseif string.sub(str, -string.len(".ts")) == ".ts" then
+        local str1 = vim.fn.expand("%:p:r")
+        return str1 .. ".spec.ts"
+      else
+        return nil
+      end
+    end,
+    get_under_cursor_command = function(run)
+      local cmd =
+      "node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i "
+      if run.test ~= nil then
+        cmd = cmd .. "-t '" .. run.test.name .. "'"
+      end
+
+      if run.file ~= nil then
+        cmd = cmd .. " --testRegex '" .. run.file .. "'"
+      end
+
+      return cmd
+    end
+  }
+}
+
+
 
 
 local function get_pane_count()
@@ -75,94 +132,66 @@ local function send_command_to_split(command)
   vim.fn.system('tmux send-keys -t right "' .. command .. '" Enter')
 end
 
-local function get_spec()
-  local str = vim.fn.expand("%")
-  local suffix = ".spec.ts"
-
-  if string.sub(str, -string.len(suffix)) == suffix then
-    return vim.fn.expand("%:p")
-  elseif string.sub(str, -string.len(".ts")) == ".ts" then
-    local str1 = vim.fn.expand("%:p:r")
-    return str1 .. ".spec.ts"
-  else
-    return nil
-  end
-end
-
-
-
 local function run_all()
-  local dap = require('dap')
-  dap.terminate()
+  local file_type = vim.bo.filetype
+  local config = languages[file_type]
   reset_window()
-  send_command_to_split("node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i")
+  if config.dap_config ~= nil then
+    dap.terminate()
+  end
+  send_command_to_split(config.run_all_command)
 
-  local config = ({
-    type = "pwa-node",
-    request = "attach",
-    name = "Attach",
-    processId = function()
-      -- require 'dap.utils'.pick_process({filter = "pnpm run start:debug"})
-      require 'dap.utils'.pick_process()
-    end,
-    cwd = "${workspaceFolder}",
-    log = false
-  })
-  dap.run(config)
+  if config.dap_config ~= nil then
+    dap.run(config.dap_config)
+  end
 end
 
 vim.keymap.set('n', '<leader>`', run_all, { noremap = true, silent = true })
 
 local function run_at_curson()
-  local dap = require('dap')
-  dap.terminate()
-  local cmd = "node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i "
-  local test = get_test_at_line_number()
-  if test == nil then
-    test = get_test_at_line_number("describe")
-    if test ~= nil then
-      cmd = cmd .. "-t '" .. test.name .. "'"
-    end
-  else
-    cmd = cmd .. "-t '" .. test.name .. "'"
+  local file_type = vim.bo.filetype
+  local config = languages[file_type]
+  if config == nil then
+    print("No config found for " .. file_type)
+    return
   end
-  local file_name = get_spec()
+  if config.dap_config ~= nil then
+    dap.terminate()
+  end
+  local run = {}
+  run.test = config.get_test_name()
+  local file_name = config.get_file_name()
 
   if file_name == nil then
     print("No spec file found")
     return
   end
 
-  reset_window()
-  cmd = cmd .. " --testRegex '" .. file_name .. "'"
-  send_command_to_split(cmd)
+  run.file = file_name
 
-  local config = ({
-    type = "pwa-node",
-    request = "attach",
-    name = "Attach",
-    processId = function()
-      -- require 'dap.utils'.pick_process({filter = "pnpm run start:debug"})
-      require 'dap.utils'.pick_process()
-    end,
-    cwd = "${workspaceFolder}",
-    log = false
-  })
-  dap.run(config)
+  reset_window()
+  send_command_to_split(config.get_under_cursor_command(run))
+
+  if config.dap_config ~= nil then
+    dap.run(config.dap_config)
+  end
 end
 
-local au = vim.api.nvim_create_autocmd
+-- local au = vim.api.nvim_create_autocmd
 
-au("BufEnter", {
-  pattern = '*.ts',
-  callback = function()
-    vim.keymap.set('n', '`', run_at_curson, { noremap = true, silent = true })
-  end,
-})
+-- au("BufEnter", {
+--   pattern = '*.ts',
+--   callback = function()
+--     vim.keymap.set('n', '`', run_at_curson, { noremap = true, silent = true })
+--   end,
+-- })
 
-au("BufEnter", {
-  pattern = '*.http',
-  callback = function()
-    vim.keymap.set("n", "`", "<Plug>RestNvim", { noremap = true, silent = true })
-  end,
-})
+-- au("BufEnter", {
+--   pattern = '*.http',
+--   callback = function()
+--     vim.keymap.set("n", "`", "<Plug>RestNvim", { noremap = true, silent = true })
+--   end,
+-- })
+
+
+vim.keymap.set('n', '`', run_at_curson, { noremap = true, silent = true })
