@@ -148,6 +148,7 @@ end
 local function reset_window(config)
   if get_pane_count() < 2 then
     vim.fn.system('tmux split-window -d -h -c "#{pane_current_path}" -l 60')
+    return
   end
   if config.reset_command ~= nil then
     vim.fn.system('tmux send-keys -t right "' .. config.reset_command .. '"')
