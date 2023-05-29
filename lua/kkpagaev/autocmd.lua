@@ -9,18 +9,11 @@ au('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd({"TextYankPost"}, {
-  pattern = {"*"},
-  command = "wshada /tmp/yank"
-})
+-- vim.api.nvim_create_autocmd({"TextYankPost"}, {
+--   pattern = {"*"},
+--   command = "wshada /tmp/yank"
+-- })
 
-au('TextYankPost', {
-  group = ag('yank_highlight', {}),
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank { higroup = 'IncSearch', timeout = 50 }
-  end,
-})
 
 au('BufRead,BufNewFile', {
   pattern = '*.slang',
@@ -85,24 +78,24 @@ au('BufRead,BufNewFile', {
 -- end,
 -- })
 
-au('BufWritePost', {
-pattern = '*.pl',
-callback = function()
-require("harpoon.tmux").sendCommand("{right}", "halt.\n")
-require("harpoon.tmux").sendCommand("{right}", "clear\n")
-require("harpoon.tmux").sendCommand("{right}", "swipl -s l.pl\n")
-end,
-})
-
-au('InsertLeave', {
-pattern = '*.pl',
-callback = function()
-vim.cmd('w')
-require("harpoon.tmux").sendCommand("{right}", "halt.\n")
-require("harpoon.tmux").sendCommand("{right}", "clear\n")
-require("harpoon.tmux").sendCommand("{right}", "swipl -s l.pl\n")
-end,
-})
+-- au('BufWritePost', {
+-- pattern = '*.pl',
+-- callback = function()
+-- require("harpoon.tmux").sendCommand("{right}", "halt.\n")
+-- require("harpoon.tmux").sendCommand("{right}", "clear\n")
+-- require("harpoon.tmux").sendCommand("{right}", "swipl -s l.pl\n")
+-- end,
+-- })
+--
+-- au('InsertLeave', {
+-- pattern = '*.pl',
+-- callback = function()
+-- vim.cmd('w')
+-- require("harpoon.tmux").sendCommand("{right}", "halt.\n")
+-- require("harpoon.tmux").sendCommand("{right}", "clear\n")
+-- require("harpoon.tmux").sendCommand("{right}", "swipl -s l.pl\n")
+-- end,
+-- })
 
 
 -- au('BufWritePost', {
