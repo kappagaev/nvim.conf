@@ -5,12 +5,12 @@ require("zen-mode").setup {
     height = 1,
     options = {
       signcolumn = "yes", -- disable signcolumn
-      number = false, -- disable number column
-      relativenumber = false, -- disable relative numbers
-      cursorline = false, -- disable cursorline
+      number = true, -- disable number column
+      relativenumber = true, -- disable relative numbers
+      cursorline = true, -- disable cursorline
       cursorcolumn = false, -- disable cursor column
       foldcolumn = "0", -- disable fold column
-      list = false, -- disable whitespace characters
+      list = true, -- disable whitespace characters
     },
   },
   plugins = {
@@ -32,7 +32,15 @@ require("zen-mode").setup {
 }
 
 
-vim.keymap.set('n', ',z', function()
+vim.keymap.set('n', ",'", function()
+  local filetype = vim.bo.filetype
+  if filetype == "NvimTree" then
+    vim.cmd("NvimTreeClose")
+  end
+  vim.cmd("ZenMode")
+end)
+
+vim.keymap.set('n', ',h', function()
   local filetype = vim.bo.filetype
   if filetype == "NvimTree" then
     vim.cmd("NvimTreeClose")
