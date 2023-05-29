@@ -34,6 +34,7 @@ require('telescope').setup {
     }
 }
 vim.keymap.set('n', '<leader><space>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>u', builtin.find_files, {})
 vim.keymap.set('n', '<leader>/', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})

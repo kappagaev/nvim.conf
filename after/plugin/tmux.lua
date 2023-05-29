@@ -12,6 +12,6 @@ function fullscrean()
   vim.fn.system("tmux resize-pane -Z")
 end
 
-map("n", "<leader>u", fullscrean)
+-- map("n", "<leader>u", fullscrean)
 map("n", ",u", fullscrean)
 -- map("n", "'", fullscrean)
