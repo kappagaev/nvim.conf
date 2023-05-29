@@ -128,7 +128,7 @@ local languages = {
       return str
     end,
     get_under_cursor_command = function(run)
-      return "rdbg -c --open --port 38698 -- ruby " .. run.file
+      return "rdbg --open --port 38698 -- " .. run.file
     end
   }
 }
