@@ -34,6 +34,10 @@ function tabline()
   local is_modified = vim.bo.modified and "●" or ""
   -- local bufname = vim.api.nvim_eval_statusline('%t', {}).str
   local bufname = vim.api.nvim_eval_statusline('%t', {}).str
+  if bufname == "NvimTree_1" then
+    return ""
+    -- return " %#WinBar#  %* NvimTree"
+  end
   local extension = vim.fn.expand("%:e")
   local icon, color = require('nvim-web-devicons').get_icon(bufname, extension)
   local icon_str = icon and icon .. " " or ""
@@ -56,4 +60,5 @@ end
 -- vim.opt.showtabline = 2
 
 vim.o.winbar = "%{%v:lua.tabline()%}"
+-- vim.o.winbar='%{%%}'
 -- vim.o.winbar = '%!v:lua.tabline()'
