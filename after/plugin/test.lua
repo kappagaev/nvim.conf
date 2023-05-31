@@ -147,7 +147,7 @@ end
 -- if no split, then creates
 local function reset_window(config)
   if get_pane_count() < 2 then
-    vim.fn.system('tmux split-window -d -h -c "#{pane_current_path}" -l 60')
+    vim.fn.system('tmux split-window -d -h -c "#{pane_current_path}" -l 54')
     return
   end
   if config.reset_command ~= nil then
@@ -222,3 +222,13 @@ end
 
 
 vim.keymap.set('n', '`', run_at_curson, { noremap = true, silent = true })
+
+require("coverage").setup()
+
+vim.keymap.set('n', ',c', function()
+  require("coverage").load(true)
+end, { noremap = true, silent = true })
+
+vim.keymap.set('n', ',C', function()
+  require("coverage").toggle()
+end, { noremap = true, silent = true })

@@ -146,4 +146,6 @@ return require('packer').startup(function(use)
   use {
     "theHamsta/nvim-dap-virtual-text"
   }
+
+  use "andythigpen/nvim-coverage"
 end)
