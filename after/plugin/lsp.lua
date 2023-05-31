@@ -255,7 +255,8 @@ require('lspconfig')['yamlls'].setup {
         server = "verbose"
       },
       schemas = {
-        kubernetes = "/*.yaml"
+        kubernetes = "/*.yaml",
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
         -- kubernetes = "*.k8s.yaml",
       }
     }
