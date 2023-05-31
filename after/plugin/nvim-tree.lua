@@ -12,6 +12,10 @@ require 'nvim-web-devicons'.setup {
 }
 
 require("nvim-tree").setup({
+    disable_netrw = true,
+  hijack_netrw = true,
+  respect_buf_cwd = true,
+  sync_root_with_cwd = true,
     update_cwd = false,
 		sort_by = "case_sensitive",
 		view = {
