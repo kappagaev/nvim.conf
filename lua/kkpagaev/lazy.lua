@@ -84,10 +84,6 @@ local plugins = {
 
   'nacro90/numb.nvim',
 
-  "dstein64/vim-startuptime",
-
-  "jose-elias-alvarez/typescript.nvim",
-
   'hrsh7th/cmp-buffer',
 
   'windwp/nvim-autopairs',

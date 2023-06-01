@@ -1,10 +1,6 @@
 local nvim_lsp = require('lspconfig')
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-
 
 local on_attach = function(client, bufnr)
-  -- client.server_capabilities.semanticTokensProvider = nil
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -42,18 +38,14 @@ local servers = {
   lua_ls = {
     Lua = {
       runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
       },
       diagnostics = {
-        -- Get the language server to recognize the `vim` global
         globals = { 'vim' },
       },
       workspace = {
-        -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
       },
-      -- Do not send telemetry data containing a randomized but unique identifier
       telemetry = {
         enable = false,
       },
@@ -68,22 +60,7 @@ require('mason').setup()
 
 local mason_lspconfig = require 'mason-lspconfig'
 
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-servers.prolog_ls = {}
-
-local function organize_imports()
-  local params = {
-    command = "_typescript.organizeImports",
-    arguments = { vim.api.nvim_buf_get_name(0) },
-    title = ""
-  }
-  vim.lsp.buf.execute_command(params)
-end
-
-vim.keymap.set('n', '<leader>i', organize_imports, { buffer = 0, desc = 'Organize Imports' })
-
+mason_lspconfig.setup {}
 mason_lspconfig.setup_handlers {
   function(server_name)
     if server_name == 'tsserver' then
@@ -92,12 +69,6 @@ mason_lspconfig.setup_handlers {
         debug = false,            -- enable debug logging for commands
         go_to_source_definition = {
           fallback = true,        -- fall back to standard LSP definition on failure
-        },
-        commands = {
-          OrganizeImports = {
-            organize_imports,
-            description = "Organize Imports"
-          }
         },
         server = {
           -- pass options to lspconfig's setup method
@@ -111,16 +82,6 @@ mason_lspconfig.setup_handlers {
           }
         },
       })
-      -- require('lspconfig')[server_name].setup {
-      -- copabilities = capabilities,
-      -- on_attach = on_attach,
-      -- settings = servers[server_name],
-      -- init_options = {
-      -- preferences = {
-      -- importModuleSpecifierPreference = "relative"
-      -- }
-      -- }
-      -- }
       return
     else
       require('lspconfig')[server_name].setup {
@@ -131,22 +92,16 @@ mason_lspconfig.setup_handlers {
     end
   end,
 }
-require("typescript").setup({
-  disable_commands = false,
-  debug = false,      -- enable debug logging for commands
-  go_to_source_definition = {
-    fallback = false, -- fall back to standard LSP definition on failure
-  },
-  server = {          -- pass options to lspconfig's setup method
-    on_attach = on_attach,
-  },
-})
+
 local cmp = require 'cmp'
 
 local lspkind = require('lspkind')
 
 local sources = {}
 sources['null-ls'] = {
+  ignore = true
+}
+sources['lua_ls'] = {
   ignore = true
 }
 require('fidget').setup({
@@ -213,15 +168,10 @@ require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
   },
 })
 
-require('lspconfig')['prolog_ls'].setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
-
-require 'lspconfig'.crystalline.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
+-- require 'lspconfig'.crystalline.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- }
 
 require 'lspconfig'.solargraph.setup {
   capabilities = capabilities,
