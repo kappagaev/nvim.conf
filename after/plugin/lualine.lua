@@ -25,6 +25,7 @@ set_mark_color(1, "#54546D", "#C8C093")
 set_mark_color(2, "#76946A")
 set_mark_color(3, "#E82424", "#C8C093")
 set_mark_color(4, "#7E9CD8")
+-- set_mark_color(4, "#ffffff")
 -- set_mark_color(4, "#A3D4D5")
 set_mark_color(5, "#49443C", "#C8C093")
 
