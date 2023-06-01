@@ -31,7 +31,6 @@ map('i', 'HH', '<Esc>')
 map("n", "YY", "va{Vy")
 
 vim.api.nvim_set_keymap('n', ',', '<C-w>', { noremap = true })
-vim.api.nvim_set_keymap('n', "'", '<C-w>w', { noremap = true })
 vim.api.nvim_set_keymap('n', ",h", '<C-w>w', { noremap = true })
 vim.api.nvim_set_keymap('n', ",d", '<C-w>q', { noremap = true })
 

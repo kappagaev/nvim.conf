@@ -14,7 +14,6 @@ au('TextYankPost', {
 --   command = "wshada /tmp/yank"
 -- })
 
-
 au('BufRead,BufNewFile', {
   pattern = '*.slang',
   callback = function()

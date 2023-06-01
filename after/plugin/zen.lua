@@ -32,7 +32,7 @@ require("zen-mode").setup {
 }
 
 
-vim.keymap.set('n', ",'", function()
+vim.keymap.set('n', ",,", function()
   local filetype = vim.bo.filetype
   if filetype == "NvimTree" then
     vim.cmd("NvimTreeClose")
@@ -40,10 +40,3 @@ vim.keymap.set('n', ",'", function()
   vim.cmd("ZenMode")
 end)
 
-vim.keymap.set('n', ',h', function()
-  local filetype = vim.bo.filetype
-  if filetype == "NvimTree" then
-    vim.cmd("NvimTreeClose")
-  end
-  vim.cmd("ZenMode")
-end)
