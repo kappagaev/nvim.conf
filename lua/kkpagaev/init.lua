@@ -1,6 +1,6 @@
 require('kkpagaev.set')
 require('kkpagaev.remap')
-require('kkpagaev.packer')
+require('kkpagaev.lazy')
 require('kkpagaev.autocmd')
 
 local function map(m, k, v)
