@@ -68,6 +68,8 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.crystal_define_mappings = 0
 
 
+vim.o.timeout = true
+vim.o.timeoutlen = 1000
 
 local opt = vim.opt
 opt.laststatus = 5

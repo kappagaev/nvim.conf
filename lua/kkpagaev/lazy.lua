@@ -12,9 +12,23 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'numToStr/Comment.nvim',
-
-  "norcalli/nvim-colorizer.lua",
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup({
+        toggler = {
+          line = 'gcc',
+          block = 'gcbc'
+        },
+      })
+    end
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require 'colorizer'.setup()
+    end
+  },
   {
     'nvim-tree/nvim-tree.lua',
     dependencies = {
@@ -64,13 +78,21 @@ local plugins = {
 
   'jose-elias-alvarez/null-ls.nvim',
 
-  "petertriho/nvim-scrollbar",
+  {
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require("scrollbar").setup()
+    end
+  },
 
   "ray-x/lsp_signature.nvim",
 
   "folke/trouble.nvim",
 
-  "folke/todo-comments.nvim",
+  {
+
+    "folke/todo-comments.nvim",
+  },
 
   "tpope/vim-endwise",
 
@@ -82,24 +104,31 @@ local plugins = {
     end
   },
 
-  'nacro90/numb.nvim',
+  {
+    'nacro90/numb.nvim',
+    config = function()
+      require('numb').setup()
+    end
+  },
 
   'hrsh7th/cmp-buffer',
 
-  'windwp/nvim-autopairs',
+  {
+    'windwp/nvim-autopairs',
+    config = function()
+      require('nvim-autopairs').setup()
+    end
+  },
 
   {
     "kylechui/nvim-surround",
-  },
-
-  { "mxsdev/nvim-dap-vscode-js",       dependencies = { "mfussenegger/nvim-dap" } },
-  "jlcrochet/vim-crystal",
-
-  {
-    'notjedi/nvim-rooter.lua',
     config = function()
+      require("nvim-surround").setup({})
     end
   },
+
+  { "mxsdev/nvim-dap-vscode-js",      dependencies = { "mfussenegger/nvim-dap" } },
+  "jlcrochet/vim-crystal",
 
   "suketa/nvim-dap-ruby",
 
@@ -129,8 +158,15 @@ local plugins = {
   {
     "theHamsta/nvim-dap-virtual-text"
   },
-
   "andythigpen/nvim-coverage",
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
+  }
 }
 
 require("lazy").setup(plugins, {
