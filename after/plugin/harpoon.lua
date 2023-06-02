@@ -1,4 +1,3 @@
-local function setup()
   require("harpoon").setup({
     tabline = false
   })
@@ -37,8 +36,3 @@ local function setup()
   vim.keymap.set("n", "<C-t>", function() ui.nav_file(2) end)
   vim.keymap.set("n", "<C-n>", function() ui.nav_file(3) end)
   vim.keymap.set("n", "<C-s>", function() ui.nav_file(4) end)
-end
-vim.api.nvim_create_autocmd('VimEnter', {
-  pattern = '*',
-  callback = setup
-})
