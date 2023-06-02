@@ -30,21 +30,9 @@ local plugins = {
     end
   },
   {
-    'nvim-tree/nvim-tree.lua',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly'                  -- optional, updated every week. (see issue #1193)
-  },
-  {
     'lewis6991/gitsigns.nvim',
   },
   {
-    'nvim-telescope/telescope.nvim',
-    dependencies = { { 'nvim-lua/plenary.nvim' } }
-  },
-  {
-    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       'williamboman/mason.nvim',
@@ -62,11 +50,7 @@ local plugins = {
 
   'nvim-tree/nvim-web-devicons',
 
-  { 'nvim-treesitter/nvim-treesitter' },
-
   {
-    "rebelot/kanagawa.nvim",
-    commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   },
 
   'mfussenegger/nvim-dap',
@@ -160,31 +144,11 @@ local plugins = {
   },
   "andythigpen/nvim-coverage",
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      print("copilot")
-
-      require("copilot").setup({
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          debounce = 75,
-          keymap = {
-            accept = "<Tab>",
-            accept_word = "<C-r>",
-            accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
-          },
-        },
-      })
-    end,
+  },
+  {
+    import = "plugins"
   }
 }
 
 require("lazy").setup(plugins, {
-
 })

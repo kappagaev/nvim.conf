@@ -8,7 +8,6 @@
   -- vim.cmd('highlight! TabLineFill guibg=NONE guifg=white')
 
   vim.keymap.set('n', '<CR>', function()
-    vim.cmd("NvimTreeClose")
     require("harpoon.ui").nav_next()
   end)
 
@@ -21,7 +20,6 @@
   end)
 
   vim.keymap.set('n', '<BS>', function()
-    vim.cmd("NvimTreeClose")
     require("harpoon.ui").nav_prev()
   end)
 
