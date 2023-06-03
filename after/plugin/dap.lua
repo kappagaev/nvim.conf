@@ -96,9 +96,6 @@ dap.configurations.php = {
     request = 'launch',
     name = 'Listen for xdebug',
     port = '9003',
-    -- log = true,
-    --  serverSourceRoot = 'localhost:8888',
-    --  localSourceRoot = '~/Sites/',
   },
 }
 
@@ -117,27 +114,3 @@ dap.configurations.ruby = {
     waiting = 1000,
   }
 }
-
--- require('dap-go').setup({
--- dap_configurations = {
--- {
--- type = "go",
--- name = "Attach remote",
--- mode = "remote",
--- request = "attach",
--- },
--- {
--- type = "go",
--- request = "launch",
--- name = "Launch",
--- mode = "debug",
--- program = "main.go",
--- console = "integratedTerminal",
--- rootPath = "${workspaceFolder}",
--- cwd = "${workspaceFolder}",
--- internalConsoleOptions = "neverOpen",
--- }
--- },
--- })
---
--- require('dap-python').setup('/usr/bin/python3')

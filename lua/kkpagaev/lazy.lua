@@ -14,14 +14,14 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   {
     'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup({
-        toggler = {
-          line = 'gcc',
-          block = 'gcbc'
-        },
-      })
-    end
+    cmd = "Copilot",
+    event = "BufReadPost",
+    opts = {
+      toggler = {
+        line = 'gcc',
+        block = 'gcbc'
+      },
+    }
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -30,21 +30,9 @@ local plugins = {
     end
   },
   {
-    'nvim-tree/nvim-tree.lua',
-    dependencies = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly'                  -- optional, updated every week. (see issue #1193)
-  },
-  {
     'lewis6991/gitsigns.nvim',
   },
   {
-    'nvim-telescope/telescope.nvim',
-    dependencies = { { 'nvim-lua/plenary.nvim' } }
-  },
-  {
-    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
       'williamboman/mason.nvim',
@@ -62,11 +50,7 @@ local plugins = {
 
   'nvim-tree/nvim-web-devicons',
 
-  { 'nvim-treesitter/nvim-treesitter' },
-
   {
-    "rebelot/kanagawa.nvim",
-    commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   },
 
   'mfussenegger/nvim-dap',
@@ -94,14 +78,51 @@ local plugins = {
     "folke/todo-comments.nvim",
   },
 
-  "tpope/vim-endwise",
+  {
+    "tpope/vim-endwise",
+    event = "InsertEnter",
+  },
 
   "onsails/lspkind.nvim",
 
   {
     "folke/zen-mode.nvim",
-    config = function()
-    end
+    event = "BufRead",
+    keys = {
+      { ",,", "<cmd>ZenMode<cr>", desc = "ZenMode" },
+    },
+    opts = {
+      window = {
+        row = 1,
+        width = 1,
+        height = 1,
+        options = {
+          signcolumn = "yes", -- disable signcolumn
+          number = true,     -- disable number column
+          relativenumber = true, -- disable relative numbers
+          cursorline = true, -- disable cursorline
+          cursorcolumn = false, -- disable cursor column
+          foldcolumn = "0",  -- disable fold column
+          list = true,       -- disable whitespace characters
+        },
+      },
+      plugins = {
+        options = {
+          enabled = true,
+          ruler = false, -- disables the ruler text in the cmd line area
+          showcmd = false, -- disables the command in the last line of the screen
+          laststatus = 0
+        },
+        tmux = { enabled = false },
+        gitsigns = { enabled = false },
+      },
+      on_open = function(win)
+        vim.cmd("ScrollbarHide")
+      end,
+      on_close = function(win)
+        vim.cmd("ScrollbarShow")
+      end,
+    }
   },
 
   {
@@ -115,19 +136,21 @@ local plugins = {
 
   {
     'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup()
-    end
+    event = "InsertEnter",
+    opts = {
+    },
+    -- config = function()
+    --   require('nvim-autopairs').setup()
+    -- end
   },
 
   {
     "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup({})
-    end
+    event = "InsertEnter",
+    config = {}
   },
 
-  { "mxsdev/nvim-dap-vscode-js",      dependencies = { "mfussenegger/nvim-dap" } },
+  { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
   "jlcrochet/vim-crystal",
 
   "suketa/nvim-dap-ruby",
@@ -144,11 +167,7 @@ local plugins = {
 
   'nvim-treesitter/nvim-treesitter-context',
 
-  "nvim-treesitter/playground",
-
   "tpope/vim-fugitive",
-
-  "Eandrju/cellular-automaton.nvim",
 
   {
     "rest-nvim/rest.nvim",
@@ -160,31 +179,11 @@ local plugins = {
   },
   "andythigpen/nvim-coverage",
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      print("copilot")
-
-      require("copilot").setup({
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          debounce = 75,
-          keymap = {
-            accept = "<Tab>",
-            accept_word = "<C-r>",
-            accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
-          },
-        },
-      })
-    end,
+  },
+  {
+    import = "plugins"
   }
 }
 
 require("lazy").setup(plugins, {
-
 })

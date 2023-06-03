@@ -8,13 +8,18 @@
   -- vim.cmd('highlight! TabLineFill guibg=NONE guifg=white')
 
   vim.keymap.set('n', '<CR>', function()
-    vim.cmd("NvimTreeClose")
     require("harpoon.ui").nav_next()
   end)
 
 
-  vim.keymap.set('n', '<C-CR>', function()
-    vim.cmd("NvimTreeClose")
+  vim.keymap.set('n', 'm', function()
+    local mark = require('harpoon.mark')
+    local i = mark.get_current_index()
+
+    mark.toggle_file(i)
+  end)
+
+  vim.keymap.set('n', '<BS>', function()
     require("harpoon.ui").nav_prev()
   end)
 
