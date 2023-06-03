@@ -57,6 +57,7 @@ local languages = {
   typescript = {
     run_all_command =
     " node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i",
+    -- " node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i",
     dap_config = {
       type = "pwa-node",
       request = "attach",
