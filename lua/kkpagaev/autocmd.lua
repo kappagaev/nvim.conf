@@ -14,19 +14,19 @@ au('TextYankPost', {
 --   command = "wshada /tmp/yank"
 -- })
 
-au('BufRead,BufNewFile', {
-  pattern = '*.slang',
-  callback = function()
-    vim.o.filetype = 'slang'
-  end,
-})
-
-au('BufRead,BufNewFile', {
-  pattern = '*.pl',
-  callback = function()
-    vim.o.filetype = 'prolog'
-  end,
-})
+-- au('BufRead,BufNewFile', {
+--   pattern = '*.slang',
+--   callback = function()
+--     vim.o.filetype = 'slang'
+--   end,
+-- })
+--
+-- au('BufRead,BufNewFile', {
+--   pattern = '*.pl',
+--   callback = function()
+--     vim.o.filetype = 'prolog'
+--   end,
+-- })
 -- au('BufWritePost', {
 --   pattern = '*.rb',
 --   callback = function()

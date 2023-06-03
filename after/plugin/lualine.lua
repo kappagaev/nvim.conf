@@ -60,7 +60,7 @@ end
 
 -- vim.opt.showtabline = 2
 
-vim.o.winbar = "%{%v:lua.tabline()%}"
+-- vim.o.winbar = "%{%v:lua.tabline()%}"
 vim.keymap.set('n', 'm', function()
   local mark = require('harpoon.mark')
   local i = mark.get_current_index()
@@ -69,5 +69,18 @@ vim.keymap.set('n', 'm', function()
   vim.o.winbar = "%{%v:lua.tabline()%}"
 end)
 
+local ag = vim.api.nvim_create_augroup
+local au = vim.api.nvim_create_autocmd
+
+au('BufWinEnter', {
+  callback = function()
+   local name = vim.fn.bufname()
+    if name == "NvimTree_1" then
+    elseif name == "" then
+    else
+      vim.opt_local.winbar = "%{%v:lua.tabline()%}"
+    end
+  end,
+})
 -- vim.o.winbar='%{%%}'
 -- vim.o.winbar = '%!v:lua.tabline()'
