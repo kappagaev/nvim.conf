@@ -24,6 +24,13 @@ return {
       -- file_ignore_patterns = { '.git' },
       file_ignore_patterns = { "node_modules/", ".git/", ".cache", "%.o", "%.a", "%.out", "%.class",
         "%.pdf", "%.mkv", "%.mp4", "%.zip" },
+      mappings = {
+        i = {
+          ["<esc>"] = function()
+            vim.cmd("q!")
+          end
+        }
+      }
     },
     layout_config = {
       horizontal = {

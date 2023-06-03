@@ -102,10 +102,10 @@ vim.keymap.set("n", "<C-f>", "<cmd>silent !t<CR>")
 
 vim.keymap.set("i", "<C-BS>", "<C-w>", {})
 
-vim.keymap.set('n', '<Tab>', '<C-W>w')
+vim.keymap.set('n', ';', '<C-W>w')
 vim.keymap.set('n', '<S-Tab>', '<C-W>W')
 
-vim.keymap.set("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<cr>", { silent = true })
+-- vim.keymap.set("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<cr>", { silent = true })
 
 vim.keymap.set("i", "<C-c>", "<ESC>", { silent = true })
 

@@ -13,17 +13,16 @@ return {
 
       sync_install = false,
       auto_install = true,
-      playground = {
-        enable = true,
-      },
+      -- playground = {
+      --   enable = true,
+      -- },
       incremental_selection = {
         enable = true,
         keymaps = {
           init_selection = "<c-space>",
-          node_incremental = "<c-space>",
-          scope_incremental = "<c-s>",
-          node_decremental = "<c-BS>",
-        },
+        node_incremental = "v",
+        node_decremental = "V",
+        }
       },
       highlight = {
         enable = true,
