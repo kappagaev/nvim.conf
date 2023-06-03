@@ -60,7 +60,51 @@ local plugins = {
     dependencies = { "mfussenegger/nvim-dap" }
   },
 
-  'jose-elias-alvarez/null-ls.nvim',
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      local null_ls = require("null-ls")
+
+      local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+      local event = "BufWritePre" -- or "BufWritePost"
+      local async = event == "BufWritePost"
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.diagnostics.yamllint,
+          null_ls.builtins.formatting.prettierd,
+          -- null_ls.builtins.code_actions.eslint_d,
+          require("typescript.extensions.null-ls.code-actions"),
+          null_ls.builtins.diagnostics.erb_lint,
+          null_ls.builtins.diagnostics.flake8,
+          null_ls.builtins.formatting.autopep8,
+          null_ls.builtins.formatting.gofumpt,
+          null_ls.builtins.code_actions.gomodifytags,
+          null_ls.builtins.diagnostics.golangci_lint,
+          null_ls.builtins.formatting.stylish_haskell,
+          null_ls.builtins.formatting.goimports,
+        },
+        on_attach = function(client, bufnr)
+          -- Enable formatting on sync
+          if client.supports_method("textDocument/formatting") then
+            local format_on_save = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
+            vim.api.nvim_create_autocmd('BufWritePre', {
+              group = format_on_save,
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format({
+                  bufnr = bufnr,
+                  filter = function(_client)
+                    return _client.name == "null-ls"
+                  end
+                })
+              end,
+            })
+          end
+        end,
+      })
+    end
+  },
 
   {
     "petertriho/nvim-scrollbar",
@@ -97,19 +141,19 @@ local plugins = {
         width = 1,
         height = 1,
         options = {
-          signcolumn = "yes", -- disable signcolumn
-          number = true,     -- disable number column
+          signcolumn = "yes",    -- disable signcolumn
+          number = true,         -- disable number column
           relativenumber = true, -- disable relative numbers
-          cursorline = true, -- disable cursorline
-          cursorcolumn = false, -- disable cursor column
-          foldcolumn = "0",  -- disable fold column
-          list = true,       -- disable whitespace characters
+          cursorline = true,     -- disable cursorline
+          cursorcolumn = false,  -- disable cursor column
+          foldcolumn = "0",      -- disable fold column
+          list = true,           -- disable whitespace characters
         },
       },
       plugins = {
         options = {
           enabled = true,
-          ruler = false, -- disables the ruler text in the cmd line area
+          ruler = false,   -- disables the ruler text in the cmd line area
           showcmd = false, -- disables the command in the last line of the screen
           laststatus = 0
         },
