@@ -211,10 +211,6 @@ local plugins = {
 
   "tpope/vim-fugitive",
 
-  {
-    "rest-nvim/rest.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  },
 
   {
     "theHamsta/nvim-dap-virtual-text"
