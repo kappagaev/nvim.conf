@@ -23,9 +23,6 @@ vim.g.vimwiki_ext2syntax = {
 -- table_mappings= 0
 -- }
 
-local ag = vim.api.nvim_create_augroup
-local au = vim.api.nvim_create_autocmd
-
 o.relativenumber = true
 o.number = true
 o.cursorline = true
@@ -82,3 +79,8 @@ vim.o.timeoutlen = 1000
 for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
   vim.api.nvim_set_hl(0, group, {})
 end
+
+vim.opt.laststatus = 0
+local str = string.rep(" ", vim.api.nvim_win_get_width(0))
+vim.opt.statusline = str
+
