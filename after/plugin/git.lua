@@ -1,4 +1,7 @@
-vim.keymap.set("n", "<leader>g", vim.cmd.Git)
+vim.keymap.set("n", "<leader>g", function()
+    vim.cmd.Git()
+    vim.cmd("wincmd o")
+end, {silent = true})
 
 local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
 
@@ -12,6 +15,9 @@ autocmd("BufWinEnter", {
         end
 
         local bufnr = vim.api.nvim_get_current_buf()
+        vim.opt_local.number = false
+        vim.opt_local.relativenumber = false
+        vim.opt_local.winbar = "     "
         local opts = {buffer = bufnr, remap = false}
         vim.keymap.set("n", "<leader>P", function()
             vim.cmd.Git('push')
