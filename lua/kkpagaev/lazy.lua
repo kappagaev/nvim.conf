@@ -48,7 +48,6 @@ local plugins = {
         sources = {
           null_ls.builtins.diagnostics.yamllint,
           null_ls.builtins.formatting.prettierd,
-          -- null_ls.builtins.code_actions.eslint_d,
           require("typescript.extensions.null-ls.code-actions"),
           null_ls.builtins.diagnostics.erb_lint,
           null_ls.builtins.diagnostics.flake8,

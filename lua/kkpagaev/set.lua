@@ -2,6 +2,7 @@ local o = vim.o
 
 local filetypes = {}
 filetypes["dap-repl"] = false
+filetypes["[dap-repl]"] = false
 filetypes["dapui_watches"] = false
 
 

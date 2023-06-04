@@ -7,7 +7,6 @@ return {
     "kappagaev/cmp-dap",
     "theHamsta/nvim-dap-virtual-text",
     'mfussenegger/nvim-dap-python',
-    "rcarriga/nvim-dap-ui",
     "andythigpen/nvim-coverage",
    "mxsdev/nvim-dap-vscode-js",
   },
@@ -39,13 +38,12 @@ return {
 
     vim.keymap.set({ "n", "i", "t" }, '<M-d>', function()
       local bufname = vim.fn.expand("%:r")
-      print(bufname)
       if bufname ~= "[dap-repl]" then
-        require("dapui").toggle()
+        require'dap'.repl.open()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
       else
-        require("dapui").toggle()
+        dap.repl.close()
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
         -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
       end
@@ -130,29 +128,6 @@ return {
         waiting = 1000,
       }
     }
-    local dapui_setup = function()
-      require("dapui").setup({
-        layouts = {
-          {
-            elements = {
-              -- "scopes",
-              -- "watches",
-            },
-            size = 40, -- 40 columns
-            position = "right",
-          },
-          {
-            elements = {
-              "repl",
-            },
-            size = 0.30, -- 20% of total lines
-            position = "bottom",
-          },
-        },
-      })
-    end
-
-    dapui_setup()
 
     require("nvim-dap-virtual-text").setup()
 
