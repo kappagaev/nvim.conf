@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   {
     'numToStr/Comment.nvim',
+    cmd = "Copilot",
     event = "BufReadPost",
     opts = {
       toggler = {
@@ -29,20 +30,42 @@ local plugins = {
   {
     'lewis6991/gitsigns.nvim',
   },
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+
+      'j-hui/fidget.nvim',
+    },
+  },
+
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = { 'hrsh7th/cmp-nvim-lsp' },
+  },
   "lewis6991/hover.nvim",
 
   'nvim-tree/nvim-web-devicons',
 
-  -- 'mfussenegger/nvim-dap',
+  {
+  },
+
+  'mfussenegger/nvim-dap',
+
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap" }
+  },
 
   {
     'jose-elias-alvarez/null-ls.nvim',
-    event = { "BufReadPost", "BufNewFile" },
     config = function()
-      local status_ok, null_ls = pcall(require, "null-ls")
-      if not status_ok then
-        return
-      end
+      local null_ls = require("null-ls")
+
+      local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+      local event = "BufWritePre" -- or "BufWritePost"
+      local async = event == "BufWritePost"
 
       null_ls.setup({
         sources = {
@@ -80,16 +103,17 @@ local plugins = {
       })
     end
   },
-  -- MARK
 
   {
     "petertriho/nvim-scrollbar",
-    event = "VeryLazy",
     opts = {}
 
   },
 
+  "ray-x/lsp_signature.nvim",
+
   "folke/trouble.nvim",
+
   {
 
     "folke/todo-comments.nvim",
@@ -146,11 +170,17 @@ local plugins = {
     'nacro90/numb.nvim',
     opts = {}
   },
+
+  'hrsh7th/cmp-buffer',
+
   {
     'windwp/nvim-autopairs',
     event = "InsertEnter",
     opts = {
     },
+    -- config = function()
+    --   require('nvim-autopairs').setup()
+    -- end
   },
 
   {
@@ -159,18 +189,35 @@ local plugins = {
     opts = {}
   },
 
+  { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
+  "jlcrochet/vim-crystal",
+
+  "suketa/nvim-dap-ruby",
+
+  'mfussenegger/nvim-dap-python',
+
+  "ThePrimeagen/harpoon",
 
   "ntpeters/vim-better-whitespace",
 
+  "rcarriga/cmp-dap",
+
+  "jose-elias-alvarez/typescript.nvim",
+
   'nvim-treesitter/nvim-treesitter-context',
+
+  "tpope/vim-fugitive",
+
   {
-    "tpope/vim-fugitive",
-    lazy = true,
-    keys = {
-      { "<leader>g", ":Git<cr>",         { silent = true } },
-      { "gd",        ":Gdiffsplit<cr>",  { silent = true } },
-      { "gD",        ":Gdiffsplit!<CR>", { silent = true } },
-    }
+    "rest-nvim/rest.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+
+  {
+    "theHamsta/nvim-dap-virtual-text"
+  },
+  "andythigpen/nvim-coverage",
+  {
   },
   {
     import = "plugins"
