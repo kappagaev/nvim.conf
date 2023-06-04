@@ -1,4 +1,3 @@
-local function setup()
   local nvim_lsp = require('lspconfig')
 
   local on_attach = function(client, bufnr)
@@ -107,6 +106,14 @@ local function setup()
   }
   require('fidget').setup({
     sources = sources,
+    window = {
+      -- border = 'rounded',
+      -- width = 60,
+      -- height = 20,
+      -- row = 0,
+      -- col = 0,
+      blend = 0,
+    }
   })
 
   cmp.setup {
@@ -212,8 +219,3 @@ local function setup()
       }
     }
   }
-end
-vim.api.nvim_create_autocmd('VimEnter', {
-  pattern = '*',
-  callback = setup
-})

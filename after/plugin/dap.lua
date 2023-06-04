@@ -23,7 +23,6 @@ vim.keymap.set({ 'n', 't' }, "<C-l>", function() require "dap".step_out() end)
 vim.keymap.set({ "n", "i", "t" }, '<M-d>', function()
   local bufname = vim.fn.expand("%:r")
   print(bufname)
-  vim.cmd("NvimTreeClose")
   if bufname ~= "[dap-repl]" then
     require("dapui").toggle()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)

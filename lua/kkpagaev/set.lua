@@ -2,6 +2,7 @@ local o = vim.o
 
 local filetypes = {}
 filetypes["dap-repl"] = false
+filetypes["[dap-repl]"] = false
 filetypes["dapui_watches"] = false
 
 
@@ -23,12 +24,9 @@ vim.g.vimwiki_ext2syntax = {
 -- table_mappings= 0
 -- }
 
-local ag = vim.api.nvim_create_augroup
-local au = vim.api.nvim_create_autocmd
-
 o.relativenumber = true
 o.number = true
-o.cursorline = true
+-- o.cursorline = true
 local opt = vim.opt
 opt.laststatus = 5
 
