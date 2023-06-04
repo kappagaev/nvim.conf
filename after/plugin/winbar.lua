@@ -61,12 +61,6 @@ end
 -- vim.opt.showtabline = 2
 
 -- vim.o.winbar = "%{%v:lua.tabline()%}"
-vim.keymap.set('n', 'm', function()
-  local mark = require('harpoon.mark')
-  local i = mark.get_current_index()
-
-  mark.toggle_file(i)
-end)
 
 
 local function open()
@@ -85,8 +79,17 @@ local function toggle()
   end
 end
 
-vim.keymap.set('n', '&', toggle)
+-- vim.keymap.set('n', '&', toggle)
 
+vim.keymap.set('n', 'm', function()
+  local mark = require('harpoon.mark')
+  local i = mark.get_current_index()
+
+  open()
+  mark.toggle_file(i)
+end)
+
+  open()
 return {
   open = open,
   close = close,
