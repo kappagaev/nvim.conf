@@ -1,6 +1,10 @@
 vim.keymap.set("n", "<leader>g", function()
-    vim.cmd.Git()
-    vim.cmd("wincmd o")
+    if vim.bo.ft ~= "fugitive" then
+      vim.cmd.Git()
+      vim.cmd("wincmd o")
+    else
+      vim.cmd("bd")
+  end
 end, {silent = true})
 
 local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
