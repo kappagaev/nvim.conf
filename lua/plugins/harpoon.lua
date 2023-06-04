@@ -7,6 +7,8 @@ return {
     "m",
     "<BS>",
     "<leader>h",
+    "<leader><space>",
+    "<leader>u",
     "<C-h>",
     "<C-t>",
     "<C-n>",
