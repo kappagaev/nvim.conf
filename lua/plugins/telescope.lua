@@ -2,7 +2,7 @@ return {
   'nvim-telescope/telescope.nvim',
   -- event = "BufWinEnter",
   dependencies = { 'nvim-lua/plenary.nvim' },
-  lazy = true,
+  lazy = false,
   keys = {
     { "<leader><space>", "<cmd>Telescope find_files<CR>", desc = "Find Files" },
     { "<leader>u",       "<cmd>Telescope find_files<CR>", desc = "Find Files" },
@@ -38,13 +38,35 @@ return {
             ["<C-d>"] = actions.preview_scrolling_down,
             ["<esc>"] = actions.close
           }
-        }
-      },
-      layout_config = {
-        horizontal = {
-          preview_cutoff = 100,
-          preview_width = 0.6
-        }
+        },
+        -- layout_config = {
+        --   vertical = {
+        --     width = 0.9,
+        --     height =0.9,
+        --   },
+        --   horizontal = {
+        --     width = 0.9,
+        --     height =0.9,
+        --   },
+        -- },
+        -- center = {
+        --   width = function(_, max_columns)
+        --     local percentage = 0.5
+        --     local max = 70
+        --     return math.min(math.floor(percentage * max_columns), max)
+        --   end,
+        --   height = function(_, _, max_lines)
+        --     local percentage = 0.5
+        --     local min = 70
+        --     return math.max(math.floor(percentage * max_lines), min)
+        --   end
+        --
+        -- }
+        -- horizontal = {
+        --   preview_cutoff = 100,
+        --   preview_width = 0.6
+        -- }
+        --
       }
     }
   end
