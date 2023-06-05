@@ -117,10 +117,9 @@ local plugins = {
     "folke/todo-comments.nvim",
   },
 
-  {
-    "tpope/vim-endwise",
-    event = "InsertEnter",
-  },
+  -- {
+  --   "tpope/vim-endwise",
+  -- },
 
   "onsails/lspkind.nvim",
 
@@ -188,7 +187,7 @@ local plugins = {
   },
 
   { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
-  "jlcrochet/vim-crystal",
+  -- "jlcrochet/vim-crystal",
 
   "suketa/nvim-dap-ruby",
 

@@ -22,11 +22,6 @@ return {
       tabline = false
     })
 
-    vim.keymap.set('n', '<CR>', function()
-      require("harpoon.ui").nav_next()
-    end)
-
-
     vim.keymap.set('n', '<BS>', function()
       require("harpoon.ui").nav_prev()
     end)

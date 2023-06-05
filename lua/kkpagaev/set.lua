@@ -32,6 +32,7 @@ opt.laststatus = 5
 
 vim.opt.laststatus = 0
 o.tabstop = 2
+-- o.notimeout = true
 o.expandtab = true
 o.softtabstop = 2
 o.shiftwidth = 2
@@ -49,7 +50,7 @@ vim.opt.display = vim.opt.display + 'lastline'
 
 -- o.clipboard:append("unnamedplus")
 
-vim.opt.scrolloff = 4
+vim.opt.scrolloff = 3
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
