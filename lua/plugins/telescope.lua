@@ -1,6 +1,5 @@
 return {
   'nvim-telescope/telescope.nvim',
-  -- event = "BufWinEnter",
   dependencies = { 'nvim-lua/plenary.nvim' },
   lazy = false,
   keys = {
@@ -25,7 +24,6 @@ return {
         find_files = {
           hidden = true
         },
-
       },
       defaults = {
         path_display = { 'smart' },
@@ -40,15 +38,36 @@ return {
           }
         },
         layout_config = {
-          vertical = {
-            width = 0.9,
-            height =0.9,
-          },
           horizontal = {
-            width = 0.9,
-            height =0.9,
+            -- prompt_position = "top",
+            preview_width = 0.55,
+            results_width = 0.8,
           },
+          -- vertical = {
+          --   mirror = false,
+          -- },
+          width = 0.87,
+          height = 0.90,
+          preview_cutoff = 120,
         },
+        results_title = false,
+        prompt_title = false,
+        dynamic_preview_title = false,
+        prompt_prefix = "   ",
+        selection_caret = "  ",
+        entry_prefix = "  ",
+        initial_mode = "insert",
+        selection_strategy = "reset",
+        -- sorting_strategy = "ascending",
+        layout_strategy = "horizontal",
+        winblend = 0,
+        border = {},
+        -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        -- color_devicons = true,
+        -- set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+        -- Developer configurations: Not meant for general override
+        -- buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+
         center = {
           width = function(_, max_columns)
             local percentage = 0.5
@@ -66,7 +85,6 @@ return {
           preview_cutoff = 100,
           preview_width = 0.6
         }
-
       }
     }
   end
