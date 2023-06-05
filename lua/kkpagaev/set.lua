@@ -27,10 +27,7 @@ vim.g.vimwiki_ext2syntax = {
 o.relativenumber = true
 o.number = true
 -- o.cursorline = true
-local opt = vim.opt
-opt.laststatus = 5
 
-vim.opt.laststatus = 0
 o.tabstop = 2
 -- o.notimeout = true
 o.expandtab = true
@@ -39,7 +36,6 @@ o.shiftwidth = 2
 o.wrap = true
 o.noswapfile = true
 o.nocompatible = true
-o.cmdheight = 0
 o.shortmess = o.shortmess .. "at"
 
 vim.opt.diffopt = vim.opt.diffopt + "vertical"
