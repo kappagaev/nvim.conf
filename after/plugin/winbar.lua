@@ -16,7 +16,7 @@ local function set_mark_color(number, color, fg)
   if not fg then
     fg = "#000000"
   end
-  vim.api.nvim_set_hl(0, 'Mark' .. number, { bg = color, fg = fg })
+  vim.api.nvim_set_hl(0, 'Mark' .. number, { bg = color, fg = fg, bold = true })
   vim.api.nvim_set_hl(0, 'MarkEnd' .. number, { fg = color })
 end
 
