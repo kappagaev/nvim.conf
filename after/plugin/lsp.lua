@@ -150,6 +150,7 @@ cmp.setup {
         }),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -195,6 +196,9 @@ require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
     { name = "dap" },
   },
 })
+
+local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 -- require 'lspconfig'.crystalline.setup {
 --   capabilities = capabilities,
