@@ -65,10 +65,10 @@ mason_lspconfig.setup_handlers {
   function(server_name)
     if server_name == 'tsserver' then
       require("typescript").setup({
-        disable_commands = false,   -- prevent the plugin from creating Vim commands
-        debug = false,              -- enable debug logging for commands
+        disable_commands = false, -- prevent the plugin from creating Vim commands
+        debug = false,            -- enable debug logging for commands
         go_to_source_definition = {
-          fallback = true,          -- fall back to standard LSP definition on failure
+          fallback = true,        -- fall back to standard LSP definition on failure
         },
         server = {
           -- pass options to lspconfig's setup method
@@ -118,6 +118,10 @@ require('fidget').setup({
 
 cmp.setup {
   preselect = cmp.PreselectMode.None,
+  completion = {
+    completeopt = "menu,menuone",
+  },
+
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
@@ -126,9 +130,9 @@ cmp.setup {
 
   formatting = {
     format = lspkind.cmp_format({
-      mode = 'symbol',         -- show only symbol annotations
-      maxwidth = 50,           -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      ellipsis_char = '...',   -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+      mode = 'symbol',       -- show only symbol annotations
+      maxwidth = 50,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+      ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
 
       before = function(entry, vim_item)
         return vim_item
@@ -143,20 +147,21 @@ cmp.setup {
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+     ["<C-t>"] = cmp.mapping.close(),
+   ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] =
         cmp.mapping.complete({
           -- reason = cmp.ContextReason.Auto,
         }),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = false,
-    },
+    -- ['<CR>'] = cmp.mapping.confirm {
+    --   behavior = cmp.ConfirmBehavior.Replace,
+    --   select = false,
+    -- },
     ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif require('luasnip').expand_or_jumpable() then
+      if require('luasnip').expand_or_jumpable() then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+      elseif cmp.visible() then
+        cmp.confirm()
       elseif vim.b._copilot_suggestion ~= nil then
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes(vim.fn['copilot#Accept'](), true, true, true), '')
       else
@@ -241,6 +246,35 @@ require('lspconfig')['yamlls'].setup {
         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
         -- kubernetes = "*.k8s.yaml",
       }
+    }
+  }
+}
+
+require 'lspconfig'.volar.setup {
+  init_options = {
+    typescript = {
+      tsdk = '/home/kkpagaev/.local/share/nvim/mason/bin/typescript-language-server'
+      -- Alternative location if installed as root:
+      -- tsdk = '/usr/local/lib/node_modules/typescript/lib'
+    },
+    languageFeatures = {
+      implementation = true, -- new in @volar/vue-language-server v0.33
+      references = true,
+      definition = true,
+      typeDefinition = true,
+      callHierarchy = true,
+      hover = true,
+      rename = true,
+      renameFileRefactoring = true,
+      signatureHelp = true,
+      codeAction = true,
+      workspaceSymbol = true,
+      completion = {
+        defaultTagNameCase = 'both',
+        defaultAttrNameCase = 'kebabCase',
+        getDocumentNameCasesRequest = false,
+        getDocumentSelectionRequest = false,
+      },
     }
   }
 }

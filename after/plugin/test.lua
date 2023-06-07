@@ -56,7 +56,7 @@ end
 local languages = {
   typescript = {
     run_all_command =
-    " node --inspect -r tsconfig-paths/register -r ts-node/register ./node_modules/.bin/jest --watchAll -i",
+    " node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i",
     -- " node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i",
     dap_config = {
       type = "pwa-node",
@@ -96,7 +96,7 @@ local languages = {
     reset_command = "q",
     get_under_cursor_command = function(run)
       local cmd =
-      " node --inspect -r tsconfig-paths/register -r ts-node/register ./node_modules/.bin/jest --watchAll -i "
+      " node --inspect -r tsconfig-paths/register -r ts-node/register ../node_modules/.bin/jest --watchAll -i "
       if run.test ~= nil then
         cmd = cmd .. "-t '" .. run.test.name .. "'"
       end
