@@ -242,14 +242,15 @@ end
 -- })
 
 
-vim.keymap.set('n', '`', run_at_curson, { noremap = true, silent = true })
+vim.keymap.set('n', ',h', run_at_curson, { noremap = true, silent = true })
+vim.keymap.set('n', ',H', run_all, { noremap = true, silent = true })
 
-require("coverage").setup()
-
-vim.keymap.set('n', ',c', function()
-  require("coverage").load(true)
-end, { noremap = true, silent = true })
-
-vim.keymap.set('n', ',C', function()
-  require("coverage").toggle()
-end, { noremap = true, silent = true })
+-- require("coverage").setup()
+--
+-- vim.keymap.set('n', ',c', function()
+--   require("coverage").load(true)
+-- end, { noremap = true, silent = true })
+--
+-- vim.keymap.set('n', ',C', function()
+--   require("coverage").toggle()
+-- end, { noremap = true, silent = true })

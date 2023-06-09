@@ -144,9 +144,9 @@ local plugins = {
     "folke/todo-comments.nvim",
   },
 
-  -- {
-  --   "tpope/vim-endwise",
-  -- },
+  {
+    "tpope/vim-endwise",
+  },
 
   "onsails/lspkind.nvim",
 

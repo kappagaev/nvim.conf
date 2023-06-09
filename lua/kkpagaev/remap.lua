@@ -10,8 +10,12 @@ g.maplocalleader = " "
 map('n', "<leader>", "")
 map('v', "j", "h")
 map('v', "h", "j")
+map('v', "H", "}")
+
+map('n', "H", "j")
 
 map('v', "t", "k")
+map('v', "T", "{")
 map('v', "k", "t")
 
 map('n', "j", "h")
@@ -34,7 +38,7 @@ map('i', "<C-g>n", "<Right>")
 map("n", "YY", "va{Vy")
 
 vim.api.nvim_set_keymap('n', ',', '<C-w>', { noremap = true })
-vim.api.nvim_set_keymap('n', ",h", '<C-w>w', { noremap = true })
+-- vim.api.nvim_set_keymap('n', ",h", '<C-w>w', { noremap = true })
 vim.api.nvim_set_keymap('n', ",d", '<C-w>q', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '>', '>>', { noremap = true })

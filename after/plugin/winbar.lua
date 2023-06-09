@@ -29,6 +29,7 @@ set_mark_color(5, "#76946A")
 -- set_mark_color(4, "#ffffff")
 -- set_mark_color(4, "#A3D4D5")
 
+-- vim.api.nvim_set_hl(0, 'HarpoonWindow', { bg = "#181820", fg = "#C8C093", reverse = true })
 -- vim.api.nvim_set_hl(0, "WinBar", { bg = "#FFA066", fg = "#000000" })
 
 function tabline()
@@ -81,7 +82,7 @@ end
 
 -- vim.keymap.set('n', '&', toggle)
 
-vim.keymap.set('n', 'm', function()
+vim.keymap.set('n', 'M', function()
   local mark = require('harpoon.mark')
   local i = mark.get_current_index()
 
@@ -89,7 +90,7 @@ vim.keymap.set('n', 'm', function()
   mark.toggle_file(i)
 end)
 
-  open()
+open()
 return {
   open = open,
   close = close,
