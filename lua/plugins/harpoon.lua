@@ -3,7 +3,6 @@ return {
   dependencies = { 'nvim-lua/plenary.nvim' },
   lazy = false,
   keys = {
-    "<CR>",
     "m",
     "<BS>",
     "<leader>h",
@@ -26,9 +25,9 @@ return {
       }
     })
 
-    vim.keymap.set('n', '<BS>', function()
-      require("harpoon.ui").nav_prev()
-    end)
+    -- vim.keymap.set('n', '<BS>', function()
+    --   require("harpoon.ui").nav_prev()
+    -- end)
 
     vim.keymap.set('n', '<leader>h', function()
       require("harpoon.ui").toggle_quick_menu()

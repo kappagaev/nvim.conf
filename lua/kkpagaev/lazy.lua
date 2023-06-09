@@ -231,8 +231,29 @@ local plugins = {
   'nvim-treesitter/nvim-treesitter-context',
 
   "tpope/vim-fugitive",
-
-
+  {
+    'tomasky/bookmarks.nvim',
+    event = "VimEnter",
+    config = function()
+      require('bookmarks').setup {
+        -- sign_priority = 8,  --set bookmark sign priority to cover other sign
+        sign_priority=200,
+        save_file = vim.fn.expand "$HOME/.bookmarks", -- bookmarks save file path
+        on_attach = function(bufnr)
+          local bm = require "bookmarks"
+          local map = vim.keymap.set
+          map("n", "m", bm.bookmark_toggle) -- add or remove bookmark at current line
+          map("n", ",i", bm.bookmark_ann) -- add or edit mark annotation at current line
+          map("n", ",c", bm.bookmark_clean) -- clean all marks in local buffer
+          map("n", ",n", bm.bookmark_next) -- jump to next mark in local buffer
+          map("n", ",,", bm.bookmark_next) -- jump to next mark in local buffer
+          map("n", ";", bm.bookmark_next) -- jump to next mark in local buffer
+          map("n", ",p", bm.bookmark_prev) -- jump to previous mark in local buffer
+          -- map("n", ",h", bm.bookmark_list) -- show marked file list in quickfix window
+        end
+      }
+    end
+  },
   {
     "theHamsta/nvim-dap-virtual-text"
   },
