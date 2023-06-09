@@ -87,6 +87,8 @@ vim.keymap.set("n", "M", function()
   local i = mark.get_current_index()
 
   mark.toggle_file(i)
+
+  open()
 end)
 
 open()

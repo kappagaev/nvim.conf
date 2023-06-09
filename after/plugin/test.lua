@@ -242,8 +242,8 @@ end
 -- })
 
 
-vim.keymap.set('n', '<C-R>', run_at_curson, { noremap = true, silent = true })
--- vim.keymap.set('n', ',R', run_all, { noremap = true, silent = true })
+vim.keymap.set('n', ',h', run_at_curson, { noremap = true, silent = true })
+vim.keymap.set('n', ',H', run_all, { noremap = true, silent = true })
 
 -- require("coverage").setup()
 --
