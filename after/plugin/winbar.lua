@@ -82,7 +82,7 @@ end
 
 -- vim.keymap.set('n', '&', toggle)
 
-vim.keymap.set("n", "M", function()
+vim.keymap.set("n", "m", function()
   local mark = require('harpoon.mark')
   local i = mark.get_current_index()
 
