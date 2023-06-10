@@ -12,6 +12,7 @@ map('v', "j", "h")
 map('v', "h", "j")
 map('v', "H", "}")
 
+
 map('n', "H", "j")
 
 map('v', "t", "k")
@@ -83,6 +84,10 @@ map('n', "<leader>o", ':w<CR>')
 map('n', ",.", ':w<CR>')
 
 
+map('s', "h", "h")
+map('s', "t", "t")
+map('s', "j", "j")
+map('s', "k", "k")
 -- _G.main_func = function()
 -- vim.cmd("VimwikiToggleListItem")
 -- vim.go.operatorfunc = "v:lua.main_func"
