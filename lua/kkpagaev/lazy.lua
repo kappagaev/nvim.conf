@@ -28,6 +28,12 @@ local plugins = {
   },
   {
     'lewis6991/gitsigns.nvim',
+    -- event = "",
+    lazy = false,
+    keys = {
+      { "<leader>b", "<CMD>Gitsigns blame_line<CR>" }
+    },
+    opts = {}
   },
   {
     'neovim/nvim-lspconfig',
@@ -43,8 +49,25 @@ local plugins = {
     'hrsh7th/nvim-cmp',
     dependencies = { 'hrsh7th/cmp-nvim-lsp' },
   },
-  "lewis6991/hover.nvim",
+  {
+    "lewis6991/hover.nvim",
+    lazy = true,
+    keys = {
+      { "S" }
+    },
 
+    config = {
+      init = function()
+        require("hover.providers.lsp")
+      end,
+      preview_opts = {
+        border = nil
+      },
+      preview_window = false,
+      title = true
+    }
+
+  },
   'nvim-tree/nvim-web-devicons',
 
   {
@@ -137,7 +160,16 @@ local plugins = {
 
   "ray-x/lsp_signature.nvim",
 
-  "folke/trouble.nvim",
+  {
+    "folke/trouble.nvim",
+    lazy = true,
+    keys = {
+      {
+        "<leader>t", "<CMD>TroubleToggle<CR>"
+      }
+    },
+    opts = {},
+  },
 
   {
 
@@ -150,45 +182,45 @@ local plugins = {
 
   "onsails/lspkind.nvim",
 
-  {
-    "folke/zen-mode.nvim",
-    event = "BufRead",
-    keys = {
-      { "&", "<cmd>ZenMode<cr>", desc = "ZenMode" },
-    },
-    opts = {
-      window = {
-        row = 1,
-        width = 1,
-        height = 1,
-        options = {
-          signcolumn = "yes",    -- disable signcolumn
-          number = true,         -- disable number column
-          relativenumber = true, -- disable relative numbers
-          cursorline = false,    -- disable cursorline
-          cursorcolumn = false,  -- disable cursor column
-          foldcolumn = "0",      -- disable fold column
-          list = true,           -- disable whitespace characters
-        },
-      },
-      plugins = {
-        options = {
-          enabled = true,
-          ruler = false,   -- disables the ruler text in the cmd line area
-          showcmd = false, -- disables the command in the last line of the screen
-          laststatus = 0
-        },
-        tmux = { enabled = false },
-        gitsigns = { enabled = false },
-      },
-      on_open = function(win)
-        vim.cmd("ScrollbarHide")
-      end,
-      on_close = function(win)
-        vim.cmd("ScrollbarShow")
-      end,
-    }
-  },
+  -- {
+  --   "folke/zen-mode.nvim",
+  --   event = "BufRead",
+  --   keys = {
+  --     { "&", "<cmd>ZenMode<cr>", desc = "ZenMode" },
+  --   },
+  --   opts = {
+  --     window = {
+  --       row = 1,
+  --       width = 1,
+  --       height = 1,
+  --       options = {
+  --         signcolumn = "yes",    -- disable signcolumn
+  --         number = true,         -- disable number column
+  --         relativenumber = true, -- disable relative numbers
+  --         cursorline = false,    -- disable cursorline
+  --         cursorcolumn = false,  -- disable cursor column
+  --         foldcolumn = "0",      -- disable fold column
+  --         list = true,           -- disable whitespace characters
+  --       },
+  --     },
+  --     plugins = {
+  --       options = {
+  --         enabled = true,
+  --         ruler = false,   -- disables the ruler text in the cmd line area
+  --         showcmd = false, -- disables the command in the last line of the screen
+  --         laststatus = 0
+  --       },
+  --       tmux = { enabled = false },
+  --       gitsigns = { enabled = false },
+  --     },
+  --     on_open = function(win)
+  --       vim.cmd("ScrollbarHide")
+  --     end,
+  --     on_close = function(win)
+  --       vim.cmd("ScrollbarShow")
+  --     end,
+  --   }
+  -- },
 
   {
     'nacro90/numb.nvim',
@@ -230,7 +262,6 @@ local plugins = {
 
   -- 'nvim-treesitter/nvim-treesitter-context',
 
-  "tpope/vim-fugitive",
   -- {
   --   'tomasky/bookmarks.nvim',
   --   event = "VimEnter",
