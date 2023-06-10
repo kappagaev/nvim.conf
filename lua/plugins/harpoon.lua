@@ -1,7 +1,7 @@
 return {
   "ThePrimeagen/harpoon",
   dependencies = { 'nvim-lua/plenary.nvim' },
-  lazy = false,
+  lazy = true,
   keys = {
     "m",
     "<BS>",
@@ -47,6 +47,7 @@ return {
     vim.keymap.set("n", "<C-s>", function()
       ui.nav_file(4)
     end)
+
     local group = vim.api.nvim_create_augroup("Harpoon Augroup", { clear = true })
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "harpoon",
@@ -60,5 +61,16 @@ return {
         end, { buffer = true, noremap = true, silent = true })
       end,
     })
+
+    local winbar = require("markbar.winbar")
+
+    vim.keymap.set("n", "m", function()
+      local mark = require('harpoon.mark')
+      local i = mark.get_current_index()
+
+      mark.toggle_file(i)
+
+      winbar.open()
+    end)
   end
 }
