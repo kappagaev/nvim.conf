@@ -1,6 +1,10 @@
 return {
   "tpope/vim-fugitive",
   lazy = true,
+  cmd = {
+    "Git",
+    "Gwrite",
+  },
   keys = {
     { "<leader>g" },
     { "gd" },

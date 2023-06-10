@@ -40,12 +40,14 @@ local plugins = {
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-
-    {
-      'j-hui/fidget.nvim',
+      {
+        'j-hui/fidget.nvim',
         tag = "legacy"
       }
     },
+    config = function()
+      require("plugins.config.lsp")
+    end
   },
 
   {
@@ -76,11 +78,34 @@ local plugins = {
   {
   },
 
-  'mfussenegger/nvim-dap',
-
+  {
+    'mfussenegger/nvim-dap',
+    config = function()
+      require("plugins.config.dap")
+    end
+  },
   {
     "rcarriga/nvim-dap-ui",
-    dependencies = { "mfussenegger/nvim-dap" }
+    dependencies = { "mfussenegger/nvim-dap" },
+    opts = {
+      layouts = {
+        {
+          elements = {
+            -- "scopes",
+            -- "watches",
+          },
+          size = 40, -- 40 columns
+          position = "right",
+        },
+        {
+          elements = {
+            "repl",
+          },
+          size = 0.30, -- 20% of total lines
+          position = "bottom",
+        },
+      },
+    }
   },
 
   {
@@ -249,7 +274,7 @@ local plugins = {
   },
 
   { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
-  -- "jlcrochet/vim-crystal",
+  "jlcrochet/vim-crystal",
 
   "suketa/nvim-dap-ruby",
 
@@ -289,7 +314,17 @@ local plugins = {
   --   end
   -- },
   {
-    "theHamsta/nvim-dap-virtual-text"
+    "theHamsta/nvim-dap-virtual-text",
+    opts = {}
+  },
+  {
+    dir = "lua/test",
+    keys = {
+      ",h"
+    },
+    config = function()
+      require("test.test")
+    end
   },
   "andythigpen/nvim-coverage",
   {

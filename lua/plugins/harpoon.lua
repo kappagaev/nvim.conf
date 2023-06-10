@@ -2,6 +2,7 @@ return {
   "ThePrimeagen/harpoon",
   dependencies = { 'nvim-lua/plenary.nvim' },
   lazy = true,
+  -- event = "InsertChange",
   keys = {
     "m",
     "<BS>",
