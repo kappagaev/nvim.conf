@@ -94,14 +94,14 @@ local plugins = {
             -- "scopes",
             -- "watches",
           },
-          size = 40, -- 40 columns
+          size = 40,  -- 40 columns
           position = "right",
         },
         {
           elements = {
             "repl",
           },
-          size = 0.30, -- 20% of total lines
+          size = 0.30,  -- 20% of total lines
           position = "bottom",
         },
       },
@@ -122,7 +122,7 @@ local plugins = {
           null_ls.builtins.formatting.prettierd,
           -- null_ls.builtins.code_actions.eslint_d,
           require("typescript.extensions.null-ls.code-actions"),
-          null_ls.builtins.diagnostics.erb_lint,
+          -- null_ls.builtins.diagnostics.erb_lint,
           null_ls.builtins.diagnostics.flake8,
           null_ls.builtins.formatting.autopep8,
           null_ls.builtins.formatting.gofumpt,
@@ -204,9 +204,9 @@ local plugins = {
     "folke/todo-comments.nvim",
   },
 
-  {
-    "tpope/vim-endwise",
-  },
+  -- {
+  --   "tpope/vim-endwise",
+  -- },
 
   "onsails/lspkind.nvim",
 
