@@ -38,10 +38,10 @@ o.noswapfile = true
 o.nocompatible = true
 o.shortmess = o.shortmess .. "at"
 
-vim.opt.diffopt = vim.opt.diffopt + "vertical"
-vim.opt.display = vim.opt.display + 'lastline'
-
-vim.opt.fillchars = {eob = " "}
+-- vim.opt.diffopt = vim.opt.diffopt + "vertical"
+-- vim.opt.display = vim.opt.display + 'lastline'
+--
+-- vim.opt.fillchars = {eob = " "}
 
 -- vim.api.nvim_set_option("clipboard", "unnamed")
 

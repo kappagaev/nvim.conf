@@ -64,7 +64,7 @@ local plugins = {
       { "S" }
     },
 
-    config = {
+    opts = {
       init = function()
         require("hover.providers.lsp")
       end,
