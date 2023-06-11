@@ -5,6 +5,7 @@ end
 
 local langs = {
   typescript = require("alternate.typescript"),
+  ruby = require("alternate.ruby")
   -- ruby = {
   --
   -- }
@@ -19,8 +20,18 @@ local function toggle_module()
     return
   end
 
+  if conf.module == nil then
+    print("Go to module is not supported for " .. file_type)
+    return
+  end
+
   local alter_name = conf.module()
-  vim.cmd("edit " .. alter_name)
+
+  if alter_name == nil then
+
+  else
+    vim.cmd("edit " .. alter_name)
+  end
 end
 
 
@@ -30,6 +41,11 @@ local function toggle_service()
 
   if conf == nil then
     print("No config found for " .. file_type)
+    return
+  end
+
+  if conf.module == nil then
+    print("Go to service is not supported for " .. file_type)
     return
   end
 
@@ -46,6 +62,11 @@ local function toggle_controller()
     return
   end
 
+  if conf.module == nil then
+    print("Go to controller is not supported for " .. file_type)
+    return
+  end
+
   local alter_name = conf.controller()
   vim.cmd("edit " .. alter_name)
 end
@@ -56,6 +77,11 @@ local function toggle_spec()
 
   if conf == nil then
     print("No config found for " .. file_type)
+    return
+  end
+
+  if conf.module == nil then
+    print("Toggle spec is not supported for " .. file_type)
     return
   end
 
