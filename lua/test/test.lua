@@ -72,22 +72,11 @@ local function get_test_at_line_number(function_name)
   local line_number = vim.api.nvim_win_get_cursor(0)[1]
   local tests = get_jest_tests(function_name)
   for _, test in ipairs(tests) do
-    if test.name == "test" then
-      goto valid
-    elseif test.name == "describe" then
-      goto valid
-    elseif test.name == "it" then
-      goto valid
-    else
-      goto continue
-    end
-    ::valid::
     local start = test.range[1]
     local ends = test.range[3] + 1
     if line_number > start and line_number <= ends then
       return test
     end
-    ::continue::
   end
 end
 
