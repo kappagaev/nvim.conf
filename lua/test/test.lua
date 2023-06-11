@@ -147,6 +147,9 @@ local languages = {
     end
   },
   ruby = {
+    run_all_command =
+    " RUBY_DEBUG_LOG_LEVEL=FATAL rdbg -n -c --open --port 38698 -- ./bin/rails test",
+    reset_command = "",
     dap_config = {
       type = 'ruby',
       name = 'debug current file',

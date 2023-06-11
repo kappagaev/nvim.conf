@@ -2,7 +2,6 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
     "RRethy/nvim-treesitter-endwise",
-    "nvim-treesitter/playground"
   },
   -- event = "BufReadPre",
   config = function()
