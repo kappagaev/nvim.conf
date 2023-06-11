@@ -2,9 +2,33 @@ local q = require("vim.treesitter")
 local dap = require('dap')
 local Job = require('plenary.job')
 local alter = require("alternate.ruby")
+local function i(f)
+  print(vim.inspect(f))
+end
+local function get_ruby_tests()
+  local bufnr = vim.api.nvim_get_current_buf()
 
-local function i(...)
-  print(vim.inspect(...))
+  local language_tree = vim.treesitter.get_parser(bufnr, "ruby")
+  local sysntax_tree = language_tree:parse()[1]
+  local root = sysntax_tree:root()
+
+  local query = vim.treesitter.query.parse("ruby", [[
+  ((call
+    method: ((identifier) @function)
+    block: (do_block)) @test (#offset! @test))
+ ]])
+
+  local tests = {}
+  for _, captures, metadata in query:iter_matches(root, bufnr) do
+    local name = q.get_node_text(captures[1], bufnr)
+    tests[#tests + 1] = {
+      name = name,
+      range = metadata[2]['range'],
+    }
+  end
+
+  -- i(tests)
+  return tests
 end
 
 local function get_jest_tests(function_name)
@@ -46,11 +70,22 @@ local function get_test_at_line_number(function_name)
   local line_number = vim.api.nvim_win_get_cursor(0)[1]
   local tests = get_jest_tests(function_name)
   for _, test in ipairs(tests) do
+    if test.name == "test" then
+      goto valid
+    elseif test.name == "describe" then
+      goto valid
+    elseif test.name == "it" then
+      goto valid
+    else
+      goto continue
+    end
+    ::valid::
     local start = test.range[1]
     local ends = test.range[3] + 1
     if line_number > start and line_number <= ends then
       return test
     end
+    ::continue::
   end
 end
 
@@ -123,7 +158,15 @@ local languages = {
       waiting = 1000,
     },
     get_test_name = function()
-      return nil
+      local line_number = vim.api.nvim_win_get_cursor(0)[1]
+      local tests = get_ruby_tests()
+      for _, test in ipairs(tests) do
+        local start = test.range[1]
+        local ends = test.range[3] + 1
+        if line_number > start and line_number <= ends then
+          return test
+        end
+      end
     end,
     get_file_name = function()
       local str = vim.fn.expand("%")
@@ -133,8 +176,14 @@ local languages = {
       return str
     end,
     get_under_cursor_command = function(run)
+      i(run)
+      local cmd = " RUBY_DEBUG_LOG_LEVEL=FATAL rdbg -n -c --open --port 38698 -- ./bin/rails test " .. run.file
+
+      if run.test ~= nil then
+        cmd = cmd .. ":" .. (run.test.range[1] + 1)
+      end
       -- return " RUBY_DEBUG_LOG_LEVEL=FATAL rdbg -n -c --open --port 38698 -- bundle exec rspec " .. run.file
-      return " RUBY_DEBUG_LOG_LEVEL=FATAL rdbg -n -c --open --port 38698 -- ./bin/rails test " .. run.file
+      return cmd
     end
   }
 }

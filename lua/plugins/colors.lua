@@ -1,16 +1,16 @@
 return {
   "rebelot/kanagawa.nvim",
--- dependencies = {
---   'ellisonleao/gruvbox.nvim'
--- },
--- oniViolet
+  -- dependencies = {
+  --   'ellisonleao/gruvbox.nvim'
+  -- },
+  -- oniViolet
   config = function()
     require('kanagawa').setup({
       colors = {
         palette = {
-            -- change all usages of these colors
-            oniViolet = "#e46876",
-            -- fujiWhite = "#FFFFFF",
+          -- change all usages of these colors
+          oniViolet = "#e46876",
+          -- fujiWhite = "#FFFFFF",
         },
         theme = {
           all = {
@@ -36,7 +36,7 @@ return {
           NormalFloat = { bg = "none" },
           FloatBorder = { bg = "none" },
           FloatTitle = { bg = "none" },
-          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_m1,blend = vim.o.pumblend },   -- add `blend = vim.o.pumblend` to enable transparency
+          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_m1, blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
           PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
           PmenuSbar = { bg = theme.ui.bg_m1 },
           PmenuThumb = { bg = theme.ui.bg_p2 },
@@ -56,8 +56,8 @@ return {
     for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
       vim.api.nvim_set_hl(0, group, {})
     end
-    vim.opt.laststatus = 0
-    vim.o.cmdheight = 0
+    -- vim.opt.laststatus = 0
+    -- vim.o.cmdheight = 0
   end
   -- commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   --
