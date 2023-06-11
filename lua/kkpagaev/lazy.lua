@@ -206,11 +206,11 @@ local plugins = {
     opts = {},
   },
 
-  {
-
-    "folke/todo-comments.nvim",
-  lazy = false,
-  },
+  -- {
+  --
+  --   "folke/todo-comments.nvim",
+  -- lazy = false,
+  -- },
 
   -- {
   --   "tpope/vim-endwise",
@@ -285,15 +285,15 @@ local plugins = {
   },
 
   { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
-  "jlcrochet/vim-crystal",
+  -- "jlcrochet/vim-crystal",
 
   "suketa/nvim-dap-ruby",
 
-  'mfussenegger/nvim-dap-python',
+  -- 'mfussenegger/nvim-dap-python',
 
   "ThePrimeagen/harpoon",
 
-  "ntpeters/vim-better-whitespace",
+  -- "ntpeters/vim-better-whitespace",
 
   "rcarriga/cmp-dap",
 

@@ -129,7 +129,7 @@ local languages = {
       return str
     end,
     get_under_cursor_command = function(run)
-      return " rdbg -n --open --port 38698 -- " .. run.file
+      return " RUBY_DEBUG_LOG_LEVEL=FATAL rdbg -n -c --open --port 38698 -- bundle exec rspec " .. run.file
     end
   }
 }
