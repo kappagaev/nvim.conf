@@ -276,7 +276,7 @@ local plugins = {
     --   require('nvim-autopairs').setup()
     -- end
   },
-
+  "nvim-lualine/lualine.nvim",
   {
     "kylechui/nvim-surround",
     -- event = "InsertEnter",

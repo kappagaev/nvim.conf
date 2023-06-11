@@ -47,7 +47,7 @@ vim.opt.fillchars = {eob = " "}
 
 -- o.clipboard:append("unnamedplus")
 
-vim.opt.scrolloff = 3
+vim.opt.scrolloff = 5
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
