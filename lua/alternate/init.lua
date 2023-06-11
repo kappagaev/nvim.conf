@@ -82,7 +82,8 @@ local function toggle_spec()
     return
   end
 
-  local alter_name = conf.spec()
+  local file = vim.fn.expand("%")
+  local alter_name = conf.spec(file)
   vim.cmd("edit " .. alter_name)
 end
 

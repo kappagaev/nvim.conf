@@ -215,23 +215,8 @@ require 'lspconfig'.solargraph.setup {
   on_attach = on_attach,
 
   root_dir = nvim_lsp.util.root_pattern(".rubocop.yml", ".git"),
-  init_options = {
-    formatting = false,
-  },
   settings = {
-    solargraph = {
-      autoformat = true,
-      completion = true,
-      diagnostic = false,
-      folding = true,
-      references = true,
-      rename = true,
-      symbols = true
-    }
   },
-  flags = {
-    debounce_text_changes = 150,
-  }
 }
 require('lspconfig')['yamlls'].setup {
   capabilities = capabilities,

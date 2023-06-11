@@ -1,6 +1,4 @@
-local function spec()
-  local file = vim.fn.expand("%")
-
+local function spec(file)
   if string.find(file, "app/") then
     file = string.gsub(file, "app/", "spec/")
     file = string.gsub(file, ".rb", "_spec.rb")
@@ -11,6 +9,16 @@ local function spec()
   return file
 end
 
+local function test(file)
+  if string.find(file, "app/") then
+    file = string.gsub(file, "app/", "test/")
+    file = string.gsub(file, ".rb", "_test.rb")
+  elseif string.find(file, "test/") then
+    file = string.gsub(file, "test/", "app/")
+    file = string.gsub(file, "_test.rb", ".rb")
+  end
+  return file
+end
 -- local function controller()
 -- end
 --
@@ -24,7 +32,8 @@ end
 -- end
 
 return {
-  spec = spec,
+  spec = test,
+  test = test,
   -- controller = controller,
   -- module = model,
   -- service = service,

@@ -1,9 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "RRethy/nvim-treesitter-endwise"
+    "RRethy/nvim-treesitter-endwise",
+    "nvim-treesitter/playground"
   },
-  event = "BufReadPre",
+  -- event = "BufReadPre",
   config = function()
     -- Using protected call
     local status_ok, treesitter_config = pcall(require, "nvim-treesitter.configs")

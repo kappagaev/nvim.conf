@@ -24,7 +24,7 @@ local plugins = {
   },
   {
     "norcalli/nvim-colorizer.lua",
-  lazy = false,
+    lazy = false,
     opts = {}
   },
   {
@@ -38,7 +38,7 @@ local plugins = {
   },
   {
     'neovim/nvim-lspconfig',
-  lazy = false,
+    lazy = false,
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
@@ -54,7 +54,7 @@ local plugins = {
 
   {
     'hrsh7th/nvim-cmp',
-  lazy = false,
+    lazy = false,
     dependencies = { 'hrsh7th/cmp-nvim-lsp' },
   },
   {
@@ -83,14 +83,14 @@ local plugins = {
 
   {
     'mfussenegger/nvim-dap',
-  lazy = false,
+    lazy = false,
     config = function()
       require("plugins.config.dap")
     end
   },
   {
     "rcarriga/nvim-dap-ui",
-  lazy = false,
+    lazy = false,
     dependencies = { "mfussenegger/nvim-dap" },
     opts = {
       layouts = {
@@ -99,14 +99,14 @@ local plugins = {
             -- "scopes",
             -- "watches",
           },
-          size = 40,  -- 40 columns
+          size = 40, -- 40 columns
           position = "right",
         },
         {
           elements = {
             "repl",
           },
-          size = 0.30,  -- 20% of total lines
+          size = 0.50, -- 20% of total lines
           position = "bottom",
         },
       },
@@ -115,7 +115,7 @@ local plugins = {
 
   {
     'jose-elias-alvarez/null-ls.nvim',
-  lazy = false,
+    lazy = false,
     config = function()
       local status_ok, null_ls = pcall(require, "null-ls")
       if not status_ok then
@@ -161,7 +161,7 @@ local plugins = {
   {
     -- snippet plugin
     "L3MON4D3/LuaSnip",
-  lazy = false,
+    lazy = false,
     dependencies = "rafamadriz/friendly-snippets",
     opts = { history = true, updateevents = "TextChanged,TextChangedI" },
     config = function(_, opts)
@@ -269,7 +269,7 @@ local plugins = {
   {
     'windwp/nvim-autopairs',
     -- event = "InsertEnter",
-  lazy = false,
+    lazy = false,
     opts = {
     },
     -- config = function()
@@ -280,7 +280,7 @@ local plugins = {
   {
     "kylechui/nvim-surround",
     -- event = "InsertEnter",
-  lazy = false,
+    lazy = false,
     opts = {}
   },
 

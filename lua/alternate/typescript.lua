@@ -12,8 +12,7 @@ local function get_base_nest_name(file)
   end
 end
 
-local function spec()
-  local str = vim.fn.expand("%")
+local function spec(str)
   local suffix = ".spec.ts"
 
   if string.sub(str, -string.len(suffix)) == suffix then

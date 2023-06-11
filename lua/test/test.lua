@@ -1,6 +1,7 @@
 local q = require("vim.treesitter")
 local dap = require('dap')
 local Job = require('plenary.job')
+local alter = require("alternate.ruby")
 
 local function i(...)
   print(vim.inspect(...))
@@ -126,10 +127,14 @@ local languages = {
     end,
     get_file_name = function()
       local str = vim.fn.expand("%")
+      if not string.find(str, "test/") then
+        str = alter.test(str)
+      end
       return str
     end,
     get_under_cursor_command = function(run)
-      return " RUBY_DEBUG_LOG_LEVEL=FATAL rdbg -n -c --open --port 38698 -- bundle exec rspec " .. run.file
+      -- return " RUBY_DEBUG_LOG_LEVEL=FATAL rdbg -n -c --open --port 38698 -- bundle exec rspec " .. run.file
+      return " RUBY_DEBUG_LOG_LEVEL=FATAL rdbg -n -c --open --port 38698 -- ./bin/rails test " .. run.file
     end
   }
 }
