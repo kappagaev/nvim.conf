@@ -6,9 +6,6 @@ end
 local langs = {
   typescript = require("alternate.typescript"),
   ruby = require("alternate.ruby")
-  -- ruby = {
-  --
-  -- }
 }
 
 local function toggle_module()
@@ -44,7 +41,7 @@ local function toggle_service()
     return
   end
 
-  if conf.module == nil then
+  if conf.service == nil then
     print("Go to service is not supported for " .. file_type)
     return
   end
@@ -62,7 +59,7 @@ local function toggle_controller()
     return
   end
 
-  if conf.module == nil then
+  if conf.controller == nil then
     print("Go to controller is not supported for " .. file_type)
     return
   end
@@ -80,7 +77,7 @@ local function toggle_spec()
     return
   end
 
-  if conf.module == nil then
+  if conf.spec == nil then
     print("Toggle spec is not supported for " .. file_type)
     return
   end
