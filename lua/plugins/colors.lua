@@ -36,13 +36,10 @@ return {
           NormalFloat = { bg = "none" },
           FloatBorder = { bg = "none" },
           FloatTitle = { bg = "none" },
-          -- Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_m1,blend = vim.o.pumblend },   -- add `blend = vim.o.pumblend` to enable transparency
-          -- PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-          -- PmenuSbar = { bg = theme.ui.bg_m1 },
-          -- PmenuThumb = { bg = theme.ui.bg_p2 },
-          -- Save an hlgroup with dark background and dimmed foreground
-          -- so that you can use it where your still want darker windows.
-          -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_m1,blend = vim.o.pumblend },   -- add `blend = vim.o.pumblend` to enable transparency
+          PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+          PmenuSbar = { bg = theme.ui.bg_m1 },
+          PmenuThumb = { bg = theme.ui.bg_p2 },
           NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
 
           -- Popular plugins that open floats will link to NormalFloat by default;

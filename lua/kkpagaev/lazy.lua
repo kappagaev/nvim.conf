@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   {
     'numToStr/Comment.nvim',
-    event = "BufReadPost",
+    lazy = false,
     opts = {
       toggler = {
         line = 'gcc',
@@ -24,6 +24,7 @@ local plugins = {
   },
   {
     "norcalli/nvim-colorizer.lua",
+  lazy = false,
     opts = {}
   },
   {
@@ -37,6 +38,7 @@ local plugins = {
   },
   {
     'neovim/nvim-lspconfig',
+  lazy = false,
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
@@ -52,6 +54,7 @@ local plugins = {
 
   {
     'hrsh7th/nvim-cmp',
+  lazy = false,
     dependencies = { 'hrsh7th/cmp-nvim-lsp' },
   },
   {
@@ -80,12 +83,14 @@ local plugins = {
 
   {
     'mfussenegger/nvim-dap',
+  lazy = false,
     config = function()
       require("plugins.config.dap")
     end
   },
   {
     "rcarriga/nvim-dap-ui",
+  lazy = false,
     dependencies = { "mfussenegger/nvim-dap" },
     opts = {
       layouts = {
@@ -110,6 +115,7 @@ local plugins = {
 
   {
     'jose-elias-alvarez/null-ls.nvim',
+  lazy = false,
     config = function()
       local status_ok, null_ls = pcall(require, "null-ls")
       if not status_ok then
@@ -155,6 +161,7 @@ local plugins = {
   {
     -- snippet plugin
     "L3MON4D3/LuaSnip",
+  lazy = false,
     dependencies = "rafamadriz/friendly-snippets",
     opts = { history = true, updateevents = "TextChanged,TextChangedI" },
     config = function(_, opts)
@@ -190,7 +197,7 @@ local plugins = {
 
   {
     "folke/trouble.nvim",
-    lazy = true,
+    lazy = false,
     keys = {
       {
         "<leader>t", "<CMD>TroubleToggle<CR>"
@@ -202,6 +209,7 @@ local plugins = {
   {
 
     "folke/todo-comments.nvim",
+  lazy = false,
   },
 
   -- {
@@ -252,6 +260,7 @@ local plugins = {
 
   {
     'nacro90/numb.nvim',
+    lazy = false,
     opts = {}
   },
 
@@ -259,7 +268,8 @@ local plugins = {
 
   {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
+    -- event = "InsertEnter",
+  lazy = false,
     opts = {
     },
     -- config = function()
@@ -269,7 +279,8 @@ local plugins = {
 
   {
     "kylechui/nvim-surround",
-    event = "InsertEnter",
+    -- event = "InsertEnter",
+  lazy = false,
     opts = {}
   },
 
@@ -318,6 +329,20 @@ local plugins = {
     opts = {}
   },
   {
+    dir = "lua/alternate",
+    keys = {
+      ",t",
+      ",T",
+      ",h",
+      ",m",
+      ",c",
+      ",e"
+    },
+    config = function()
+      require("alternate")
+    end
+  },
+  {
     dir = "lua/test",
     keys = {
       ",h"
@@ -326,7 +351,7 @@ local plugins = {
       require("test.test")
     end
   },
-  "andythigpen/nvim-coverage",
+  -- "andythigpen/nvim-coverage",
   {
     import = "plugins"
   }
