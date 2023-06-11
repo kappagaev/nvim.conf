@@ -2,9 +2,11 @@ local q = require("vim.treesitter")
 local dap = require('dap')
 local Job = require('plenary.job')
 local alter = require("alternate.ruby")
+
 local function i(f)
   print(vim.inspect(f))
 end
+
 local function get_ruby_tests()
   local bufnr = vim.api.nvim_get_current_buf()
 
@@ -176,7 +178,6 @@ local languages = {
       return str
     end,
     get_under_cursor_command = function(run)
-      i(run)
       local cmd = " RUBY_DEBUG_LOG_LEVEL=FATAL rdbg -n -c --open --port 38698 -- ./bin/rails test " .. run.file
 
       if run.test ~= nil then
