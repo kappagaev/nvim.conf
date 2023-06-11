@@ -1,4 +1,7 @@
 local function get_base_nest_name(file)
+  if string.find(file, ".spec.ts") then
+    file = string.gsub(file, ".spec.ts", ".ts")
+  end
   local suffixes = { "%.module%.ts", "%.service%.ts", "%.controller%.ts", "%.entity%.ts" }
 
   for i = 1, #suffixes do
