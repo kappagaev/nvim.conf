@@ -10,10 +10,15 @@ g.maplocalleader = " "
 map('n', "<leader>", "")
 map('v', "j", "h")
 map('v', "h", "j")
-map('v', "H", "}")
+
+map('v', "H", "j")
 
 
 map('n', "H", "j")
+map('n', "T", "k")
+
+map('s', "H", "H")
+map('s', "T", "T")
 
 map('v', "t", "k")
 map('v', "T", "{")
@@ -40,7 +45,7 @@ map("n", "YY", "va{Vy")
 
 vim.api.nvim_set_keymap('n', ',', '<C-w>', { noremap = true })
 -- vim.api.nvim_set_keymap('n', ",h", '<C-w>w', { noremap = true })
-vim.api.nvim_set_keymap('n', ",d", '<C-w>q', { noremap = true })
+vim.api.nvim_set_keymap('n', ",d", 'ZZ', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '>', '>>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<', '<<', { noremap = true })
@@ -88,6 +93,11 @@ map('s', "h", "h")
 map('s', "t", "t")
 map('s', "j", "j")
 map('s', "k", "k")
+
+map('s', "H", "H")
+map('s', "T", "T")
+map('s', "J", "J")
+map('s', "K", "K")
 -- _G.main_func = function()
 -- vim.cmd("VimwikiToggleListItem")
 -- vim.go.operatorfunc = "v:lua.main_func"
