@@ -20,6 +20,22 @@ vim.keymap.set({ 'n', 't' }, '<C-c>', function() require "dap".step_over() end)
 vim.keymap.set({ 'n', 't' }, "<C-r>", function() require "dap".step_into() end)
 vim.keymap.set({ 'n', 't' }, "<C-l>", function() require "dap".step_out() end)
 
+local group = vim.api.nvim_create_augroup("Dap-repl Augroup", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "dap-repl",
+  group = group,
+  callback = function()
+    vim.keymap.set({ 'n' }, 'g', function() require "dap".continue() end,
+      { buffer = true, noremap = true, silent = true })
+    vim.keymap.set({ 'n' }, 'c', function() require "dap".step_over() end,
+      { buffer = true, noremap = true, silent = true })
+    vim.keymap.set({ 'n' }, "r", function() require "dap".step_into() end,
+      { buffer = true, noremap = true, silent = true })
+    vim.keymap.set({ 'n' }, "l", function() require "dap".step_out() end,
+      { buffer = true, noremap = true, silent = true })
+  end,
+})
+
 vim.keymap.set({ "n", "i", "t" }, '<M-d>', function()
   local bufname = vim.fn.expand("%:r")
   print(bufname)

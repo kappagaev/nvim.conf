@@ -33,8 +33,10 @@ return {
         additional_vim_regex_highlighting = false,
       },
       indent = {
-        enable = false,
-        disable = {}
+        enable = true,
+        disable = {
+          "ruby"
+        }
       },
       endwise = {
         enable = true,
