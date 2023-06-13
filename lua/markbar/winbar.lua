@@ -1,14 +1,23 @@
-function buf_harpoon()
-  local original_tabs = require('harpoon').get_mark_config().marks
+local function i(f)
+  print(vim.inspect(f))
+end
 
-  for i, tab in ipairs(original_tabs) do
-    local is_current = string.match(vim.fn.bufname(), tab.filename) or vim.fn.bufname() == tab.filename
-    if is_current then
-      return i
-    end
+local cache = {}
+
+local function buf_harpoon()
+  local name = vim.fn.bufname()
+  if name == "" then
+    return nil
+  end
+  if cache[name] == nil then
+    local index = require('harpoon.mark').get_index_of(vim.fn.bufname())
+    cache[name] = index
   end
 
-  return nil
+  if cache[name] == "" then
+    return nil
+  end
+  return cache[name]
 end
 
 -- local mark_color = "#FFA066"
@@ -86,7 +95,10 @@ open()
 return {
   open = open,
   close = close,
-  toggle = toggle
+  toggle = toggle,
+  clear = function ()
+    cache = {}
+  end
 }
 
 -- vim.o.winbar='%{%%}'
