@@ -1,8 +1,8 @@
 return {
   "rebelot/kanagawa.nvim",
-  -- dependencies = {
-  --   'ellisonleao/gruvbox.nvim'
-  -- },
+  dependencies = {
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+  },
   -- oniViolet
   config = function()
     require('kanagawa').setup({
@@ -21,7 +21,7 @@ return {
           }
         },
       },
-      transparent = true,
+      transparent = false,
       dimInactive = false,
       overrides = function(colors)
         local theme = colors.theme
@@ -57,7 +57,7 @@ return {
       vim.api.nvim_set_hl(0, group, {})
     end
     -- vim.opt.laststatus = 0
-    -- vim.o.cmdheight = 0
+    vim.o.cmdheight = 0
   end
   -- commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   --

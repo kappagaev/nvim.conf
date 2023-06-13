@@ -243,7 +243,29 @@ end
 
 vim.keymap.set('n', '<leader>`', run_all, { noremap = true, silent = true })
 
-local function run_at_curson()
+local latest = {}
+
+local function run_latest()
+  if latest == {} then
+    print("Nothing to run")
+    return
+  end
+  local config = latest.config
+
+  if config.dap_config ~= nil then
+    dap.terminate()
+  end
+
+  reset_window(config)
+
+  send_command_to_split(latest.command)
+
+  if config.dap_config ~= nil then
+    dap.run(config.dap_config)
+  end
+end
+
+local function run_at_cursor()
   local file_type = vim.bo.filetype
   local config = languages[file_type]
   if config == nil then
@@ -265,7 +287,15 @@ local function run_at_curson()
   run.file = file_name
 
   reset_window(config)
-  send_command_to_split(config.get_under_cursor_command(run))
+
+  local command = config.get_under_cursor_command(run)
+
+  latest = {
+    command = command,
+    config = config
+  }
+
+  send_command_to_split(command)
 
   if config.dap_config ~= nil then
     dap.run(config.dap_config)
@@ -289,9 +319,21 @@ end
 -- })
 
 
-vim.keymap.set('n', ',h', run_at_curson, { noremap = true, silent = true })
+vim.keymap.set('n', ',h', run_at_cursor, { noremap = true, silent = true })
+vim.keymap.set('n', '&', run_latest, { noremap = true, silent = true })
+
+vim.keymap.set('n', '\\', function()
+  print('Autocmd to run latest test')
+  vim.cmd(':autocmd BufWritePost * silent lua require("test").run_latest()')
+end, { noremap = true, silent = true })
+
 vim.keymap.set('n', ',H', run_all, { noremap = true, silent = true })
 
+return {
+  run_at_curson = run_at_cursor,
+  run_latest = run_latest,
+  run_all = run_all
+}
 -- require("coverage").setup()
 --
 -- vim.keymap.set('n', ',c', function()

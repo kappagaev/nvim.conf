@@ -118,7 +118,7 @@ map('n', "<C-i>", "<Cmd>call VSCodeNotifyVisual('workbench.action.navigateForwar
 
 -- coma stuff
 map('n', ',', ',')
-map('n', ',d', "<Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>")
+map('n', ',d', "<Cmd>call VSCodeNotify('workbench.action.closeEditorsInGroup')<CR>")
 map('n', ",t", "<Cmd>call VSCodeNotify('extension.goToTest')', 1)<CR>")
 
 -- window
@@ -140,6 +140,8 @@ map('n', "<leader>c", "<Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpo
 map('n', ",h", "<Cmd>call VSCodeNotify('editor.debug.action.runToCursor')', 1)<CR>")
 
 
+-- explorer
+map('n', "<leader>e", "<Cmd>call VSCodeNotifyVisual('workbench.explorer.fileView.focus', 1)<CR>")
 
 local lsp = [[
 nnoremap S <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
