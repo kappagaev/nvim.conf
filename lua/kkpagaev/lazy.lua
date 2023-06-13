@@ -280,10 +280,13 @@ local plugins = {
   },
   {
     "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "arturgoms/moonbow.nvim"
+    },
     config = function()
-      local custom_kanagawa = require 'lualine.themes.kanagawa'
-      custom_kanagawa.normal.c.bg = '#14141414141'
-      custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
+      -- local custom_kanagawa = require 'lualine.themes.kanagawa'
+      -- custom_kanagawa.normal.c.bg = '#14141414141'
+      -- custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
 
       require('lualine').setup({
         options = {
@@ -291,7 +294,7 @@ local plugins = {
           refesh = {
             statusline = 100000000000000,
           },
-          theme = custom_kanagawa,
+          theme = "moonbow",
           -- theme = 'spaceduck',
           icons_enabled = true,
           component_separators = { left = '', right = '|' },

@@ -30,8 +30,11 @@ return {
     --   require("harpoon.ui").nav_prev()
     -- end)
 
+    local winbar = require("markbar.winbar")
+
     vim.keymap.set('n', '<leader>h', function()
       require("harpoon.ui").toggle_quick_menu()
+      winbar.clear()
     end)
 
     local ui = require("harpoon.ui")
@@ -63,7 +66,13 @@ return {
       end,
     })
 
-    local winbar = require("markbar.winbar")
+    vim.api.nvim_create_autocmd("BufDelete", {
+      pattern = "harpoon",
+      group = group,
+      callback = function()
+        winbar.clear()
+      end,
+    })
 
     vim.keymap.set("n", "m", function()
       local mark = require('harpoon.mark')

@@ -1,8 +1,10 @@
 return {
   "rebelot/kanagawa.nvim",
   dependencies = {
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    "arturgoms/moonbow.nvim"
   },
+  install = { colorscheme = { "moonbow" } },
   -- oniViolet
   config = function()
     require('kanagawa').setup({
@@ -51,13 +53,13 @@ return {
       end,
     })
 
-    vim.cmd("colorscheme kanagawa")
+    vim.cmd("colorscheme moonbow")
 
     for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
       vim.api.nvim_set_hl(0, group, {})
     end
     -- vim.opt.laststatus = 0
-    vim.o.cmdheight = 0
+    -- vim.o.cmdheight = 0
   end
   -- commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   --
