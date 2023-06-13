@@ -203,7 +203,11 @@ require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
 })
 
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done({
+  filetypes = {
+    ruby = {}
+  }
+}))
 
 -- require 'lspconfig'.crystalline.setup {
 --   capabilities = capabilities,

@@ -46,9 +46,9 @@ return {
           -- vertical = {
           --   mirror = false,
           -- },
-          width = 0.87,
+          width = 0.90,
           height = 0.90,
-          preview_cutoff = 120,
+          preview_cutoff = 20,
         },
         results_title = false,
         prompt_title = false,

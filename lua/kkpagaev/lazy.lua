@@ -322,6 +322,7 @@ local plugins = {
             'Trouble',
             'harpoon',
             'dap-repl',
+            'neo-tree',
             'fugitive'
             -- 'TelescopePrompt',
 
