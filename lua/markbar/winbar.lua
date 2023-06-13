@@ -10,6 +10,9 @@ local function buf_harpoon(name)
   end
   if cache[name] == nil then
     local index = require('harpoon.mark').get_index_of(vim.fn.bufname())
+    if index == nil then
+      index = ""
+    end
     cache[name] = index
   end
 
@@ -52,19 +55,19 @@ function tabline()
   local icon, color = require('nvim-web-devicons').get_icon(bufname, extension)
   local icon_str = icon and icon .. " " or ""
   -- section_separators = { left = '', right = '' },
-  -- local current_mark = buf_harpoon(bufname)
+  local current_mark = buf_harpoon(bufname)
 
-  -- if current_mark == nil then
+  if current_mark == nil then
     return " %#" .. color .. "# " .. icon_str .. "%*" ..
         bufname .. " " .. is_modified .. " %*"
-  -- else
-  --   return "%#WinBar#" ..
-  --       "%#Mark" .. current_mark .. "# " .. current_mark .. " %*" ..
-  --       "%#MarkEnd" .. current_mark .. "#" .. "" .. "%*" ..
-  --       "%#" .. color .. "# " .. icon_str .. "%*" ..
-  --       bufname ..
-  --       " " .. is_modified .. " %*"
-  -- end
+  else
+    return "%#WinBar#" ..
+        "%#Mark" .. current_mark .. "# " .. current_mark .. " %*" ..
+        "%#MarkEnd" .. current_mark .. "#" .. "" .. "%*" ..
+        "%#" .. color .. "# " .. icon_str .. "%*" ..
+        bufname ..
+        " " .. is_modified .. " %*"
+  end
 end
 
 -- vim.opt.showtabline = 2

@@ -13,6 +13,19 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   {
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		module = "neo-tree",
+		cmd = "Neotree",
+    keys = {
+      { "<leader>e", "<cmd>NeoTreeRevealToggle<CR>" }
+    },
+		dependencies = { { "MunifTanjim/nui.nvim", module = "nui" }, "nvim-lua/plenary.nvim" },
+		config = function()
+      require("plugins.config.neo-tree")
+		end,
+	},
+  {
     'numToStr/Comment.nvim',
     lazy = false,
     opts = {
@@ -284,9 +297,9 @@ local plugins = {
       "arturgoms/moonbow.nvim"
     },
     config = function()
-      -- local custom_kanagawa = require 'lualine.themes.kanagawa'
-      -- custom_kanagawa.normal.c.bg = '#14141414141'
-      -- custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
+      local custom_kanagawa = require 'lualine.themes.kanagawa'
+      custom_kanagawa.normal.c.bg = '#14141414141'
+      custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
 
       require('lualine').setup({
         options = {
@@ -294,7 +307,7 @@ local plugins = {
           refesh = {
             statusline = 100000000000000,
           },
-          theme = "moonbow",
+          theme = custom_kanagawa,
           -- theme = 'spaceduck',
           icons_enabled = true,
           component_separators = { left = '', right = '|' },

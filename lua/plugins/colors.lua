@@ -4,7 +4,7 @@ return {
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     "arturgoms/moonbow.nvim"
   },
-  install = { colorscheme = { "moonbow" } },
+  -- install = { colorscheme = { "moonbow" } },
   -- oniViolet
   config = function()
     require('kanagawa').setup({
@@ -53,7 +53,7 @@ return {
       end,
     })
 
-    vim.cmd("colorscheme moonbow")
+    vim.cmd("colorscheme kanagawa")
 
     for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
       vim.api.nvim_set_hl(0, group, {})

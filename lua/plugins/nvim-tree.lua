@@ -4,7 +4,7 @@ return {
     'nvim-tree/nvim-web-devicons', -- optional, for file icons
   },
   keys = {
-    { "<leader>e", "<cmd>NvimTreeToggle<CR>" }
+    { "<leader>!", "<cmd>NvimTreeToggle<CR>" }
   },
   opts = {
     on_attach = function(bufnr)
