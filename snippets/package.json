@@ -6,6 +6,118 @@
   "contributes": {
     "snippets": [
       {
+        "language": "ruby",
+        "path": "./ruby/attributes/attributes-rb.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/controller/controller.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/controller/def.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/controller/redirect.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/denug/log.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/debug/rspec.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/debug/test.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/gem/gem.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/helper/form.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/helper/form-bootstrap.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/helper/link.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/helper/routes.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/accessor.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/after.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/assert.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/before.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/belongs.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/has.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/scopes.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/validates.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/xhr.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/new.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/migration/migration.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/migration/table-column-options.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/model/migration/table-column-types.json"
+      },
+      {
+        "language": "erb",
+        "path": "./ruby/template/erb-render.json"
+      },
+      {
+        "language": "erb",
+        "path": "./ruby/template/erb-default.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./ruby/ruby-core.json"
+      },
+      {
         "language": [
           "javascript",
           "typescript",
@@ -18,4 +130,3 @@
     ]
   }
 }
-
