@@ -62,7 +62,7 @@ function tabline()
         bufname .. " " .. is_modified .. " %*"
   else
     return "%#WinBar#" ..
-        "%#Mark" .. current_mark .. "# " .. current_mark .. " %*" ..
+        "%#Mark" .. current_mark .. "#  " .. current_mark .. "  %*" ..
         "%#MarkEnd" .. current_mark .. "#" .. "" .. "%*" ..
         "%#" .. color .. "# " .. icon_str .. "%*" ..
         bufname ..
@@ -94,6 +94,7 @@ local function toggle()
   end
 end
 
+-- open()
 return {
   open = open,
   close = close,

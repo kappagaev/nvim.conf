@@ -81,7 +81,7 @@ return {
       mark.toggle_file(i)
 
       winbar.clear()
-      -- winbar.open()
+      winbar.open()
     end)
   end
 }

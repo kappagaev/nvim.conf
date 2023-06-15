@@ -24,10 +24,10 @@ require('lualine').setup({
       'NvimTree',
       'neo-tree',
       winbar = {
-      'harpoon',
-      'dap-repl',
-      'Trouble',
-      'fugitive'
+        'harpoon',
+        'dap-repl',
+        'Trouble',
+        'fugitive'
       }
       -- 'TelescopePrompt',
 
@@ -38,46 +38,46 @@ require('lualine').setup({
 
     },
   },
-  inactive_winbar = {
-    lualine_a = {
-    },
-    lualine_b = {
-    },
-    lualine_c = {
-      require("markbar.winbar").render_mark,
-      'filename',
-      'diff'
-    },
-    lualine_x = { 'filetype' },
-    -- lualine_y = { nvimbattery },
-    lualine_y = {},
-    lualine_z = { }
-
-  },
-  winbar = {
-    lualine_a = {
-    },
-    lualine_b = {
-    },
-    lualine_c = {
-      require("markbar.winbar").render_mark,
-      'filename',
-      'diff'
-    },
-    lualine_x = { 'filetype' },
-    -- lualine_y = { nvimbattery },
-    lualine_y = {},
-    lualine_z = { }
-
-  },
+  -- inactive_winbar = {
+  --   lualine_a = {
+  --   },
+  --   lualine_b = {
+  --   },
+  --   lualine_c = {
+  --     require("markbar.winbar").render_mark,
+  --     'filename',
+  --     'diff'
+  --   },
+  --   lualine_x = { 'filetype' },
+  --   -- lualine_y = { nvimbattery },
+  --   lualine_y = {},
+  --   lualine_z = { }
+  --
+  -- },
+  -- winbar = {
+  --   lualine_a = {
+  --   },
+  --   lualine_b = {
+  --   },
+  --   lualine_c = {
+  --     require("markbar.winbar").render_mark,
+  --     'filename',
+  --     'diff'
+  --   },
+  --   lualine_x = { 'filetype' },
+  --   -- lualine_y = { nvimbattery },
+  --   lualine_y = {},
+  --   lualine_z = {}
+  --
+  -- },
   sections = {
     lualine_a = {
     },
     lualine_b = { 'branch' },
-    lualine_c = { 'diagnostics', },
-    lualine_x = { 'filetype',
-    'encoding',
-      "selectioncount"
+    lualine_c = { 'diff', 'diagnostics' },
+    lualine_x = {
+      'filetype',
+      'encoding',
     },
     -- lualine_y = { nvimbattery },
     lualine_y = {},
