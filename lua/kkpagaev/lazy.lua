@@ -99,6 +99,7 @@ local plugins = {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
+      "lewis6991/hover.nvim",
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       "ray-x/lsp_signature.nvim",
@@ -161,10 +162,6 @@ local plugins = {
   {
     "lewis6991/hover.nvim",
     lazy = true,
-    keys = {
-      { "S" }
-    },
-
     opts = {
       init = function()
         require("hover.providers.lsp")

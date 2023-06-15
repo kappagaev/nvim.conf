@@ -10,14 +10,14 @@ local on_attach = function(client, bufnr)
   end
 
   nmap('ge', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', function ()
+  nmap('gr', function()
     require('telescope.builtin').lsp_references()
   end, '[G]oto [R]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
-  vim.keymap.set("n", "S", function ()
-    require("hover").hover()
-  end, { desc = "hover.nvim" })
+  vim.keymap.set("n", "S",
+    require("hover").hover
+    , { desc = "hover.nvim" })
   -- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
   local keymap = vim.keymap.set
