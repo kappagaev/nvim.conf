@@ -16,7 +16,7 @@ local function lazy_load(plugin)
     group = vim.api.nvim_create_augroup("BeLazyOnFileOpen" .. plugin, {}),
     callback = function()
       local file = vim.fn.expand "%"
-      local condition = file ~= "NvimTree_1" and file ~= "[lazy]" and file ~= ""
+      local condition = file ~= "neo-tree" and file ~= "[lazy]" and file ~= ""
 
       if condition then
         vim.api.nvim_del_augroup_by_name("BeLazyOnFileOpen" .. plugin)
@@ -294,11 +294,10 @@ local plugins = {
     opts = {},
   },
 
-  -- {
-  --
-  --   "folke/todo-comments.nvim",
-  -- lazy = false,
-  -- },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+  },
 
   -- {
   --   "tpope/vim-endwise",
@@ -483,7 +482,7 @@ local plugins = {
   {
     "vimpostor/vim-tpipeline",
   },
-  "dstein64/vim-startuptime",
+  -- "dstein64/vim-startuptime",
   -- "andythigpen/nvim-coverage",
   {
     import = "plugins"
