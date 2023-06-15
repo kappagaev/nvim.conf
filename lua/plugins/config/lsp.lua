@@ -10,7 +10,9 @@ local on_attach = function(client, bufnr)
   end
 
   nmap('ge', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gr', function ()
+    require('telescope.builtin').lsp_references()
+  end, '[G]oto [R]eferences')
   nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
   vim.keymap.set("n", "S", require("hover").hover, { desc = "hover.nvim" })

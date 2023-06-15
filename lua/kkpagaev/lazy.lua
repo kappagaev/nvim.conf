@@ -31,9 +31,9 @@ local plugins = {
     opts = {},
     keys = {
       { "gcc", mode = "n" },
-      { "gc", mode = "v" },
+      { "gc",  mode = "v" },
       { "gbc", mode = "n" },
-      { "gb", mode = "v" },
+      { "gb",  mode = "v" },
     },
   },
   {
@@ -43,12 +43,31 @@ local plugins = {
   },
   {
     'lewis6991/gitsigns.nvim',
-    -- event = "",
-    lazy = false,
+    ft = { "gitcommit", "diff" },
     keys = {
       { "<leader>b", "<CMD>Gitsigns blame_line<CR>" }
     },
-    opts = {}
+    init = function()
+      -- load gitsigns only when a git file is opened
+      vim.api.nvim_create_autocmd({ "BufRead" }, {
+        group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
+        callback = function()
+          vim.fn.system("git -C " .. '"' .. vim.fn.expand "%:p:h" .. '"' .. " rev-parse")
+          if vim.v.shell_error == 0 then
+            vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
+            vim.schedule(function()
+              require("lazy").load { plugins = { "gitsigns.nvim" } }
+            end)
+          end
+        end,
+      })
+    end,
+    opts = {
+      trouble = false
+    },
+    config = function(_, opts)
+      require("gitsigns").setup(opts)
+    end,
   },
   {
     'neovim/nvim-lspconfig',
@@ -134,34 +153,49 @@ local plugins = {
 
   {
     'mfussenegger/nvim-dap',
-    lazy = false,
+    keys = {
+      "<C-g>",
+      "<C-c>",
+      "<C-r>",
+      "<C-l>",
+    },
+    dependencies = {
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        opts = {}
+      },
+      { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
+      -- "jlcrochet/vim-crystal",
+
+      "suketa/nvim-dap-ruby",
+      {
+        "rcarriga/nvim-dap-ui",
+        lazy = true,
+        opts = {
+          layouts = {
+            {
+              elements = {
+                -- "scopes",
+                -- "watches",
+              },
+              size = 40, -- 40 columns
+              position = "right",
+            },
+            {
+              elements = {
+                "repl",
+              },
+              size = 0.50, -- 20% of total lines
+              position = "bottom",
+            },
+          },
+        }
+      },
+    },
+    lazy = true,
     config = function()
       require("plugins.config.dap")
     end
-  },
-  {
-    "rcarriga/nvim-dap-ui",
-    lazy = false,
-    dependencies = { "mfussenegger/nvim-dap" },
-    opts = {
-      layouts = {
-        {
-          elements = {
-            -- "scopes",
-            -- "watches",
-          },
-          size = 40, -- 40 columns
-          position = "right",
-        },
-        {
-          elements = {
-            "repl",
-          },
-          size = 0.50, -- 20% of total lines
-          position = "bottom",
-        },
-      },
-    }
   },
 
   {
@@ -314,10 +348,6 @@ local plugins = {
     opts = {}
   },
 
-  { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
-  -- "jlcrochet/vim-crystal",
-
-  "suketa/nvim-dap-ruby",
 
   -- 'mfussenegger/nvim-dap-python',
 
@@ -354,10 +384,6 @@ local plugins = {
   --   end
   -- },
   {
-    "theHamsta/nvim-dap-virtual-text",
-    opts = {}
-  },
-  {
     dir = "lua/alternate",
     keys = {
       ",t",
@@ -376,15 +402,23 @@ local plugins = {
     keys = {
       ",h"
     },
+    dependencies = {
+      'mfussenegger/nvim-dap'
+    },
     config = function()
       require("test")
     end
   },
   {
-    "ThePrimeagen/vim-be-good"
+    "ThePrimeagen/vim-be-good",
+    lazy = true,
+    commands = {
+      "VimBeGood"
+    }
   },
   {
     "weizheheng/ror.nvim",
+    event = "BufEnter *.rb",
     config = function()
       -- The default settings
       require("ror").setup({
@@ -416,11 +450,9 @@ local plugins = {
       vim.keymap.set("n", "<Leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
     end
   },
-
-  -- {
-  --   "vimpostor/vim-tpipeline",
-  --   event = "BufEnter"
-  -- },
+  {
+    "vimpostor/vim-tpipeline",
+  },
   "dstein64/vim-startuptime",
   -- "andythigpen/nvim-coverage",
   {

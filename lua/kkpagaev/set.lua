@@ -5,6 +5,8 @@ filetypes["dap-repl"] = false
 filetypes["[dap-repl]"] = false
 filetypes["dapui_watches"] = false
 
+vim.opt.shell = "/bin/bash"
+
 
 vim.g.tpipeline_autoembed = false
 vim.g.copilot_filetypes = filetypes

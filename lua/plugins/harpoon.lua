@@ -1,7 +1,7 @@
 return {
   "ThePrimeagen/harpoon",
   dependencies = { 'nvim-lua/plenary.nvim' },
-  lazy = false,
+  lazy = true,
   -- event = "InsertChange",
   keys = {
     "M",
@@ -83,6 +83,5 @@ return {
       winbar.clear()
       winbar.open()
     end)
-    winbar.open()
   end
 }

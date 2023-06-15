@@ -1,7 +1,7 @@
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = { 'nvim-lua/plenary.nvim' },
-  lazy = false,
+  lazy = true,
   keys = {
     { "<leader><space>" },
     { "<C-p>" },
