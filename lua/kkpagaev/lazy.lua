@@ -325,7 +325,8 @@ local plugins = {
   {
     'windwp/nvim-autopairs',
     -- event = "InsertEnter",
-    lazy = false,
+    lazy = true,
+    event = "InsertEnter",
     opts = {
     },
     -- config = function()
@@ -358,7 +359,6 @@ local plugins = {
 
   "jose-elias-alvarez/typescript.nvim",
 
-  -- 'nvim-treesitter/nvim-treesitter-context',
 
   -- {
   --   'tomasky/bookmarks.nvim',
