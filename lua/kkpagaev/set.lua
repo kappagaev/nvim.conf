@@ -48,7 +48,7 @@ o.shortmess = o.shortmess .. "at"
 
 -- o.clipboard:append("unnamedplus")
 
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 6
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 

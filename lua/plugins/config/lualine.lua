@@ -1,6 +1,7 @@
 local custom_kanagawa = require 'lualine.themes.kanagawa'
 custom_kanagawa.normal.c.bg = '#14141414141'
-custom_kanagawa.normal.a = { bg = '#FFA066', gui = 'bold', fg = '#000000' }
+custom_kanagawa.normal.a = { bg = '#f05033', gui = 'bold', fg = '#000000' }
+custom_kanagawa.normal.b = { bg = custom_kanagawa.normal.b.bg, gui = 'bold', fg = '#C8C093' }
 
 require('lualine').setup({
   options = {
@@ -21,11 +22,13 @@ require('lualine').setup({
     -- theme = 'gruvbox_material',
     disabled_filetypes = {
       'NvimTree',
-      'Trouble',
+      'neo-tree',
+      winbar = {
       'harpoon',
       'dap-repl',
-      'neo-tree',
+      'Trouble',
       'fugitive'
+      }
       -- 'TelescopePrompt',
 
       -- 'dapui_scopes',
@@ -35,10 +38,11 @@ require('lualine').setup({
 
     },
   },
-  winbar = {
+  inactive_winbar = {
     lualine_a = {
     },
-    lualine_b = {},
+    lualine_b = {
+    },
     lualine_c = {
       require("markbar.winbar").render_mark,
       'filename',
@@ -46,40 +50,42 @@ require('lualine').setup({
     },
     lualine_x = { 'filetype' },
     -- lualine_y = { nvimbattery },
-    -- lualine_y = {harp  },
-    -- lualine_z = { 'location' }
+    lualine_y = {},
+    lualine_z = { }
+
+  },
+  winbar = {
+    lualine_a = {
+    },
+    lualine_b = {
+    },
+    lualine_c = {
+      require("markbar.winbar").render_mark,
+      'filename',
+      'diff'
+    },
+    lualine_x = { 'filetype' },
+    -- lualine_y = { nvimbattery },
+    lualine_y = {},
+    lualine_z = { }
+
   },
   sections = {
     lualine_a = {
     },
     lualine_b = { 'branch' },
     lualine_c = { 'diagnostics', },
-    lualine_x = { 'filetype' },
-    -- lualine_y = { nvimbattery },
-    -- lualine_y = {harp  },
-    lualine_z = { 'location' }
-  },
-  inactive_winbar = {
-    lualine_a = {
+    lualine_x = { 'filetype',
+    'encoding',
+      "selectioncount"
     },
-    lualine_b = {},
-    lualine_c = {
-      require("markbar.winbar").render_mark,
-      'filename',
-      'diff'
-    },
-    lualine_x = { 'filetype' },
     -- lualine_y = { nvimbattery },
-    -- lualine_y = {harp  },
-    -- lualine_z = { 'location' }
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = { 'filename' },
-    lualine_x = { 'location' },
     lualine_y = {},
     lualine_z = {}
+  },
+
+  inactive_sections = {
+
   },
   tabline = {},
   extensions = { 'fugitive' }
