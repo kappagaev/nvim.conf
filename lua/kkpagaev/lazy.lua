@@ -16,7 +16,7 @@ local function lazy_load(plugin)
     group = vim.api.nvim_create_augroup("BeLazyOnFileOpen" .. plugin, {}),
     callback = function()
       local file = vim.fn.expand "%"
-      local condition = file ~= "neo-tree" and file ~= "[lazy]" and file ~= ""
+      local condition = file ~= "NvimTree_1" and file ~= "[lazy]" and file ~= ""
 
       if condition then
         vim.api.nvim_del_augroup_by_name("BeLazyOnFileOpen" .. plugin)
@@ -42,19 +42,6 @@ local function lazy_load(plugin)
   })
 end
 local plugins = {
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    module = "neo-tree",
-    cmd = "Neotree",
-    keys = {
-      { "<leader>e", "<cmd>NeoTreeRevealToggle<CR>" }
-    },
-    dependencies = { { "MunifTanjim/nui.nvim", module = "nui" }, "nvim-lua/plenary.nvim" },
-    config = function()
-      require("plugins.config.neo-tree")
-    end,
-  },
   {
     'numToStr/Comment.nvim',
     lazy = true,
