@@ -27,13 +27,14 @@ local plugins = {
   },
   {
     'numToStr/Comment.nvim',
-    lazy = false,
-    opts = {
-      toggler = {
-        line = 'gcc',
-        block = 'gcbc'
-      },
-    }
+    lazy = true,
+    opts = {},
+    keys = {
+      { "gcc", mode = "n" },
+      { "gc", mode = "v" },
+      { "gbc", mode = "n" },
+      { "gb", mode = "v" },
+    },
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -220,7 +221,7 @@ local plugins = {
 
   {
     "folke/trouble.nvim",
-    lazy = false,
+    lazy = true,
     keys = {
       {
         "<leader>t", "<CMD>TroubleToggle<CR>"
