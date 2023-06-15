@@ -13,18 +13,18 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   {
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
-		module = "neo-tree",
-		cmd = "Neotree",
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    module = "neo-tree",
+    cmd = "Neotree",
     keys = {
       { "<leader>e", "<cmd>NeoTreeRevealToggle<CR>" }
     },
-		dependencies = { { "MunifTanjim/nui.nvim", module = "nui" }, "nvim-lua/plenary.nvim" },
-		config = function()
+    dependencies = { { "MunifTanjim/nui.nvim", module = "nui" }, "nvim-lua/plenary.nvim" },
+    config = function()
       require("plugins.config.neo-tree")
-		end,
-	},
+    end,
+  },
   {
     'numToStr/Comment.nvim',
     lazy = false,
@@ -296,7 +296,7 @@ local plugins = {
     dependencies = {
       "arturgoms/moonbow.nvim"
     },
-    config = function ()
+    config = function()
       require("plugins.config.lualine")
     end
   },
@@ -410,7 +410,12 @@ local plugins = {
       vim.keymap.set("n", "<Leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
     end
   },
-  "vimpostor/vim-tpipeline",
+
+  {
+    "vimpostor/vim-tpipeline",
+    event = "BufEnter"
+  },
+  "dstein64/vim-startuptime",
   -- "andythigpen/nvim-coverage",
   {
     import = "plugins"

@@ -83,5 +83,6 @@ return {
       winbar.clear()
       winbar.open()
     end)
+    winbar.open()
   end
 }
