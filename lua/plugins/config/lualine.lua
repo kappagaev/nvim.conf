@@ -16,7 +16,8 @@ require('lualine').setup({
     -- section_separators = { left = ' ', right = ' '},
     -- section_separators = { left = '', right = ''},
 
-    section_separators = { left = '', right = '' },
+    section_separators = { left = '', right = '' },
+    -- section_separators = { left = '', right = '' },
     -- theme = 'gruvbox_material',
     disabled_filetypes = {
       'NvimTree',
@@ -35,9 +36,11 @@ require('lualine').setup({
     },
   },
   sections = {
-    lualine_a = { 'mode' },
-    lualine_b = { 'branch', 'diff' },
-    lualine_c = { 'diagnostics', },
+    lualine_a = {
+      'mode',
+    },
+    lualine_b = { 'branch' },
+    lualine_c = { 'diff', 'diagnostics', },
     lualine_x = { 'filetype' },
     -- lualine_y = { nvimbattery },
     -- lualine_y = {harp  },

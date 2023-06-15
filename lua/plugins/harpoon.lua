@@ -4,7 +4,7 @@ return {
   lazy = false,
   -- event = "InsertChange",
   keys = {
-    "m",
+    "M",
     "<BS>",
     "<leader>h",
     "<C-h>",
@@ -74,7 +74,7 @@ return {
       end,
     })
 
-    vim.keymap.set("n", "m", function()
+    vim.keymap.set("n", "M", function()
       local mark = require('harpoon.mark')
       local i = mark.get_current_index()
 
