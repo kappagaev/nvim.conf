@@ -27,6 +27,9 @@ local function lazy_load(plugin)
           vim.schedule(function()
             require("lazy").load { plugins = plugin }
 
+            if plugin == "null-ls" then
+              vim.cmd "silent! do FileType"
+            end
             if plugin == "nvim-lspconfig" then
               vim.cmd "silent! do FileType"
             end
@@ -99,6 +102,7 @@ local plugins = {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
+      "jose-elias-alvarez/typescript.nvim",
       "lewis6991/hover.nvim",
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
@@ -174,7 +178,6 @@ local plugins = {
     }
 
   },
-  'nvim-tree/nvim-web-devicons',
 
   {
   },
@@ -228,7 +231,10 @@ local plugins = {
 
   {
     'jose-elias-alvarez/null-ls.nvim',
-    lazy = false,
+    lazy = true,
+    init = function()
+      lazy_load "null-ls.nvim"
+    end,
     config = function()
       local status_ok, null_ls = pcall(require, "null-ls")
       if not status_ok then
@@ -278,7 +284,6 @@ local plugins = {
     opts = {}
 
   },
-
 
   {
     "folke/trouble.nvim",
@@ -359,15 +364,16 @@ local plugins = {
     --   require('nvim-autopairs').setup()
     -- end
   },
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-      "arturgoms/moonbow.nvim"
-    },
-    config = function()
-      require("plugins.config.lualine")
-    end
-  },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   dependencies = {
+  --     "arturgoms/moonbow.nvim",
+  --     "vimpostor/vim-tpipeline",
+  --   },
+  --   config = function()
+  --     require("plugins.config.lualine")
+  --   end
+  -- },
   {
     "kylechui/nvim-surround",
     -- event = "InsertEnter",
@@ -377,13 +383,8 @@ local plugins = {
 
 
   -- 'mfussenegger/nvim-dap-python',
-
-  "ThePrimeagen/harpoon",
-
   -- "ntpeters/vim-better-whitespace",
 
-
-  "jose-elias-alvarez/typescript.nvim",
 
 
   -- {
@@ -475,9 +476,6 @@ local plugins = {
       -- This "list_commands()" will show a list of all the available commands to run
       vim.keymap.set("n", "<Leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
     end
-  },
-  {
-    "vimpostor/vim-tpipeline",
   },
   -- "dstein64/vim-startuptime",
   -- "andythigpen/nvim-coverage",

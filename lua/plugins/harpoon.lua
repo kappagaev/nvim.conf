@@ -1,6 +1,42 @@
+local function lazy_load(plugin)
+  vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+    group = vim.api.nvim_create_augroup("BeLazyOnFileOpen" .. plugin, {}),
+    callback = function()
+      local file = vim.fn.expand "%"
+      local condition = file ~= "neo-tree" and file ~= "[lazy]" and file ~= ""
+
+      if condition then
+        vim.api.nvim_del_augroup_by_name("BeLazyOnFileOpen" .. plugin)
+
+        -- dont defer for treesitter as it will show slow highlighting
+        -- This deferring only happens only when we do "nvim filename"
+        if plugin ~= "nvim-treesitter" then
+          vim.schedule(function()
+            require("lazy").load { plugins = plugin }
+
+            if plugin == "null-ls" then
+              vim.cmd "silent! do FileType"
+            end
+            if plugin == "nvim-lspconfig" then
+              vim.cmd "silent! do FileType"
+            end
+          end, 0)
+        else
+          require("lazy").load { plugins = plugin }
+        end
+      end
+    end,
+  })
+end
+
 return {
   "ThePrimeagen/harpoon",
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = { 'nvim-lua/plenary.nvim',
+"nvim-tree/nvim-web-devicons"
+
+
+
+  },
   lazy = true,
   -- event = "InsertChange",
   keys = {
@@ -12,6 +48,9 @@ return {
     "<C-n>",
     "<C-s>",
   },
+  init = function ()
+    lazy_load("harpoon")
+  end,
   config = function()
     local status_ok, harpoon = pcall(require, "harpoon")
     if not status_ok then
@@ -83,5 +122,7 @@ return {
       winbar.clear()
       winbar.open()
     end)
+
+    winbar.open()
   end
 }
