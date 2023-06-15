@@ -45,7 +45,7 @@ map("n", "YY", "va{Vy")
 
 vim.api.nvim_set_keymap('n', ',', '<C-w>', { noremap = true })
 -- vim.api.nvim_set_keymap('n', ",h", '<C-w>w', { noremap = true })
-vim.api.nvim_set_keymap('n', ",d", 'ZZ', { noremap = true })
+vim.api.nvim_set_keymap('n', ",d", ':q<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '>', '>>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<', '<<', { noremap = true })

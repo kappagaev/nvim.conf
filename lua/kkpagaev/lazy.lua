@@ -11,6 +11,33 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local function lazy_load(plugin)
+  vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
+    group = vim.api.nvim_create_augroup("BeLazyOnFileOpen" .. plugin, {}),
+    callback = function()
+      local file = vim.fn.expand "%"
+      local condition = file ~= "NvimTree_1" and file ~= "[lazy]" and file ~= ""
+
+      if condition then
+        vim.api.nvim_del_augroup_by_name("BeLazyOnFileOpen" .. plugin)
+
+        -- dont defer for treesitter as it will show slow highlighting
+        -- This deferring only happens only when we do "nvim filename"
+        if plugin ~= "nvim-treesitter" then
+          vim.schedule(function()
+            require("lazy").load { plugins = plugin }
+
+            if plugin == "nvim-lspconfig" then
+              vim.cmd "silent! do FileType"
+            end
+          end, 0)
+        else
+          require("lazy").load { plugins = plugin }
+        end
+      end
+    end,
+  })
+end
 local plugins = {
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -71,15 +98,19 @@ local plugins = {
   },
   {
     'neovim/nvim-lspconfig',
-    lazy = false,
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      "ray-x/lsp_signature.nvim",
       {
         'j-hui/fidget.nvim',
         tag = "legacy"
       }
     },
+    lazy = true,
+    init = function()
+      lazy_load "nvim-lspconfig"
+    end,
     config = function()
       require("plugins.config.lsp")
     end
@@ -251,7 +282,6 @@ local plugins = {
 
   },
 
-  "ray-x/lsp_signature.nvim",
 
   {
     "folke/trouble.nvim",
