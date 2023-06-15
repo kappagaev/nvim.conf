@@ -67,8 +67,45 @@ local plugins = {
 
   {
     'hrsh7th/nvim-cmp',
-    lazy = false,
-    dependencies = { 'hrsh7th/cmp-nvim-lsp' },
+    event = "InsertEnter",
+    dependencies = {
+      "rcarriga/cmp-dap",
+      "onsails/lspkind.nvim",
+      {
+        -- snippet plugin
+        "L3MON4D3/LuaSnip",
+        lazy = true,
+        dependencies = "rafamadriz/friendly-snippets",
+        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+        config = function(_, opts)
+          require("luasnip").config.set_config(opts)
+
+          -- require("luasnip.loaders.from_snipmate").lazy_load { paths = vim.fn.stdpath "config" .. "/snippets/snipmate" }
+          local loader = require("luasnip/loaders/from_vscode")
+          loader.lazy_load()
+
+          -- load snippets from path/of/your/nvim/config/my-cool-snippets
+          loader.lazy_load({ paths = { "./snippets" } })
+
+          vim.api.nvim_create_autocmd("InsertLeave", {
+            callback = function()
+              if
+                  require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+                  and not require("luasnip").session.jump_active
+              then
+                require("luasnip").unlink_current()
+              end
+            end,
+          })
+        end,
+      },
+      'hrsh7th/cmp-nvim-lsp',
+      "saadparwaiz1/cmp_luasnip",
+      'hrsh7th/cmp-buffer',
+    },
+    config = function()
+      require("plugins.config.cmp")
+    end
   },
   {
     "lewis6991/hover.nvim",
@@ -174,35 +211,6 @@ local plugins = {
     end
   },
   {
-    -- snippet plugin
-    "L3MON4D3/LuaSnip",
-    lazy = false,
-    dependencies = "rafamadriz/friendly-snippets",
-    opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-    config = function(_, opts)
-      require("luasnip").config.set_config(opts)
-
-      -- require("luasnip.loaders.from_snipmate").lazy_load { paths = vim.fn.stdpath "config" .. "/snippets/snipmate" }
-      local loader = require("luasnip/loaders/from_vscode")
-      loader.lazy_load()
-
-      -- load snippets from path/of/your/nvim/config/my-cool-snippets
-      loader.lazy_load({ paths = { "./snippets" } })
-
-      vim.api.nvim_create_autocmd("InsertLeave", {
-        callback = function()
-          if
-              require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-              and not require("luasnip").session.jump_active
-          then
-            require("luasnip").unlink_current()
-          end
-        end,
-      })
-    end,
-  },
-  "saadparwaiz1/cmp_luasnip",
-  {
     "petertriho/nvim-scrollbar",
     opts = {}
 
@@ -231,7 +239,6 @@ local plugins = {
   --   "tpope/vim-endwise",
   -- },
 
-  "onsails/lspkind.nvim",
 
   -- {
   --   "folke/zen-mode.nvim",
@@ -279,7 +286,6 @@ local plugins = {
     opts = {}
   },
 
-  'hrsh7th/cmp-buffer',
 
   {
     'windwp/nvim-autopairs',
@@ -318,7 +324,6 @@ local plugins = {
 
   -- "ntpeters/vim-better-whitespace",
 
-  "rcarriga/cmp-dap",
 
   "jose-elias-alvarez/typescript.nvim",
 
@@ -411,10 +416,10 @@ local plugins = {
     end
   },
 
-  {
-    "vimpostor/vim-tpipeline",
-    event = "BufEnter"
-  },
+  -- {
+  --   "vimpostor/vim-tpipeline",
+  --   event = "BufEnter"
+  -- },
   "dstein64/vim-startuptime",
   -- "andythigpen/nvim-coverage",
   {
