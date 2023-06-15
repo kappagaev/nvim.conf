@@ -4,6 +4,7 @@ return {
   lazy = false,
   keys = {
     { "<leader><space>" },
+    { "<C-p>" },
     { "<leader>u" },
     { "<leader>/",      "<cmd>Telescope live_grep<CR>",  desc = "Find a string", silent = true },
     { "<leader>fh",     "<cmd>Telescope help_tags<CR>",  desc = "Help",          silent = true },
@@ -98,6 +99,9 @@ return {
       silent = true
     })
     vim.keymap.set("n", "<leader>u", require("telescope.builtin").find_files, {
+      silent = true
+    })
+    vim.keymap.set("n", "<C-p>", require("telescope.builtin").find_files, {
       silent = true
     })
   end

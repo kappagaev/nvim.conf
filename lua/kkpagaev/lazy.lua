@@ -410,6 +410,7 @@ local plugins = {
       vim.keymap.set("n", "<Leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
     end
   },
+  "vimpostor/vim-tpipeline",
   -- "andythigpen/nvim-coverage",
   {
     import = "plugins"

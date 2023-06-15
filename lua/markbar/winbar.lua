@@ -70,9 +70,12 @@ function tabline()
   end
 end
 
--- vim.opt.showtabline = 2
-
--- vim.o.winbar = "%{%v:lua.tabline()%}"
+local function render_mark()
+  local bufname = vim.api.nvim_eval_statusline('%t', {}).str
+  local current_mark = buf_harpoon(bufname)
+  return "%#Mark" .. current_mark .. "# " .. current_mark .. "  %*" ..
+      "%#MarkEnd" .. current_mark .. "#" .. "" .. "%*"
+end
 
 
 local function open()
@@ -91,14 +94,12 @@ local function toggle()
   end
 end
 
--- vim.keymap.set('n', '&', toggle)
-
-open()
 return {
   open = open,
   close = close,
   toggle = toggle,
-  clear = function ()
+  render_mark = render_mark,
+  clear = function()
     cache = {}
   end
 }

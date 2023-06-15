@@ -59,7 +59,7 @@ return {
       vim.api.nvim_set_hl(0, group, {})
     end
     -- vim.opt.laststatus = 0
-    -- vim.o.cmdheight = 0
+    vim.o.cmdheight = 0
   end
   -- commit = "de7fb5f5de25ab45ec6039e33c80aeecc891dd92",
   --

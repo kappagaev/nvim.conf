@@ -6,6 +6,7 @@ filetypes["[dap-repl]"] = false
 filetypes["dapui_watches"] = false
 
 
+vim.g.tpipeline_autoembed = false
 vim.g.copilot_filetypes = filetypes
 vim.g.vimwiki_list = {
   {

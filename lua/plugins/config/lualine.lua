@@ -35,16 +35,43 @@ require('lualine').setup({
 
     },
   },
+  winbar = {
+    lualine_a = {
+    },
+    lualine_b = {},
+    lualine_c = {
+      require("markbar.winbar").render_mark,
+      'filename',
+      'diff'
+    },
+    lualine_x = { 'filetype' },
+    -- lualine_y = { nvimbattery },
+    -- lualine_y = {harp  },
+    -- lualine_z = { 'location' }
+  },
   sections = {
     lualine_a = {
-      'mode',
     },
     lualine_b = { 'branch' },
-    lualine_c = { 'diff', 'diagnostics', },
+    lualine_c = { 'diagnostics', },
     lualine_x = { 'filetype' },
     -- lualine_y = { nvimbattery },
     -- lualine_y = {harp  },
     lualine_z = { 'location' }
+  },
+  inactive_winbar = {
+    lualine_a = {
+    },
+    lualine_b = {},
+    lualine_c = {
+      require("markbar.winbar").render_mark,
+      'filename',
+      'diff'
+    },
+    lualine_x = { 'filetype' },
+    -- lualine_y = { nvimbattery },
+    -- lualine_y = {harp  },
+    -- lualine_z = { 'location' }
   },
   inactive_sections = {
     lualine_a = {},
