@@ -13,7 +13,6 @@ vim.keymap.set('n', '<M-b>',
 vim.keymap.set('n', '<leader>c',
   function() require "dap".clear_breakpoints() end)
 
-vim.api.nvim_set_keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], {})
 
 vim.keymap.set({ 'n', 't' }, '<C-g>', function() require "dap".continue() end)
 vim.keymap.set({ 'n', 't' }, '<C-c>', function() require "dap".step_over() end)

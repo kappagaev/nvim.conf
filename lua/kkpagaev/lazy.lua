@@ -112,7 +112,6 @@ local plugins = {
     'hrsh7th/nvim-cmp',
     event = "InsertEnter",
     dependencies = {
-      "rcarriga/cmp-dap",
       "onsails/lspkind.nvim",
       {
         -- snippet plugin
@@ -178,6 +177,7 @@ local plugins = {
       "<C-l>",
     },
     dependencies = {
+      "rcarriga/cmp-dap",
       {
         "theHamsta/nvim-dap-virtual-text",
         opts = {}
@@ -463,6 +463,10 @@ local plugins = {
       -- This "list_commands()" will show a list of all the available commands to run
       vim.keymap.set("n", "<Leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
     end
+  },
+  {
+    "vimwiki/vimwiki",
+    event = "BufEnter *.md",
   },
   -- "dstein64/vim-startuptime",
   -- "andythigpen/nvim-coverage",

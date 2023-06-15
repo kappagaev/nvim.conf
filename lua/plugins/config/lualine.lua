@@ -73,8 +73,8 @@ require('lualine').setup({
   sections = {
     lualine_a = {
     },
-    lualine_b = { 'branch' },
-    lualine_c = { 'diff', 'diagnostics' },
+    lualine_b = {  },
+    lualine_c = {'branch', 'diff', 'diagnostics' },
     lualine_x = {
       'filetype',
       'encoding',

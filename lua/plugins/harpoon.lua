@@ -37,7 +37,7 @@ return {
 
 
   },
-  lazy = true,
+  lazy = false,
   -- event = "InsertChange",
   keys = {
     "M",

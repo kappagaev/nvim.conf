@@ -4,6 +4,8 @@ local function map(m, k, v)
   vim.keymap.set(m, k, v, { silent = true })
 end
 
+vim.api.nvim_set_keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], {})
+
 g.mapleader = " "
 g.maplocalleader = " "
 
