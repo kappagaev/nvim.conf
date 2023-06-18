@@ -2,7 +2,8 @@ return {
   "rebelot/kanagawa.nvim",
   dependencies = {
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    "arturgoms/moonbow.nvim"
+    "arturgoms/moonbow.nvim",
+    "Shatur/neovim-ayu"
   },
   -- install = { colorscheme = { "moonbow" } },
   -- oniViolet

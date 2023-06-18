@@ -1,0 +1,12 @@
+{
+  "click-on": {
+    "prefix": "click-on",
+    "body": "click_on \"$1\"",
+    "description": "RSpec Before Block"
+  },
+  "assert-selector": {
+    "prefix": "assert-selector",
+    "body": "assert_selector \"$1\", text: \"$2\" ",
+    "description": "RSpec Before Inline"
+  }
+}

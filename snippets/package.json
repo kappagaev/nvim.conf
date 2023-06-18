@@ -7,6 +7,10 @@
     "snippets": [
       {
         "language": "ruby",
+        "path": "./ruby/test/system.json"
+      },
+      {
+        "language": "ruby",
         "path": "./ruby/attributes/attributes-rb.json"
       },
       {

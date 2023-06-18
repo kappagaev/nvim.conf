@@ -119,7 +119,6 @@ vim.keymap.set("n", "<leader>mr", function()
   vim.cmd "CellularAutomaton make_it_rain"
 end)
 
-vim.keymap.set("n", "<C-f>", "<cmd>silent !t<CR>")
 
 vim.keymap.set("i", "<C-BS>", "<C-w>", {})
 

@@ -127,6 +127,9 @@ require 'lspconfig'.solargraph.setup {
 
   root_dir = nvim_lsp.util.root_pattern(".rubocop.yml", ".git"),
   settings = {
+    -- solargraph = {
+    --   diagnostics = true
+    -- }
   },
 }
 require('lspconfig')['yamlls'].setup {

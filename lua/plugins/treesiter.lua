@@ -29,8 +29,9 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
     "RRethy/nvim-treesitter-endwise",
-    'nvim-treesitter/nvim-treesitter-context',
+    -- 'nvim-treesitter/nvim-treesitter-context',
   },
+  lazy = false,
   -- event = "BufReadPre",
   config = function()
     -- Using protected call
