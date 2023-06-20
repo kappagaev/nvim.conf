@@ -62,7 +62,7 @@ local plugins = {
           additional_vim_regex_highlighting = false,
         },
         indent = {
-          enable = false,
+          enable = true,
           disable = {}
         },
         endwise = {
@@ -133,8 +133,9 @@ map('n', "<leader>z", "<Cmd>call VSCodeNotify('workbench.action.toggleZenMode')'
 -- debug
 map('n', "<A-b>", "<Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpoint')', 1)<CR>")
 map('n', "<leader>c", "<Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpoint')', 1)<CR>")
-map('n', ",h", "<Cmd>call VSCodeNotify('editor.debug.action.runToCursor')', 1)<CR>")
 
+-- test
+map('n', ",h", "<Cmd>call VSCodeNotify('extension.debugJest')', 1)<CR>")
 
 -- explorer
 map('n', "<leader>e", "<Cmd>call VSCodeNotifyVisual('workbench.explorer.fileView.focus', 1)<CR>")

@@ -2,6 +2,7 @@ return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
   'nvim-tree/nvim-web-devicons',
+    "benfowler/telescope-luasnip.nvim",
     'nvim-lua/plenary.nvim' },
   lazy = true,
   keys = {
@@ -97,6 +98,7 @@ return {
       -- { "<leader>fh",      "<cmd>Telescope help_tags<CR>",  desc = "Help", silent = true },
       -- { "<leader>fg",      "<cmd>Telescope git_status<CR>", desc = "Find Git", silent = true },
     }
+    require('telescope').load_extension('luasnip')
     vim.keymap.set("n", "<leader><space>", require("telescope.builtin").find_files, {
       silent = true
     })

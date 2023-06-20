@@ -218,10 +218,10 @@ local plugins = {
 
   {
     'jose-elias-alvarez/null-ls.nvim',
-    lazy = true,
-    init = function()
-      lazy_load "null-ls.nvim"
-    end,
+    lazy = false,
+    -- init = function()
+    --   lazy_load "null-ls.nvim"
+    -- end,
     config = function()
       local status_ok, null_ls = pcall(require, "null-ls")
       if not status_ok then
