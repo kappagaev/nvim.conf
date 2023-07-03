@@ -33,6 +33,9 @@ map('n', "t", "k")
 map('n', "k", "t")
 -- map('n', '<C-j>', '5j')
 map('i', "<C-g>", "<C-o>")
+map('i', "<C-d>", "<Delete>")
+map('i', "<C-l>", "<Right>")
+
 -- map('i', "<C-g>h", "<Down>")
 -- map('i', "<C-g>t", "<Up>")
 -- map('i', "<C-g>n", "<Right>")
@@ -66,6 +69,8 @@ map('n', '<leader>i', ':TypescriptAddMissingImports<CR>')
 
 -- map('n', '<c-d>', '18j')
 -- map('n', '<c-u>', '18k')
+
+-- vim.api.nvim_set_keymap('n', '<CR>', 'ciw', { noremap = true })
 
 map('v', '<leader>p', '"_dP')
 

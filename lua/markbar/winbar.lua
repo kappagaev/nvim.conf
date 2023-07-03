@@ -32,10 +32,10 @@ local function set_mark_color(number, color, fg)
 end
 
 -- set_mark_color(1, "#FFA066")
-set_mark_color(3, "#54546D", "#C8C093")
+set_mark_color(1, "#54546D", "#C8C093")
 set_mark_color(2, "#49443C", "#C8C093")
 set_mark_color(4, "#E82424", "#C8C093")
-set_mark_color(1, "#2A2A37", "#C8C093")
+set_mark_color(3, "#2A2A37", "#C8C093")
 set_mark_color(5, "#76946A")
 -- set_mark_color(4, "#ffffff")
 -- set_mark_color(4, "#A3D4D5")

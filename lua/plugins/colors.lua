@@ -3,7 +3,9 @@ return {
   dependencies = {
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     "arturgoms/moonbow.nvim",
-    "Shatur/neovim-ayu"
+    "Shatur/neovim-ayu",
+    "EdenEast/nightfox.nvim",
+    "NLKNguyen/papercolor-theme"
   },
   -- install = { colorscheme = { "moonbow" } },
   -- oniViolet
@@ -12,7 +14,7 @@ return {
       colors = {
         palette = {
           -- change all usages of these colors
-          oniViolet = "#e46876",
+          -- oniViolet = "#e46876",
           -- fujiWhite = "#FFFFFF",
         },
         theme = {
@@ -24,7 +26,7 @@ return {
           }
         },
       },
-      transparent = false,
+      transparent = true,
       dimInactive = false,
       overrides = function(colors)
         local theme = colors.theme

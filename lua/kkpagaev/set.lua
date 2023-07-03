@@ -5,11 +5,14 @@ filetypes["dap-repl"] = false
 filetypes["[dap-repl]"] = false
 filetypes["dapui_watches"] = false
 
--- vim.opt.shell = "/bin/bash"
+vim.opt.shell = "/bin/bash"
 
 
 vim.g.tpipeline_autoembed = false
 vim.g.copilot_filetypes = filetypes
+
+vim.opt.smartindent = false
+
 vim.g.vimwiki_list = {
   {
     path = "/home/kkpagaev/vimwiki/",
@@ -37,8 +40,6 @@ o.expandtab = true
 o.softtabstop = 2
 o.shiftwidth = 2
 o.wrap = true
-o.noswapfile = true
-o.nocompatible = true
 o.shortmess = o.shortmess .. "at"
 
 vim.opt.diffopt = vim.opt.diffopt + "vertical"

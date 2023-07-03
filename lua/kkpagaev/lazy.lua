@@ -89,6 +89,9 @@ local plugins = {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
+      'jose-elias-alvarez/null-ls.nvim',
+      "zbirenbaum/copilot.lua",
+      "pmizio/typescript-tools.nvim",
       "jose-elias-alvarez/typescript.nvim",
       "lewis6991/hover.nvim",
       'williamboman/mason.nvim',
@@ -99,15 +102,30 @@ local plugins = {
         tag = "legacy"
       }
     },
-    lazy = true,
-    init = function()
-      lazy_load "nvim-lspconfig"
-    end,
+    lazy = false,
+    -- init = function()
+    --   lazy_load "nvim-lspconfig"
+    -- end,
     config = function()
       require("plugins.config.lsp")
     end
   },
 
+  {
+    'pwntester/octo.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+    'nvim-tree/nvim-web-devicons',
+  },
+    commands = {
+      "Octo"
+    },
+    config = function()
+      require"octo".setup()
+    end
+
+  },
   {
     'hrsh7th/nvim-cmp',
     event = "InsertEnter",
@@ -216,56 +234,6 @@ local plugins = {
     end
   },
 
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    lazy = false,
-    -- init = function()
-    --   lazy_load "null-ls.nvim"
-    -- end,
-    config = function()
-      local status_ok, null_ls = pcall(require, "null-ls")
-      if not status_ok then
-        return
-      end
-
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.diagnostics.yamllint,
-          null_ls.builtins.formatting.prettierd,
-          -- null_ls.builtins.code_actions.eslint_d,
-          require("typescript.extensions.null-ls.code-actions"),
-          -- null_ls.builtins.diagnostics.erb_lint,
-          -- null_ls.builtins.formatting.rubocop,
-          -- null_ls.builtins.diagnostics.rubocop,
-          null_ls.builtins.diagnostics.flake8,
-          null_ls.builtins.formatting.autopep8,
-          null_ls.builtins.formatting.gofumpt,
-          null_ls.builtins.code_actions.gomodifytags,
-          null_ls.builtins.diagnostics.golangci_lint,
-          null_ls.builtins.formatting.stylish_haskell,
-          null_ls.builtins.formatting.goimports,
-        },
-        on_attach = function(client, bufnr)
-          -- Enable formatting on sync
-          if client.supports_method("textDocument/formatting") then
-            local format_on_save = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-            vim.api.nvim_create_autocmd('BufWritePre', {
-              group = format_on_save,
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.format({
-                  bufnr = bufnr,
-                  filter = function(_client)
-                    return _client.name == "null-ls"
-                  end
-                })
-              end,
-            })
-          end
-        end,
-      })
-    end
-  },
   {
     "petertriho/nvim-scrollbar",
     opts = {}

@@ -29,6 +29,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
     "RRethy/nvim-treesitter-endwise",
+    "nvim-treesitter/playground",
     -- 'nvim-treesitter/nvim-treesitter-context',
   },
   lazy = false,
@@ -64,7 +65,6 @@ return {
       indent = {
         enable = true,
         disable = {
-          "ruby"
         }
       },
       endwise = {
@@ -82,9 +82,9 @@ return {
       -- markid = { enable = true }
     }
   end,
-  init = function()
-    lazy_load("nvim-treesitter")
-  end,
+  -- init = function()
+  --   lazy_load("nvim-treesitter")
+  -- end,
   cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
   build = ":TSUpdate",
 }

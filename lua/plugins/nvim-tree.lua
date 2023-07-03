@@ -3,6 +3,7 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons', -- optional, for file icons
   },
+  lazy = false,
   keys = {
     { "<leader>e", "<cmd>NvimTreeToggle<CR>" }
   },
@@ -95,7 +96,7 @@ return {
       dotfiles = true,
     },
     update_focused_file = {
-      enable = false,
+      enable = true,
       update_cwd = false
     },
     diagnostics = {
