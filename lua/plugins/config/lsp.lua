@@ -12,6 +12,7 @@ local on_attach = function(client, bufnr)
   end
 
   nmap('ge', vim.lsp.buf.definition, '[G]oto [D]efinition')
+  nmap('gE', vim.lsp.buf.type_definition, '[G]oto [D]efinition')
   nmap('gr', function()
     require('telescope.builtin').lsp_references()
   end, '[G]oto [R]eferences')
@@ -208,47 +209,7 @@ require("typescript-tools").setup {
 --   }
 -- }
 
-local status_ok, null_ls = pcall(require, "null-ls")
-if not status_ok then
-  return
-end
-
-null_ls.setup({
-  sources = {
-    null_ls.builtins.diagnostics.yamllint,
-    null_ls.builtins.formatting.prettierd,
-    null_ls.builtins.code_actions.eslint_d,
-    require("typescript.extensions.null-ls.code-actions"),
-    -- null_ls.builtins.diagnostics.erb_lint,
-    -- null_ls.builtins.formatting.rubocop,
-    -- null_ls.builtins.diagnostics.rubocop,
-    null_ls.builtins.diagnostics.flake8,
-    null_ls.builtins.formatting.autopep8,
-    null_ls.builtins.formatting.gofumpt,
-    null_ls.builtins.code_actions.gomodifytags,
-    null_ls.builtins.diagnostics.golangci_lint,
-    null_ls.builtins.formatting.stylish_haskell,
-    null_ls.builtins.formatting.goimports,
-  },
-  on_attach = function(client, bufnr)
-    -- Enable formatting on sync
-    if client.supports_method("textDocument/formatting") then
-      local format_on_save = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = format_on_save,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({
-            bufnr = bufnr,
-            filter = function(_client)
-              return _client.name == "null-ls"
-            end
-          })
-        end,
-      })
-    end
-  end,
-})
+require("plugins.config.nullls")
 
 require('copilot').setup({
   panel = {

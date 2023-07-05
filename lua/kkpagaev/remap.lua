@@ -15,6 +15,11 @@ map('v', "h", "j")
 
 map('v', "H", "j")
 
+map('n', '&', 'gt')
+map('t', '&', function ()
+  vim.cmd("normal! gt")
+end)
+
 
 map('n', "H", "j")
 map('n', "T", "k")

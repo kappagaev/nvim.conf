@@ -135,16 +135,16 @@ map('n', "<A-b>", "<Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpoint'
 map('n', "<leader>c", "<Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpoint')', 1)<CR>")
 
 -- test
-map('n', ",h", "<Cmd>call VSCodeNotify('extension.debugJest')', 1)<CR>")
+-- map('n', ",h", "<Cmd>call VSCodeNotify('extension.debugJest')', 1)<CR>")
 
 -- explorer
-map('n', "<leader>e", "<Cmd>call VSCodeNotifyVisual('workbench.explorer.fileView.focus', 1)<CR>")
+-- map('n', "<leader>e", "<Cmd>call VSCodeNotifyVisual('workbench.explorer.fileView.focus', 1)<CR>")
 
 local lsp = [[
 nnoremap S <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
-nnoremap gd <Cmd>call VSCodeNotify('editor.action.goToDeclaration')<CR>
-nnoremap ge <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
+nnoremap ge <Cmd>call VSCodeNotify('editor.action.goToDeclaration')<CR>
+nnoremap gE <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
 xnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
 ]]
 

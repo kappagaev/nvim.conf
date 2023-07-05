@@ -320,10 +320,10 @@ end
 
 
 vim.keymap.set('n', ',h', run_at_cursor, { noremap = true, silent = true })
-vim.keymap.set('n', '&', function ()
-  vim.cmd("w")
-  run_latest()
-end, { noremap = true, silent = true })
+-- vim.keymap.set('n', '&', function ()
+--   vim.cmd("w")
+--   run_latest()
+-- end, { noremap = true, silent = true })
 
 vim.keymap.set('n', '\\', function()
   print('Autocmd to run latest test')
