@@ -10,10 +10,10 @@ g.mapleader = " "
 g.maplocalleader = " "
 
 map('n', "<leader>", "")
-map('v', "j", "h")
-map('v', "h", "j")
-
-map('v', "H", "j")
+-- map('v', "j", "h")
+-- map('v', "h", "j")
+--
+-- map('v', "H", "j")
 
 map('n', '&', 'gt')
 map('t', '&', function ()
@@ -21,21 +21,22 @@ map('t', '&', function ()
 end)
 
 
-map('n', "H", "j")
-map('n', "T", "k")
+-- map('n', "H", "j")
+-- map('n', "T", "k")
+--
+-- map('s', "H", "H")
+-- map('s', "T", "T")
+--
+-- map('v', "t", "k")
+-- map('v', "T", "{")
+-- map('v', "k", "t")
+--
+-- map('n', "j", "h")
+-- map('n', "h", "j")
+--
+-- map('n', "t", "k")
+-- map('n', "k", "t")
 
-map('s', "H", "H")
-map('s', "T", "T")
-
-map('v', "t", "k")
-map('v', "T", "{")
-map('v', "k", "t")
-
-map('n', "j", "h")
-map('n', "h", "j")
-
-map('n', "t", "k")
-map('n', "k", "t")
 -- map('n', '<C-j>', '5j')
 map('i', "<C-g>", "<C-o>")
 map('i', "<C-d>", "<Delete>")
@@ -132,7 +133,7 @@ end)
 
 vim.keymap.set("i", "<C-BS>", "<C-w>", {})
 
-vim.keymap.set('n', ';', '<C-W>w')
+vim.keymap.set('n', '<Tab>', '<C-W>w')
 vim.keymap.set('n', '<S-Tab>', '<C-W>W')
 
 -- vim.keymap.set("n", ";", "<cmd>lua require('telescope.builtin').resume(require('telescope.themes').get_ivy({}))<cr>", { silent = true })

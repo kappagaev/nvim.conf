@@ -8,3 +8,11 @@ au('TextYankPost', {
     vim.highlight.on_yank { higroup = 'IncSearch', timeout = 50 }
   end,
 })
+
+-- au('BufRead', {
+--   pattern = '*.fish',
+--   callback = function()
+--     vim.opt_local.number = false
+--     vim.opt_local.relativenumber = false
+--   end,
+-- })

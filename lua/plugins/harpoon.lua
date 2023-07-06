@@ -48,9 +48,9 @@ return {
     "<C-n>",
     "<C-s>",
   },
-  init = function ()
-    lazy_load("harpoon")
-  end,
+  -- init = function ()
+  --   lazy_load("harpoon")
+  -- end,
   config = function()
     local status_ok, harpoon = pcall(require, "harpoon")
     if not status_ok then
@@ -79,6 +79,11 @@ return {
     local ui = require("harpoon.ui")
 
     vim.keymap.set("n", "<C-h>", function()
+      if require("harpoon.mark").get_length() == 0 then
+        require("telescope.builtin").find_files()
+
+        return
+      end
       ui.nav_file(1)
     end)
     vim.keymap.set("n", "<C-t>", function()

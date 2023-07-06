@@ -211,8 +211,8 @@ local plugins = {
           layouts = {
             {
               elements = {
-                "scopes",
-                "watches",
+                -- "scopes",
+                -- "watches",
               },
               size = 30, -- 40 columns
               position = "right",
