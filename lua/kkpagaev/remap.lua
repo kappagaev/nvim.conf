@@ -66,7 +66,9 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- map('n', 'gx', ":!open <c-r><c-a>")
 -- vim.keymap.nnoremap { 'gx', [[:execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]] }
 map('n', '<leader>l', ':Format<CR>')
-map('n', '<leader>i', ':TypescriptAddMissingImports<CR>')
+map('n', '<leader>i', ':TSToolsAddMissingImports<CR>')
+
+map('n', '<leader>d', ':TSToolsRemoveUnused<CR>')
 
 -- map('n', '<c-d>', '18j')
 -- map('n', '<c-u>', '18k')
