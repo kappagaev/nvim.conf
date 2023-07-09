@@ -444,4 +444,7 @@ local plugins = {
 }
 
 require("lazy").setup(plugins, {
+  defaults = {
+    lazy = false
+  }
 })

@@ -39,7 +39,7 @@ end)
 
 -- map('n', '<C-j>', '5j')
 map('i', "<C-g>", "<C-o>")
-map('i', "<C-d>", "<Delete>")
+map('i', "<C-d>", "<M-d>")
 map('i', "<C-l>", "<Right>")
 
 -- map('i', "<C-g>h", "<Down>")
@@ -63,11 +63,6 @@ vim.api.nvim_set_keymap('n', '<', '<<', { noremap = true })
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-map('i', '<A-h>', '<c-o>h')
-map('i', '<A-j>', '<c-o>j')
-map('i', '<A-k>', '<c-o>k')
-map('i', '<A-l>', '<c-o>l')
-map('i', '<A-o>', '<c-o>o')
 -- map('n', 'gx', ":!open <c-r><c-a>")
 -- vim.keymap.nnoremap { 'gx', [[:execute '!open ' . shellescape(expand('<cfile>'), 1)<CR>]] }
 map('n', '<leader>l', ':Format<CR>')
@@ -101,6 +96,9 @@ map('v', "<leader>p", '"+p')
 map('n', "<leader>o", ':w<CR>')
 map('n', ",.", ':w<CR>')
 
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz", {})
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz", {})
+
 
 map('s', "h", "h")
 map('s', "t", "t")
@@ -124,12 +122,6 @@ vim.keymap.set("i", '<C-F>', 'copilot#Accept()', { expr = true, silent = true, s
 vim.keymap.set("n", "glt", ":VimwikiToggleListItem<CR>", { silent = true })
 -- vim.keymap.set('i','<C-]>', '<esc>f\\|ni', { silent = true })
 --
-
-vim.keymap.set("n", "<leader>mr", function()
-  require("zen-mode").toggle()
-  vim.cmd "CellularAutomaton make_it_rain"
-end)
-
 
 vim.keymap.set("i", "<C-BS>", "<C-w>", {})
 

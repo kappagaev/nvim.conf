@@ -1,0 +1,7 @@
+{
+  "globalThisPrisma": {
+    "body": "await globalThis.prisma.$0",
+    "description": "globalThis.prisma",
+    "prefix": "gtp"
+  }
+}
