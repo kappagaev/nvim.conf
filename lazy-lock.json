@@ -1,4 +1,5 @@
 {
+  "BufferTabs.nvim": { "branch": "main", "commit": "61b75d9cefc95bbd8b36f66bfc7ccec7a1a82792" },
   "Comment.nvim": { "branch": "master", "commit": "176e85eeb63f1a5970d6b88f1725039d85ca0055" },
   "LuaSnip": { "branch": "master", "commit": "a658ae2906344a1d2b9c507738e585cf68e685c7" },
   "catppuccin": { "branch": "main", "commit": "cc8d3abc944d78cb6bf2a4cc88871ab383c4da62" },

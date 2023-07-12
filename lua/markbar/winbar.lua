@@ -1,7 +1,3 @@
-local function i(f)
-  print(vim.inspect(f))
-end
-
 local cache = {}
 
 local function buf_harpoon(name)

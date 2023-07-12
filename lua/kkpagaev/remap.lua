@@ -42,6 +42,11 @@ map('i', "<C-g>", "<C-o>")
 map('i', "<C-d>", "<M-d>")
 map('i', "<C-l>", "<Right>")
 
+map('n', "t", "f")
+map('n', "f", "t")
+
+map('n', "T", "F")
+map('n', "F", "T")
 -- map('i', "<C-g>h", "<Down>")
 -- map('i', "<C-g>t", "<Up>")
 -- map('i', "<C-g>n", "<Right>")

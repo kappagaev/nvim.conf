@@ -145,8 +145,22 @@ nnoremap S <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap gh <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
 nnoremap ge <Cmd>call VSCodeNotify('editor.action.goToDeclaration')<CR>
 nnoremap gE <Cmd>call VSCodeNotify('editor.action.goToTypeDefinition')<CR>
-xnoremap gr <Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
+nnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 ]]
+
+map('n', "gr", "<Cmd>call VSCodeNotify('editor.action.goToReferences')', 1)<CR>")
+
+map('n', "<leader>e", "<Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup', 1)<CR>")
+map('n', "<leader>r", "<Cmd>call VSCodeNotify('editor.action.rename', 1)<CR>")
+map('n', "<leader>l", "<Cmd>call VSCodeNotify('editor.action.formatDocument', 1)<CR>")
+
+map('n', "<leader>i", "<Cmd>call VSCodeNotify('editor.action.sourceAction', {'kind': 'source.addMissingImports', 'apply': 'first'})<CR>")
+map('n', "<leader>d", "<Cmd>call VSCodeNotify('editor.action.sourceAction', {'kind': 'source.organizeImports', 'apply': 'first'})<CR>")
+
+map('n', "<leader>/", "<Cmd>call VSCodeNotify('workbench.action.findInFiles', 1)<CR>")
+
+-- map('n', "<leader>t", "<Cmd>call VSCodeNotify('workbench.actions.view.problems', 1)<CR>")
+map('n', "<leader>t", "<Cmd>call VSCodeNotify('workbench.action.toggleAuxiliaryBar', 1)<CR>")
 
 map("n", "<C-d>", "<Cmd>call VSCodeExtensionCall('scroll', 'halfPage', 'down')")
 map("n", "<C-u>", "<Cmd>call VSCodeExtensionCall('scroll', 'halfPage', 'up')")

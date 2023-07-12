@@ -393,7 +393,7 @@ local plugins = {
   },
   {
     "ThePrimeagen/vim-be-good",
-    lazy = true,
+    lazy = false,
     commands = {
       "VimBeGood"
     }
