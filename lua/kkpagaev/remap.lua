@@ -92,6 +92,8 @@ map('n', 'gi', '<c-i>')
 
 map('n', "yf", 'jgg"+yG<c-o>k')
 
+map('n', "cum", 'jgg"+yG<c-o>k')
+
 map('n', 'U', '<c-r>')
 
 map('v', "<leader>y", '"+y')

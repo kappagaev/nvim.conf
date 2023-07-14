@@ -89,7 +89,7 @@ local plugins = {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      'jose-elias-alvarez/null-ls.nvim',
+      "mhartington/formatter.nvim",
       "zbirenbaum/copilot.lua",
       "pmizio/typescript-tools.nvim",
       "jose-elias-alvarez/typescript.nvim",

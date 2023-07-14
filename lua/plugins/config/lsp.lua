@@ -83,12 +83,6 @@ mason_lspconfig.setup_handlers {
 }
 
 local sources = {}
-sources['null-ls'] = {
-  ignore = true
-}
-sources['lua_ls'] = {
-  ignore = true
-}
 require('fidget').setup({
   sources = sources,
   window = {
@@ -209,7 +203,7 @@ require("typescript-tools").setup {
 --   }
 -- }
 
-require("plugins.config.nullls")
+require("plugins.config.formatter")
 
 require('copilot').setup({
   panel = {
