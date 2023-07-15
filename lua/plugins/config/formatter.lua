@@ -4,19 +4,6 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 require 'lspconfig'.eslint.setup({
   capabilities = capabilities,
   flags = { debounce_text_changes = 500 },
-  on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = true
-    if client.resolved_capabilities.document_formatting then
-      local au_lsp = vim.api.nvim_create_augroup("eslint_lsp", { clear = true })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        pattern = "*",
-        callback = function()
-          vim.lsp.buf.formatting_sync()
-        end,
-        group = au_lsp,
-      })
-    end
-  end,
 })
 
 local util = require "formatter.util"
@@ -47,8 +34,15 @@ end
 require('formatter').setup {
   logging = true,
   filetype = {
+
+    -- typescript = { format_prettier },
+    -- typescriptreact = { format_prettier },
+    -- vue = { format_prettier },
+
     typescript = { format_eslint },
-    typescriptreact = { format_eslint() },
+    typescriptreact = { format_eslint },
+    vue = { format_eslint },
+    
   }
 }
 

@@ -47,8 +47,6 @@ cmp.setup {
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
       elseif cmp.visible() then
         cmp.confirm()
-      elseif require("copilot.suggestion").is_visible() then
-        require("copilot.suggestion").accept_line()
       else
         fallback()
       end

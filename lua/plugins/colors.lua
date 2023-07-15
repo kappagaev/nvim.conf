@@ -3,6 +3,7 @@ return {
   dependencies = {
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     "arturgoms/moonbow.nvim",
+    "ellisonleao/gruvbox.nvim",
     "Shatur/neovim-ayu",
     "EdenEast/nightfox.nvim",
     "NLKNguyen/papercolor-theme"
@@ -57,6 +58,7 @@ return {
     })
 
     vim.cmd("colorscheme kanagawa")
+    -- vim.cmd("colorscheme gruvbox")
     -- vim.cmd("colorscheme moonbow")
 
     for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do

@@ -48,6 +48,7 @@ local plugins = {
     opts = {},
     keys = {
       { "gcc", mode = "n" },
+      { "gcip", mode = "n" },
       { "gc",  mode = "v" },
       { "gbc", mode = "n" },
       { "gb",  mode = "v" },
@@ -90,7 +91,7 @@ local plugins = {
     'neovim/nvim-lspconfig',
     dependencies = {
       "mhartington/formatter.nvim",
-      "zbirenbaum/copilot.lua",
+      -- "zbirenbaum/copilot.lua",
       "pmizio/typescript-tools.nvim",
       "jose-elias-alvarez/typescript.nvim",
       "lewis6991/hover.nvim",
