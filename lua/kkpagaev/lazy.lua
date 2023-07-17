@@ -47,17 +47,45 @@ local plugins = {
     lazy = true,
     opts = {},
     keys = {
-      { "gcc", mode = "n" },
+      { "gcc",  mode = "n" },
       { "gcip", mode = "n" },
-      { "gc",  mode = "v" },
-      { "gbc", mode = "n" },
-      { "gb",  mode = "v" },
+      { "gc",   mode = "v" },
+      { "gbc",  mode = "n" },
+      { "gb",   mode = "v" },
     },
   },
   {
-    "norcalli/nvim-colorizer.lua",
+    "NvChad/nvim-colorizer.lua",
     lazy = false,
-    opts = {}
+    config = function()
+      require("colorizer").setup {
+        filetypes = { "*" },
+        user_default_options = {
+          RGB = true,        -- #RGB hex codes
+          RRGGBB = true,     -- #RRGGBB hex codes
+          names = true,      -- "Name" codes like Blue or blue
+          RRGGBBAA = false,  -- #RRGGBBAA hex codes
+          AARRGGBB = false,  -- 0xAARRGGBB hex codes
+          rgb_fn = false,    -- CSS rgb() and rgba() functions
+          hsl_fn = false,    -- CSS hsl() and hsla() functions
+          css = false,       -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = false,    -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          -- Available modes for `mode`: foreground, background,  virtualtext
+          mode = "foreground", -- Set the display mode.
+          -- Available methods are false / true / "normal" / "lsp" / "both"
+          -- True is same as normal
+          tailwind = true,                              -- Enable tailwind colors
+          -- parsers can contain values used in |user_default_options|
+          sass = { enable = false, parsers = { "css" }, }, -- Enable sass colors
+          virtualtext = "■",
+          -- update color values even if buffer is not focused
+          -- example use: cmp_menu, cmp_docs
+          always_update = false
+        },
+        -- all the sub-options of filetypes apply to buftypes
+        buftypes = {},
+      }
+    end
   },
   {
     'lewis6991/gitsigns.nvim',
@@ -91,7 +119,6 @@ local plugins = {
     'neovim/nvim-lspconfig',
     dependencies = {
       "mhartington/formatter.nvim",
-      -- "zbirenbaum/copilot.lua",
       "pmizio/typescript-tools.nvim",
       "jose-elias-alvarez/typescript.nvim",
       "lewis6991/hover.nvim",
@@ -114,16 +141,16 @@ local plugins = {
 
   {
     'pwntester/octo.nvim',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope.nvim',
-    'nvim-tree/nvim-web-devicons',
-  },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
     commands = {
       "Octo"
     },
     config = function()
-      require"octo".setup()
+      require("plugins.config.octo")
     end
 
   },
@@ -250,11 +277,6 @@ local plugins = {
       }
     },
     opts = {},
-  },
-
-  {
-    "folke/todo-comments.nvim",
-    event = "BufRead",
   },
 
   -- {
@@ -392,47 +414,58 @@ local plugins = {
       require("test")
     end
   },
-  {
-    "ThePrimeagen/vim-be-good",
-    lazy = false,
-    commands = {
-      "VimBeGood"
-    }
-  },
-  {
-    "weizheheng/ror.nvim",
-    event = "BufEnter *.rb",
-    config = function()
-      -- The default settings
-      require("ror").setup({
-        test = {
-          message = {
-            -- These are the default title for nvim-notify
-            file = "Running test file...",
-            line = "Running single test..."
-          },
-          coverage = {
-            -- To customize replace with the hex color you want for the highlight
-            -- guibg=#354a39
-            up = "DiffAdd",
-            -- guibg=#4a3536
-            down = "DiffDelete",
-          },
-          notification = {
-            -- Using timeout false will replace the progress notification window
-            -- Otherwise, the progress and the result will be a different notification window
-            timeout = false
-          },
-          pass_icon = "✅",
-          fail_icon = "❌"
-        }
-      })
+  -- {
+  --   "ThePrimeagen/vim-be-good",
+  --   lazy = false,
+  --   commands = {
+  --     "VimBeGood"
+  --   }
+  -- },
+  -- {
+  --   "weizheheng/ror.nvim",
+  --   event = "BufEnter *.rb",
+  --   config = function()
+  --     -- The default settings
+  --     require("ror").setup({
+  --       test = {
+  --         message = {
+  --           -- These are the default title for nvim-notify
+  --           file = "Running test file...",
+  --           line = "Running single test..."
+  --         },
+  --         coverage = {
+  --           -- To customize replace with the hex color you want for the highlight
+  --           -- guibg=#354a39
+  --           up = "DiffAdd",
+  --           -- guibg=#4a3536
+  --           down = "DiffDelete",
+  --         },
+  --         notification = {
+  --           -- Using timeout false will replace the progress notification window
+  --           -- Otherwise, the progress and the result will be a different notification window
+  --           timeout = false
+  --         },
+  --         pass_icon = "✅",
+  --         fail_icon = "❌"
+  --       }
+  --     })
+  --
+  --     -- Set a keybind
+  --     -- This "list_commands()" will show a list of all the available commands to run
+  --     vim.keymap.set("n", "<Leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
+  --   end
+  -- },
 
-      -- Set a keybind
-      -- This "list_commands()" will show a list of all the available commands to run
-      vim.keymap.set("n", "<Leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
+  {
+    "roobert/tailwindcss-colorizer-cmp.nvim",
+    -- optionally, override the default options:
+    config = function()
+      require("tailwindcss-colorizer-cmp").setup({
+        color_square_width = 2,
+      })
     end
   },
+
   {
     "vimwiki/vimwiki",
     event = "BufEnter *.md",
