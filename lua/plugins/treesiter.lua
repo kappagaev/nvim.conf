@@ -1,9 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
-    "RRethy/nvim-treesitter-endwise",
-    "nvim-treesitter/playground",
-    'nvim-treesitter/nvim-treesitter-context',
+    -- "RRethy/nvim-treesitter-endwise",
+    -- "nvim-treesitter/playground",
+    -- 'nvim-treesitter/nvim-treesitter-context',
   },
   lazy = false,
   -- event = "BufReadPre",
@@ -48,7 +48,7 @@ return {
         enable = true
       },
       rainbow = {
-        enable = false,
+        enable = true,
         extended_mode = true,
         max_file_lines = nil
       },

@@ -87,13 +87,13 @@ local function toggle_spec()
   vim.cmd("edit " .. alter_name)
 end
 
--- map("n", ",t", toggle_spec)
--- map("n", ",c", toggle_controller)
--- map("n", ",m", toggle_module)
--- map("n", ",s", toggle_service)
---
--- map("n", ",T", function()
---   vim.cmd("vsplit")
---   vim.cmd("wincmd p")
---   toggle_spec()
--- end)
+map("n", ",t", toggle_spec)
+map("n", ",c", toggle_controller)
+map("n", ",m", toggle_module)
+map("n", ",s", toggle_service)
+
+map("n", ",T", function()
+  vim.cmd("vsplit")
+  vim.cmd("wincmd p")
+  toggle_spec()
+end)

@@ -6,8 +6,11 @@ return {
     "ellisonleao/gruvbox.nvim",
     "Shatur/neovim-ayu",
     "EdenEast/nightfox.nvim",
-    "NLKNguyen/papercolor-theme"
+    "NLKNguyen/papercolor-theme",
+    "pineapplegiant/spaceduck"
   },
+  lazy = false,
+  priority = 1000,
   -- install = { colorscheme = { "moonbow" } },
   -- oniViolet
   config = function()
@@ -56,9 +59,43 @@ return {
         }
       end,
     })
+    -- setup must be called before loading the colorscheme
+    -- Default options:
+    require("gruvbox").setup({
+      undercurl = true,
+      underline = true,
+      bold = true,
+      italic = {
+        strings = true,
+        comments = true,
+        operators = false,
+        folds = true,
+      },
+      strikethrough = true,
+      invert_selection = false,
+      invert_signs = false,
+      invert_tabline = false,
+      invert_intend_guides = false,
+      inverse = true,    -- invert background for search, diffs, statuslines and errors
+      contrast = "", -- can be "hard", "soft" or empty string
+      palette_overrides = {},
+      overrides = {
+        SignColumn = { link = "Normal" },
+        GruvboxGreenSign = { bg = "" },
+        GruvboxOrangeSign = { bg = "" },
+        GruvboxPurpleSign = { bg = "" },
+        GruvboxYellowSign = { bg = "" },
+        GruvboxRedSign = { bg = "" },
+        GruvboxBlueSign = { bg = "" },
+        GruvboxAquaSign = { bg = "" },
+      },
+      dim_inactive = false,
+      transparent_mode = false,
+    })
+    -- vim.cmd("colorscheme gruvbox")
 
     vim.cmd("colorscheme kanagawa")
-    -- vim.cmd("colorscheme gruvbox")
+    -- vim.cmd("colorscheme spaceduck")
     -- vim.cmd("colorscheme moonbow")
 
     for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do

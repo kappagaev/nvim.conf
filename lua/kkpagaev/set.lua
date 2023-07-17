@@ -61,7 +61,7 @@ vim.opt.incsearch = true
 o.ignorecase = true
 o.smartcase = true
 
-vim.opt.iskeyword:append("-")
+-- vim.opt.iskeyword:append("-")
 
 -- vim.opt.smartindent = true
 

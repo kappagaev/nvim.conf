@@ -102,7 +102,6 @@ map('n', "<leader>y", '"+y')
 map('n', "<leader>p", '"+p')
 map('v', "<leader>p", '"+p')
 
-map('n', "<leader>o", ':w<CR>')
 map('n', ",.", ':w<CR>')
 
 -- vim.keymap.set("n", "<C-d>", "<C-d>zz", {})

@@ -42,7 +42,7 @@ require('formatter').setup {
     typescript = { format_eslint },
     typescriptreact = { format_eslint },
     vue = { format_eslint },
-    
+    astro = { format_eslint },
   }
 }
 

@@ -174,6 +174,7 @@ require("typescript-tools").setup {
     },
   },
 }
+
 -- require 'lspconfig'.volar.setup {
 --   init_options = {
 --     typescript = {
