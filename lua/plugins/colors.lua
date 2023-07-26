@@ -7,7 +7,10 @@ return {
     "Shatur/neovim-ayu",
     "EdenEast/nightfox.nvim",
     "NLKNguyen/papercolor-theme",
-    "pineapplegiant/spaceduck"
+    "pineapplegiant/spaceduck",
+    "xiyaowong/transparent.nvim",
+    "luisiacc/gruvbox-baby",
+    "Everblush/nvim"
   },
   lazy = false,
   priority = 1000,
@@ -61,43 +64,63 @@ return {
     })
     -- setup must be called before loading the colorscheme
     -- Default options:
-    require("gruvbox").setup({
-      undercurl = true,
-      underline = true,
-      bold = true,
-      italic = {
-        strings = true,
-        comments = true,
-        operators = false,
-        folds = true,
-      },
-      strikethrough = true,
-      invert_selection = false,
-      invert_signs = false,
-      invert_tabline = false,
-      invert_intend_guides = false,
-      inverse = true,    -- invert background for search, diffs, statuslines and errors
-      contrast = "", -- can be "hard", "soft" or empty string
-      palette_overrides = {},
-      overrides = {
-        SignColumn = { link = "Normal" },
-        GruvboxGreenSign = { bg = "" },
-        GruvboxOrangeSign = { bg = "" },
-        GruvboxPurpleSign = { bg = "" },
-        GruvboxYellowSign = { bg = "" },
-        GruvboxRedSign = { bg = "" },
-        GruvboxBlueSign = { bg = "" },
-        GruvboxAquaSign = { bg = "" },
-      },
-      dim_inactive = false,
-      transparent_mode = false,
-    })
+    -- require("gruvbox").setup({
+    --   undercurl = true,
+    --   underline = true,
+    --   bold = true,
+    --   italic = {
+    --     strings = true,
+    --     comments = true,
+    --     operators = false,
+    --     folds = true,
+    --   },
+    --   strikethrough = true,
+    --   invert_selection = false,
+    --   invert_signs = false,
+    --   invert_tabline = false,
+    --   invert_intend_guides = false,
+    --   inverse = true, -- invert background for search, diffs, statuslines and errors
+    --   contrast = "",  -- can be "hard", "soft" or empty string
+    --   palette_overrides = {},
+    --   overrides = {
+    --     SignColumn = { link = "Normal" },
+    --     GruvboxGreenSign = { bg = "" },
+    --     GruvboxOrangeSign = { bg = "" },
+    --     GruvboxPurpleSign = { bg = "" },
+    --     GruvboxYellowSign = { bg = "" },
+    --     GruvboxRedSign = { bg = "" },
+    --     GruvboxBlueSign = { bg = "" },
+    --     GruvboxAquaSign = { bg = "" },
+    --   },
+    --   dim_inactive = false,
+    --   transparent_mode = false,
+    -- })
     -- vim.cmd("colorscheme gruvbox")
 
+    -- require("transparent").setup({
+    --   groups = { -- table: default groups
+    --     'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+    --     'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+    --     'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+    --     'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+    --   },
+    --   extra_groups = {}, -- table: additional groups that should be cleared
+    --   exclude_groups = {}, -- table: groups you don't want to clear
+    -- })
+
+    -- vim.g.gruvbox_baby_telescope_theme = 1
+
+-- Enable transparent mode
+vim.g.gruvbox_baby_transparent_mode = 1
+
+    -- vim.cmd("colorscheme everblush")
+    -- vim.cmd("colorscheme kanagawa-lotus")
+    -- vim.cmd("colorscheme gruvbox-baby")
     vim.cmd("colorscheme kanagawa")
     -- vim.cmd("colorscheme spaceduck")
     -- vim.cmd("colorscheme moonbow")
 
+    -- vim.cmd("TransparentEnable")
     for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
       vim.api.nvim_set_hl(0, group, {})
     end

@@ -118,7 +118,6 @@ map('n', ',d', "<Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
 map('n', ",t", "<Cmd>call VSCodeNotify('extension.goToTest')', 1)<CR>")
 
 -- window
-map('n', ";", "<Cmd>call VSCodeNotify('workbench.action.focusNextGroup')', 1)<CR>")
 map('n', ",v", "<Cmd>call VSCodeNotify('workbench.action.splitEditor')', 1)<CR>")
 map('n', ",s", "<Cmd>call VSCodeNotify('workbench.action.splitEditorDown')', 1)<CR>")
 
@@ -138,7 +137,7 @@ map('n', "<leader>c", "<Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpo
 -- map('n', ",h", "<Cmd>call VSCodeNotify('extension.debugJest')', 1)<CR>")
 
 -- explorer
--- map('n', "<leader>e", "<Cmd>call VSCodeNotifyVisual('workbench.explorer.fileView.focus', 1)<CR>")
+map('n', "<leader>e", "<Cmd>call VSCodeNotifyVisual('workbench.explorer.fileView.focus', 1)<CR>")
 
 local lsp = [[
 nnoremap S <Cmd>call VSCodeNotify('editor.action.showHover')<CR>
@@ -150,7 +149,7 @@ nnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 
 map('n', "gr", "<Cmd>call VSCodeNotify('editor.action.goToReferences')', 1)<CR>")
 
-map('n', "<leader>e", "<Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup', 1)<CR>")
+-- map('n', "<leader>e", "<Cmd>call VSCodeNotify('workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup', 1)<CR>")
 map('n', "<leader>r", "<Cmd>call VSCodeNotify('editor.action.rename', 1)<CR>")
 map('n', "<leader>l", "<Cmd>call VSCodeNotify('editor.action.formatDocument', 1)<CR>")
 
