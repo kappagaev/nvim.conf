@@ -42,6 +42,7 @@ o.shiftwidth = 2
 o.wrap = true
 o.shortmess = o.shortmess .. "at"
 
+
 vim.opt.diffopt = vim.opt.diffopt + "vertical"
 vim.opt.display = vim.opt.display + 'lastline'
 --
@@ -74,6 +75,9 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.crystal_define_mappings = 0
 
 
+-- vim.o.wrap = true
+-- vim.o.linebreak = true
+--
 vim.o.timeout = true
 vim.o.timeoutlen = 1000
 

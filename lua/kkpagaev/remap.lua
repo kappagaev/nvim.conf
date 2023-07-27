@@ -21,6 +21,9 @@ map('t', '&', function ()
 end)
 
 
+map('n', 'j', 'gj')
+map('n', 'k', 'gk')
+
 -- map('n', "H", "j")
 -- map('n', "T", "k")
 --
@@ -47,6 +50,8 @@ map('n', "f", "t")
 
 map('n', "T", "F")
 map('n', "F", "T")
+
+
 -- map('i', "<C-g>h", "<Down>")
 -- map('i', "<C-g>t", "<Up>")
 -- map('i', "<C-g>n", "<Right>")
