@@ -32,8 +32,7 @@ return {
       },
       highlight = {
         enable = true,
-        disable = {},
-        additional_vim_regex_highlighting = false,
+        additional_vim_regex_highlighting = { "markdown" },
       },
       indent = {
         enable = true,

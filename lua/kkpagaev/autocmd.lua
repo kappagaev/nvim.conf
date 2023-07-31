@@ -9,10 +9,9 @@ au('TextYankPost', {
   end,
 })
 
--- au('BufRead', {
---   pattern = '*.fish',
---   callback = function()
---     vim.opt_local.number = false
---     vim.opt_local.relativenumber = false
---   end,
--- })
+au('BufRead', {
+  pattern = '*.md',
+  callback = function()
+    vim.api.nvim_command('setfiletype markdown')
+  end,
+})

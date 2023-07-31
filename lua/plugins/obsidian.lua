@@ -1,32 +1,53 @@
 return {
   "epwalsh/obsidian.nvim",
-  lazy = true,
-  event = { "BufReadPre path/to/my-vault/**.md" },
-  -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
-  -- event = { "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
+  lazy = false,
+  event = { "BufReadPre /home/kkpagaev/Documents/Obsidian Vault/**.md" },
   dependencies = {
-    -- Required.
     "nvim-lua/plenary.nvim",
-
-    -- Optional, for completion.
     "hrsh7th/nvim-cmp",
-
-    -- Optional, for search and quick-switch functionality.
+    "vimwiki/vimwiki",
     "nvim-telescope/telescope.nvim",
-
-    -- Optional, an alternative to telescope for search and quick-switch functionality.
-    -- "ibhagwan/fzf-lua"
-
-    -- Optional, another alternative to telescope for search and quick-switch functionality.
-    -- "junegunn/fzf",
-    -- "junegunn/fzf.vim"
-
-    -- Optional, alternative to nvim-treesitter for syntax highlighting.
-    "godlygeek/tabular",
-    "preservim/vim-markdown",
   },
+  keys = {
+    { "<leader>nu",      "<cmd>ObsidianSearch<CR>",  desc = "Find a string", silent = true },
+    -- { "<leader>n",      "<cmd>Telescope commands<CR>",  desc = "Find a string", silent = true },
+    { "<leader>on",     ":ObsidianNew ",  desc = "Help",          silent = false },
+    { "<leader>ob",     "<cmd>ObsidianBacklinks<CR>",  desc = "Help",          silent = false },
+    { "<leader>ow",     "<cmd>ObsidianFollowLink<CR>",  desc = "Help",          silent = false },
+    { "<leader>ot",     "<cmd>ObsidianTemplate<CR>", desc = "Find Git",      silent = true },
+    { "<leader>ou",     "<cmd>ObsidianQuickSwitch<CR>", desc = "Find Git",      silent = true },
+  },
+
   opts = {
-    dir = "~/Documents/Obsidian\\ Vault",  -- no need to call 'vim.fn.expand' here
+    dir = "~/Documents/Obsidian Vault", -- no need to call 'vim.fn.expand' here
+    completion = {
+      nvim_cmp = true,
+      new_notes_location = "current_dir",
+      prepend_note_id = true
+    },
+
+      -- Optional, customize how names/IDs for new notes are created.
+  note_id_func = function(title)
+    -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+    -- In this case a note with the title 'My new note' will given an ID that looks
+    -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+    local suffix = ""
+    if title ~= nil then
+      -- If title is given, transform it into valid file name.
+      suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+    else
+      -- If title is nil, just add 4 random uppercase letters to the suffix.
+      for _ = 1, 4 do
+        suffix = suffix .. string.char(math.random(65, 90))
+      end
+    end
+    return tostring(os.time()) .. "-" .. suffix
+  end,
+    templates = {
+      subdir = "999 Templates",
+      date_format = "%Y-%m-%d",
+      time_format = "%H:%M"
+    },
 
     -- see below for full list of options 👇
   },

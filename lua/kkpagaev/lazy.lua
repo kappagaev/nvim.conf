@@ -469,7 +469,6 @@ local plugins = {
     "vimwiki/vimwiki",
     event = "BufEnter *.md",
   },
-  -- "dstein64/vim-startuptime",
   -- "andythigpen/nvim-coverage",
   {
     import = "plugins"
