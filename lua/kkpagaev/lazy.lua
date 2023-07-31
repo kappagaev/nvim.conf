@@ -118,6 +118,9 @@ local plugins = {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
+      -- 'jmbuhr/otter.nvim',
+      -- "quarto-dev/quarto-nvim",
+      -- 'nvim-treesitter/nvim-treesitter',
       "mhartington/formatter.nvim",
       "pmizio/typescript-tools.nvim",
       "lewis6991/hover.nvim",

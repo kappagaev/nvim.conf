@@ -206,6 +206,34 @@ require("typescript-tools").setup {
 --   }
 -- }
 
+-- require'otter'.activate({'python', 'typescript' })
+
+-- require'quarto'.setup{
+--   debug = true,
+--   closePreviewOnExit = true,
+--   lspFeatures = {
+--     enabled = true,
+--     languages = { 'python', 'typescript', 'css', 'bash' },
+--     chunks = 'curly', -- 'curly' or 'all'
+--     diagnostics = {
+--       enabled = true,
+--       triggers = { "BufWritePost" }
+--     },
+--     completion = {
+--       enabled = true,
+--     },
+--   },
+--   keymap = {
+--     hover = 'S',
+--     definition = 'ge',
+--     rename = '<leader>r',
+--     references = 'gr',
+--   }
+-- }
+--
+--
+--
+
 require("plugins.config.formatter")
 
 -- require('copilot').setup({

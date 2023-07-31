@@ -140,6 +140,13 @@
           "svelte"
         ],
         "path": "./ts.json"
+      },
+      {
+        "language": [
+          "markdown",
+          "vimwiki"
+        ],
+        "path": "./markdown.json"
       }
     ]
   }

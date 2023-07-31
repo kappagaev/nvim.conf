@@ -63,6 +63,7 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
+    { name = 'otter' }, -- for code chunks in quarto
     { name = 'nvim_lsp' },
     { name = "luasnip" },
     { name = 'path' },

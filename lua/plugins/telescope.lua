@@ -35,7 +35,7 @@ return {
       defaults = {
         path_display = { 'smart' },
         -- file_ignore_patterns = { '.git' },
-        file_ignore_patterns = { "node_modules/", ".git/", ".cache", "%.out", "%.class",
+        file_ignore_patterns = { "node_modules/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
           "%.pdf", "%.mkv", "%.mp4", "%.zip", "yarn.lock", ".yarn/", ".vscode/" },
         mappings = {
           i = {

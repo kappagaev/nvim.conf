@@ -5,7 +5,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",
-    "vimwiki/vimwiki",
+    -- "vimwiki/vimwiki",
     "nvim-telescope/telescope.nvim",
   },
   keys = {
@@ -54,14 +54,22 @@ return {
   config = function(_, opts)
     require("obsidian").setup(opts)
 
+    local au = vim.api.nvim_create_autocmd
+
+    au('BufRead', {
+      pattern = '*.md',
+      callback = function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        vim.keymap.set("n", "ge", function()
+          if require("obsidian").util.cursor_on_markdown_link() then
+            return "<cmd>ObsidianFollowLink<CR>"
+          else
+            return "ge"
+          end
+        end, { noremap = false, expr = true, buffer = bufnr, remap = false  })
+      end,
+    })
     -- Optional, override the 'gf' keymap to utilize Obsidian's search functionality.
     -- see also: 'follow_url_func' config option below.
-    vim.keymap.set("n", "gf", function()
-      if require("obsidian").util.cursor_on_markdown_link() then
-        return "<cmd>ObsidianFollowLink<CR>"
-      else
-        return "gf"
-      end
-    end, { noremap = false, expr = true })
   end,
 }

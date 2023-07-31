@@ -11,7 +11,7 @@ filetypes["dapui_watches"] = false
 vim.g.tpipeline_autoembed = false
 vim.g.copilot_filetypes = filetypes
 
-vim.opt.smartindent = false
+-- vim.opt.smartindent = false
 
 vim.g.vimwiki_list = {
   {
