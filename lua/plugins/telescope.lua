@@ -3,6 +3,7 @@ return {
   dependencies = {
   'nvim-tree/nvim-web-devicons',
     "benfowler/telescope-luasnip.nvim",
+    "nvim-telescope/telescope-file-browser.nvim",
     'nvim-lua/plenary.nvim' },
   lazy = true,
   keys = {
@@ -10,8 +11,10 @@ return {
     { "<C-p>" },
     { "<leader>u" },
     { "<leader>/",      "<cmd>Telescope live_grep<CR>",  desc = "Find a string", silent = true },
+    { "<leader>:",      "<cmd>Telescope commands<CR>",  desc = "Find a string", silent = true },
     { "<leader>fh",     "<cmd>Telescope help_tags<CR>",  desc = "Help",          silent = true },
     { "<leader>fg",     "<cmd>Telescope git_status<CR>", desc = "Find Git",      silent = true },
+    { "<leader>.",     "<cmd>Telescope file_browser<CR>", desc = "Find Git",      silent = true },
   },
   config = function()
     local status_ok, telescope = pcall(require, "telescope")
@@ -99,6 +102,7 @@ return {
       -- { "<leader>fg",      "<cmd>Telescope git_status<CR>", desc = "Find Git", silent = true },
     }
     require('telescope').load_extension('luasnip')
+    require("telescope").load_extension "file_browser"
     vim.keymap.set("n", "<leader><space>", require("telescope.builtin").find_files, {
       silent = true
     })

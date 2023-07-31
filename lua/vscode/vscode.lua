@@ -94,21 +94,21 @@ local function map(m, k, v)
 end
 
 -- save
-map('n', "<leader>o", "<Cmd>call VSCodeNotifyVisual('workbench.action.files.save', 1)<CR>")
-map('n', ",.", "<Cmd>call VSCodeNotifyVisual('workbench.action.files.save', 1)<CR>")
+map('n', "<leader>o", "<Cmd>call VSCodeNotify('workbench.action.files.save', 1)<CR>")
+map('n', ",.", "<Cmd>call VSCodeNotify('workbench.action.files.save', 1)<CR>")
 
-map('n', "<C-h>", "<Cmd>call VSCodeNotifyVisual('workbench.action.openEditorAtIndex1', 1)<CR>")
-map('n', "<C-t>", "<Cmd>call VSCodeNotifyVisual('workbench.action.openEditorAtIndex2', 1)<CR>")
-map('n', "<C-n>", "<Cmd>call VSCodeNotifyVisual('workbench.action.openEditorAtIndex3', 1)<CR>")
-map('n', "<C-s>", "<Cmd>call VSCodeNotifyVisual('workbench.action.openEditorAtIndex4', 1)<CR>")
+-- map('n', "<C-h>", "<Cmd>call VSCodeNotifyVisual('workbench.action.openEditorAtIndex1', 1)<CR>")
+-- map('n', "<C-t>", "<Cmd>call VSCodeNotifyVisual('workbench.action.openEditorAtIndex2', 1)<CR>")
+-- map('n', "<C-n>", "<Cmd>call VSCodeNotifyVisual('workbench.action.openEditorAtIndex3', 1)<CR>")
+-- map('n', "<C-s>", "<Cmd>call VSCodeNotifyVisual('workbench.action.openEditorAtIndex4', 1)<CR>")
 
 -- navigation
-map('n', "go", "<Cmd>call VSCodeNotifyVisual('workbench.action.navigateBack', 1)<CR>")
-map('n', "<leader>t", "<Cmd>call VSCodeNotifyVisual('workbench.action.navigateBack', 1)<CR>")
-map('n', "gi", "<Cmd>call VSCodeNotifyVisual('workbench.action.navigateForward', 1)<CR>")
+map('n', "go", "<Cmd>call VSCodeNotify('workbench.action.navigateBack', 1)<CR>")
+map('n', "<leader>t", "<Cmd>call VSCodeNotify('workbench.action.navigateBack', 1)<CR>")
+map('n', "gi", "<Cmd>call VSCodeNotify('workbench.action.navigateForward', 1)<CR>")
 
-map('n', "<C-o>", "<Cmd>call VSCodeNotifyVisual('workbench.action.navigateBack', 1)<CR>")
-map('n', "<C-i>", "<Cmd>call VSCodeNotifyVisual('workbench.action.navigateForward', 1)<CR>")
+map('n', "<C-o>", "<Cmd>call VSCodeNotify('workbench.action.navigateBack', 1)<CR>")
+map('n', "<C-i>", "<Cmd>call VSCodeNotify('workbench.action.navigateForward', 1)<CR>")
 
 -- map('n', "S", "<Cmd>call VSCodeNotify('editor.action.showHover')<CR>")
 
@@ -118,6 +118,7 @@ map('n', ',d', "<Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
 map('n', ",t", "<Cmd>call VSCodeNotify('extension.goToTest')', 1)<CR>")
 
 -- window
+map('n', "<Tab>", "<Cmd>call VSCodeNotify('workbench.action.focusNextGroup')', 1)<CR>")
 map('n', ",v", "<Cmd>call VSCodeNotify('workbench.action.splitEditor')', 1)<CR>")
 map('n', ",s", "<Cmd>call VSCodeNotify('workbench.action.splitEditorDown')', 1)<CR>")
 
@@ -163,5 +164,17 @@ map('n', "<leader>t", "<Cmd>call VSCodeNotify('workbench.action.toggleAuxiliaryB
 
 map("n", "<C-d>", "<Cmd>call VSCodeExtensionCall('scroll', 'halfPage', 'down')")
 map("n", "<C-u>", "<Cmd>call VSCodeExtensionCall('scroll', 'halfPage', 'up')")
+
+
+-- harpoon
+map('n', "<leader>h", "<Cmd>call VSCodeNotify('vscode-harpoon.editEditors', 1)<CR>")
+map('n', "M", "<Cmd>call VSCodeNotify('vscode-harpoon.addEditor', 1)<CR>")
+
+map('n', "<C-h>", "<Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor1', 1)<CR>")
+map('n', "<C-t>", "<Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor2', 1)<CR>")
+map('n', "<C-n>", "<Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor3', 1)<CR>")
+map('n', "<C-s>", "<Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor4', 1)<CR>")
+
+
 
 vim.api.nvim_command(lsp)
