@@ -21,6 +21,7 @@ local plugins = {
       },
     }
   },
+  "tpope/vim-rsi",
   {
     "kylechui/nvim-surround",
     -- event = "InsertEnter",

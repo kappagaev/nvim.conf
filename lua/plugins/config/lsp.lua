@@ -1,8 +1,6 @@
 local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
-  -- client.server_capabilities.semanticTokensProvider = nil
-
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -128,7 +126,10 @@ require('lspconfig')['yamlls'].setup {
   }
 }
 
-require'lspconfig'.tailwindcss.setup{}
+require'lspconfig'.tailwindcss.setup{
+  filetypes = { "astro", "vue"}
+
+}
 
 -- require("typescript").setup({
 --   disable_commands = false, -- prevent the plugin from creating Vim commands

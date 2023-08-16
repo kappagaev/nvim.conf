@@ -1,7 +1,8 @@
 return {
   "epwalsh/obsidian.nvim",
-  lazy = false,
-  event = { "BufReadPre /home/kkpagaev/Documents/Obsidian Vault/**.md" },
+  lazy = true,
+  event = "BufEnter *.md",
+  -- event = { "BufReadPre /home/kkpagaev/Documents/Obsidian Vault/**.md" },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",

@@ -28,6 +28,7 @@ local function set_mark_color(number, color, fg)
 end
 
 -- set_mark_color(1, "#FFA066")
+-- set_mark_color(1, "#83A596", "#C8C093")
 set_mark_color(1, "#54546D", "#C8C093")
 set_mark_color(2, "#49443C", "#C8C093")
 -- set_mark_color(2, "#e5c76b")
@@ -57,13 +58,17 @@ function tabline()
   if current_mark == nil then
     return " %#" .. color .. "# " .. icon_str .. "%*" ..
         bufname .. " " .. is_modified .. " %*"
+      -- .. " %= %#Conceal#  󰅖%*"
+      -- .. " %= %#Conceal#" .. searchCount() ..  "%*"
   else
     return "%#WinBar#" ..
         "%#Mark" .. current_mark .. "#  " .. current_mark .. "  %*" ..
         "%#MarkEnd" .. current_mark .. "#" .. "" .. "%*" ..
         "%#" .. color .. "# " .. icon_str .. "%*" ..
         bufname ..
-        " " .. is_modified .. " %*"
+        " " .. is_modified .. " %* "
+      -- .. " %= %#Conceal#" .. searchCount() ..  "%*"
+      -- .." %= %#Conceal#  󰅖%*"
   end
 end
 

@@ -1,3 +1,10 @@
+-- local theme = "everblush"
+-- local theme = "kanagawa-lotus"
+-- local theme = "gruvbox-baby"
+local theme = "gruvbox"
+-- local theme = "kanagawa"
+-- local theme = "spaceduck"
+-- local theme = "moonbow"
 return {
   "rebelot/kanagawa.nvim",
   dependencies = {
@@ -8,7 +15,8 @@ return {
     "EdenEast/nightfox.nvim",
     "NLKNguyen/papercolor-theme",
     "pineapplegiant/spaceduck",
-    "xiyaowong/transparent.nvim",
+    "rose-pine/neovim",
+    -- "xiyaowong/transparent.nvim",
     "luisiacc/gruvbox-baby",
     "Everblush/nvim"
   },
@@ -17,6 +25,9 @@ return {
   -- install = { colorscheme = { "moonbow" } },
   -- oniViolet
   config = function()
+    require('rose-pine').setup({
+      disable_background = true
+    })
     require('kanagawa').setup({
       colors = {
         palette = {
@@ -64,37 +75,37 @@ return {
     })
     -- setup must be called before loading the colorscheme
     -- Default options:
-    -- require("gruvbox").setup({
-    --   undercurl = true,
-    --   underline = true,
-    --   bold = true,
-    --   italic = {
-    --     strings = true,
-    --     comments = true,
-    --     operators = false,
-    --     folds = true,
-    --   },
-    --   strikethrough = true,
-    --   invert_selection = false,
-    --   invert_signs = false,
-    --   invert_tabline = false,
-    --   invert_intend_guides = false,
-    --   inverse = true, -- invert background for search, diffs, statuslines and errors
-    --   contrast = "",  -- can be "hard", "soft" or empty string
-    --   palette_overrides = {},
-    --   overrides = {
-    --     SignColumn = { link = "Normal" },
-    --     GruvboxGreenSign = { bg = "" },
-    --     GruvboxOrangeSign = { bg = "" },
-    --     GruvboxPurpleSign = { bg = "" },
-    --     GruvboxYellowSign = { bg = "" },
-    --     GruvboxRedSign = { bg = "" },
-    --     GruvboxBlueSign = { bg = "" },
-    --     GruvboxAquaSign = { bg = "" },
-    --   },
-    --   dim_inactive = false,
-    --   transparent_mode = false,
-    -- })
+    require("gruvbox").setup({
+      undercurl = true,
+      underline = true,
+      bold = true,
+      italic = {
+        strings = true,
+        comments = true,
+        operators = false,
+        folds = true,
+      },
+      strikethrough = true,
+      invert_selection = false,
+      invert_signs = false,
+      invert_tabline = false,
+      invert_intend_guides = false,
+      inverse = true, -- invert background for search, diffs, statuslines and errors
+      contrast = "hard",  -- can be "hard", "soft" or empty string
+      palette_overrides = {},
+      overrides = {
+        SignColumn = { link = "Normal" },
+        GruvboxGreenSign = { bg = "" },
+        GruvboxOrangeSign = { bg = "" },
+        GruvboxPurpleSign = { bg = "" },
+        GruvboxYellowSign = { bg = "" },
+        GruvboxRedSign = { bg = "" },
+        GruvboxBlueSign = { bg = "" },
+        GruvboxAquaSign = { bg = "" },
+      },
+      dim_inactive = false,
+      transparent_mode = false,
+    })
     -- vim.cmd("colorscheme gruvbox")
 
     -- require("transparent").setup({
@@ -116,9 +127,12 @@ vim.g.gruvbox_baby_transparent_mode = 1
     -- vim.cmd("colorscheme everblush")
     -- vim.cmd("colorscheme kanagawa-lotus")
     -- vim.cmd("colorscheme gruvbox-baby")
-    vim.cmd("colorscheme kanagawa")
+    vim.cmd("colorscheme " .. theme)
+    -- vim.cmd("colorscheme kanagawa")
     -- vim.cmd("colorscheme spaceduck")
     -- vim.cmd("colorscheme moonbow")
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
     -- vim.cmd("TransparentEnable")
     for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do

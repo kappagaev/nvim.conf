@@ -141,21 +141,21 @@ local plugins = {
     end
   },
 
-  {
-    'pwntester/octo.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-    commands = {
-      "Octo"
-    },
-    config = function()
-      require("plugins.config.octo")
-    end
-
-  },
+  -- {
+  --   'pwntester/octo.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-telescope/telescope.nvim',
+  --     'nvim-tree/nvim-web-devicons',
+  --   },
+  --   commands = {
+  --     "Octo"
+  --   },
+  --   config = function()
+  --     require("plugins.config.octo")
+  --   end
+  --
+  -- },
   {
     'hrsh7th/nvim-cmp',
     event = "InsertEnter",
@@ -166,9 +166,32 @@ local plugins = {
         "L3MON4D3/LuaSnip",
         lazy = true,
         dependencies = "rafamadriz/friendly-snippets",
-        opts = { history = true, updateevents = "TextChanged,TextChangedI" },
-        config = function(_, opts)
-          require("luasnip").config.set_config(opts)
+        config = function()
+          local luasnip = require 'luasnip'
+          local types = require 'luasnip.util.types'
+
+          luasnip.setup {
+            { history = true, updateevents = "TextChanged,TextChangedI" },
+            -- Display a cursor-like placeholder in unvisited nodes
+            -- of the snippet.
+            ext_opts = {
+              [types.insertNode] = {
+                unvisited = {
+                  virt_text = { { '|', 'Conceal' } },
+                  virt_text_pos = 'inline',
+                },
+              },
+              -- This is needed because LuaSnip differentiates between $0 and other
+              -- placeholders (exitNode and insertNode). So this will highlight the last
+              -- jump node.
+              [types.exitNode] = {
+                unvisited = {
+                  virt_text = { { '|', 'Conceal' } },
+                  virt_text_pos = 'inline',
+                },
+              },
+            },
+          }
 
           -- require("luasnip.loaders.from_snipmate").lazy_load { paths = vim.fn.stdpath "config" .. "/snippets/snipmate" }
           local loader = require("luasnip/loaders/from_vscode")
@@ -345,10 +368,18 @@ local plugins = {
     -- end
   },
   -- {
+  --     "rebelot/heirline.nvim",
+  --   dependencies = {
+  --    -- "vimpostor/vim-tpipeline",
+  --     },
+  --     config = function ()
+  --       require("plugins.config.heirline")
+  --     end
+  -- },
+  -- {
   --   "nvim-lualine/lualine.nvim",
   --   dependencies = {
   --     "arturgoms/moonbow.nvim",
-  --     -- "vimpostor/vim-tpipeline",
   --   },
   --   config = function()
   --     require("plugins.config.lualine")
@@ -467,12 +498,28 @@ local plugins = {
       })
     end
   },
-
   {
-    "vimwiki/vimwiki",
-    event = "BufEnter *.md",
+    "axelvc/template-string.nvim",
+    config = function()
+      require('template-string').setup({
+        filetypes = { 'vue', 'astro', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' }, -- filetypes where the plugin is active
+        jsx_brackets = true,                                                                          -- must add brackets to jsx attributes
+        remove_template_string = false,                                                               -- remove backticks when there are no template string
+        restore_quotes = {
+          -- quotes used when "remove_template_string" option is enabled
+          normal = [[']],
+          jsx = [["]],
+        },
+      })
+    end
   },
+  -- {
+  --   "vimwiki/vimwiki",
+  --   event = "BufEnter *.md",
+  -- },
   -- "andythigpen/nvim-coverage",
+  --
+  "tpope/vim-rsi",
   {
     import = "plugins"
   }

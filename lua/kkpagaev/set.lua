@@ -11,7 +11,7 @@ filetypes["dapui_watches"] = false
 vim.g.tpipeline_autoembed = false
 vim.g.copilot_filetypes = filetypes
 
--- vim.opt.smartindent = false
+vim.opt.smartindent = true
 
 vim.g.vimwiki_list = {
   {
@@ -32,7 +32,7 @@ vim.g.vimwiki_ext2syntax = {
 
 o.relativenumber = true
 o.number = true
--- o.cursorline = true
+o.cursorline = false
 
 o.tabstop = 2
 -- o.notimeout = true
@@ -56,7 +56,7 @@ vim.opt.scrolloff = 6
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
-vim.opt.hlsearch = false
+-- vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 o.ignorecase = true

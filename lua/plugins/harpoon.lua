@@ -128,6 +128,12 @@ return {
       winbar.open()
     end)
 
+    vim.keymap.set("n", "<leader>ch", function ()
+      require("harpoon.mark").clear_all()
+      winbar.clear()
+      winbar.open()
+    end)
+
     winbar.open()
   end
 }

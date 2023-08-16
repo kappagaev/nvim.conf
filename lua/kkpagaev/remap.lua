@@ -21,8 +21,8 @@ map('t', '&', function ()
 end)
 
 
-map('n', 'j', 'gj')
-map('n', 'k', 'gk')
+-- map('n', 'j', 'gj')
+-- map('n', 'k', 'gk')
 
 -- map('n', "H", "j")
 -- map('n', "T", "k")
@@ -45,7 +45,11 @@ map('i', "<C-g>", "<C-o>")
 map('i', "<C-d>", "<M-d>")
 map('i', "<C-l>", "<Right>")
 
+map('v', '<', '<gv')
+map('v', '>', '>gv')
+
 map('n', "t", "f")
+map('n', "s", ",")
 map('n', "f", "t")
 
 map('n', "T", "F")
@@ -117,6 +121,7 @@ map('s', "h", "h")
 map('s', "t", "t")
 map('s', "j", "j")
 map('s', "k", "k")
+vim.keymap.set('n', '<esc>', function() vim.cmd('noh') end, {silent = true})
 
 map('s', "H", "H")
 map('s', "T", "T")

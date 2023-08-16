@@ -1,7 +1,7 @@
 local dap = require('dap')
 
 vim.fn.sign_define('DapBreakpoint',
-  { text = '💀', texthl = '', linehl = '', numhl = '' })
+  { text = '😡', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointRejected',
   { text = '🔵', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapStopped',
@@ -10,7 +10,7 @@ vim.fn.sign_define('DapStopped',
 vim.keymap.set('n', '<M-b>',
   function() require "dap".toggle_breakpoint() end)
 
-vim.keymap.set('n', '<leader>c',
+vim.keymap.set('n', '<leader>cb',
   function() require "dap".clear_breakpoints() end)
 
 
@@ -35,20 +35,20 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.keymap.set({ "n", "i", "t" }, '<M-d>', function()
-  local bufname = vim.fn.expand("%:r")
-  print(bufname)
-  if bufname ~= "[dap-repl]" then
-    require("dapui").toggle()
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
-  else
-    require("dapui").toggle()
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
-    -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
-  end
-  -- focus_buffer("[dap-repl]")
-end)
+-- vim.keymap.set({ "n", "i", "t" }, '<M-d>', function()
+--   local bufname = vim.fn.expand("%:r")
+--   print(bufname)
+--   if bufname ~= "[dap-repl]" then
+--     require("dapui").toggle()
+--     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
+--     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
+--   else
+--     require("dapui").toggle()
+--     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
+--     -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
+--   end
+--   -- focus_buffer("[dap-repl]")
+-- end)
 
 require("dap-vscode-js").setup({
   node_path = "node",                                                                          -- Path of node executable. Defaults to $NODE_PATH, and then "node"
