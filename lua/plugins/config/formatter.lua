@@ -1,10 +1,6 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-require 'lspconfig'.eslint.setup({
-  capabilities = capabilities,
-  flags = { debounce_text_changes = 500 },
-})
 
 local util = require "formatter.util"
 

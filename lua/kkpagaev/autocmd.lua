@@ -30,6 +30,36 @@ au('TextYankPost', {
 })
 
 au('BufRead', {
+  pattern = 'tmp.*.fish',
+  callback = function()
+    vim.keymap.set("n", "<C-v>", function()
+      vim.cmd(":wq!")
+    end, { buffer = true, noremap = true, silent = true })
+    vim.keymap.set("i", "<C-v>", function()
+      vim.cmd(":wq!")
+    end, { buffer = true, noremap = true, silent = true })
+    -- Get the current buffer
+    local current_buffer = vim.api.nvim_get_current_buf()
+
+    -- Get the number of lines in the buffer
+    local line_count = vim.api.nvim_buf_line_count(current_buffer)
+
+    -- Check if the buffer is empty
+    if line_count == 1 and vim.api.nvim_buf_get_lines(current_buffer, 0, -1, false)[1] == '' then
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
+    end
+
+    -- vim.opt_local.relativenumber = false
+    -- vim.opt_local.number = false
+    -- vim.opt_local.winbar = ""
+    -- vim.o.winbar = ""
+
+
+    -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
+  end,
+})
+
+au('BufRead', {
   pattern = '*.md',
   callback = function()
     vim.api.nvim_command('setfiletype markdown')

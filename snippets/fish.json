@@ -1,6 +1,6 @@
 {
   "headerAuth": {
-    "body": "-H 'Authorization: Bearer $1' \\\n$2",
+    "body": "-H \"Authorization: Bearer $1\" \\\n$2",
     "description": "Authorization Header",
     "prefix": "hauth"
   },
@@ -15,8 +15,13 @@
     "prefix": "hform"
   },
   "url": {
-    "body": "--url http://localhost:$1 \\\n$2",
+    "body": "--url \"http://localhost:$1\" \\\n$2",
     "description": "url",
     "prefix": "url"
+  },
+  "curl": {
+    "body": "curl --request POST \\\n  -H 'content-type: application/json' \\\n  --data '{\n    \"$1\"\n  }' \\\n  --url \"http://localhost:3000$2\" \n",
+    "description": "curl",
+    "prefix": "curl"
   }
 }

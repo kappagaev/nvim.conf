@@ -158,7 +158,7 @@ map('n', "<leader>l", "<Cmd>call VSCodeNotify('editor.action.formatDocument', 1)
 map('n', "<leader>i", "<Cmd>call VSCodeNotify('editor.action.sourceAction', {'kind': 'source.addMissingImports', 'apply': 'first'})<CR>")
 map('n', "<leader>d", "<Cmd>call VSCodeNotify('editor.action.sourceAction', {'kind': 'source.organizeImports', 'apply': 'first'})<CR>")
 
-map('n', "<leader>/", "<Cmd>call VSCodeNotify('workbench.action.findInFiles', 1)<CR>")
+map('n', "<leader>/", "<Cmd>call VSCodeNotify('periscope.search', 1)<CR>")
 
 -- map('n', "<leader>t", "<Cmd>call VSCodeNotify('workbench.actions.view.problems', 1)<CR>")
 map('n', "<leader>t", "<Cmd>call VSCodeNotify('workbench.action.toggleAuxiliaryBar', 1)<CR>")

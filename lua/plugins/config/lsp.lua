@@ -1,6 +1,8 @@
 local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
+  client.server_capabilities.semanticTokensProvider = nil
+
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
@@ -14,7 +16,7 @@ local on_attach = function(client, bufnr)
   nmap('gr', function()
     require('telescope.builtin').lsp_references()
   end, '[G]oto [R]eferences')
-  nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+  -- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
   vim.keymap.set("n", "S",
     require("hover").hover
@@ -154,8 +156,9 @@ require("typescript-tools").setup {
   on_attach = on_attach,
   settings = {
     -- spawn additional tsserver instance to calculate diagnostics on it
--- server_capabilities = { semanticTokensProvider = nil},
-    separate_diagnostic_server = true,
+    server_capabilities = { semanticTokensProvider = nil},
+    -- complete_function_calls = true,
+    separate_diagnostic_server = false,
     -- "change"|"insert_leave" determine when the client asks the server about diagnostic
     publish_diagnostic_on = "insert_leave",
     -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
@@ -177,6 +180,11 @@ require("typescript-tools").setup {
     },
   },
 }
+
+require 'lspconfig'.eslint.setup({
+  capabilities = capabilities,
+  flags = { debounce_text_changes = 500 },
+})
 
 -- require 'lspconfig'.volar.setup {
 --   init_options = {
@@ -207,75 +215,3 @@ require("typescript-tools").setup {
 --   }
 -- }
 
--- require'otter'.activate({'python', 'typescript' })
-
--- require'quarto'.setup{
---   debug = true,
---   closePreviewOnExit = true,
---   lspFeatures = {
---     enabled = true,
---     languages = { 'python', 'typescript', 'css', 'bash' },
---     chunks = 'curly', -- 'curly' or 'all'
---     diagnostics = {
---       enabled = true,
---       triggers = { "BufWritePost" }
---     },
---     completion = {
---       enabled = true,
---     },
---   },
---   keymap = {
---     hover = 'S',
---     definition = 'ge',
---     rename = '<leader>r',
---     references = 'gr',
---   }
--- }
---
---
---
-
-require("plugins.config.formatter")
-
--- require('copilot').setup({
---   panel = {
---     enabled = true,
---     auto_refresh = false,
---     keymap = {
---       jump_prev = "[[",
---       jump_next = "]]",
---       accept = "<CR>",
---       refresh = "gr",
---       open = "<M-CR>"
---     },
---     layout = {
---       position = "bottom", -- | top | left | right
---       ratio = 0.4
---     },
---   },
---   suggestion = {
---     enabled = true,
---     auto_trigger = true,
---     debounce = 75,
---     keymap = {
---       accept_word = false,
---       accept_line = false,
---       next = "<M-]>",
---       prev = "<M-[>",
---       dismiss = "<C-]>",
---     },
---   },
---   filetypes = {
---     yaml = false,
---     markdown = false,
---     help = false,
---     gitcommit = false,
---     gitrebase = false,
---     hgcommit = false,
---     svn = false,
---     cvs = false,
---     ["."] = false,
---   },
---   copilot_node_command = 'node', -- Node.js version must be > 16.x
---   server_opts_overrides = {},
--- })

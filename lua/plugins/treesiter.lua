@@ -2,7 +2,7 @@ return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
     -- "RRethy/nvim-treesitter-endwise",
-    "nvim-treesitter/playground",
+    -- "nvim-treesitter/playground",
     -- 'nvim-treesitter/nvim-treesitter-context',
   },
   lazy = false,

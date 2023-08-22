@@ -19,36 +19,22 @@ vim.keymap.set({ 'n', 't' }, '<C-c>', function() require "dap".step_over() end)
 vim.keymap.set({ 'n', 't' }, "<C-r>", function() require "dap".step_into() end)
 vim.keymap.set({ 'n', 't' }, "<C-l>", function() require "dap".step_out() end)
 
-local group = vim.api.nvim_create_augroup("Dap-repl Augroup", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "dap-repl",
-  group = group,
-  callback = function()
-    vim.keymap.set({ 'n' }, 'g', function() require "dap".continue() end,
-      { buffer = true, noremap = true, silent = true })
-    vim.keymap.set({ 'n' }, 'c', function() require "dap".step_over() end,
-      { buffer = true, noremap = true, silent = true })
-    vim.keymap.set({ 'n' }, "r", function() require "dap".step_into() end,
-      { buffer = true, noremap = true, silent = true })
-    vim.keymap.set({ 'n' }, "l", function() require "dap".step_out() end,
-      { buffer = true, noremap = true, silent = true })
-  end,
-})
-
--- vim.keymap.set({ "n", "i", "t" }, '<M-d>', function()
---   local bufname = vim.fn.expand("%:r")
---   print(bufname)
---   if bufname ~= "[dap-repl]" then
---     require("dapui").toggle()
---     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
---     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
---   else
---     require("dapui").toggle()
---     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
---     -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
---   end
---   -- focus_buffer("[dap-repl]")
--- end)
+vim.keymap.set({ "n", "i", "t" }, '<M-d>', function()
+  local bufname = vim.fn.expand("%:r")
+  print(bufname)
+  if bufname ~= "[dap-repl]" then
+    -- require("dapui").toggle()
+    vim.cmd("DapToggleRepl")
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
+  else
+    -- require("dapui").toggle()
+    vim.cmd("DapToggleRepl")
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, true, true), "n", true)
+    -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w>j", true, true, true), "n", true)
+  end
+  -- focus_buffer("[dap-repl]")
+end)
 
 require("dap-vscode-js").setup({
   node_path = "node",                                                                          -- Path of node executable. Defaults to $NODE_PATH, and then "node"
@@ -71,6 +57,7 @@ for _, language in ipairs({ "typescript", "javascript" }) do
     }
   }
 end
+
 dap.adapters.chrome = {
   type = "executable",
   command = "node",
@@ -96,35 +83,5 @@ require("dap").configurations.typescriptreact = { -- change this to javascript i
     trace = true,
     port = 9222,
     webRoot = "${workspaceFolder}"
-  }
-}
-dap.adapters.php = {
-  type = 'executable',
-  command = 'node',
-  args = { os.getenv("HOME") .. "/.local/share/nvim/mason/packages/php-debug-adapter/extension/out/phpDebug.js" },
-}
-
-dap.configurations.php = {
-  {
-    type = 'php',
-    request = 'launch',
-    name = 'Listen for xdebug',
-    port = '9003',
-  },
-}
-
-require('dap-ruby').setup()
-dap.configurations.ruby = {
-  {
-    type = 'ruby',
-    name = 'debug current file',
-    request = 'attach',
-    port = 38698,
-    server = '127.0.0.1',
-    options = {
-      source_filetype = 'ruby',
-    },
-    localfs = true,
-    waiting = 1000,
   }
 }

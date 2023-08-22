@@ -11,36 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local function lazy_load(plugin)
-  vim.api.nvim_create_autocmd({ "BufRead", "BufWinEnter", "BufNewFile" }, {
-    group = vim.api.nvim_create_augroup("BeLazyOnFileOpen" .. plugin, {}),
-    callback = function()
-      local file = vim.fn.expand "%"
-      local condition = file ~= "NvimTree_1" and file ~= "[lazy]" and file ~= ""
-
-      if condition then
-        vim.api.nvim_del_augroup_by_name("BeLazyOnFileOpen" .. plugin)
-
-        -- dont defer for treesitter as it will show slow highlighting
-        -- This deferring only happens only when we do "nvim filename"
-        if plugin ~= "nvim-treesitter" then
-          vim.schedule(function()
-            require("lazy").load { plugins = plugin }
-
-            if plugin == "null-ls" then
-              vim.cmd "silent! do FileType"
-            end
-            if plugin == "nvim-lspconfig" then
-              vim.cmd "silent! do FileType"
-            end
-          end, 0)
-        else
-          require("lazy").load { plugins = plugin }
-        end
-      end
-    end,
-  })
-end
 local plugins = {
   {
     'numToStr/Comment.nvim',
@@ -56,7 +26,6 @@ local plugins = {
   },
   {
     "NvChad/nvim-colorizer.lua",
-    lazy = false,
     config = function()
       require("colorizer").setup {
         filetypes = { "*" },
@@ -116,12 +85,20 @@ local plugins = {
     end,
   },
   {
+    "mhartington/formatter.nvim",
+      event = "BufWritePre",
+      lazy = true,
+      config = function ()
+      require("plugins.config.formatter")
+      end
+  },
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- 'jmbuhr/otter.nvim',
       -- "quarto-dev/quarto-nvim",
       -- 'nvim-treesitter/nvim-treesitter',
-      "mhartington/formatter.nvim",
+      -- "mhartington/formatter.nvim",
       "pmizio/typescript-tools.nvim",
       "lewis6991/hover.nvim",
       'williamboman/mason.nvim',
@@ -140,22 +117,6 @@ local plugins = {
       require("plugins.config.lsp")
     end
   },
-
-  -- {
-  --   'pwntester/octo.nvim',
-  --   dependencies = {
-  --     'nvim-lua/plenary.nvim',
-  --     'nvim-telescope/telescope.nvim',
-  --     'nvim-tree/nvim-web-devicons',
-  --   },
-  --   commands = {
-  --     "Octo"
-  --   },
-  --   config = function()
-  --     require("plugins.config.octo")
-  --   end
-  --
-  -- },
   {
     'hrsh7th/nvim-cmp',
     event = "InsertEnter",
@@ -233,12 +194,7 @@ local plugins = {
       preview_window = false,
       title = true
     }
-
   },
-
-  {
-  },
-
   {
     'mfussenegger/nvim-dap',
     keys = {
@@ -255,44 +211,16 @@ local plugins = {
       },
       { "mxsdev/nvim-dap-vscode-js", dependencies = { "mfussenegger/nvim-dap" } },
       -- "jlcrochet/vim-crystal",
-
-      "suketa/nvim-dap-ruby",
-      {
-        "rcarriga/nvim-dap-ui",
-        lazy = true,
-        opts = {
-          layouts = {
-            {
-              elements = {
-                -- "scopes",
-                -- "watches",
-              },
-              size = 30, -- 40 columns
-              position = "right",
-            },
-            {
-              elements = {
-                "repl",
-              },
-              size = 0.50, -- 20% of total lines
-              position = "bottom",
-            },
-          },
-        }
-      },
     },
     lazy = true,
     config = function()
       require("plugins.config.dap")
     end
   },
-
   {
     "petertriho/nvim-scrollbar",
     opts = {}
-
   },
-
   {
     "folke/trouble.nvim",
     lazy = true,
@@ -303,124 +231,25 @@ local plugins = {
     },
     opts = {},
   },
-
-  -- {
-  --   "tpope/vim-endwise",
-  -- },
-
-
-  -- {
-  --   "folke/zen-mode.nvim",
-  --   event = "BufRead",
-  --   keys = {
-  --     { "&", "<cmd>ZenMode<cr>", desc = "ZenMode" },
-  --   },
-  --   opts = {
-  --     window = {
-  --       row = 1,
-  --       width = 1,
-  --       height = 1,
-  --       options = {
-  --         signcolumn = "yes",    -- disable signcolumn
-  --         number = true,         -- disable number column
-  --         relativenumber = true, -- disable relative numbers
-  --         cursorline = false,    -- disable cursorline
-  --         cursorcolumn = false,  -- disable cursor column
-  --         foldcolumn = "0",      -- disable fold column
-  --         list = true,           -- disable whitespace characters
-  --       },
-  --     },
-  --     plugins = {
-  --       options = {
-  --         enabled = true,
-  --         ruler = false,   -- disables the ruler text in the cmd line area
-  --         showcmd = false, -- disables the command in the last line of the screen
-  --         laststatus = 0
-  --       },
-  --       tmux = { enabled = false },
-  --       gitsigns = { enabled = false },
-  --     },
-  --     on_open = function(win)
-  --       vim.cmd("ScrollbarHide")
-  --     end,
-  --     on_close = function(win)
-  --       vim.cmd("ScrollbarShow")
-  --     end,
-  --   }
-  -- },
-
   {
     'nacro90/numb.nvim',
     lazy = false,
     opts = {}
   },
-
-
   {
     'windwp/nvim-autopairs',
-    -- event = "InsertEnter",
     lazy = true,
     event = "InsertEnter",
     opts = {
     },
-    -- config = function()
-    --   require('nvim-autopairs').setup()
-    -- end
   },
-  -- {
-  --     "rebelot/heirline.nvim",
-  --   dependencies = {
-  --    -- "vimpostor/vim-tpipeline",
-  --     },
-  --     config = function ()
-  --       require("plugins.config.heirline")
-  --     end
-  -- },
-  -- {
-  --   "nvim-lualine/lualine.nvim",
-  --   dependencies = {
-  --     "arturgoms/moonbow.nvim",
-  --   },
-  --   config = function()
-  --     require("plugins.config.lualine")
-  --   end
-  -- },
   {
     "kylechui/nvim-surround",
     -- event = "InsertEnter",
     lazy = false,
     opts = {}
   },
-
-
   -- 'mfussenegger/nvim-dap-python',
-  -- "ntpeters/vim-better-whitespace",
-
-
-
-  -- {
-  --   'tomasky/bookmarks.nvim',
-  --   event = "VimEnter",
-  --   config = function()
-  --     require('bookmarks').setup {
-  --       -- sign_priority = 8,  --set bookmark sign priority to cover other sign
-  --       sign_priority=200,
-  --       save_file = vim.fn.expand "$HOME/.bookmarks", -- bookmarks save file path
-  --       on_attach = function(bufnr)
-  --         local bm = require "bookmarks"
-  --         local map = vim.keymap.set
-  --         map("n", "m", bm.bookmark_toggle) -- add or remove bookmark at current line
-  --         map("n", ",i", bm.bookmark_ann) -- add or edit mark annotation at current line
-  --         map("n", ",c", bm.bookmark_clean) -- clean all marks in local buffer
-  --         map("n", ",n", bm.bookmark_next) -- jump to next mark in local buffer
-  --         map("n", ",,", bm.bookmark_next) -- jump to next mark in local buffer
-  --         map("n", ";", bm.bookmark_next) -- jump to next mark in local buffer
-  --         map("n", ",p", bm.bookmark_prev) -- jump to previous mark in local buffer
-  --         -- map("n", ",h", bm.bookmark_list) -- show marked file list in quickfix window
-  --       end
-  --     }
-  --   end
-  -- },
   {
     dir = "lua/alternate",
     keys = {
@@ -447,47 +276,6 @@ local plugins = {
       require("test")
     end
   },
-  -- {
-  --   "ThePrimeagen/vim-be-good",
-  --   lazy = false,
-  --   commands = {
-  --     "VimBeGood"
-  --   }
-  -- },
-  -- {
-  --   "weizheheng/ror.nvim",
-  --   event = "BufEnter *.rb",
-  --   config = function()
-  --     -- The default settings
-  --     require("ror").setup({
-  --       test = {
-  --         message = {
-  --           -- These are the default title for nvim-notify
-  --           file = "Running test file...",
-  --           line = "Running single test..."
-  --         },
-  --         coverage = {
-  --           -- To customize replace with the hex color you want for the highlight
-  --           -- guibg=#354a39
-  --           up = "DiffAdd",
-  --           -- guibg=#4a3536
-  --           down = "DiffDelete",
-  --         },
-  --         notification = {
-  --           -- Using timeout false will replace the progress notification window
-  --           -- Otherwise, the progress and the result will be a different notification window
-  --           timeout = false
-  --         },
-  --         pass_icon = "✅",
-  --         fail_icon = "❌"
-  --       }
-  --     })
-  --
-  --     -- Set a keybind
-  --     -- This "list_commands()" will show a list of all the available commands to run
-  --     vim.keymap.set("n", "<Leader>rc", ":lua require('ror.commands').list_commands()<CR>", { silent = true })
-  --   end
-  -- },
 
   {
     "roobert/tailwindcss-colorizer-cmp.nvim",
@@ -498,6 +286,7 @@ local plugins = {
       })
     end
   },
+
   {
     "axelvc/template-string.nvim",
     config = function()
@@ -520,6 +309,15 @@ local plugins = {
   -- "andythigpen/nvim-coverage",
   --
   "tpope/vim-rsi",
+  {
+    "mbbill/undotree",
+    lazy = false,
+    config = function()
+      vim.keymap.set("n", ",u", "<CMD>UndotreeToggle<CR>", {
+        silent = true
+      })
+    end
+  },
   {
     import = "plugins"
   }
