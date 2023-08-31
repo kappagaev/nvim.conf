@@ -43,10 +43,10 @@ cmp.setup {
     --   select = false,
     -- },
     ['<Tab>'] = cmp.mapping(function(fallback)
-      if require('luasnip').expand_or_jumpable() then
-        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
-      elseif cmp.visible() then
+      if cmp.visible() then
         cmp.confirm()
+      elseif require('luasnip').expand_or_jumpable() then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
       else
         fallback()
       end

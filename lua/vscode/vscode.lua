@@ -155,17 +155,15 @@ map('n', "gr", "<Cmd>call VSCodeNotify('editor.action.goToReferences')', 1)<CR>"
 map('n', "<leader>r", "<Cmd>call VSCodeNotify('editor.action.rename', 1)<CR>")
 map('n', "<leader>l", "<Cmd>call VSCodeNotify('editor.action.formatDocument', 1)<CR>")
 
-map('n', "<leader>i", "<Cmd>call VSCodeNotify('editor.action.sourceAction', {'kind': 'source.addMissingImports', 'apply': 'first'})<CR>")
-map('n', "<leader>d", "<Cmd>call VSCodeNotify('editor.action.sourceAction', {'kind': 'source.organizeImports', 'apply': 'first'})<CR>")
+map('n', "<leader>i",
+  "<Cmd>call VSCodeNotify('editor.action.sourceAction', {'kind': 'source.addMissingImports', 'apply': 'first'})<CR>")
+map('n', "<leader>d",
+  "<Cmd>call VSCodeNotify('editor.action.sourceAction', {'kind': 'source.organizeImports', 'apply': 'first'})<CR>")
 
 map('n', "<leader>/", "<Cmd>call VSCodeNotify('periscope.search', 1)<CR>")
 
 -- map('n', "<leader>t", "<Cmd>call VSCodeNotify('workbench.actions.view.problems', 1)<CR>")
 map('n', "<leader>t", "<Cmd>call VSCodeNotify('workbench.action.toggleAuxiliaryBar', 1)<CR>")
-
-map("n", "<C-d>", "<Cmd>call VSCodeExtensionCall('scroll', 'halfPage', 'down')")
-map("n", "<C-u>", "<Cmd>call VSCodeExtensionCall('scroll', 'halfPage', 'up')")
-
 
 -- harpoon
 map('n', "<leader>h", "<Cmd>call VSCodeNotify('vscode-harpoon.editEditors', 1)<CR>")
@@ -179,3 +177,12 @@ map('n', "<C-s>", "<Cmd>call VSCodeNotify('vscode-harpoon.gotoEditor4', 1)<CR>")
 
 
 vim.api.nvim_command(lsp)
+
+map("n", "<C-d>", function()
+  -- vim.cmd("call VSCodeExtensionCall('scroll', 'halfPage', 'down')")
+  vim.cmd("call <SID>reveal('center', 0)")
+end)
+map("n", "<C-u>", function()
+  -- vim.cmd("<Cmd>call VSCodeExtensionCall('scroll', 'halfPage', 'up')")
+  vim.cmd("call <SID>reveal('center', 0)")
+end)

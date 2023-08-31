@@ -1,7 +1,7 @@
 local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
-  client.server_capabilities.semanticTokensProvider = nil
+  -- client.server_capabilities.semanticTokensProvider = nil
 
   local nmap = function(keys, func, desc)
     if desc then
@@ -13,9 +13,7 @@ local on_attach = function(client, bufnr)
 
   nmap('ge', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gE', vim.lsp.buf.type_definition, '[G]oto [D]efinition')
-  nmap('gr', function()
-    require('telescope.builtin').lsp_references()
-  end, '[G]oto [R]eferences')
+  nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
   -- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
   vim.keymap.set("n", "S",
@@ -35,7 +33,7 @@ local on_attach = function(client, bufnr)
 
   require "lsp_signature".on_attach({
     always_trigger = false,
-    transparency = 0.5,
+    -- transparency = 0.5,
   }, bufnr)
 end
 
@@ -61,6 +59,22 @@ local servers = {
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.preselectSupport = true
+-- capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+-- capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+-- capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+-- capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+-- capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+--
+-- capabilities.textDocument.completion.completionItem.resolveSupport = {
+--   properties = {
+--     'documentation',
+--     'detail',
+--     'additionalTextEdits',
+--   }
+-- }
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 require('mason').setup()

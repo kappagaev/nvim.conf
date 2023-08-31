@@ -65,6 +65,13 @@ au('BufRead', {
     vim.api.nvim_command('setfiletype markdown')
   end,
 })
+-- vim.keymap.set('n', '<esc>', function() vim.cmd('noh') end, { silent = true })
+
+au('BufLeave', {
+  callback = function()
+    vim.cmd('noh')
+  end,
+})
 
 -- au('BufWritePost', {
 --   pattern = 'style.css',

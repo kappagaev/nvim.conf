@@ -40,11 +40,13 @@ vim.api.nvim_set_keymap('n', ",d", ':q<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '>', '>>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<', '<<', { noremap = true })
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- vim.keymap.set("n", "<leader>s", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 
 -- quickfix
-map('n', "<leader>q", ":copen<cr>")
+map('n', "<leader>;", ":copen<cr>")
 
 map('n', '<leader>l', ':Format<CR>')
 map('n', '<leader>i', ':TSToolsAddMissingImports<CR>')

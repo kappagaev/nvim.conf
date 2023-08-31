@@ -86,11 +86,11 @@ local plugins = {
   },
   {
     "mhartington/formatter.nvim",
-      event = "BufWritePre",
-      lazy = true,
-      config = function ()
+    event = "BufWritePre",
+    lazy = true,
+    config = function()
       require("plugins.config.formatter")
-      end
+    end
   },
   {
     'neovim/nvim-lspconfig',
@@ -135,23 +135,23 @@ local plugins = {
             { history = true, updateevents = "TextChanged,TextChangedI" },
             -- Display a cursor-like placeholder in unvisited nodes
             -- of the snippet.
-            ext_opts = {
-              [types.insertNode] = {
-                unvisited = {
-                  virt_text = { { '|', 'Conceal' } },
-                  virt_text_pos = 'inline',
-                },
-              },
-              -- This is needed because LuaSnip differentiates between $0 and other
-              -- placeholders (exitNode and insertNode). So this will highlight the last
-              -- jump node.
-              [types.exitNode] = {
-                unvisited = {
-                  virt_text = { { '|', 'Conceal' } },
-                  virt_text_pos = 'inline',
-                },
-              },
-            },
+            -- ext_opts = {
+            --   [types.insertNode] = {
+            --     unvisited = {
+            --       virt_text = { { '|', 'Conceal' } },
+            --       virt_text_pos = 'inline',
+            --     },
+            --   },
+            --   -- This is needed because LuaSnip differentiates between $0 and other
+            --   -- placeholders (exitNode and insertNode). So this will highlight the last
+            --   -- jump node.
+            --   [types.exitNode] = {
+            --     unvisited = {
+            --       virt_text = { { '|', 'Conceal' } },
+            --       virt_text_pos = 'inline',
+            --     },
+            --   },
+            -- },
           }
 
           -- require("luasnip.loaders.from_snipmate").lazy_load { paths = vim.fn.stdpath "config" .. "/snippets/snipmate" }
@@ -292,8 +292,8 @@ local plugins = {
     config = function()
       require('template-string').setup({
         filetypes = { 'vue', 'astro', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' }, -- filetypes where the plugin is active
-        jsx_brackets = true,                                                                          -- must add brackets to jsx attributes
-        remove_template_string = false,                                                               -- remove backticks when there are no template string
+        jsx_brackets = true,                                                                              -- must add brackets to jsx attributes
+        remove_template_string = false,                                                                   -- remove backticks when there are no template string
         restore_quotes = {
           -- quotes used when "remove_template_string" option is enabled
           normal = [[']],
@@ -309,6 +309,23 @@ local plugins = {
   -- "andythigpen/nvim-coverage",
   --
   "tpope/vim-rsi",
+  -- "Exafunction/codeium.vim",
+  {
+    'kevinhwang91/nvim-bqf',
+    ft = 'qf',
+    config = function()
+      require('bqf').setup({
+        magic_window = false,
+        preview = {
+          border = 'none',
+          win_height = 999,
+          show_scroll_bar = false,
+          winblend = 0
+        }
+      })
+    end
+  },
+  -- lazy.nvim:
   {
     "mbbill/undotree",
     lazy = false,
