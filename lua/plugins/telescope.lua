@@ -30,9 +30,9 @@ return {
         },
       },
       defaults = {
-        path_display = { 'smart' },
+        -- path_display = { 'smart' },
         -- file_ignore_patterns = { '.git' },
-        file_ignore_patterns = { "node_modules/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
+        file_ignore_patterns = { "%pnpm-lock.yaml", "%package-lock.json", "node_modules/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
           "%.ico", "%.pdf","%.mkv","%.ttf","%.woff", "%.eot", "%.svg", '%.webp', '%.png', "%.mp4", "%.zip", "yarn.lock", ".yarn/", ".vscode/" },
         mappings = {
           i = {

@@ -116,7 +116,7 @@ map('n', "<C-i>", "<Cmd>call VSCodeNotify('workbench.action.navigateForward', 1)
 -- coma stuff
 map('n', ',', ',')
 map('n', ',d', "<Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>")
-map('n', ",t", "<Cmd>call VSCodeNotify('extension.goToTest')', 1)<CR>")
+map('n', ",t", "gt")
 
 -- window
 map('n', "<Tab>", "<Cmd>call VSCodeNotify('workbench.action.focusNextGroup')', 1)<CR>")
