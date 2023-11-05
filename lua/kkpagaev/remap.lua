@@ -14,11 +14,8 @@ map('n', "<leader>", "")
 -- map('v', "h", "j")
 --
 -- map('v', "H", "j")
-
-map('n', '&', 'gt')
-map('t', '&', function()
-  vim.cmd("normal! gt")
-end)
+map('i', "<M-d>", "<C-d>")
+map('i', "<M-u>", "<C-u>")
 
 map('i', "<C-g>", "<C-o>")
 map('i', "<C-d>", "<M-d>")

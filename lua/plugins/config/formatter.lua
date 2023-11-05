@@ -25,7 +25,9 @@ local function format_prettier()
     args = { util.escape_path(util.get_current_buffer_file_path()) },
     stdin = true,
   }
+
 end
+local golang = require("formatter.filetypes.go")
 
 require('formatter').setup {
   logging = true,
@@ -39,6 +41,10 @@ require('formatter').setup {
     typescriptreact = { format_eslint },
     vue = { format_eslint },
     astro = { format_eslint },
+    go = {
+      golang.gofmt,
+      golang.goimports,
+    },
   }
 }
 

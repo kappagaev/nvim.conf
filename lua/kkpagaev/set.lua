@@ -33,13 +33,13 @@ vim.g.vimwiki_ext2syntax = {
 -- table_mappings= 0
 -- }
 
-o.relativenumber = true
+-- o.relativenumber = true
 o.number = true
-o.cursorline = false
+o.cursorline = true
 
 o.tabstop = 2
 -- o.notimeout = true
-o.expandtab = true
+o.expandtab = false
 o.softtabstop = 2
 o.shiftwidth = 2
 o.wrap = true
@@ -71,9 +71,10 @@ o.smartcase = true
 
 vim.opt.wrap = false
 
+
 vim.opt.termguicolors = true
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 vim.g.crystal_define_mappings = 0
 
@@ -93,3 +94,11 @@ end
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+vim.opt.tabstop = 2
+
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.bo.softtabstop = 2
+
+

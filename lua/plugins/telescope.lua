@@ -1,12 +1,26 @@
+local function get_selection() 
+  local vstart = vim.fn.getpos("'<")
+
+  local vend = vim.fn.getpos("'>")
+
+  local line_start = vstart[2]
+  local line_end = vend[2]
+
+  -- or use api.nvim_buf_get_lines
+  local lines = vim.fn.getline(line_start,line_end)
+
+  return lines
+end
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
   'nvim-tree/nvim-web-devicons',
     'nvim-lua/plenary.nvim' },
-  lazy = true,
+  lazy = false,
   keys = {
     { "<leader><space>" },
     { "<C-p>" },
+    { "<Up>" },
     { "<leader>u" },
     { "<leader>/",      "<cmd>Telescope live_grep<CR>",  desc = "Find a string", silent = true },
     { "<leader>:",      "<cmd>Telescope commands<CR>",  desc = "Find a string", silent = true },
@@ -32,7 +46,7 @@ return {
       defaults = {
         -- path_display = { 'smart' },
         -- file_ignore_patterns = { '.git' },
-        file_ignore_patterns = { "%pnpm-lock.yaml", "%package-lock.json", "node_modules/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
+        file_ignore_patterns = { "%pnpm-lock.yaml", "%package-lock.json", "target/", "node_modules/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
           "%.ico", "%.pdf","%.mkv","%.ttf","%.woff", "%.eot", "%.svg", '%.webp', '%.png', "%.mp4", "%.zip", "yarn.lock", ".yarn/", ".vscode/" },
         mappings = {
           i = {
@@ -98,11 +112,17 @@ return {
       -- { "<leader>fh",      "<cmd>Telescope help_tags<CR>",  desc = "Help", silent = true },
       -- { "<leader>fg",      "<cmd>Telescope git_status<CR>", desc = "Find Git", silent = true },
     }
+
+    vim.keymap.set('v', '/', require("telescope.builtin").grep_string, {})
+    
     -- require("telescope").load_extension "file_browser"
     vim.keymap.set("n", "<leader><space>", require("telescope.builtin").find_files, {
       silent = true
     })
     vim.keymap.set("n", "<leader>u", require("telescope.builtin").find_files, {
+      silent = true
+    })
+    vim.keymap.set("n", "<Up>", require("telescope.builtin").find_files, {
       silent = true
     })
     vim.keymap.set("n", "<C-p>", require("telescope.builtin").find_files, {

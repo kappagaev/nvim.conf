@@ -42,6 +42,7 @@ return {
   keys = {
     "M",
     "<BS>",
+    "<CR>",
     "<leader>h",
     "<C-h>",
     "<C-t>",
@@ -78,25 +79,37 @@ return {
 
     local ui = require("harpoon.ui")
 
+    vim.keymap.set("n", "<BS>", function()
+      if require("harpoon.mark").get_length() == 0 then
+        require("telescope.builtin").find_files()
+        return
+      end
+      vim.cmd('noh')
+      ui.nav_file(1)
+    end)
     vim.keymap.set("n", "<C-h>", function()
       if require("harpoon.mark").get_length() == 0 then
         require("telescope.builtin").find_files()
 
         return
       end
-    vim.cmd('noh')
+      vim.cmd('noh')
       ui.nav_file(1)
     end)
     vim.keymap.set("n", "<C-t>", function()
       ui.nav_file(2)
-    vim.cmd('noh')
+      vim.cmd('noh')
+    end)
+    vim.keymap.set("n", "<Down>", function()
+      ui.nav_file(3)
+      vim.cmd('noh')
     end)
     vim.keymap.set("n", "<C-n>", function()
       ui.nav_file(3)
-    vim.cmd('noh')
+      vim.cmd('noh')
     end)
-    vim.keymap.set("n", "<C-s>", function()
-    vim.cmd('noh')
+      vim.keymap.set("n", "<C-s>", function()
+      vim.cmd('noh')
       ui.nav_file(4)
     end)
 
@@ -123,6 +136,16 @@ return {
     })
 
     vim.keymap.set("n", "M", function()
+      local mark = require('harpoon.mark')
+      local i = mark.get_current_index()
+
+      mark.toggle_file(i)
+
+      winbar.clear()
+      winbar.open()
+    end)
+
+    vim.keymap.set("n", "<CR>", function()
       local mark = require('harpoon.mark')
       local i = mark.get_current_index()
 

@@ -264,6 +264,7 @@ local plugins = {
       require("alternate")
     end
   },
+  -- "vimpostor/vim-tpipeline",
   {
     dir = "lua/test",
     keys = {
@@ -309,7 +310,15 @@ local plugins = {
   -- "andythigpen/nvim-coverage",
   --
   "tpope/vim-rsi",
-  -- "Exafunction/codeium.vim",
+  "leoluz/nvim-dap-go",
+  "Exafunction/codeium.vim",
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require("plugins.config.lint")
+    end
+  },
+  "windwp/nvim-ts-autotag",
   {
     'kevinhwang91/nvim-bqf',
     ft = 'qf',

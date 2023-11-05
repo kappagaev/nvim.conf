@@ -1,5 +1,12 @@
 local dap = require('dap')
 
+local function map(m, k, v)
+  vim.keymap.set(m, k, v, { silent = true })
+end
+map('n', '&', function()
+  require'dap'.set_exception_breakpoints({"raised", "uncaught"})
+end)
+
 vim.fn.sign_define('DapBreakpoint',
   { text = '😡', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapBreakpointRejected',
@@ -14,12 +21,15 @@ vim.keymap.set('n', '<leader>cb',
   function() require "dap".clear_breakpoints() end)
 
 
-vim.keymap.set({ 'n', 't' }, '<C-g>', function() require "dap".continue() end)
+vim.keymap.set({ 'n', 't' }, '<C-g>', function()
+
+  require "dap".continue() 
+end)
 vim.keymap.set({ 'n', 't' }, '<C-c>', function() require "dap".step_over() end)
 vim.keymap.set({ 'n', 't' }, "<C-r>", function() require "dap".step_into() end)
 vim.keymap.set({ 'n', 't' }, "<C-l>", function() require "dap".step_out() end)
 
-vim.keymap.set({ "n", "i", "t" }, '<M-d>', function()
+vim.keymap.set({ "n", "i", "t" }, '<Left>', function()
   local bufname = vim.fn.expand("%:r")
   print(bufname)
   if bufname ~= "[dap-repl]" then
@@ -84,4 +94,56 @@ require("dap").configurations.typescriptreact = { -- change this to javascript i
     port = 9222,
     webRoot = "${workspaceFolder}"
   }
+}
+
+
+require('dap-go').setup {
+  dap_configurations = {
+    {
+      -- Must be "go" or it will be ignored by the plugin
+      type = "go",
+      name = "Attach remote",
+      mode = "remote",
+      request = "attach",
+    },
+  },
+  delve = {
+    path = "dlv",
+    initialize_timeout_sec = 20,
+    port = "${port}",
+    args = {},
+    build_flags = "",
+  },
+}
+
+dap.adapters.cppdbg = {
+  id = 'cppdbg',
+  type = 'executable',
+  command = '/home/kkpagaev/Downloads/cpp/extension/debugAdapters/bin/OpenDebugAD7',
+}
+
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "cppdbg",
+    request = "launch",
+    program = function()
+      return vim.fn.getcwd() .. "/main"
+    end,
+    args = {"<", "in"},
+    cwd = '${workspaceFolder}',
+    stopAtEntry = true,
+  },
+  -- {
+  --   name = 'Attach to gdbserver :1234',
+  --   type = 'cppdbg',
+  --   request = 'launch',
+  --   MIMode = 'gdb',
+  --   miDebuggerServerAddress = 'localhost:1234',
+  --   miDebuggerPath = '/usr/bin/gdb',
+  --   cwd = '${workspaceFolder}',
+  --   program = function()
+  --     return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+  --   end,
+  -- },
 }

@@ -20,7 +20,7 @@
     "prefix": "url"
   },
   "curl": {
-    "body": "curl --url \"http://localhost:7702$1\" --request POST \\\n    --data '{\n    \"$2\"\n  }' \\\n  -H 'content-type: application/json' \\\n  -H \"Authorization: Bearer \\$gbjwt\"",
+    "body": "curl --url \"http://localhost:3000/api/v1/$1\" --request POST \\\n    --data '{\n    \"$2\"\n  }' \\\n  -H 'content-type: application/json' \\\n  -H \"Authorization: Bearer \\$smjwt\"",
     "description": "curl",
     "prefix": "curl"
   }

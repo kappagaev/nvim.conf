@@ -96,7 +96,15 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
-local sources = {}
+local sources = {
+  -- nullls = {                     -- Name of source
+  --   ignore = true,         -- Ignore notifications from this source
+  -- },
+}
+sources["null-ls"] = {
+  ignore = true
+}
+
 require('fidget').setup({
   sources = sources,
   window = {
@@ -172,7 +180,7 @@ require("typescript-tools").setup {
     -- spawn additional tsserver instance to calculate diagnostics on it
     server_capabilities = { semanticTokensProvider = nil},
     -- complete_function_calls = true,
-    separate_diagnostic_server = false,
+    separate_diagnostic_server = true,
     -- "change"|"insert_leave" determine when the client asks the server about diagnostic
     publish_diagnostic_on = "insert_leave",
     -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
@@ -182,23 +190,19 @@ require("typescript-tools").setup {
     -- memory limit in megabytes or "auto"(basically no limit)
     tsserver_max_memory = "auto",
     -- described below
+    code_lens = "off",
     tsserver_format_options = {
       -- allowIncompleteCompletions = true,
       -- allowRenameOfImportPath = true,
     },
     tsserver_file_preferences = {
       includeInlayParameterNameHints = "all",
-      includeCompletionsForModuleExports = true,
+      includeCompletionsForModuleExports = false,
       quotePreference = "auto",
       importModuleSpecifierPreference = "relative"
     },
   },
 }
-
-require 'lspconfig'.eslint.setup({
-  capabilities = capabilities,
-  flags = { debounce_text_changes = 500 },
-})
 
 -- require 'lspconfig'.volar.setup {
 --   init_options = {

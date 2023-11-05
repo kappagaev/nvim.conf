@@ -46,6 +46,7 @@ set_mark_color(5, "#76946A")
 function tabline()
   local is_modified = vim.bo.modified and "●" or ""
   -- local bufname = vim.api.nvim_eval_statusline('%t', {}).str
+  -- local bufname = vim.api.nvim_eval_statusline('%f', {}).str
   local bufname = vim.api.nvim_eval_statusline('%t', {}).str
   if bufname == "NvimTree_1" then
     return ""
@@ -58,7 +59,7 @@ function tabline()
   local current_mark = buf_harpoon(bufname)
 
   if current_mark == nil then
-    return " %#" .. color .. "# " .. icon_str .. "%*" ..
+    return "  %#" .. color .. "# " .. icon_str .. "%*" ..
         bufname .. " " .. is_modified .. " %*"
       -- .. " %= %#Conceal#  󰅖%*"
       -- .. " %= %#Conceal#" .. searchCount() ..  "%*"
@@ -84,10 +85,12 @@ end
 
 local function open()
   vim.o.winbar = "%{%v:lua.tabline()%}"
+  -- vim.o.statusline = "%{%v:lua.tabline()%}"
 end
 
 local function close()
   vim.o.winbar = ""
+  -- vim.o.statusline = ""
 end
 
 local function toggle()
