@@ -13,6 +13,23 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+    -- event = "VeryLazy",
+    opts = {
+      override = {
+        zsh = {
+          icon = "",
+          color = "#428850",
+          cterm_color = "65",
+          name = "Zsh",
+        },
+      },
+      color_icons = true,
+      default = true,
+    },
+  },
+  {
     'numToStr/Comment.nvim',
     lazy = true,
     opts = {},
@@ -95,10 +112,6 @@ local plugins = {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- 'jmbuhr/otter.nvim',
-      -- "quarto-dev/quarto-nvim",
-      -- 'nvim-treesitter/nvim-treesitter',
-      -- "mhartington/formatter.nvim",
       "pmizio/typescript-tools.nvim",
       "lewis6991/hover.nvim",
       'williamboman/mason.nvim',
@@ -129,36 +142,13 @@ local plugins = {
         dependencies = "rafamadriz/friendly-snippets",
         config = function()
           local luasnip = require 'luasnip'
-          local types = require 'luasnip.util.types'
-
           luasnip.setup {
             { history = true, updateevents = "TextChanged,TextChangedI" },
-            -- Display a cursor-like placeholder in unvisited nodes
-            -- of the snippet.
-            -- ext_opts = {
-            --   [types.insertNode] = {
-            --     unvisited = {
-            --       virt_text = { { '|', 'Conceal' } },
-            --       virt_text_pos = 'inline',
-            --     },
-            --   },
-            --   -- This is needed because LuaSnip differentiates between $0 and other
-            --   -- placeholders (exitNode and insertNode). So this will highlight the last
-            --   -- jump node.
-            --   [types.exitNode] = {
-            --     unvisited = {
-            --       virt_text = { { '|', 'Conceal' } },
-            --       virt_text_pos = 'inline',
-            --     },
-            --   },
-            -- },
           }
 
-          -- require("luasnip.loaders.from_snipmate").lazy_load { paths = vim.fn.stdpath "config" .. "/snippets/snipmate" }
           local loader = require("luasnip/loaders/from_vscode")
           loader.lazy_load()
 
-          -- load snippets from path/of/your/nvim/config/my-cool-snippets
           loader.lazy_load({ paths = { "./snippets" } })
 
           vim.api.nvim_create_autocmd("InsertLeave", {
@@ -250,34 +240,7 @@ local plugins = {
     opts = {}
   },
   -- 'mfussenegger/nvim-dap-python',
-  {
-    dir = "lua/alternate",
-    keys = {
-      ",t",
-      ",T",
-      ",h",
-      ",m",
-      ",c",
-      ",e"
-    },
-    config = function()
-      require("alternate")
-    end
-  },
   -- "vimpostor/vim-tpipeline",
-  {
-    dir = "lua/test",
-    keys = {
-      ",h"
-    },
-    dependencies = {
-      'mfussenegger/nvim-dap'
-    },
-    config = function()
-      require("test")
-    end
-  },
-
   {
     "roobert/tailwindcss-colorizer-cmp.nvim",
     -- optionally, override the default options:
@@ -310,7 +273,7 @@ local plugins = {
   -- "andythigpen/nvim-coverage",
   --
   "tpope/vim-rsi",
-  "leoluz/nvim-dap-go",
+  -- "leoluz/nvim-dap-go",
   "Exafunction/codeium.vim",
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -318,7 +281,7 @@ local plugins = {
       require("plugins.config.lint")
     end
   },
-  "windwp/nvim-ts-autotag",
+  -- "simrat39/rust-tools.nvim",
   {
     'kevinhwang91/nvim-bqf',
     ft = 'qf',
@@ -346,6 +309,65 @@ local plugins = {
   },
   {
     import = "plugins"
+  },
+  {
+    "tpope/vim-fugitive",
+    lazy = true,
+    dependencies = {
+      "tpope/vim-rhubarb"
+    },
+    cmd = {
+      "Git",
+      "GlLog",
+      "Gwrite",
+    },
+    keys = {
+      { "<leader>g" },
+      { "gd" },
+      { "gD" },
+    },
+    config = function()
+      vim.keymap.set("n", "<leader>g", function()
+        if vim.bo.ft ~= "fugitive" then
+          vim.cmd.Git()
+          vim.cmd("wincmd o")
+        else
+          vim.cmd("bd")
+        end
+      end, { silent = true })
+
+      local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
+
+      local autocmd = vim.api.nvim_create_autocmd
+      autocmd("BufWinEnter", {
+        group = ThePrimeagen_Fugitive,
+        pattern = "*",
+        callback = function()
+          if vim.bo.ft ~= "fugitive" then
+            return
+          end
+
+          local bufnr = vim.api.nvim_get_current_buf()
+          vim.opt_local.number = false
+          vim.opt_local.relativenumber = false
+          vim.opt_local.winbar = "     "
+          local opts = { buffer = bufnr, remap = false }
+          vim.keymap.set("n", "<leader>P", function()
+            vim.cmd.Git('push')
+          end, opts)
+
+          -- rebase always
+          vim.keymap.set("n", "<leader>p", function()
+            vim.cmd.Git({ 'pull', '--rebase' })
+          end, opts)
+
+          vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts);
+        end,
+      })
+
+      vim.keymap.set("n", "gd", vim.cmd.Gdiffsplit)
+      vim.keymap.set("n", "gD", ":Gdiffsplit!<CR>", { silent = true })
+    end
   }
 }
 

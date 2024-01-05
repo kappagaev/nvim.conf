@@ -26,7 +26,7 @@ return {
       vim.keymap.set('n', '<C-x>', api.node.open.horizontal, opts('Open: Horizontal Split'))
       vim.keymap.set('n', '<BS>', api.node.navigate.parent_close, opts('Close Directory'))
       vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
-      vim.keymap.set('n', '<Tab>', api.node.open.preview, opts('Open Preview'))
+      -- vim.keymap.set('n', '<Tab>', api.node.open.preview, opts('Open Preview'))
       vim.keymap.set('n', '>', api.node.navigate.sibling.next, opts('Next Sibling'))
       vim.keymap.set('n', '<', api.node.navigate.sibling.prev, opts('Previous Sibling'))
       vim.keymap.set('n', '.', api.node.run.cmd, opts('Run Command'))
@@ -74,11 +74,11 @@ return {
       vim.keymap.set('n', 'c', api.node.navigate.parent_close, opts('Close Directory'))
       vim.keymap.set('n', 'n', api.node.open.preview, opts('Open Preview'))
     end,
-    disable_netrw = true,
-    hijack_netrw = true,
+    disable_netrw = false,
+    hijack_netrw = false,
     respect_buf_cwd = true,
     sync_root_with_cwd = true,
-    update_cwd = false,
+    update_cwd = true,
     sort_by = "case_sensitive",
     view = {
       adaptive_size = true,
@@ -88,6 +88,7 @@ return {
     },
     filters = {
       dotfiles = false,
+      git_ignored = false
     },
     update_focused_file = {
       enable = true,

@@ -17,6 +17,38 @@ map('n', "<leader>", "")
 map('i', "<M-d>", "<C-d>")
 map('i', "<M-u>", "<C-u>")
 
+function buf_vtext()
+  local a_orig = vim.fn.getreg('a')
+  local mode = vim.fn.mode()
+  if mode ~= 'v' and mode ~= 'V' then
+    vim.cmd([[normal! gv]])
+  end
+  vim.cmd([[silent! normal! "aygv]])
+  local text = vim.fn.getreg('a')
+  vim.fn.setreg('a', a_orig)
+  return text
+end
+
+local function zod_to_json()
+  -- if vim.fn.visualmode() ~= 'V' and vim.fn.visualmode() ~= 'v' then
+  --     print("Not in Visual mode")
+  --     return
+  -- end
+
+  local selected_text = buf_vtext()
+  local res = vim.fn.system("ztj", selected_text)
+  local jq = vim.fn.system("jq -r", res)
+  vim.fn.system("clip", jq)
+  -- exit to normal 
+
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', true)
+
+  print(res)
+end
+
+vim.keymap.set('v', ',', zod_to_json, { noremap = true, silent = true })
+
+map('i', "<C-BS>", "<C-w>")
 map('i', "<C-g>", "<C-o>")
 map('i', "<C-d>", "<M-d>")
 map('i', "<C-l>", "<Right>")
@@ -54,6 +86,7 @@ map('v', '<leader>p', '"_dP')
 
 map('n', 'go', '<C-o>')
 map('n', 'gi', '<C-i>')
+map('n', 'gu', 'gi')
 map('n', '<C-i>', '<C-i>')
 
 map('n', "yf", 'jgg"+yG<c-o>k')
@@ -64,9 +97,6 @@ map('n', 'U', '<c-r>')
 
 map('v', "<leader>y", '"+y')
 map('n', "<leader>y", '"+y')
-
-map('n', "<leader>p", '"+p')
-map('v', "<leader>p", '"+p')
 
 map('n', ",.", ':w<CR>')
 
@@ -96,3 +126,6 @@ end)
 vim.keymap.set("i", "<C-c>", "<ESC>", { silent = true })
 
 vim.keymap.set("n", "J", "mzJ`z")
+
+vim.keymap.set("x", "<leader>p", [["_dP]])
+

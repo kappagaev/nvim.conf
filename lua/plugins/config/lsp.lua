@@ -16,9 +16,9 @@ local on_attach = function(client, bufnr)
   nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
   -- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
-  vim.keymap.set("n", "S",
-    require("hover").hover
-    , { desc = "hover.nvim" })
+  vim.keymap.set("n", "S", function()
+    require("hover").hover()
+  end, { desc = "hover.nvim" })
   -- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
   local keymap = vim.keymap.set
@@ -101,6 +101,7 @@ local sources = {
   --   ignore = true,         -- Ignore notifications from this source
   -- },
 }
+
 sources["null-ls"] = {
   ignore = true
 }
@@ -122,17 +123,18 @@ require('fidget').setup({
 --   on_attach = on_attach,
 -- }
 
-require 'lspconfig'.solargraph.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
+-- require 'lspconfig'.solargraph.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--
+--   root_dir = nvim_lsp.util.root_pattern(".rubocop.yml", ".git"),
+--   settings = {
+--     -- solargraph = {
+--     --   diagnostics = true
+--     -- }
+--   },
+-- }
 
-  root_dir = nvim_lsp.util.root_pattern(".rubocop.yml", ".git"),
-  settings = {
-    -- solargraph = {
-    --   diagnostics = true
-    -- }
-  },
-}
 require('lspconfig')['yamlls'].setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -150,8 +152,37 @@ require('lspconfig')['yamlls'].setup {
   }
 }
 
-require'lspconfig'.tailwindcss.setup{
-  filetypes = { "astro", "vue"}
+-- require("lspconfig").emmet_ls.setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+--   filetypes = { "astro", "vue", "elixir", "eelixir", "heex" },
+--   init_options = {
+--     userLanguages = {
+--       elixir = "html-eex",
+--       eelixir = "html-eex",
+--       heex = "html-eex",
+--     },
+--   },
+-- })
+
+require 'lspconfig'.tailwindcss.setup {
+  filetypes = { "astro", "vue", "elixir", "eelixir", "heex" },
+  init_options = {
+    userLanguages = {
+      elixir = "html-eex",
+      eelixir = "html-eex",
+      heex = "html-eex",
+    },
+  },
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          'class[:]\\s*"([^"]*)"',
+        },
+      },
+    },
+  },
 
 }
 
@@ -178,7 +209,7 @@ require("typescript-tools").setup {
   on_attach = on_attach,
   settings = {
     -- spawn additional tsserver instance to calculate diagnostics on it
-    server_capabilities = { semanticTokensProvider = nil},
+    server_capabilities = { semanticTokensProvider = nil },
     -- complete_function_calls = true,
     separate_diagnostic_server = true,
     -- "change"|"insert_leave" determine when the client asks the server about diagnostic
@@ -232,4 +263,3 @@ require("typescript-tools").setup {
 --     }
 --   }
 -- }
-

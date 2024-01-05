@@ -1,8 +1,9 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   dependencies = {
+    "windwp/nvim-ts-autotag",
     -- "RRethy/nvim-treesitter-endwise",
-    "nvim-treesitter/playground",
+    -- "nvim-treesitter/playground",
     -- 'nvim-treesitter/nvim-treesitter-context',
   },
   lazy = false,
@@ -15,7 +16,7 @@ return {
     end
 
     treesitter_config.setup {
-      ensure_installed = { "yaml", "go", "tsx", "lua", "json", "graphql", "regex", "vim", "markdown", "markdown_inline", "dockerfile", "prisma", "vue"},
+      ensure_installed = { "dap_repl", "yaml", "go", "tsx", "lua", "json", "graphql", "regex", "vim", "markdown", "markdown_inline", "dockerfile", "prisma", "vue"},
 
       sync_install = false,
       auto_install = true,

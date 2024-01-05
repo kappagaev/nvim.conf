@@ -1,22 +1,9 @@
-local function get_selection() 
-  local vstart = vim.fn.getpos("'<")
-
-  local vend = vim.fn.getpos("'>")
-
-  local line_start = vstart[2]
-  local line_end = vend[2]
-
-  -- or use api.nvim_buf_get_lines
-  local lines = vim.fn.getline(line_start,line_end)
-
-  return lines
-end
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
   'nvim-tree/nvim-web-devicons',
     'nvim-lua/plenary.nvim' },
-  lazy = false,
+  lazy = true,
   keys = {
     { "<leader><space>" },
     { "<C-p>" },
@@ -26,6 +13,7 @@ return {
     { "<leader>:",      "<cmd>Telescope commands<CR>",  desc = "Find a string", silent = true },
     { "<leader>fh",     "<cmd>Telescope help_tags<CR>",  desc = "Help",          silent = true },
     { "<leader>fg",     "<cmd>Telescope git_status<CR>", desc = "Find Git",      silent = true },
+    { ",t",     "<cmd>Telescope resume<CR>", desc = "resume",      silent = true },
   },
   config = function()
     local status_ok, telescope = pcall(require, "telescope")
@@ -44,78 +32,28 @@ return {
         },
       },
       defaults = {
-        -- path_display = { 'smart' },
+        path_display = { 'smart' },
         -- file_ignore_patterns = { '.git' },
         file_ignore_patterns = { "%pnpm-lock.yaml", "%package-lock.json", "target/", "node_modules/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
           "%.ico", "%.pdf","%.mkv","%.ttf","%.woff", "%.eot", "%.svg", '%.webp', '%.png', "%.mp4", "%.zip", "yarn.lock", ".yarn/", ".vscode/" },
         mappings = {
           i = {
-            ["<C-u>"] = actions.preview_scrolling_up,
-            ["<C-d>"] = actions.preview_scrolling_down,
             ["<esc>"] = actions.close
           }
         },
         layout_config = {
           horizontal = {
-            -- prompt_position = "top",
             preview_width = 0.55,
             results_width = 0.8,
           },
-          -- vertical = {
-          --   mirror = false,
-          -- },
-          width = 0.90,
-          height = 0.90,
-          preview_cutoff = 20,
+          width = 0.99,
+          height = 0.99,
+          preview_cutoff = 0,
         },
-        results_title = false,
-        prompt_title = false,
-        dynamic_preview_title = false,
-        -- prompt_prefix = "   ",
-        -- prompt_prefix = " 󱇪  ",
         prompt_prefix = "   ",
-        selection_caret = "  ",
-        entry_prefix = "  ",
-        initial_mode = "insert",
-        selection_strategy = "reset",
-        -- sorting_strategy = "ascending",
-        layout_strategy = "horizontal",
-        winblend = 0,
-        border = {},
-        -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-        -- color_devicons = true,
-        -- set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-        -- Developer configurations: Not meant for general override
-        -- buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
-
-        center = {
-          width = function(_, max_columns)
-            local percentage = 0.5
-            local max = 70
-            return math.min(math.floor(percentage * max_columns), max)
-          end,
-          height = function(_, _, max_lines)
-            local percentage = 0.5
-            local min = 70
-            return math.max(math.floor(percentage * max_lines), min)
-          end
-
-        },
-        horizontal = {
-          preview_cutoff = 100,
-          preview_width = 0.6
-        }
       }
-      -- { "<leader><space>", "<cmd>Telescope find_files<CR>", desc = "Find Files", silent = true },
-      -- { "<leader>u",       "<cmd>Telescope find_files<CR>", desc = "Find Files", silent = true },
-      -- { "<leader>/",       "<cmd>Telescope live_grep<CR>",  desc = "Find a string", silent = true },
-      -- { "<leader>fh",      "<cmd>Telescope help_tags<CR>",  desc = "Help", silent = true },
-      -- { "<leader>fg",      "<cmd>Telescope git_status<CR>", desc = "Find Git", silent = true },
     }
-
     vim.keymap.set('v', '/', require("telescope.builtin").grep_string, {})
-    
-    -- require("telescope").load_extension "file_browser"
     vim.keymap.set("n", "<leader><space>", require("telescope.builtin").find_files, {
       silent = true
     })

@@ -65,7 +65,6 @@ au('BufRead', {
     vim.api.nvim_command('setfiletype markdown')
   end,
 })
--- vim.keymap.set('n', '<esc>', function() vim.cmd('noh') end, { silent = true })
 
 au('BufLeave', {
   callback = function()
@@ -73,10 +72,3 @@ au('BufLeave', {
   end,
 })
 
--- au('BufWritePost', {
---   pattern = 'style.css',
---   callback = function()
---     send_command_to_split("^C")
---     send_command_to_split("waybar")
---   end
--- })
