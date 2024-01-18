@@ -44,6 +44,11 @@ set_mark_color(5, "#76946A")
 -- vim.api.nvim_set_hl(0, "WinBar", { bg = "#FFA066", fg = "#000000" })
 
 function tabline()
+  if vim.bo.filetype == "netrw" then
+    return "%F"
+  end
+
+
   local is_modified = vim.bo.modified and "●" or ""
   -- local bufname = vim.api.nvim_eval_statusline('%t', {}).str
   -- local bufname = vim.api.nvim_eval_statusline('%f', {}).str

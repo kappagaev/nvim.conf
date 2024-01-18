@@ -59,16 +59,9 @@ au('BufRead', {
   end,
 })
 
-au('BufRead', {
-  pattern = '*.md',
-  callback = function()
-    vim.api.nvim_command('setfiletype markdown')
-  end,
-})
-
-au('BufLeave', {
-  callback = function()
-    vim.cmd('noh')
-  end,
-})
-
+-- au('BufLeave', {
+--   callback = function()
+--     vim.cmd('noh')
+--   end,
+-- })
+--

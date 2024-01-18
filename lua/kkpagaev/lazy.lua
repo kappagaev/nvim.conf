@@ -116,13 +116,14 @@ local plugins = {
       "lewis6991/hover.nvim",
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      "ray-x/lsp_signature.nvim",
+      -- "ray-x/lsp_signature.nvim",
       {
         'j-hui/fidget.nvim',
         tag = "legacy"
       }
     },
     lazy = false,
+    -- event = "InsertEnter",
     -- init = function()
     --   lazy_load "nvim-lspconfig"
     -- end,
@@ -148,7 +149,7 @@ local plugins = {
 
           local loader = require("luasnip/loaders/from_vscode")
           loader.lazy_load()
-
+--
           loader.lazy_load({ paths = { "./snippets" } })
 
           vim.api.nvim_create_autocmd("InsertLeave", {
@@ -195,6 +196,7 @@ local plugins = {
     },
     dependencies = {
       "rcarriga/cmp-dap",
+      "leoluz/nvim-dap-go",
       {
         "theHamsta/nvim-dap-virtual-text",
         opts = {}
@@ -236,7 +238,8 @@ local plugins = {
   {
     "kylechui/nvim-surround",
     -- event = "InsertEnter",
-    lazy = false,
+    lazy = true,
+    keys = {"cs", "ds"},
     opts = {}
   },
   -- 'mfussenegger/nvim-dap-python',
@@ -251,21 +254,21 @@ local plugins = {
     end
   },
 
-  {
-    "axelvc/template-string.nvim",
-    config = function()
-      require('template-string').setup({
-        filetypes = { 'vue', 'astro', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' }, -- filetypes where the plugin is active
-        jsx_brackets = true,                                                                              -- must add brackets to jsx attributes
-        remove_template_string = false,                                                                   -- remove backticks when there are no template string
-        restore_quotes = {
-          -- quotes used when "remove_template_string" option is enabled
-          normal = [[']],
-          jsx = [["]],
-        },
-      })
-    end
-  },
+  -- {
+  --   "axelvc/template-string.nvim",
+  --   config = function()
+  --     require('template-string').setup({
+  --       filetypes = { 'vue', 'astro', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' }, -- filetypes where the plugin is active
+  --       jsx_brackets = true,                                                                              -- must add brackets to jsx attributes
+  --       remove_template_string = false,                                                                   -- remove backticks when there are no template string
+  --       restore_quotes = {
+  --         -- quotes used when "remove_template_string" option is enabled
+  --         normal = [[']],
+  --         jsx = [["]],
+  --       },
+  --     })
+  --   end
+  -- },
   -- {
   --   "vimwiki/vimwiki",
   --   event = "BufEnter *.md",
@@ -273,8 +276,10 @@ local plugins = {
   -- "andythigpen/nvim-coverage",
   --
   "tpope/vim-rsi",
-  -- "leoluz/nvim-dap-go",
+{
   "Exafunction/codeium.vim",
+    lazy = false
+},
   {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
@@ -300,7 +305,8 @@ local plugins = {
   -- lazy.nvim:
   {
     "mbbill/undotree",
-    lazy = false,
+    lazy = true,
+    keys = {',u'},
     config = function()
       vim.keymap.set("n", ",u", "<CMD>UndotreeToggle<CR>", {
         silent = true
@@ -373,6 +379,6 @@ local plugins = {
 
 require("lazy").setup(plugins, {
   defaults = {
-    lazy = false
+    lazy = true
   }
 })

@@ -86,9 +86,9 @@ vim.o.timeoutlen = 1000
 
 -- vim.opt.statusline = " "
 
-for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-  vim.api.nvim_set_hl(0, group, {})
-end
+-- for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+--   vim.api.nvim_set_hl(0, group, {})
+-- end
 
 -- vim.g.netrw_browse_split = 0
 -- vim.g.netrw_banner = 0

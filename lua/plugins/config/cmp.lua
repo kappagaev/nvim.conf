@@ -68,32 +68,36 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'otter' }, -- for code chunks in quarto
     { name = 'nvim_lsp' },
     { name = "luasnip" },
     { name = 'path' },
     { name = 'buffer' },
-    { name = 'calc' },
-    { name = 'spell' },
-    { name = 'treesitter' },
-    { name = 'nvim_lua' },
-
   },
-  enabled = function()
-    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
-        or require("cmp_dap").is_dap_buffer()
-  end
+  -- enabled = function()
+  --   return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+  --       or require("cmp_dap").is_dap_buffer()
+  -- end
 }
 
-require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-  sources = {
-    { name = "dap" },
-  },
-})
+-- require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+--   sources = {
+--     { name = "dap" },
+--   },
+-- })
 
-local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done({
-  filetypes = {
-    ruby = {}
-  }
-}))
+-- local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+-- require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done({
+--   filetypes = {
+--     ruby = {}
+--   }
+-- }))
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})

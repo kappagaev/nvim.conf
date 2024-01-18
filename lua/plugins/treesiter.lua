@@ -16,10 +16,10 @@ return {
     end
 
     treesitter_config.setup {
-      ensure_installed = { "dap_repl", "yaml", "go", "tsx", "lua", "json", "graphql", "regex", "vim", "markdown", "markdown_inline", "dockerfile", "prisma", "vue"},
+      -- ensure_installed = { "dap_repl", "yaml", "go", "tsx", "lua", "json", "graphql", "regex", "vim", "markdown", "markdown_inline", "dockerfile", "prisma", "vue"},
 
       sync_install = false,
-      auto_install = true,
+      -- auto_install = true,
       -- playground = {
       --   enable = true,
       -- },

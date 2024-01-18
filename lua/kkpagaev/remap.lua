@@ -17,7 +17,7 @@ map('n', "<leader>", "")
 map('i', "<M-d>", "<C-d>")
 map('i', "<M-u>", "<C-u>")
 
-function buf_vtext()
+local function buf_vtext()
   local a_orig = vim.fn.getreg('a')
   local mode = vim.fn.mode()
   if mode ~= 'v' and mode ~= 'V' then
@@ -103,6 +103,8 @@ map('n', ",.", ':w<CR>')
 -- vim.keymap.set("n", "<C-d>", "<C-d>zz", {})
 -- vim.keymap.set("n", "<C-u>", "<C-u>zz", {})
 
+map('v', "J", "j")
+map('v', "K", "k")
 
 map('s', "h", "h")
 map('s', "t", "t")

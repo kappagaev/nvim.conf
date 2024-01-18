@@ -20,7 +20,7 @@
     "prefix": "url"
   },
   "curl": {
-    "body": "curl --url \"http://localhost:4000/$1\" --request POST \\\n    --data '{\n    \"$2\"\n  }' \\\n  -H 'content-type: application/json'",
+    "body": "curl --url \"http://localhost:3000/$1\" --request POST \\\n    --data '{\n    \"$2\"\n  }' \\\n  -H 'content-type: application/json'",
     "description": "curl",
     "prefix": "curl"
   }

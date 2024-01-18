@@ -108,24 +108,24 @@ require("dap").configurations.typescriptreact = { -- change this to javascript i
 }
 
 
--- require('dap-go').setup {
---   dap_configurations = {
---     {
---       -- Must be "go" or it will be ignored by the plugin
---       type = "go",
---       name = "Attach remote",
---       mode = "remote",
---       request = "attach",
---     },
---   },
---   delve = {
---     path = "dlv",
---     initialize_timeout_sec = 20,
---     port = "${port}",
---     args = {},
---     build_flags = "",
---   },
--- }
+require('dap-go').setup {
+  dap_configurations = {
+    {
+      -- Must be "go" or it will be ignored by the plugin
+      type = "go",
+      name = "Attach remote",
+      mode = "remote",
+      request = "attach",
+    },
+  },
+  delve = {
+    path = "dlv",
+    initialize_timeout_sec = 20,
+    port = "${port}",
+    args = {},
+    build_flags = "",
+  },
+}
 
 dap.adapters.cppdbg = {
   id = 'cppdbg',

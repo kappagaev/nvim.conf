@@ -16,9 +16,9 @@ local on_attach = function(client, bufnr)
   nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
   -- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
 
-  vim.keymap.set("n", "S", function()
-    require("hover").hover()
-  end, { desc = "hover.nvim" })
+  vim.keymap.set("n", "S", require("hover").hover, { desc = "hover.nvim" })
+  vim.keymap.set("n", "gS", require("hover").hover_select, { desc = "hover.nvim (select)" })
+
   -- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
   local keymap = vim.keymap.set
@@ -59,23 +59,25 @@ local servers = {
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = true
-capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
 
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
-}
--- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.preselectSupport = true
+-- capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+-- capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+-- capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+-- capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+-- capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+
+-- capabilities.textDocument.completion.completionItem.resolveSupport = {
+--   properties = {
+--     'documentation',
+--     'detail',
+--     'additionalTextEdits',
+--   }
+-- }
+-- -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 require('mason').setup()
 
@@ -140,12 +142,15 @@ require('lspconfig')['yamlls'].setup {
   on_attach = on_attach,
   settings = {
     yaml = {
+      schemastore = {
+        enable = true
+      },
       trace = {
         server = "verbose"
       },
       schemas = {
-        kubernetes = "/*.yaml",
-        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
+        -- kubernetes = "/*.yaml",
+        -- ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
         -- kubernetes = "*.k8s.yaml",
       }
     }
@@ -183,48 +188,18 @@ require 'lspconfig'.tailwindcss.setup {
       },
     },
   },
-
 }
-
--- require("typescript").setup({
---   disable_commands = false, -- prevent the plugin from creating Vim commands
---   debug = false,            -- enable debug logging for commands
---   go_to_source_definition = {
---     fallback = true,        -- fall back to standard LSP definition on failure
---   },
---   server = {
---     -- pass options to lspconfig's setup method
---     copabilities = capabilities,
---     on_attach = on_attach,
---     settings = servers[server_name],
---     init_options = {
---       preferences = {
---         importModuleSpecifierPreference = "relative"
---       }
---     }
---   },
--- })
 
 require("typescript-tools").setup {
   on_attach = on_attach,
   settings = {
-    -- spawn additional tsserver instance to calculate diagnostics on it
     server_capabilities = { semanticTokensProvider = nil },
-    -- complete_function_calls = true,
     separate_diagnostic_server = true,
-    -- "change"|"insert_leave" determine when the client asks the server about diagnostic
     publish_diagnostic_on = "insert_leave",
-    -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
-    -- (see 💅 `styled-components` support section)
     tsserver_plugins = {},
-    -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
-    -- memory limit in megabytes or "auto"(basically no limit)
     tsserver_max_memory = "auto",
-    -- described below
     code_lens = "off",
     tsserver_format_options = {
-      -- allowIncompleteCompletions = true,
-      -- allowRenameOfImportPath = true,
     },
     tsserver_file_preferences = {
       includeInlayParameterNameHints = "all",
@@ -235,31 +210,15 @@ require("typescript-tools").setup {
   },
 }
 
--- require 'lspconfig'.volar.setup {
---   init_options = {
---     typescript = {
---       tsdk = '/home/kkpagaev/.local/share/nvim/mason/bin/typescript-language-server'
---       -- Alternative location if installed as root:
---       -- tsdk = '/usr/local/lib/node_modules/typescript/lib'
---     },
---     languageFeatures = {
---       implementation = true, -- new in @volar/vue-language-server v0.33
---       references = true,
---       definition = true,
---       typeDefinition = true,
---       callHierarchy = true,
---       hover = true,
---       rename = true,
---       renameFileRefactoring = true,
---       signatureHelp = true,
---       codeAction = true,
---       workspaceSymbol = true,
---       completion = {
---         defaultTagNameCase = 'both',
---         defaultAttrNameCase = 'kebabCase',
---         getDocumentNameCasesRequest = false,
---         getDocumentSelectionRequest = false,
---       },
---     }
---   }
--- }
+require 'lspconfig'.sqls.setup {
+  settings = {
+    sqls = {
+      connections = {
+        {
+          driver = 'postgresql',
+          dataSourceName = 'host=127.0.0.1 port=1252 user=user password=user dbname=user',
+        },
+      },
+    },
+  },
+}

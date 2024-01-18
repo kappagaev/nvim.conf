@@ -1,19 +1,19 @@
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
-  'nvim-tree/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
     'nvim-lua/plenary.nvim' },
   lazy = true,
   keys = {
     { "<leader><space>" },
-    { "<C-p>" },
     { "<Up>" },
     { "<leader>u" },
+    { "<C-p>",          "<cmd>Telescope git_files<CR>",  desc = "Find a string", silent = true },
     { "<leader>/",      "<cmd>Telescope live_grep<CR>",  desc = "Find a string", silent = true },
-    { "<leader>:",      "<cmd>Telescope commands<CR>",  desc = "Find a string", silent = true },
+    { "<leader>:",      "<cmd>Telescope commands<CR>",   desc = "Find a string", silent = true },
     { "<leader>fh",     "<cmd>Telescope help_tags<CR>",  desc = "Help",          silent = true },
     { "<leader>fg",     "<cmd>Telescope git_status<CR>", desc = "Find Git",      silent = true },
-    { ",t",     "<cmd>Telescope resume<CR>", desc = "resume",      silent = true },
+    { ",t",             "<cmd>Telescope resume<CR>",     desc = "resume",        silent = true },
   },
   config = function()
     local status_ok, telescope = pcall(require, "telescope")
@@ -35,7 +35,7 @@ return {
         path_display = { 'smart' },
         -- file_ignore_patterns = { '.git' },
         file_ignore_patterns = { "%pnpm-lock.yaml", "%package-lock.json", "target/", "node_modules/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
-          "%.ico", "%.pdf","%.mkv","%.ttf","%.woff", "%.eot", "%.svg", '%.webp', '%.png', "%.mp4", "%.zip", "yarn.lock", ".yarn/", ".vscode/" },
+          "%.ico", "%.pdf", "%.mkv", "%.ttf", "%.woff", "%.eot", "%.svg", '%.webp', '%.png', "%.mp4", "%.zip", "yarn.lock", ".yarn/", ".vscode/" },
         mappings = {
           i = {
             ["<esc>"] = actions.close
@@ -46,9 +46,12 @@ return {
             preview_width = 0.55,
             results_width = 0.8,
           },
-          width = 0.99,
-          height = 0.99,
-          preview_cutoff = 0,
+          -- vertical = {
+          --   mirror = false,
+          -- },
+          width = 0.90,
+          height = 0.90,
+          preview_cutoff = 20,
         },
         prompt_prefix = "   ",
       }
@@ -63,8 +66,8 @@ return {
     vim.keymap.set("n", "<Up>", require("telescope.builtin").find_files, {
       silent = true
     })
-    vim.keymap.set("n", "<C-p>", require("telescope.builtin").find_files, {
-      silent = true
-    })
+    -- vim.keymap.set("n", "<C-p>", require("telescope.builtin").find_files, {
+    --   silent = true
+    -- })
   end
 }
