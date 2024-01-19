@@ -48,20 +48,6 @@ au('BufRead', {
     if line_count == 1 and vim.api.nvim_buf_get_lines(current_buffer, 0, -1, false)[1] == '' then
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
     end
-
-    -- vim.opt_local.relativenumber = false
-    -- vim.opt_local.number = false
-    -- vim.opt_local.winbar = ""
-    -- vim.o.winbar = ""
-
-
-    -- vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("i", true, true, true), "n", true)
   end,
 })
 
--- au('BufLeave', {
---   callback = function()
---     vim.cmd('noh')
---   end,
--- })
---

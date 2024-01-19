@@ -75,30 +75,12 @@ local plugins = {
   },
   {
     'lewis6991/gitsigns.nvim',
-    ft = { "gitcommit", "diff" },
+    lazy = false,
     keys = {
       { "<leader>b", "<CMD>Gitsigns blame_line<CR>" }
     },
-    init = function()
-      -- load gitsigns only when a git file is opened
-      vim.api.nvim_create_autocmd({ "BufRead" }, {
-        group = vim.api.nvim_create_augroup("GitSignsLazyLoad", { clear = true }),
-        callback = function()
-          vim.fn.system("git -C " .. '"' .. vim.fn.expand "%:p:h" .. '"' .. " rev-parse")
-          if vim.v.shell_error == 0 then
-            vim.api.nvim_del_augroup_by_name "GitSignsLazyLoad"
-            vim.schedule(function()
-              require("lazy").load { plugins = { "gitsigns.nvim" } }
-            end)
-          end
-        end,
-      })
-    end,
-    opts = {
-      trouble = false
-    },
-    config = function(_, opts)
-      require("gitsigns").setup(opts)
+    config = function()
+      require("gitsigns").setup()
     end,
   },
   {
@@ -135,7 +117,6 @@ local plugins = {
     'hrsh7th/nvim-cmp',
     event = "InsertEnter",
     dependencies = {
-      "onsails/lspkind.nvim",
       {
         -- snippet plugin
         "L3MON4D3/LuaSnip",
@@ -341,35 +322,6 @@ local plugins = {
           vim.cmd("bd")
         end
       end, { silent = true })
-
-      local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
-
-      local autocmd = vim.api.nvim_create_autocmd
-      autocmd("BufWinEnter", {
-        group = ThePrimeagen_Fugitive,
-        pattern = "*",
-        callback = function()
-          if vim.bo.ft ~= "fugitive" then
-            return
-          end
-
-          local bufnr = vim.api.nvim_get_current_buf()
-          vim.opt_local.number = false
-          vim.opt_local.relativenumber = false
-          vim.opt_local.winbar = "     "
-          local opts = { buffer = bufnr, remap = false }
-          vim.keymap.set("n", "<leader>P", function()
-            vim.cmd.Git('push')
-          end, opts)
-
-          -- rebase always
-          vim.keymap.set("n", "<leader>p", function()
-            vim.cmd.Git({ 'pull', '--rebase' })
-          end, opts)
-
-          vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts);
-        end,
-      })
 
       vim.keymap.set("n", "gd", vim.cmd.Gdiffsplit)
       vim.keymap.set("n", "gD", ":Gdiffsplit!<CR>", { silent = true })
