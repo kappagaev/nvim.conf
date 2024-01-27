@@ -114,37 +114,38 @@ local plugins = {
     end
   },
   {
+    -- snippet plugin
+    "L3MON4D3/LuaSnip",
+    lazy = true,
+    dependencies = "rafamadriz/friendly-snippets",
+    config = function()
+      local luasnip = require 'luasnip'
+      luasnip.setup {
+        { history = true, updateevents = "TextChanged,TextChangedI" },
+      }
+
+      local loader = require("luasnip/loaders/from_vscode")
+      loader.lazy_load()
+      --
+      loader.lazy_load({ paths = { "./snippets" } })
+
+      vim.api.nvim_create_autocmd("InsertLeave", {
+        callback = function()
+          if
+              require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+              and not require("luasnip").session.jump_active
+          then
+            require("luasnip").unlink_current()
+          end
+        end,
+      })
+    end,
+  },
+  {
     'hrsh7th/nvim-cmp',
     event = "InsertEnter",
     dependencies = {
-      {
-        -- snippet plugin
-        "L3MON4D3/LuaSnip",
-        lazy = true,
-        dependencies = "rafamadriz/friendly-snippets",
-        config = function()
-          local luasnip = require 'luasnip'
-          luasnip.setup {
-            { history = true, updateevents = "TextChanged,TextChangedI" },
-          }
-
-          local loader = require("luasnip/loaders/from_vscode")
-          loader.lazy_load()
---
-          loader.lazy_load({ paths = { "./snippets" } })
-
-          vim.api.nvim_create_autocmd("InsertLeave", {
-            callback = function()
-              if
-                  require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-                  and not require("luasnip").session.jump_active
-              then
-                require("luasnip").unlink_current()
-              end
-            end,
-          })
-        end,
-      },
+      "L3MON4D3/LuaSnip",
       'hrsh7th/cmp-nvim-lsp',
       "saadparwaiz1/cmp_luasnip",
       'hrsh7th/cmp-buffer',
@@ -220,7 +221,7 @@ local plugins = {
     "kylechui/nvim-surround",
     -- event = "InsertEnter",
     lazy = true,
-    keys = {"cs", "ds"},
+    keys = { "cs", "ds" },
     opts = {}
   },
   -- 'mfussenegger/nvim-dap-python',
@@ -257,10 +258,10 @@ local plugins = {
   -- "andythigpen/nvim-coverage",
   --
   "tpope/vim-rsi",
-{
-  "Exafunction/codeium.vim",
+  {
+    "Exafunction/codeium.vim",
     lazy = false
-},
+  },
   {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
@@ -268,26 +269,26 @@ local plugins = {
     end
   },
   -- "simrat39/rust-tools.nvim",
-  {
-    'kevinhwang91/nvim-bqf',
-    ft = 'qf',
-    config = function()
-      require('bqf').setup({
-        magic_window = false,
-        preview = {
-          border = 'none',
-          win_height = 999,
-          show_scroll_bar = false,
-          winblend = 0
-        }
-      })
-    end
-  },
+  -- {
+  --   'kevinhwang91/nvim-bqf',
+  --   ft = 'qf',
+  --   config = function()
+  --     require('bqf').setup({
+  --       magic_window = false,
+  --       preview = {
+  --         border = 'none',
+  --         win_height = 999,
+  --         show_scroll_bar = false,
+  --         winblend = 0
+  --       }
+  --     })
+  --   end
+  -- },
   -- lazy.nvim:
   {
     "mbbill/undotree",
     lazy = true,
-    keys = {',u'},
+    keys = { ',u' },
     config = function()
       vim.keymap.set("n", ",u", "<CMD>UndotreeToggle<CR>", {
         silent = true
@@ -325,6 +326,35 @@ local plugins = {
 
       vim.keymap.set("n", "gd", vim.cmd.Gdiffsplit)
       vim.keymap.set("n", "gD", ":Gdiffsplit!<CR>", { silent = true })
+
+      local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
+
+      local autocmd = vim.api.nvim_create_autocmd
+      autocmd("BufWinEnter", {
+        group = ThePrimeagen_Fugitive,
+        pattern = "*",
+        callback = function()
+          if vim.bo.ft ~= "fugitive" then
+            return
+          end
+
+          local bufnr = vim.api.nvim_get_current_buf()
+          vim.opt_local.number = false
+          vim.opt_local.relativenumber = false
+          vim.opt_local.winbar = "     "
+          local opts = { buffer = bufnr, remap = false }
+          vim.keymap.set("n", "<leader>P", function()
+            vim.cmd.Git('push')
+          end, opts)
+
+          -- rebase always
+          vim.keymap.set("n", "<leader>p", function()
+            vim.cmd.Git({ 'pull', '--rebase' })
+          end, opts)
+
+          vim.keymap.set("n", "<leader>t", ":Git push -u origin ", opts);
+        end,
+      })
     end
   }
 }

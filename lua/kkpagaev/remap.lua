@@ -131,3 +131,5 @@ vim.keymap.set("n", "J", "mzJ`z")
 
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
+vim.keymap.set("n", "(", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", ")", "<cmd>cnext<CR>zz")

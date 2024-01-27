@@ -2,6 +2,9 @@ local cmp = require("cmp")
 -- local lspkind = require('lspkind')
 
 cmp.setup {
+  -- completion = {
+  --     autocomplete = false
+  -- },
   preselect = cmp.PreselectMode.None,
   -- completion = {
   --   completeopt = "menu,menuone",
@@ -15,10 +18,9 @@ cmp.setup {
     documentation = cmp.config.window.bordered(),
   },
   sorting = {
-    -- priority_weight = 2,
-     comparators = {
-        cmp.config.compare.recently_used
-    },
+    --  comparators = {
+    --     cmp.config.compare.recently_used
+    -- },
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -48,17 +50,17 @@ cmp.setup {
     }),
   },
   sources = {
-    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp', priority = 1000 },
     { name = "luasnip" },
     { name = 'path' },
-    { name = 'buffer' },
+    { name = 'buffer', priority = 1 },
   },
 }
 
-local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done({
-  filetypes = {
-    ruby = {}
-  }
-}))
+-- local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+-- require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done({
+--   filetypes = {
+--     ruby = {}
+--   }
+-- }))
 

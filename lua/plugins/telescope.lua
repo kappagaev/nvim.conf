@@ -32,13 +32,14 @@ return {
         },
       },
       defaults = {
-        path_display = { 'smart' },
+        -- path_display = { 'smart' },
         -- file_ignore_patterns = { '.git' },
         file_ignore_patterns = { "%pnpm-lock.yaml", "%package-lock.json", "target/", "node_modules/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
           "%.ico", "%.pdf", "%.mkv", "%.ttf", "%.woff", "%.eot", "%.svg", '%.webp', '%.png', "%.mp4", "%.zip", "yarn.lock", ".yarn/", ".vscode/" },
         mappings = {
           i = {
-            ["<esc>"] = actions.close
+            ["<esc>"] = actions.close,
+            ["<C-t>"] = actions.send_to_qflist + actions.open_qflist
           }
         },
         layout_config = {

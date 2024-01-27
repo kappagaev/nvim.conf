@@ -139,7 +139,7 @@ map('n', "<leader>c", "<Cmd>call VSCodeNotify('editor.debug.action.toggleBreakpo
 -- map('n', ",h", "<Cmd>call VSCodeNotify('extension.debugJest')', 1)<CR>")
 
 -- explorer
-map('n', "<leader>e", "<Cmd>call VSCodeNotifyVisual('workbench.explorer.fileView.focus', 1)<CR>")
+map('n', "<leader>e", "<Cmd>call VSCodeNotify('vsnetrw.open')<CR>")
 
 local lsp = [[
 nnoremap S <Cmd>call VSCodeNotify('editor.action.showHover')<CR>

@@ -82,6 +82,7 @@ vim.g.crystal_define_mappings = 0
 --
 vim.o.timeout = true
 vim.o.timeoutlen = 1000
+vim.o.pumheight = 10
 
 -- vim.opt.statusline = " "
 
