@@ -56,7 +56,7 @@ vim.opt.fillchars = {eob = " "}
 
 vim.opt.scrolloff = 6
 vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+-- vim.opt.isfname:append("@-@")
 
 -- vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -71,27 +71,13 @@ o.smartcase = true
 vim.opt.wrap = false
 
 vim.opt.termguicolors = true
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
 
 vim.g.crystal_define_mappings = 0
 
-
--- vim.o.wrap = true
--- vim.o.linebreak = true
---
 vim.o.timeout = true
 vim.o.timeoutlen = 1000
 vim.o.pumheight = 10
 
--- vim.opt.statusline = " "
-
--- for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
---   vim.api.nvim_set_hl(0, group, {})
--- end
-
--- vim.g.netrw_browse_split = 0
--- vim.g.netrw_banner = 0
--- vim.g.netrw_winsize = 25
+vim.g.ftplugin_sql_omni_key = '<C-j>'
 
 vim.opt.mouse = ""

@@ -20,6 +20,13 @@ end
 --     vim.opt_local.relativenumber = false
 --   end,
 -- })
+--
+
+-- au("BufWinEnter", {
+--   callback = function()
+--     require("marks").BufWinEnterHandler()
+--   end
+-- })
 
 au('TextYankPost', {
   group = ag('yank_highlight', {}),

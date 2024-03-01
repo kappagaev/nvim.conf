@@ -13,7 +13,7 @@ return {
     { "<leader>:",      "<cmd>Telescope commands<CR>",   desc = "Find a string", silent = true },
     { "<leader>fh",     "<cmd>Telescope help_tags<CR>",  desc = "Help",          silent = true },
     { "<leader>fg",     "<cmd>Telescope git_status<CR>", desc = "Find Git",      silent = true },
-    { ",t",             "<cmd>Telescope resume<CR>",     desc = "resume",        silent = true },
+    { ",r",             "<cmd>Telescope resume<CR>",     desc = "resume",        silent = true },
   },
   config = function()
     local status_ok, telescope = pcall(require, "telescope")
@@ -34,7 +34,7 @@ return {
       defaults = {
         -- path_display = { 'smart' },
         -- file_ignore_patterns = { '.git' },
-        file_ignore_patterns = { "%pnpm-lock.yaml", "%package-lock.json", "target/", "node_modules/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
+        file_ignore_patterns = { "%pnpm-lock.yaml", "%package-lock.json", "target/", ".obsidian/", ".git/", ".cache", "%.out", "%.class",
           "%.ico", "%.pdf", "%.mkv", "%.ttf", "%.woff", "%.eot", "%.svg", '%.webp', '%.png', "%.mp4", "%.zip", "yarn.lock", ".yarn/", ".vscode/" },
         mappings = {
           i = {

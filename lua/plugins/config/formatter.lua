@@ -34,11 +34,11 @@ require('formatter').setup {
   filetype = {
 
     -- typescript = { format_prettier },
-    typescriptreact = { format_prettier },
+    -- typescriptreact = { format_prettier },
     -- vue = { format_prettier },
 
     typescript = { format_eslint },
-    -- typescriptreact = { format_eslint },
+    typescriptreact = { format_eslint },
     vue = { format_eslint },
     astro = { format_eslint },
     go = {

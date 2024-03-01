@@ -43,6 +43,7 @@ local plugins = {
   },
   {
     "NvChad/nvim-colorizer.lua",
+    lazy = false,
     config = function()
       require("colorizer").setup {
         filetypes = { "*" },
@@ -124,7 +125,7 @@ local plugins = {
         { history = true, updateevents = "TextChanged,TextChangedI" },
       }
 
-      local loader = require("luasnip/loaders/from_vscode")
+      local loader = require("luasnip.loaders.from_snipmate")
       loader.lazy_load()
       --
       loader.lazy_load({ paths = { "./snippets" } })
@@ -229,6 +230,7 @@ local plugins = {
   {
     "roobert/tailwindcss-colorizer-cmp.nvim",
     -- optionally, override the default options:
+    lazy = false,
     config = function()
       require("tailwindcss-colorizer-cmp").setup({
         color_square_width = 2,
@@ -356,7 +358,23 @@ local plugins = {
         end,
       })
     end
-  }
+  },
+  {
+  'kristijanhusak/vim-dadbod-ui',
+  dependencies = {
+    { 'tpope/vim-dadbod', lazy = true },
+    { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true },
+  },
+  cmd = {
+    'DBUI',
+    'DBUIToggle',
+    'DBUIAddConnection',
+    'DBUIFindBuffer',
+  },
+  init = function()
+      require("plugins.config.dadbod")
+  end,
+}
 }
 
 require("lazy").setup(plugins, {

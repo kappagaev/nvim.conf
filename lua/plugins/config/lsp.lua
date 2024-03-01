@@ -222,3 +222,7 @@ require 'lspconfig'.sqls.setup {
     },
   },
 }
+
+require 'lspconfig'.eslint.setup({
+  on_attach = on_attach
+})

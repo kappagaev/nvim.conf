@@ -8,13 +8,17 @@
 --   end,
 -- })
 
-local null_ls = require("null-ls")
-
-null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.eslint_d,
-        -- null_ls.builtins.diagnostics.cppcheck,
-        -- null_ls.builtins.formatting.clang_format,
-        null_ls.builtins.code_actions.eslint_d
-    },
-})
+-- local null_ls = require("null-ls")
+--
+-- null_ls.builtins.lint.eslint_d.with({
+--   extra_filetypes = { 'vue', 'astro', 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
+-- })
+--
+-- null_ls.setup({
+--     sources = {
+--         null_ls.builtins.diagnostics.eslint_d,
+--         -- null_ls.builtins.diagnostics.cppcheck,
+--         -- null_ls.builtins.formatting.clang_format,
+--         null_ls.builtins.code_actions.eslint_d
+--     },
+-- })

@@ -1,9 +1,11 @@
 -- local theme = "everblush"
 -- local theme = "kanagawa-lotus"
 -- local theme = "gruvbox-baby"
-local theme = "gruvbox"
+-- local theme = "gruvbox"
+-- local theme = "rose-pine"
+-- local theme = "palenightfall"
 -- local theme = "ofirkai"
--- local theme = "kanagawa"
+local theme = "kanagawa"
 -- local theme = "kanagawa-dragon"
 -- local theme = "rose-pine"
 -- local theme = "spaceduck"
@@ -12,6 +14,8 @@ return {
     "ellisonleao/gruvbox.nvim",
   commit = "6d409ee",
   dependencies = {
+    "rose-pine/neovim",
+    "JoosepAlviste/palenightfall.nvim",
   "rebelot/kanagawa.nvim",
     -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     -- "arturgoms/moonbow.nvim",

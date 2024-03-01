@@ -1,3 +1,4 @@
+
 local g = vim.g
 
 local function map(m, k, v)
@@ -46,7 +47,7 @@ local function zod_to_json()
   print(res)
 end
 
-vim.keymap.set('v', ',', zod_to_json, { noremap = true, silent = true })
+-- vim.keymap.set('v', ',', zod_to_json, { noremap = true, silent = true })
 
 map('i', "<C-BS>", "<C-w>")
 map('i', "<C-g>", "<C-o>")
@@ -120,6 +121,9 @@ map('s', "K", "K")
 vim.keymap.set('n', '<Tab>', '<C-W>w')
 vim.keymap.set('n', '<S-Tab>', '<C-W>W')
 
+vim.cmd([[nmap s _wwyef`a<<esc>pbiI<esc>l~f`aQuery><esc>bye/queries.types<cr>^t{a <esc>pa,<esc><C-o>]])
+-- vim.keymap.set('n', 's', '_wwyef`a<<esc>pbiI<esc>l~f`aQuery><esc>')
+
 -- ???
 vim.keymap.set('n', '<C-f>', function()
   vim.fn.system('t')
@@ -133,3 +137,28 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 
 vim.keymap.set("n", "(", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", ")", "<cmd>cnext<CR>zz")
+
+vim.keymap.set("n", "gh", "<cmd>TSToolsGoToSourceDefinition<CR>")
+
+vim.keymap.set({"n", "i"}, "<M-h>", "'h")
+vim.keymap.set({"n", "i"}, "<M-t>", "'t")
+vim.keymap.set({"n", "i"}, "<M-n>", "'n")
+vim.keymap.set({"n", "i"}, "<M-s>", "'s")
+
+
+require('kkpagaev.awesome')
+vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
+vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)
+--
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+vim.keymap.set("n", ",h", "'h")
+vim.keymap.set("n", ",t", "'t")
+vim.keymap.set("n", ",n", "'n")
+vim.keymap.set("n", ",s", "'s")
+
+
